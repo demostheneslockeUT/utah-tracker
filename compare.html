@@ -120,19 +120,37 @@
         }
 
         function renderSpectrum() {
-            let markers = ideology.map(org => {
+            // Group orgs by position to stack overlapping ones
+            const positions = {};
+            ideology.forEach(org => {
                 const pos = ((org.ideology_score + 1) / 2) * 100;
-                return `<div class="absolute transform -translate-x-1/2 cursor-pointer hover:scale-125 transition" 
-                            style="left:${pos}%;top:0" title="${org.name}: ${org.ideology}">
-                            <span class="text-2xl">${org.emoji}</span>
-                        </div>`;
-            }).join('');
+                const key = Math.round(pos * 10) / 10; // Round to 0.1 precision
+                if (!positions[key]) positions[key] = [];
+                positions[key].push({org, pos});
+            });
+            
+            // Build markers with vertical stacking for overlaps
+            let markers = [];
+            Object.values(positions).forEach(group => {
+                group.forEach((item, index) => {
+                    const verticalOffset = index * 36; // 36px spacing between stacked icons
+                    markers.push(`<div class="absolute transform -translate-x-1/2 cursor-pointer hover:scale-125 transition" 
+                                style="left:${item.pos}%;top:${verticalOffset}px" 
+                                title="${item.org.name}: ${item.org.ideology} (${item.org.ideology_score.toFixed(2)})">
+                                <span class="text-2xl">${item.org.emoji}</span>
+                            </div>`);
+                });
+            });
+            
+            // Calculate height based on max stack
+            const maxStack = Math.max(...Object.values(positions).map(g => g.length));
+            const height = Math.max(64, maxStack * 36 + 16);
 
             document.getElementById('spectrum-container').innerHTML = `
                 <h2 class="text-xl font-bold mb-4">📊 Political Spectrum</h2>
-                <div class="relative h-16 mt-8 mb-4">
-                    <div class="absolute inset-x-0 top-6 h-4 bg-gradient-to-r from-blue-500 via-gray-300 to-red-500 rounded-full"></div>
-                    ${markers}
+                <div class="relative mt-8 mb-4" style="height: ${height}px">
+                    <div class="absolute inset-x-0 h-4 bg-gradient-to-r from-blue-500 via-gray-300 to-red-500 rounded-full" style="top: ${Math.max(24, maxStack * 18)}px"></div>
+                    ${markers.join('')}
                 </div>
                 <div class="flex justify-between text-sm text-gray-500">
                     <span>← Progressive</span><span>Centrist</span><span>Conservative →</span>

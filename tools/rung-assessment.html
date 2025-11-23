@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Political Rung Assessment - Demosthenes and Locke</title>
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body { margin: 0; padding: 0; }
+    </style>
+</head>
+<body>
+    <div id="root"></div>
+    
+    <script type="text/babel">
+        const { useState } = React;
+
+        const PoliticalRungAssessment = () => {
+          const issues = [
+            { id: 'healthcare', name: 'Healthcare', color: '#e74c3c', icon: '🥼' },
+            { id: 'education', name: 'Education', color: '#3498db', icon: '📚' },
+            { id: 'immigration', name: 'Immigration', color: '#9b59b6', icon: '🌎' },
+            { id: 'guns', name: 'Gun Rights', color: '#e67e22', icon: '🔫' },
+            { id: 'abortion', name: 'Abortion', color: '#1abc9c', icon: '⚕️' },
+            { id: 'housing', name: 'Housing', color: '#f39c12', icon: '🏠' },
+            { id: 'climate', name: 'Climate', color: '#27ae60', icon: '🌱' },
+            { id: 'taxes', name: 'Tax Policy', color: '#c0392b', icon: '💰' }
+          ];
+
+          const [positions, setPositions] = useState({});
+          const [currentIssue, setCurrentIssue] = useState(null);
+          const [showResults, setShowResults] = useState(false);
+
+          const questions = {
+            political: [
+              { value: -2, label: 'Far Left' },
+              { value: -1, label: 'Left-leaning' },
+              { value: 0, label: 'Centrist' },
+              { value: 1, label: 'Right-leaning' },
+              { value: 2, label: 'Far Right' }
+            ],
+            rung: [
+              { points: 2, text: 'I can explain the opposing view so well they\'d agree with my summary' },
+              { points: 2, text: 'I\'ve changed my mind on a related policy in the last 2 years' },
+              { points: 2, text: 'I can name specific evidence that would change my mind' },
+              { points: 2, text: 'I regularly read sources from people I disagree with on this' },
+              { points: 2, text: 'I view this as a trade-off between values, not good vs evil' }
+            ]
+          };
+
+          const [tempAssessment, setTempAssessment] = useState({
+            political: 0,
+            rungAnswers: []
+          });
+
+          const handleStartAssessment = (issue) => {
+            setCurrentIssue(issue);
+            setTempAssessment({ political: 0, rungAnswers: [] });
+          };
+
+          const handleToggleRung = (index) => {
+            const newAnswers = [...tempAssessment.rungAnswers];
+            if (newAnswers.includes(index)) {
+              newAnswers.splice(newAnswers.indexOf(index), 1);
+            } else {
+              newAnswers.push(index);
+            }
+            setTempAssessment({ ...tempAssessment, rungAnswers: newAnswers });
+          };
+
+          const handleSaveIssue = () => {
+            const rungScore = tempAssessment.rungAnswers.reduce(
+              (sum, idx) => sum + questions.rung[idx].points, 
+              0
+            );
+            
+            setPositions({
+              ...positions,
+              [currentIssue.id]: {
+                political: tempAssessment.political,
+                rung: rungScore,
+                issue: currentIssue
+              }
+            });
+            setCurrentIssue(null);
+          };
+
+          const calculateStats = () => {
+            const scores = Object.values(positions);
+            if (scores.length === 0) return null;
+
+            const avgRung = scores.reduce((sum, p) => sum + p.rung, 0) / scores.length;
+            
+            const highRung = scores.filter(p => p.rung >= 7);
+            const midRung = scores.filter(p => p.rung >= 4 && p.rung < 7);
+            const lowRung = scores.filter(p => p.rung < 4);
+
+            return { avgRung, highRung, midRung, lowRung, total: scores.length };
+          };
+
+          const stats = calculateStats();
+
+          const getGraphPosition = (political, rung) => {
+            const x = ((political + 2) / 4) * 80 + 10;
+            const y = 90 - (rung / 10) * 80;
+            return { x: `${x}%`, y: `${y}%` };
+          };
+
+          const getRungLabel = (score) => {
+            if (score >= 8) return 'Thinker';
+            if (score >= 6) return 'High Mid-Rung';
+            if (score >= 4) return 'Low Mid-Rung';
+            if (score >= 2) return 'Sports Fan';
+            return 'Zealot';
+          };
+
+          if (currentIssue) {
+            return (
+              <div style={{ padding: '30px', maxWidth: '700px', margin: '0 auto', fontFamily: 'system-ui, -apple-system, sans-serif' }}>
+                <div style={{ marginBottom: '30px' }}>
+                  <h2 style={{ fontSize: '28px', marginBottom: '10px' }}>
+                    {currentIssue.icon} {currentIssue.name}
+                  </h2>
+                  <p style={{ color: '#666', fontSize: '14px' }}>Answer honestly about how you actually engage with this issue</p>
+                </div>
+
+                <div style={{ background: '#f8f9fa', padding: '25px', borderRadius: '12px', marginBottom: '25px' }}>
+                  <h3 style={{ fontSize: '18px', marginBottom: '20px' }}>1. Your Political Position</h3>
+                  <div style={{ display: 'flex', gap: '10px', flexWrap: 'wrap' }}>
+                    {questions.political.map((option) => (
+                      <button
+                        key={option.value}
+                        onClick={() => setTempAssessment({ ...tempAssessment, political: option.value })}
+                        style={{
+                          padding: '12px 20px',
+                          border: tempAssessment.political === option.value ? '2px solid #3498db' : '2px solid #ddd',
+                          background: tempAssessment.political === option.value ? '#e3f2fd' : 'white',
+                          borderRadius: '8px',
+                          cursor: 'pointer',
+                          fontSize: '14px',
+                          fontWeight: tempAssessment.political === option.value ? 'bold' : 'normal',
+                          flex: '1 1 auto',
+                          minWidth: '120px'
+                        }}
+                      >
+                        {option.label}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+
+                <div style={{ background: '#f8f9fa', padding: '25px', borderRadius: '12px', marginBottom: '25px' }}>
+                  <h3 style={{ fontSize: '18px', marginBottom: '15px' }}>2. Your Thinking Rung</h3>
+                  <p style={{ fontSize: '14px', color: '#666', marginBottom: '20px' }}>
+                    Check all that are TRUE for you on this issue (2 points each):
+                  </p>
+                  
+                  {questions.rung.map((q, idx) => (
+                    <div
+                      key={idx}
+                      onClick={() => handleToggleRung(idx)}
+                      style={{
+                        padding: '15px',
+                        background: tempAssessment.rungAnswers.includes(idx) ? '#e8f5e9' : 'white',
+                        border: tempAssessment.rungAnswers.includes(idx) ? '2px solid #27ae60' : '2px solid #ddd',
+                        borderRadius: '8px',
+                        marginBottom: '12px',
+                        cursor: 'pointer',
+                        display: 'flex',
+                        alignItems: 'flex-start',
+                        gap: '12px',
+                        transition: 'all 0.2s'
+                      }}
+                    >
+                      <div style={{
+                        width: '24px',
+                        height: '24px',
+                        borderRadius: '4px',
+                        border: '2px solid ' + (tempAssessment.rungAnswers.includes(idx) ? '#27ae60' : '#ccc'),
+                        background: tempAssessment.rungAnswers.includes(idx) ? '#27ae60' : 'white',
+                        flexShrink: 0,
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        color: 'white',
+                        fontSize: '14px'
+                      }}>
+                        {tempAssessment.rungAnswers.includes(idx) && '✓'}
+                      </div>
+                      <span style={{ fontSize: '15px', lineHeight: '1.5' }}>{q.text}</span>
+                    </div>
+                  ))}
+                  
+                  <div style={{ marginTop: '20px', padding: '15px', background: '#fff3cd', borderRadius: '8px', border: '1px solid #ffc107' }}>
+                    <strong>Your Rung Score: {tempAssessment.rungAnswers.reduce((sum, idx) => sum + questions.rung[idx].points, 0)}/10</strong>
+                    <div style={{ fontSize: '13px', marginTop: '5px', color: '#666' }}>
+                      {getRungLabel(tempAssessment.rungAnswers.reduce((sum, idx) => sum + questions.rung[idx].points, 0))}
+                    </div>
+                  </div>
+                </div>
+
+                <div style={{ display: 'flex', gap: '15px' }}>
+                  <button
+                    onClick={handleSaveIssue}
+                    style={{
+                      flex: 1,
+                      padding: '15px',
+                      background: '#27ae60',
+                      color: 'white',
+                      border: 'none',
+                      borderRadius: '8px',
+                      fontSize: '16px',
+                      fontWeight: 'bold',
+                      cursor: 'pointer'
+                    }}
+                  >
+                    Save & Continue
+                  </button>
+                  <button
+                    onClick={() => setCurrentIssue(null)}
+                    style={{
+                      padding: '15px 25px',
+                      background: '#95a5a6',
+                      color: 'white',
+                      border: 'none',
+                      borderRadius: '8px',
+                      fontSize: '16px',
+                      cursor: 'pointer'
+                    }}
+                  >
+                    Cancel
+                  </button>
+                </div>
+              </div>
+            );
+          }
+
+          if (showResults && stats) {
+            return (
+              <div style={{ padding: '30px', maxWidth: '900px', margin: '0 auto', fontFamily: 'system-ui, -apple-system, sans-serif' }}>
+                <div style={{ marginBottom: '30px' }}>
+                  <h2 style={{ fontSize: '32px', marginBottom: '10px' }}>Your Political Rung Profile</h2>
+                  <p style={{ color: '#666' }}>Based on {stats.total} issues assessed</p>
+                </div>
+
+                <div style={{ background: '#f8f9fa', padding: '30px', borderRadius: '12px', marginBottom: '30px' }}>
+                  <div style={{ fontSize: '48px', fontWeight: 'bold', color: '#3498db', marginBottom: '10px' }}>
+                    {stats.avgRung.toFixed(1)}/10
+                  </div>
+                  <div style={{ fontSize: '20px', color: '#666', marginBottom: '20px' }}>
+                    Overall Rung Score: <strong>{getRungLabel(stats.avgRung)}</strong>
+                  </div>
+                  
+                  <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '15px', marginTop: '20px' }}>
+                    <div style={{ background: '#e8f5e9', padding: '20px', borderRadius: '8px' }}>
+                      <div style={{ fontSize: '28px', fontWeight: 'bold', color: '#27ae60' }}>{stats.highRung.length}</div>
+                      <div style={{ fontSize: '14px', color: '#666' }}>High-Rung Issues (7-10)</div>
+                    </div>
+                    <div style={{ background: '#fff3cd', padding: '20px', borderRadius: '8px' }}>
+                      <div style={{ fontSize: '28px', fontWeight: 'bold', color: '#f39c12' }}>{stats.midRung.length}</div>
+                      <div style={{ fontSize: '14px', color: '#666' }}>Mid-Rung Issues (4-6)</div>
+                    </div>
+                    <div style={{ background: '#ffebee', padding: '20px', borderRadius: '8px' }}>
+                      <div style={{ fontSize: '28px', fontWeight: 'bold', color: '#e74c3c' }}>{stats.lowRung.length}</div>
+                      <div style={{ fontSize: '14px', color: '#666' }}>Low-Rung Issues (0-3)</div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* 2D Political Landscape Graph */}
+                <div style={{ background: 'white', padding: '30px', borderRadius: '12px', border: '2px solid #e0e0e0', marginBottom: '30px', position: 'relative', height: '400px' }}>
+                  <h3 style={{ fontSize: '20px', marginBottom: '20px', textAlign: 'center' }}>Your Political Landscape</h3>
+                  
+                  <div style={{ position: 'absolute', left: '10%', right: '10%', top: '15%', bottom: '15%', border: '2px solid #ccc', background: '#fafafa' }}>
+                    {/* Axis labels */}
+                    <div style={{ position: 'absolute', left: '-70px', top: '10px', fontSize: '12px', fontWeight: 'bold', color: '#27ae60' }}>
+                      THINKER
+                    </div>
+                    <div style={{ position: 'absolute', left: '-60px', bottom: '10px', fontSize: '12px', fontWeight: 'bold', color: '#e74c3c' }}>
+                      ZEALOT
+                    </div>
+                    <div style={{ position: 'absolute', left: '10px', bottom: '-30px', fontSize: '12px', fontWeight: 'bold', color: '#3498db' }}>
+                      Progressive
+                    </div>
+                    <div style={{ position: 'absolute', right: '10px', bottom: '-30px', fontSize: '12px', fontWeight: 'bold', color: '#e74c3c' }}>
+                      Conservative
+                    </div>
+
+                    {/* Grid lines */}
+                    <div style={{ position: 'absolute', left: '50%', top: 0, bottom: 0, width: '1px', background: '#ddd' }}></div>
+                    <div style={{ position: 'absolute', top: '50%', left: 0, right: 0, height: '1px', background: '#ddd' }}></div>
+
+                    {/* Plot each issue as a dot */}
+                    {Object.values(positions).map((pos, idx) => {
+                      const graphPos = getGraphPosition(pos.political, pos.rung);
+                      return (
+                        <div
+                          key={idx}
+                          style={{
+                            position: 'absolute',
+                            left: graphPos.x,
+                            top: graphPos.y,
+                            transform: 'translate(-50%, -50%)',
+                            width: '20px',
+                            height: '20px',
+                            borderRadius: '50%',
+                            background: pos.issue.color,
+                            border: '3px solid white',
+                            boxShadow: '0 2px 8px rgba(0,0,0,0.3)',
+                            cursor: 'pointer',
+                            zIndex: 10
+                          }}
+                          title={`${pos.issue.name}: ${getRungLabel(pos.rung)}`}
+                        />
+                      );
+                    })}
+                  </div>
+
+                  {/* Legend */}
+                  <div style={{ position: 'absolute', bottom: '15px', right: '15px', background: 'white', padding: '10px', borderRadius: '8px', border: '1px solid #ddd', fontSize: '11px' }}>
+                    <div style={{ fontWeight: 'bold', marginBottom: '5px' }}>Issues:</div>
+                    {Object.values(positions).map((pos, idx) => (
+                      <div key={idx} style={{ display: 'flex', alignItems: 'center', gap: '6px', marginBottom: '3px' }}>
+                        <div style={{ width: '10px', height: '10px', borderRadius: '50%', background: pos.issue.color }}></div>
+                        <span>{pos.issue.icon} {pos.issue.name} ({pos.rung}/10)</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                <div style={{ display: 'flex', gap: '15px' }}>
+                  <button
+                    onClick={() => setShowResults(false)}
+                    style={{
+                      flex: 1,
+                      padding: '15px',
+                      background: '#3498db',
+                      color: 'white',
+                      border: 'none',
+                      borderRadius: '8px',
+                      fontSize: '16px',
+                      fontWeight: 'bold',
+                      cursor: 'pointer'
+                    }}
+                  >
+                    Assess More Issues
+                  </button>
+                  <button
+                    onClick={() => {
+                      setPositions({});
+                      setShowResults(false);
+                    }}
+                    style={{
+                      padding: '15px 25px',
+                      background: '#95a5a6',
+                      color: 'white',
+                      border: 'none',
+                      borderRadius: '8px',
+                      fontSize: '16px',
+                      cursor: 'pointer'
+                    }}
+                  >
+                    Start Over
+                  </button>
+                </div>
+              </div>
+            );
+          }
+
+          return (
+            <div style={{ padding: '30px', maxWidth: '900px', margin: '0 auto', fontFamily: 'system-ui, -apple-system, sans-serif' }}>
+              <div style={{ textAlign: 'center', marginBottom: '40px' }}>
+                <h1 style={{ fontSize: '36px', marginBottom: '15px' }}>Which Rung Are You On?</h1>
+                <p style={{ fontSize: '18px', color: '#666', maxWidth: '600px', margin: '0 auto' }}>
+                  Assess yourself on different political issues. Are you a Thinker, Sports Fan, or Zealot?
+                </p>
+              </div>
+
+              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(200px, 1fr))', gap: '20px', marginBottom: '30px' }}>
+                {issues.map((issue) => {
+                  const hasAssessed = positions[issue.id];
+                  return (
+                    <div
+                      key={issue.id}
+                      onClick={() => handleStartAssessment(issue)}
+                      style={{
+                        padding: '25px',
+                        background: hasAssessed ? '#e8f5e9' : 'white',
+                        border: hasAssessed ? '2px solid #27ae60' : '2px solid #e0e0e0',
+                        borderRadius: '12px',
+                        cursor: 'pointer',
+                        transition: 'all 0.2s',
+                        position: 'relative',
+                        textAlign: 'center'
+                      }}
+                      onMouseEnter={(e) => e.currentTarget.style.transform = 'translateY(-4px)'}
+                      onMouseLeave={(e) => e.currentTarget.style.transform = 'translateY(0)'}
+                    >
+                      <div style={{ fontSize: '40px', marginBottom: '10px' }}>{issue.icon}</div>
+                      <div style={{ fontSize: '16px', fontWeight: 'bold', marginBottom: '8px' }}>{issue.name}</div>
+                      {hasAssessed && (
+                        <div style={{ fontSize: '14px', color: '#27ae60', fontWeight: 'bold' }}>
+                          ✓ {positions[issue.id].rung}/10
+                        </div>
+                      )}
+                      {!hasAssessed && (
+                        <div style={{ fontSize: '13px', color: '#999' }}>Click to assess</div>
+                      )}
+                    </div>
+                  );
+                })}
+              </div>
+
+              {Object.keys(positions).length > 0 && (
+                <div style={{ textAlign: 'center' }}>
+                  <button
+                    onClick={() => setShowResults(true)}
+                    style={{
+                      padding: '18px 40px',
+                      background: '#3498db',
+                      color: 'white',
+                      border: 'none',
+                      borderRadius: '10px',
+                      fontSize: '18px',
+                      fontWeight: 'bold',
+                      cursor: 'pointer',
+                      boxShadow: '0 4px 12px rgba(52, 152, 219, 0.3)'
+                    }}
+                  >
+                    View My Results ({Object.keys(positions).length} issues assessed)
+                  </button>
+                </div>
+              )}
+
+              <div style={{ marginTop: '50px', padding: '25px', background: '#f8f9fa', borderRadius: '12px' }}>
+                <h3 style={{ fontSize: '20px', marginBottom: '15px' }}>How This Works</h3>
+                <p style={{ fontSize: '15px', lineHeight: '1.6', color: '#666' }}>
+                  For each issue, you'll rate your political position (left to right) and your thinking rung 
+                  (Zealot to Thinker). Be honest with yourself—this is for your eyes only. The goal isn't to 
+                  score perfectly; it's to understand where you're thinking clearly and where you're reacting tribally.
+                </p>
+              </div>
+            </div>
+          );
+        };
+
+        ReactDOM.render(<PoliticalRungAssessment />, document.getElementById('root'));
+    </script>
+</body>
+</html>

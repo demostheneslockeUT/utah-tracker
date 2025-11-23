@@ -1,0 +1,358 @@
+{
+  "methodology": "Historical voting patterns 2020-2024",
+  "disclaimer": "Alignment based on overall voting tendencies. This is a simplified model - actual policy positions may vary.",
+  "total_votes_analyzed": 7971,
+  "legislators_profiled": 871,
+  "sample_matches": [
+    {
+      "name": "King, B",
+      "alignment_pct": 100,
+      "total_votes": 55,
+      "sessions_active": 1,
+      "methodology": "voting_tendency"
+    },
+    {
+      "name": "Matthews, A.\nMoss",
+      "alignment_pct": 100,
+      "total_votes": 26,
+      "sessions_active": 1,
+      "methodology": "voting_tendency"
+    },
+    {
+      "name": "Hayes, S.\n\nHollins",
+      "alignment_pct": 93,
+      "total_votes": 39,
+      "sessions_active": 1,
+      "methodology": "voting_tendency"
+    },
+    {
+      "name": "Albrecht, C.\nBarlow",
+      "alignment_pct": 90,
+      "total_votes": 27,
+      "sessions_active": 1,
+      "methodology": "voting_tendency"
+    },
+    {
+      "name": "Petersen, M.\nPeterson",
+      "alignment_pct": 78,
+      "total_votes": 56,
+      "sessions_active": 1,
+      "methodology": "voting_tendency"
+    },
+    {
+      "name": "Lesser, R.\nLoubet",
+      "alignment_pct": 78,
+      "total_votes": 20,
+      "sessions_active": 1,
+      "methodology": "voting_tendency"
+    },
+    {
+      "name": "Seegmiller",
+      "alignment_pct": 76,
+      "total_votes": 1636,
+      "sessions_active": 3,
+      "methodology": "voting_tendency"
+    },
+    {
+      "name": "Kotter",
+      "alignment_pct": 74,
+      "total_votes": 752,
+      "sessions_active": 1,
+      "methodology": "voting_tendency"
+    },
+    {
+      "name": "Dailey",
+      "alignment_pct": 74,
+      "total_votes": 170,
+      "sessions_active": 1,
+      "methodology": "voting_tendency"
+    },
+    {
+      "name": "Roberts",
+      "alignment_pct": 73,
+      "total_votes": 604,
+      "sessions_active": 1,
+      "methodology": "voting_tendency"
+    },
+    {
+      "name": "Gricius, S.\nHall",
+      "alignment_pct": 73,
+      "total_votes": 20,
+      "sessions_active": 1,
+      "methodology": "voting_tendency"
+    },
+    {
+      "name": "Garner",
+      "alignment_pct": 72,
+      "total_votes": 1083,
+      "sessions_active": 2,
+      "methodology": "voting_tendency"
+    },
+    {
+      "name": "Owens, D.\nPeterson",
+      "alignment_pct": 72,
+      "total_votes": 22,
+      "sessions_active": 1,
+      "methodology": "voting_tendency"
+    },
+    {
+      "name": "Christiansen",
+      "alignment_pct": 71,
+      "total_votes": 1171,
+      "sessions_active": 2,
+      "methodology": "voting_tendency"
+    },
+    {
+      "name": "Lyman",
+      "alignment_pct": 71,
+      "total_votes": 2981,
+      "sessions_active": 5,
+      "methodology": "voting_tendency"
+    },
+    {
+      "name": "Quinn",
+      "alignment_pct": 71,
+      "total_votes": 409,
+      "sessions_active": 1,
+      "methodology": "voting_tendency"
+    },
+    {
+      "name": "Robertson",
+      "alignment_pct": 71,
+      "total_votes": 1748,
+      "sessions_active": 3,
+      "methodology": "voting_tendency"
+    },
+    {
+      "name": "Balderree, H.\nBramble",
+      "alignment_pct": 71,
+      "total_votes": 39,
+      "sessions_active": 1,
+      "methodology": "voting_tendency"
+    },
+    {
+      "name": "Lee, T.\nLisonbee",
+      "alignment_pct": 71,
+      "total_votes": 23,
+      "sessions_active": 1,
+      "methodology": "voting_tendency"
+    },
+    {
+      "name": "Coleman",
+      "alignment_pct": 70,
+      "total_votes": 581,
+      "sessions_active": 1,
+      "methodology": "voting_tendency"
+    },
+    {
+      "name": "Petersen",
+      "alignment_pct": 70,
+      "total_votes": 2343,
+      "sessions_active": 4,
+      "methodology": "voting_tendency"
+    },
+    {
+      "name": "Teuscher, J.\nWalter",
+      "alignment_pct": 70,
+      "total_votes": 24,
+      "sessions_active": 1,
+      "methodology": "voting_tendency"
+    },
+    {
+      "name": "Welton, D.\nWheatley",
+      "alignment_pct": 70,
+      "total_votes": 41,
+      "sessions_active": 1,
+      "methodology": "voting_tendency"
+    },
+    {
+      "name": "Ballard, M.",
+      "alignment_pct": 70,
+      "total_votes": 33,
+      "sessions_active": 1,
+      "methodology": "voting_tendency"
+    },
+    {
+      "name": "Snider",
+      "alignment_pct": 69,
+      "total_votes": 2810,
+      "sessions_active": 5,
+      "methodology": "voting_tendency"
+    },
+    {
+      "name": "Thurston",
+      "alignment_pct": 69,
+      "total_votes": 2894,
+      "sessions_active": 5,
+      "methodology": "voting_tendency"
+    },
+    {
+      "name": "Bennion",
+      "alignment_pct": 69,
+      "total_votes": 2404,
+      "sessions_active": 4,
+      "methodology": "voting_tendency"
+    },
+    {
+      "name": "Ivory",
+      "alignment_pct": 69,
+      "total_votes": 1683,
+      "sessions_active": 3,
+      "methodology": "voting_tendency"
+    },
+    {
+      "name": "Blouin",
+      "alignment_pct": 69,
+      "total_votes": 1527,
+      "sessions_active": 2,
+      "methodology": "voting_tendency"
+    },
+    {
+      "name": "Judkins, M.\n\nKing",
+      "alignment_pct": 69,
+      "total_votes": 28,
+      "sessions_active": 1,
+      "methodology": "voting_tendency"
+    },
+    {
+      "name": "Kyle, J\n\nLee",
+      "alignment_pct": 69,
+      "total_votes": 37,
+      "sessions_active": 1,
+      "methodology": "voting_tendency"
+    },
+    {
+      "name": "Briscoe",
+      "alignment_pct": 68,
+      "total_votes": 2946,
+      "sessions_active": 5,
+      "methodology": "voting_tendency"
+    },
+    {
+      "name": "Romero",
+      "alignment_pct": 68,
+      "total_votes": 2828,
+      "sessions_active": 5,
+      "methodology": "voting_tendency"
+    },
+    {
+      "name": "Kohler",
+      "alignment_pct": 68,
+      "total_votes": 2118,
+      "sessions_active": 4,
+      "methodology": "voting_tendency"
+    },
+    {
+      "name": "Wilcox",
+      "alignment_pct": 68,
+      "total_votes": 2249,
+      "sessions_active": 4,
+      "methodology": "voting_tendency"
+    },
+    {
+      "name": "Hayes",
+      "alignment_pct": 68,
+      "total_votes": 1141,
+      "sessions_active": 2,
+      "methodology": "voting_tendency"
+    },
+    {
+      "name": "Kennedy, M.\nMc",
+      "alignment_pct": 68,
+      "total_votes": 20,
+      "sessions_active": 1,
+      "methodology": "voting_tendency"
+    },
+    {
+      "name": "Elison, J.\nGricius",
+      "alignment_pct": 68,
+      "total_votes": 30,
+      "sessions_active": 1,
+      "methodology": "voting_tendency"
+    },
+    {
+      "name": "Rohner, J.\nSchultz",
+      "alignment_pct": 68,
+      "total_votes": 21,
+      "sessions_active": 1,
+      "methodology": "voting_tendency"
+    },
+    {
+      "name": "Ward, R.\nWatkins",
+      "alignment_pct": 68,
+      "total_votes": 48,
+      "sessions_active": 1,
+      "methodology": "voting_tendency"
+    },
+    {
+      "name": "Pierucci, C.\n\nPulsipher",
+      "alignment_pct": 68,
+      "total_votes": 20,
+      "sessions_active": 1,
+      "methodology": "voting_tendency"
+    },
+    {
+      "name": "Albrecht",
+      "alignment_pct": 67,
+      "total_votes": 3008,
+      "sessions_active": 5,
+      "methodology": "voting_tendency"
+    },
+    {
+      "name": "Barlow",
+      "alignment_pct": 67,
+      "total_votes": 3003,
+      "sessions_active": 5,
+      "methodology": "voting_tendency"
+    },
+    {
+      "name": "Chew",
+      "alignment_pct": 67,
+      "total_votes": 2905,
+      "sessions_active": 5,
+      "methodology": "voting_tendency"
+    },
+    {
+      "name": "Dailey-Provost",
+      "alignment_pct": 67,
+      "total_votes": 2937,
+      "sessions_active": 5,
+      "methodology": "voting_tendency"
+    },
+    {
+      "name": "Gibson",
+      "alignment_pct": 67,
+      "total_votes": 1033,
+      "sessions_active": 2,
+      "methodology": "voting_tendency"
+    },
+    {
+      "name": "Hollins",
+      "alignment_pct": 67,
+      "total_votes": 2953,
+      "sessions_active": 5,
+      "methodology": "voting_tendency"
+    },
+    {
+      "name": "King",
+      "alignment_pct": 67,
+      "total_votes": 2892,
+      "sessions_active": 5,
+      "methodology": "voting_tendency"
+    },
+    {
+      "name": "Lisonbee",
+      "alignment_pct": 67,
+      "total_votes": 2857,
+      "sessions_active": 5,
+      "methodology": "voting_tendency"
+    },
+    {
+      "name": "Nelson",
+      "alignment_pct": 67,
+      "total_votes": 1825,
+      "sessions_active": 3,
+      "methodology": "voting_tendency"
+    }
+  ]
+}

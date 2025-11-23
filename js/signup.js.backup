@@ -1,0 +1,155 @@
+/**
+ * Sign-up page logic
+ * - Submits to Google Sheets (your data collection)
+ * - Saves to localStorage (their personalized experience)
+ */
+
+const ISSUES = [
+    'Education', 'Healthcare', 'Environment', 'Taxes', 'Housing',
+    'Public Safety', 'Transportation', 'Civil Rights', 'Gun Rights',
+    'Immigration', 'Labor/Workers', 'Business/Economy', 'Water',
+    'Public Lands', 'Elections'
+];
+
+const ORGANIZATIONS = [
+    { name: 'HEAL Utah', emoji: '🌱', id: 'heal_utah' },
+    { name: 'Libertas Institute', emoji: '🗽', id: 'libertas' },
+    { name: 'Utah Education Association', emoji: '📚', id: 'uea' },
+    { name: 'Planned Parenthood', emoji: '🏥', id: 'planned_parenthood' },
+    { name: 'Utah PTA', emoji: '👨‍👩‍👧', id: 'utah_pta' },
+    { name: 'ACLU of Utah', emoji: '⚖️', id: 'aclu' },
+    { name: 'Utah League of Cities & Towns', emoji: '🏛️', id: 'ulct' },
+    { name: 'Alliance for a Better Utah', emoji: '📊', id: 'better_utah' },
+    { name: 'Equality Utah', emoji: '🏳️‍🌈', id: 'equality_utah' },
+    { name: 'Sutherland Institute', emoji: '🏛️', id: 'sutherland' },
+    { name: 'Utah Farm Bureau', emoji: '🌾', id: 'farm_bureau' },
+    { name: 'Salt Lake Chamber', emoji: '💼', id: 'slc_chamber' }
+];
+
+// Your Google Form URL (we'll submit via fetch)
+const GOOGLE_FORM_URL = 'https://docs.google.com/forms/d/e/YOUR_FORM_ID/formResponse';
+
+// Populate issues checkboxes
+function populateIssues() {
+    const grid = document.getElementById('issues-grid');
+    grid.innerHTML = ISSUES.map(issue => `
+        <label class="flex items-center gap-2 p-2 border rounded cursor-pointer hover:bg-gray-50">
+            <input type="checkbox" name="issues" value="${issue}" class="issue-checkbox">
+            <span class="text-sm">${issue}</span>
+        </label>
+    `).join('');
+
+    // Limit to 5 selections
+    grid.addEventListener('change', (e) => {
+        const checked = grid.querySelectorAll('input:checked');
+        if (checked.length > 5) {
+            e.target.checked = false;
+            alert('Please select up to 5 issues');
+        }
+    });
+}
+
+// Populate organizations checkboxes
+function populateOrgs() {
+    const grid = document.getElementById('orgs-grid');
+    grid.innerHTML = ORGANIZATIONS.map(org => `
+        <label class="flex items-center gap-2 p-2 border rounded cursor-pointer hover:bg-gray-50">
+            <input type="checkbox" name="orgs" value="${org.id}" class="org-checkbox">
+            <span class="text-sm">${org.emoji} ${org.name}</span>
+        </label>
+    `).join('');
+}
+
+// Handle form submission
+document.getElementById('signup-form').addEventListener('submit', async (e) => {
+    e.preventDefault();
+    
+    const btn = document.getElementById('submit-btn');
+    btn.disabled = true;
+    btn.textContent = '⏳ Creating your dashboard...';
+    
+    const form = e.target;
+    const formData = new FormData(form);
+    
+    // Collect all data
+    const userData = {
+        name: formData.get('name'),
+        email: formData.get('email'),
+        zip: formData.get('zip'),
+        phone: formData.get('phone') || '',
+        political_view: formData.get('political_view') || 'Moderate',
+        issues: Array.from(document.querySelectorAll('.issue-checkbox:checked')).map(cb => cb.value),
+        organizations: Array.from(document.querySelectorAll('.org-checkbox:checked')).map(cb => cb.value),
+        email_frequency: formData.get('email_frequency'),
+        signup_date: new Date().toISOString(),
+        user_id: generateUserId()
+    };
+    
+    // Validate orgs selected
+    if (userData.organizations.length === 0) {
+        alert('Please select at least one organization to follow');
+        btn.disabled = false;
+        btn.textContent = '🚀 Create My Dashboard';
+        return;
+    }
+    
+    // Save to localStorage (their personalized experience)
+    saveUserPreferences(userData);
+    
+    // Submit to Google Sheets (your data collection)
+    try {
+        await submitToGoogleSheets(userData);
+        console.log('✅ Submitted to Google Sheets');
+    } catch (err) {
+        console.error('Google Sheets submission failed:', err);
+        // Continue anyway - localStorage saved their preferences
+    }
+    
+    // Redirect to personalized tracker
+    window.location.href = 'index.html?welcome=true';
+});
+
+function generateUserId() {
+    return 'user_' + Math.random().toString(36).substr(2, 9) + '_' + Date.now();
+}
+
+function saveUserPreferences(userData) {
+    // Save to localStorage
+    localStorage.setItem('utah_tracker_user', JSON.stringify(userData));
+    
+    // Also save individual preferences for other scripts
+    localStorage.setItem('user_zip', userData.zip);
+    localStorage.setItem('followed_orgs', JSON.stringify(userData.organizations));
+    localStorage.setItem('user_issues', JSON.stringify(userData.issues));
+    
+    console.log('✅ Saved user preferences to localStorage');
+}
+
+async function submitToGoogleSheets(userData) {
+    // For now, we'll use a Google Apps Script web app endpoint
+    // You'll need to set this up (I'll provide the script)
+    
+    const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxrjEY8Ri2hrA3GkIMFvwNDVVV4sWvPkzZeRhGwarg0v3kIRTWhHtRI46IW_1WZKaVHKQ/exec';
+    
+    if (!APPS_SCRIPT_URL) {
+        console.log('No Apps Script URL configured');
+        return;
+    }
+    
+    console.log('Submitting to Google Sheets...');
+    
+    const response = await fetch(APPS_SCRIPT_URL, {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(userData)
+    });
+    
+    return response;
+}
+
+// Initialize
+populateIssues();
+populateOrgs();

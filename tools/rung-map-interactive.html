@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Political Rung Map - Interactive Self-Assessment</title>
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react.dom.production.min.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body>
+    <div id="root"></div>
+    
+    <script type="text/babel">
+        const { useState } = React;
+
+        const PoliticalRungMap = () => {
+            const issues = [
+                { id: 'healthcare', name: 'Healthcare', color: '#e74c3c', icon: '🥼' },
+                { id: 'education', name: 'Education', color: '#3498db', icon: '📚' },
+                { id: 'immigration', name: 'Immigration', color: '#9b59b6', icon: '🌎' },
+                { id: 'guns', name: 'Gun Rights', color: '#e67e22', icon: '🔫' },
+                { id: 'abortion', name: 'Abortion', color: '#1abc9c', icon: '⚕️' },
+                { id: 'housing', name: 'Housing', color: '#f39c12', icon: '🏠' },
+                { id: 'climate', name: 'Climate', color: '#27ae60', icon: '🌱' },
+                { id: 'taxes', name: 'Tax Policy', color: '#c0392b', icon: '💰' }
+            ];
+
+            // Thought-provoking questions based on position
+            const questions = {
+                highRung: [
+                    "Why do you think someone would strongly disagree with your position?",
+                    "What evidence would make you reconsider this view?",
+                    "Can you explain the opposing argument better than they could?",
+                    "What values are in conflict on this issue?"
+                ],
+                lowRung: [
+                    "Do you dismiss people who disagree as stupid or evil?",
+                    "When did you last change your mind on this topic?",
+                    "Can you name one valid point the other side makes?",
+                    "Are you reacting tribally or thinking independently?"
+                ],
+                left: [
+                    "What would a principled conservative say about this?",
+                    "How do free-market advocates view this issue?",
+                    "What are the trade-offs your solution creates?"
+                ],
+                right: [
+                    "What would a principled progressive say about this?",
+                    "How do advocates for vulnerable populations view this?",
+                    "What problems does the status quo create?"
+                ]
+            };
+
+            const [placedIssues, setPlacedIssues] = useState({});
+            const [selectedIssue, setSelectedIssue] = useState(null);
+            const [showModal, setShowModal] = useState(false);
+            const [currentQuestion, setCurrentQuestion] = useState(null);
+            const [showResults, setShowResults] = useState(false);
+
+            const handleIssueDrop = (issue, x, y) => {
+                // Convert pixel coords to political position (-2 to +2) and rung (0-10)
+                const political = ((x / 100) * 4) - 2; // -2 (far left) to +2 (far right)
+                const rung = 10 - ((y / 100) * 10); // 10 (thinker) at top, 0 (zealot) at bottom
+                
+                setSelectedIssue({ ...issue, political, rung, x, y });
+                
+                // Generate thought-provoking question
+                const question = generateQuestion(political, rung);
+                setCurrentQuestion(question);
+                setShowModal(true);
+            };
+
+            const generateQuestion = (political, rung) => {
+                let qs = [];
+                
+                // Add questions based on rung
+                if (rung >= 7) {
+                    qs = qs.concat(questions.highRung);
+                } else {
+                    qs = qs.concat(questions.lowRung);
+                }
+                
+                // Add questions based on political lean
+                if (political < -0.5) {
+                    qs = qs.concat(questions.right); // If left, ask from right perspective
+                } else if (political > 0.5) {
+                    qs = qs.concat(questions.left); // If right, ask from left perspective
+                }
+                
+                // Pick random question
+                return qs[Math.floor(Math.random() * qs.length)];
+            };
+
+            const confirmPlacement = () => {
+                setPlacedIssues({
+                    ...placedIssues,
+                    [selectedIssue.id]: selectedIssue
+                });
+                setShowModal(false);
+                setSelectedIssue(null);
+            };
+
+            const getRungLabel = (score) => {
+                if (score >= 8) return 'Thinker';
+                if (score >= 6) return 'High Mid-Rung';
+                if (score >= 4) return 'Low Mid-Rung';
+                if (score >= 2) return 'Sports Fan';
+                return 'Zealot';
+            };
+
+            const getPoliticalLabel = (score) => {
+                if (score <= -1.5) return 'Far Left';
+                if (score <= -0.5) return 'Left-Leaning';
+                if (score <= 0.5) return 'Centrist';
+                if (score <= 1.5) return 'Right-Leaning';
+                return 'Far Right';
+            };
+
+            const calculateResults = () => {
+                const placed = Object.values(placedIssues);
+                if (placed.length === 0) return null;
+
+                const avgRung = placed.reduce((sum, p) => sum + p.rung, 0) / placed.length;
+                const avgPolitical = placed.reduce((sum, p) => sum + p.political, 0) / placed.length;
+
+                const highRung = placed.filter(p => p.rung >= 7);
+                const lowRung = placed.filter(p => p.rung < 4);
+
+                return { avgRung, avgPolitical, highRung, lowRung, total: placed.length };
+            };
+
+            if (showResults) {
+                const stats = calculateResults();
+                return (
+                    <div style={{ padding: '30px', maxWidth: '900px', margin: '0 auto' }}>
+                        <h1 style={{ fontSize: '32px', fontWeight: 'bold', marginBottom: '20px' }}>
+                            Your Political Landscape
+                        </h1>
+                        
+                        <div style={{ background: '#f8f9fa', padding: '30px', borderRadius: '12px', marginBottom: '30px' }}>
+                            <div style={{ fontSize: '20px', marginBottom: '15px' }}>
+                                Overall Position: <strong>{getPoliticalLabel(stats.avgPolitical)}</strong>
+                            </div>
+                            <div style={{ fontSize: '20px', marginBottom: '15px' }}>
+                                Overall Rung: <strong>{getRungLabel(stats.avgRung)}</strong> ({stats.avgRung.toFixed(1)}/10)
+                            </div>
+                            
+                            <div style={{ marginTop: '20px' }}>
+                                <div>High-Rung Issues: {stats.highRung.length}</div>
+                                <div>Low-Rung Issues: {stats.lowRung.length}</div>
+                            </div>
+                        </div>
+
+                        {stats.lowRung.length > 0 && (
+                            <div style={{ background: '#ffebee', padding: '20px', borderRadius: '12px', marginBottom: '20px' }}>
+                                <h3 style={{ fontSize: '18px', fontWeight: 'bold', marginBottom: '10px' }}>
+                                    🔥 Your Tribal Triggers
+                                </h3>
+                                <p>You scored lowest on: {stats.lowRung.map(i => i.name).join(', ')}</p>
+                                <p style={{ marginTop: '10px', fontSize: '14px' }}>
+                                    These are your "identity issues" - topics where emotion overrides thinking.
+                                </p>
+                            </div>
+                        )}
+
+                        <div style={{ display: 'flex', gap: '15px' }}>
+                            <button
+                                onClick={() => setShowResults(false)}
+                                style={{
+                                    padding: '15px 30px',
+                                    background: '#3498db',
+                                    color: 'white',
+                                    border: 'none',
+                                    borderRadius: '8px',
+                                    cursor: 'pointer',
+                                    fontWeight: 'bold'
+                                }}
+                            >
+                                Back to Map
+                            </button>
+                            <button
+                                onClick={() => {
+                                    setPlacedIssues({});
+                                    setShowResults(false);
+                                }}
+                                style={{
+                                    padding: '15px 30px',
+                                    background: '#95a5a6',
+                                    color: 'white',
+                                    border: 'none',
+                                    borderRadius: '8px',
+                                    cursor: 'pointer'
+                                }}
+                            >
+                                Start Over
+                            </button>
+                        </div>
+                    </div>
+                );
+            }
+
+            return (
+                <div style={{ padding: '30px', maxWidth: '1200px', margin: '0 auto' }}>
+                    <div style={{ textAlign: 'center', marginBottom: '30px' }}>
+                        <h1 style={{ fontSize: '36px', fontWeight: 'bold', marginBottom: '10px' }}>
+                            Your Political Rung Map
+                        </h1>
+                        <p style={{ fontSize: '18px', color: '#666' }}>
+                            Drag issues onto the map. Where do you stand - and are you thinking or reacting?
+                        </p>
+                    </div>
+
+                    <div style={{ display: 'flex', gap: '30px', alignItems: 'flex-start' }}>
+                        {/* Issue Palette */}
+                        <div style={{ width: '200px' }}>
+                            <h3 style={{ fontSize: '18px', fontWeight: 'bold', marginBottom: '15px' }}>
+                                Issues
+                            </h3>
+                            <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
+                                {issues.filter(i => !placedIssues[i.id]).map(issue => (
+                                    <div
+                                        key={issue.id}
+                                        draggable
+                                        onDragStart={(e) => e.dataTransfer.setData('issue', JSON.stringify(issue))}
+                                        style={{
+                                            padding: '12px',
+                                            background: 'white',
+                                            border: '2px solid #ddd',
+                                            borderRadius: '8px',
+                                            cursor: 'move',
+                                            fontSize: '14px',
+                                            fontWeight: 'bold',
+                                            display: 'flex',
+                                            alignItems: 'center',
+                                            gap: '8px'
+                                        }}
+                                    >
+                                        <span style={{ fontSize: '20px' }}>{issue.icon}</span>
+                                        <span>{issue.name}</span>
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
+
+                        {/* Political Map */}
+                        <div style={{ flex: 1 }}>
+                            <div
+                                onDragOver={(e) => e.preventDefault()}
+                                onDrop={(e) => {
+                                    e.preventDefault();
+                                    const issue = JSON.parse(e.dataTransfer.getData('issue'));
+                                    const rect = e.currentTarget.getBoundingClientRect();
+                                    const x = ((e.clientX - rect.left) / rect.width) * 100;
+                                    const y = ((e.clientY - rect.top) / rect.height) * 100;
+                                    handleIssueDrop(issue, x, y);
+                                }}
+                                style={{
+                                    position: 'relative',
+                                    width: '100%',
+                                    height: '600px',
+                                    background: 'linear-gradient(to bottom, #e8f5e9 0%, #fff3cd 50%, #ffebee 100%)',
+                                    border: '2px solid #333',
+                                    borderRadius: '12px'
+                                }}
+                            >
+                                {/* Axis Labels */}
+                                <div style={{
+                                    position: 'absolute',
+                                    top: '10px',
+                                    left: '50%',
+                                    transform: 'translateX(-50%)',
+                                    fontWeight: 'bold',
+                                    fontSize: '16px'
+                                }}>
+                                    🧠 THINKER
+                                </div>
+                                <div style={{
+                                    position: 'absolute',
+                                    bottom: '10px',
+                                    left: '50%',
+                                    transform: 'translateX(-50%)',
+                                    fontWeight: 'bold',
+                                    fontSize: '16px'
+                                }}>
+                                    🔥 ZEALOT
+                                </div>
+                                <div style={{
+                                    position: 'absolute',
+                                    left: '10px',
+                                    top: '50%',
+                                    transform: 'translateY(-50%) rotate(-90deg)',
+                                    fontWeight: 'bold',
+                                    fontSize: '14px'
+                                }}>
+                                    ← PROGRESSIVE
+                                </div>
+                                <div style={{
+                                    position: 'absolute',
+                                    right: '10px',
+                                    top: '50%',
+                                    transform: 'translateY(-50%) rotate(-90deg)',
+                                    fontWeight: 'bold',
+                                    fontSize: '14px'
+                                }}>
+                                    CONSERVATIVE →
+                                </div>
+
+                                {/* Center Lines */}
+                                <div style={{
+                                    position: 'absolute',
+                                    left: '50%',
+                                    top: 0,
+                                    bottom: 0,
+                                    width: '1px',
+                                    background: '#999',
+                                    opacity: 0.3
+                                }}/>
+                                <div style={{
+                                    position: 'absolute',
+                                    top: '50%',
+                                    left: 0,
+                                    right: 0,
+                                    height: '1px',
+                                    background: '#999',
+                                    opacity: 0.3
+                                }}/>
+
+                                {/* Placed Issues */}
+                                {Object.values(placedIssues).map(issue => (
+                                    <div
+                                        key={issue.id}
+                                        style={{
+                                            position: 'absolute',
+                                            left: `${issue.x}%`,
+                                            top: `${issue.y}%`,
+                                            transform: 'translate(-50%, -50%)',
+                                            width: '40px',
+                                            height: '40px',
+                                            borderRadius: '50%',
+                                            background: issue.color,
+                                            border: '3px solid white',
+                                            boxShadow: '0 2px 8px rgba(0,0,0,0.3)',
+                                            display: 'flex',
+                                            alignItems: 'center',
+                                            justifyContent: 'center',
+                                            fontSize: '20px',
+                                            cursor: 'pointer'
+                                        }}
+                                        title={`${issue.name}: ${getPoliticalLabel(issue.political)}, ${getRungLabel(issue.rung)}`}
+                                    >
+                                        {issue.icon}
+                                    </div>
+                                ))}
+
+                                {/* Drop Hint */}
+                                {Object.keys(placedIssues).length === 0 && (
+                                    <div style={{
+                                        position: 'absolute',
+                                        top: '50%',
+                                        left: '50%',
+                                        transform: 'translate(-50%, -50%)',
+                                        fontSize: '18px',
+                                        color: '#999',
+                                        textAlign: 'center'
+                                    }}>
+                                        Drag issues here to place them<br/>
+                                        <span style={{ fontSize: '14px' }}>Be honest - where do YOU really stand?</span>
+                                    </div>
+                                )}
+                            </div>
+
+                            {Object.keys(placedIssues).length > 0 && (
+                                <div style={{ marginTop: '20px', textAlign: 'center' }}>
+                                    <button
+                                        onClick={() => setShowResults(true)}
+                                        style={{
+                                            padding: '15px 40px',
+                                            background: '#3498db',
+                                            color: 'white',
+                                            border: 'none',
+                                            borderRadius: '8px',
+                                            fontSize: '18px',
+                                            fontWeight: 'bold',
+                                            cursor: 'pointer',
+                                            boxShadow: '0 4px 12px rgba(52, 152, 219, 0.3)'
+                                        }}
+                                    >
+                                        View My Profile ({Object.keys(placedIssues).length} issues)
+                                    </button>
+                                </div>
+                            )}
+                        </div>
+                    </div>
+
+                    {/* Modal for Thought-Provoking Question */}
+                    {showModal && (
+                        <div style={{
+                            position: 'fixed',
+                            top: 0,
+                            left: 0,
+                            right: 0,
+                            bottom: 0,
+                            background: 'rgba(0,0,0,0.7)',
+                            display: 'flex',
+                            alignItems: 'center',
+                            justifyContent: 'center',
+                            zIndex: 1000
+                        }}>
+                            <div style={{
+                                background: 'white',
+                                padding: '40px',
+                                borderRadius: '12px',
+                                maxWidth: '600px',
+                                boxShadow: '0 8px 32px rgba(0,0,0,0.3)'
+                            }}>
+                                <h3 style={{ fontSize: '24px', fontWeight: 'bold', marginBottom: '20px' }}>
+                                    {selectedIssue?.icon} {selectedIssue?.name}
+                                </h3>
+                                <p style={{ fontSize: '16px', marginBottom: '10px' }}>
+                                    You placed this at: <strong>{getPoliticalLabel(selectedIssue?.political)}</strong>,{' '}
+                                    <strong>{getRungLabel(selectedIssue?.rung)}</strong>
+                                </p>
+                                
+                                <div style={{
+                                    background: '#fff3cd',
+                                    padding: '20px',
+                                    borderRadius: '8px',
+                                    marginTop: '20px',
+                                    marginBottom: '30px'
+                                }}>
+                                    <div style={{ fontSize: '14px', fontWeight: 'bold', marginBottom: '10px', color: '#856404' }}>
+                                        💭 Before you continue, reflect:
+                                    </div>
+                                    <div style={{ fontSize: '16px', fontStyle: 'italic' }}>
+                                        "{currentQuestion}"
+                                    </div>
+                                </div>
+
+                                <div style={{ display: 'flex', gap: '15px', justifyContent: 'flex-end' }}>
+                                    <button
+                                        onClick={() => setShowModal(false)}
+                                        style={{
+                                            padding: '12px 24px',
+                                            background: '#95a5a6',
+                                            color: 'white',
+                                            border: 'none',
+                                            borderRadius: '8px',
+                                            cursor: 'pointer'
+                                        }}
+                                    >
+                                        Move It
+                                    </button>
+                                    <button
+                                        onClick={confirmPlacement}
+                                        style={{
+                                            padding: '12px 24px',
+                                            background: '#27ae60',
+                                            color: 'white',
+                                            border: 'none',
+                                            borderRadius: '8px',
+                                            cursor: 'pointer',
+                                            fontWeight: 'bold'
+                                        }}
+                                    >
+                                        Confirm Placement
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    )}
+                </div>
+            );
+        };
+
+        ReactDOM.render(<PoliticalRungMap />, document.getElementById('root'));
+    </script>
+</body>
+</html>

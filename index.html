@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="css/author-position.css">
+    <link rel="stylesheet" href="css/author-position.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Utah Legislative Bill Tracker - Track 959 Bills Across 19 Organizations</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .position-support { background-color: #d1fae5; color: #065f46; }
+        .position-oppose { background-color: #fee2e2; color: #991b1b; }
+        .position-watching { background-color: #dbeafe; color: #1e40af; }
+        .position-studying { background-color: #fef3c7; color: #92400e; }
+        .line-clamp-2 { display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Navigation Bar -->
+    <nav class="bg-white shadow-sm sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 py-3">
+            <div class="flex justify-between items-center">
+                <div class="text-xl font-bold text-blue-600">ezleut.com</div>
+                <div class="flex gap-6">
+                    <a href="index.html" class="text-gray-700 hover:text-blue-600 font-medium">Tracker</a>
+                    <a href="blog/which-rung.html" class="text-gray-700 hover:text-blue-600 font-medium">Blog</a>
+                    <a href="signup.html" class="bg-yellow-500 hover:bg-yellow-600 text-black font-semibold px-3 py-1 rounded">✨ Sign Up</a>
+                <a href="https://docs.google.com/spreadsheets/d/19W8O5_oL2c42JzDB8NnVsrsoRPtapW2bggCsyNFnBho" target="_blank" class="text-gray-700 hover:text-blue-600 font-medium">Full Sheet</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <!-- Hero Section -->
+    <header class="bg-gradient-to-r from-blue-600 to-blue-800 text-white">
+        <div class="max-w-7xl mx-auto px-4 py-12">
+            <h1 class="text-4xl font-bold mb-2">Utah Legislative Bill Tracker</h1>
+            <div class="mt-4">
+                <a href="signup.html" class="inline-block bg-yellow-500 hover:bg-yellow-600 text-black font-bold py-3 px-6 rounded-lg shadow-lg transition mr-2">
+                    ✨ Sign Up Free
+                </a>
+                <a href="compare.html" class="inline-block bg-purple-600 hover:bg-purple-700 text-white font-bold py-3 px-6 rounded-lg shadow-lg transition">
+                    ⚖️ Compare Positions
+                </a>
+                <button onclick="showLegislatorContact()" class="inline-block bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-6 rounded-lg shadow-lg transition mr-2">
+                    📞 Contact Your Legislators
+                </button>
+                <a href="tools/rung-assessment.html" class="inline-block bg-purple-500 hover:bg-purple-600 text-white font-bold py-3 px-6 rounded-lg shadow-lg transition mr-2">
+                    🧠 Political Rung Assessment
+                </a>
+                <a href="quiz/index.html" class="inline-block bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-lg shadow-lg transition ml-2">
+                    🗳️ Take Legislator Quiz
+                </a>
+            </div>
+            <p class="text-xl mb-2">Track 959 bills across 19 organizations</p>
+            <p class="text-sm opacity-90">Search by bill number (HB22 or HB0022), keyword, or sponsor</p>
+            
+            <!-- Stats Dashboard -->
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mt-8">
+                <div class="bg-white/10 rounded-lg p-4">
+                    <div class="text-3xl font-bold" id="stat-total">-</div>
+                    <div class="text-sm">Total Bills</div>
+                </div>
+                <div class="bg-white/10 rounded-lg p-4">
+                    <div class="text-3xl font-bold" id="stat-positions">-</div>
+                    <div class="text-sm">With Positions</div>
+                </div>
+                <div class="bg-white/10 rounded-lg p-4">
+                    <div class="text-3xl font-bold" id="stat-controversial">-</div>
+                    <div class="text-sm">Controversial</div>
+                </div>
+                <div class="bg-white/10 rounded-lg p-4">
+                    <div class="text-3xl font-bold" id="stat-agreement">-</div>
+                    <div class="text-sm">High Agreement</div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- Main Content -->
+    <main class="max-w-7xl mx-auto px-4 py-8">
+        <!-- Search and Filters -->
+        <div class="grid md:grid-cols-4 gap-6 mb-8">
+            <!-- Filters Sidebar -->
+            <div class="md:col-span-1">
+                <div class="bg-white rounded-lg shadow p-6 sticky top-4">
+                    <h3 class="font-bold text-lg mb-4">Filter by</h3>
+                    
+                    <!-- Filter Type Tabs -->
+                    <div class="flex border-b mb-4">
+                        <button onclick="showFilterTab('orgs')" id="tab-orgs" class="px-3 py-2 text-sm font-medium border-b-2 border-blue-600 text-blue-600">
+                            Orgs
+                        </button>
+                        <button onclick="showFilterTab('status')" id="tab-status" class="px-3 py-2 text-sm font-medium text-gray-500 hover:text-gray-700">
+                            Status
+                        </button>
+                        <button onclick="showFilterTab('topic')" id="tab-topic" class="px-3 py-2 text-sm font-medium text-gray-500 hover:text-gray-700">
+                            Topic
+                        </button>
+                    </div>
+                    
+                    <!-- Organizations Filter -->
+                    <div id="filter-orgs" class="space-y-1 max-h-96 overflow-y-auto">
+                        <div id="org-filters" class="space-y-1">
+                        <!-- Populated by JavaScript -->
+                        </div>
+                    </div>
+                    
+                    <!-- Status Filter (hidden by default) -->
+                    <div id="filter-status" class="hidden space-y-1 max-h-96 overflow-y-auto">
+                        <label class="flex items-center gap-2 p-2 hover:bg-gray-50 rounded cursor-pointer">
+                            <input type="checkbox" class="status-filter" value="Governor Signed" onchange="applyAllFilters()">
+                            <span class="text-sm">✅ Signed by Governor</span>
+                        </label>
+                        <label class="flex items-center gap-2 p-2 hover:bg-gray-50 rounded cursor-pointer">
+                            <input type="checkbox" class="status-filter" value="Passed" onchange="applyAllFilters()">
+                            <span class="text-sm">📜 Passed Legislature</span>
+                        </label>
+                        <label class="flex items-center gap-2 p-2 hover:bg-gray-50 rounded cursor-pointer">
+                            <input type="checkbox" class="status-filter" value="Failed" onchange="applyAllFilters()">
+                            <span class="text-sm">❌ Failed</span>
+                        </label>
+                        <label class="flex items-center gap-2 p-2 hover:bg-gray-50 rounded cursor-pointer">
+                            <input type="checkbox" class="status-filter" value="Committee" onchange="applyAllFilters()">
+                            <span class="text-sm">📋 In Committee</span>
+                        </label>
+                        <label class="flex items-center gap-2 p-2 hover:bg-gray-50 rounded cursor-pointer">
+                            <input type="checkbox" class="status-filter" value="Reading" onchange="applyAllFilters()">
+                            <span class="text-sm">📖 Floor Reading</span>
+                        </label>
+                        <label class="flex items-center gap-2 p-2 hover:bg-gray-50 rounded cursor-pointer">
+                            <input type="checkbox" class="status-filter" value="Filed" onchange="applyAllFilters()">
+                            <span class="text-sm">📄 Filed</span>
+                        </label>
+                    </div>
+                    
+                    <!-- Topic Filter (hidden by default) -->
+                    <div id="filter-topic" class="hidden space-y-1 max-h-96 overflow-y-auto">
+                        <label class="flex items-center gap-2 p-2 hover:bg-gray-50 rounded cursor-pointer">
+                            <input type="checkbox" class="topic-filter" value="Education" onchange="applyAllFilters()">
+                            <span class="text-sm">📚 Education</span>
+                        </label>
+                        <label class="flex items-center gap-2 p-2 hover:bg-gray-50 rounded cursor-pointer">
+                            <input type="checkbox" class="topic-filter" value="Healthcare" onchange="applyAllFilters()">
+                            <span class="text-sm">🏥 Healthcare</span>
+                        </label>
+                        <label class="flex items-center gap-2 p-2 hover:bg-gray-50 rounded cursor-pointer">
+                            <input type="checkbox" class="topic-filter" value="Tax & Budget" onchange="applyAllFilters()">
+                            <span class="text-sm">💰 Taxes</span>
+                        </label>
+                        <label class="flex items-center gap-2 p-2 hover:bg-gray-50 rounded cursor-pointer">
+                            <input type="checkbox" class="topic-filter" value="Environment" onchange="applyAllFilters()">
+                            <span class="text-sm">🌱 Environment</span>
+                        </label>
+                        <label class="flex items-center gap-2 p-2 hover:bg-gray-50 rounded cursor-pointer">
+                            <input type="checkbox" class="topic-filter" value="Housing" onchange="applyAllFilters()">
+                            <span class="text-sm">🏠 Housing</span>
+                        </label>
+                        <label class="flex items-center gap-2 p-2 hover:bg-gray-50 rounded cursor-pointer">
+                            <input type="checkbox" class="topic-filter" value="Criminal Justice" onchange="applyAllFilters()">
+                            <span class="text-sm">⚖️ Criminal Justice</span>
+                        </label>
+                        <label class="flex items-center gap-2 p-2 hover:bg-gray-50 rounded cursor-pointer">
+                            <input type="checkbox" class="topic-filter" value="Civil Rights" onchange="applyAllFilters()">
+                            <span class="text-sm">🗽 Civil Rights</span>
+                        </label>
+                        <label class="flex items-center gap-2 p-2 hover:bg-gray-50 rounded cursor-pointer">
+                            <input type="checkbox" class="topic-filter" value="Transportation" onchange="applyAllFilters()">
+                            <span class="text-sm">🚗 Transportation</span>
+                        </label>
+                        <label class="flex items-center gap-2 p-2 hover:bg-gray-50 rounded cursor-pointer">
+                            <input type="checkbox" class="topic-filter" value="Business" onchange="applyAllFilters()">
+                            <span class="text-sm">💼 Business</span>
+                        </label>
+                        <label class="flex items-center gap-2 p-2 hover:bg-gray-50 rounded cursor-pointer">
+                            <input type="checkbox" class="topic-filter" value="Government" onchange="applyAllFilters()">
+                            <span class="text-sm">🏛️ Government</span>
+                        </label>
+                        <label class="flex items-center gap-2 p-2 hover:bg-gray-50 rounded cursor-pointer">
+                            <input type="checkbox" class="topic-filter" value="Other" onchange="applyAllFilters()">
+                            <span class="text-sm">📋 Other</span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Main Content Area -->
+            <div class="md:col-span-3">
+                <!-- Search Bar -->
+                <div class="bg-white rounded-lg shadow p-6 mb-6">
+                    <input 
+                        type="text" 
+                        id="search-input"
+                        placeholder="Search: HB22, education, Smith..." 
+                        class="w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-lg"
+                    >
+                    
+                    <!-- Filter Buttons -->
+                    <div class="flex gap-3 mt-4 flex-wrap">
+                        <button data-filter="all" onclick="setFilter('all')" class="px-4 py-2 bg-blue-600 text-white rounded-lg font-semibold">
+                            All Bills
+                        </button>
+                        <button data-filter="controversial" onclick="setFilter('controversial')" class="px-4 py-2 bg-gray-200 text-gray-700 rounded-lg font-semibold hover:bg-gray-300">
+                            🔥 Controversial
+                        </button>
+                        <button data-filter="agreement" onclick="setFilter('agreement')" class="px-4 py-2 bg-gray-200 text-gray-700 rounded-lg font-semibold hover:bg-gray-300">
+                            🤝 High Agreement
+                        </button>
+                        <button data-filter="my-votes" onclick="setFilter('my-votes')" class="px-4 py-2 bg-gray-200 text-gray-700 rounded-lg font-semibold hover:bg-gray-300">
+                            ⭐ My Votes
+                        </button>
+                    </div>
+                    
+                    <!-- OLD Filter Buttons - Remove below -->
+                    <div class="hidden flex gap-3 mt-4 flex-wrap">
+                        <button id="btn-all" class="px-4 py-2 bg-blue-600 text-white rounded-lg font-semibold">
+                            All Bills
+                        </button>
+                        <button id="btn-controversial" class="px-4 py-2 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300">
+                            🔥 Controversial
+                        </button>
+                        <button id="btn-agreement" class="px-4 py-2 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300">
+                            🤝 High Agreement
+                        </button>
+                        <a href="signup.html" class="bg-yellow-500 hover:bg-yellow-600 text-black font-semibold px-3 py-1 rounded">✨ Sign Up</a>
+                <a href="https://docs.google.com/spreadsheets/d/19W8O5_oL2c42JzDB8NnVsrsoRPtapW2bggCsyNFnBho" 
+                           target="_blank"
+                           class="px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 font-semibold">
+                            📊 Full Tracker
+                        </a>
+                    </div>
+                </div>
+
+        <!-- Quiz Card -->
+        <div class="bg-gradient-to-r from-purple-500 to-blue-600 rounded-lg shadow-lg p-8 mb-6 text-white">
+            <h2 class="text-3xl font-bold mb-3">🗳️ Which Utah Legislators Vote Like You?</h2>
+            <p class="text-lg mb-6 opacity-90">Answer 10 quick questions on real Utah bills to see your political matches</p>
+            <div class="flex gap-4 items-center">
+                <a href="quiz/index.html" class="bg-white text-purple-600 px-8 py-4 rounded-lg font-bold text-lg hover:bg-gray-100 shadow-lg">
+                    Take the Quiz →
+                </a>
+                <span class="text-sm opacity-75">⏱️ Takes 3 minutes</span>
+            </div>
+        </div>
+
+                <!-- Bills Grid -->
+
+                <div id="bills-count" class="text-sm text-gray-600 mb-2">Loading bills...</div>
+                <div id="bills-container" class="grid grid-cols-1 lg:grid-cols-2 gap-4">
+                    <!-- Bills populated by JavaScript -->
+                </div>
+                <!-- Loading State -->
+                
+        <div id="loading" class="text-center py-12">
+                    <div class="text-xl text-gray-600">Loading bills...</div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-8 mt-12">
+        <div class="max-w-7xl mx-auto px-4 text-center">
+            <p class="mb-2">Utah Legislative Bill Tracker</p>
+            <p class="text-sm text-gray-400">Helping Utah citizens understand what their legislature is doing</p>
+            <p class="text-xs text-gray-500 mt-4">Data updated from pipeline runs • Not affiliated with Utah Legislature</p>
+        </div>
+    </footer>
+
+    <script src="js/email-templates.js"></script>
+    <script src="js/simple-contact.js"></script>
+    <script src="js/legislator-contact.js"></script>
+    <script src="js/legislator-contact-fixes.js"></script>
+    <script src="js/user-voting.js"></script>
+    <script src="js/app.js"></script>
+    <script src="js/my-reps-votes.js"></script>
+    <script src="js/filters.js"></script>
+
+        </div>
+
+    <script src="js/personalization.js"></script>
+</body>
+</html>
+
+<!-- Legal Disclaimer -->
+<div class="mt-12 p-6 bg-yellow-50 border-2 border-yellow-400 rounded-lg">
+  <h3 class="text-lg font-bold text-yellow-900 mb-2">
+    ⚠️ Important Disclaimer
+  </h3>
+  <p class="text-sm text-yellow-800 mb-3">
+    Organization positions are automatically scraped from public websites and may contain errors. 
+    <strong>Always verify positions directly with organizations before making decisions.</strong>
+  </p>
+  <p class="text-xs text-yellow-700">
+    Click any organization position to see the source. 
+    <a href="mailto:YOUR_EMAIL" class="underline">Report errors here</a>.
+  </p>
+</div>
+
+<!-- Footer -->
+<footer class="mt-8 py-6 border-t text-center text-xs text-gray-500">
+  <p class="mb-2">
+    This tracker is for educational purposes only. No warranties expressed or implied.
+    The creator assumes no liability for inaccurate information.
+  </p>
+  <p>
+    Data last updated: <span id="last-updated"></span>
+  </p>
+</footer>
+
+<script>
+// Show last update time
+fetch('data/bills.json')
+  .then(r => r.json())
+  .then(data => {
+    document.getElementById('last-updated').textContent = 
+      new Date(data.stats.last_updated).toLocaleString();
+  });
+</script>

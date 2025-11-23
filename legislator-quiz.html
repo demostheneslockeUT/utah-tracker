@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Find Your Match - Utah Legislator Alignment</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="js/legislator-match.js"></script>
+</head>
+<body class="bg-gray-50">
+    <div class="container mx-auto px-4 py-8 max-w-4xl">
+        
+        <!-- Header -->
+        <div class="bg-white rounded-lg shadow-md p-6 mb-6">
+            <h1 class="text-3xl font-bold text-gray-900 mb-2">
+                🗳️ Find Your Legislative Match
+            </h1>
+            <p class="text-gray-600">
+                Answer how you'd vote on 20 key bills from the 2024 session, 
+                then see which Utah legislators voted most like you!
+            </p>
+        </div>
+
+        <!-- Quiz Container -->
+        <div id="quiz-container" class="hidden">
+            <div class="bg-white rounded-lg shadow-md p-6 mb-6">
+                <div class="mb-4">
+                    <div class="flex justify-between text-sm text-gray-600 mb-2">
+                        <span>Question <span id="current-q">1</span> of <span id="total-q">20</span></span>
+                        <span id="progress-pct">0%</span>
+                    </div>
+                    <div class="w-full bg-gray-200 rounded-full h-2">
+                        <div id="progress-bar" class="bg-blue-600 h-2 rounded-full transition-all" style="width: 0%"></div>
+                    </div>
+                </div>
+
+                <div id="question-card">
+                    <h2 class="text-xl font-bold mb-2" id="bill-number"></h2>
+                    <p class="text-lg mb-4" id="bill-title"></p>
+                    
+                    <div class="bg-gray-50 p-4 rounded mb-4">
+                        <p class="text-sm text-gray-700" id="bill-description"></p>
+                    </div>
+
+                    <div class="space-y-3">
+                        <button onclick="vote('yea')" class="w-full bg-green-500 hover:bg-green-600 text-white font-bold py-3 px-6 rounded-lg transition">
+                            ✅ Vote YEA (Support)
+                        </button>
+                        <button onclick="vote('nay')" class="w-full bg-red-500 hover:bg-red-600 text-white font-bold py-3 px-6 rounded-lg transition">
+                            ❌ Vote NAY (Oppose)
+                        </button>
+                        <button onclick="vote('skip')" class="w-full bg-gray-300 hover:bg-gray-400 text-gray-700 font-bold py-3 px-6 rounded-lg transition">
+                            ⏭️ Skip This Bill
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Results Container -->
+        <div id="results-container" class="hidden">
+            <div class="bg-white rounded-lg shadow-md p-6 mb-6">
+                <h2 class="text-2xl font-bold mb-4">🎯 Your Top Matches</h2>
+                <div id="results-list"></div>
+            </div>
+        </div>
+
+        <!-- Loading -->
+        <div id="loading" class="text-center py-12">
+            <div class="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto"></div>
+            <p class="mt-4 text-gray-600">Loading bills and legislators...</p>
+        </div>
+
+    </div>
+
+    <script>
+        let matcher;
+        let quizBills = [];
+        let currentIndex = 0;
+
+        async function init() {
+            matcher = new LegislatorMatcher();
+            await matcher.loadData();
+            
+            quizBills = matcher.getQuizBills(20);
+            
+            document.getElementById('loading').classList.add('hidden');
+            document.getElementById('quiz-container').classList.remove('hidden');
+            document.getElementById('total-q').textContent = quizBills.length;
+            
+            showQuestion(0);
+        }
+
+        function showQuestion(index) {
+            if (index >= quizBills.length) {
+                showResults();
+                return;
+            }
+
+            const bill = quizBills[index];
+            currentIndex = index;
+
+            document.getElementById('current-q').textContent = index + 1;
+            document.getElementById('progress-pct').textContent = Math.round((index / quizBills.length) * 100) + '%';
+            document.getElementById('progress-bar').style.width = ((index / quizBills.length) * 100) + '%';
+
+            document.getElementById('bill-number').textContent = bill.bill_number;
+            document.getElementById('bill-title').textContent = bill.title;
+            document.getElementById('bill-description').textContent = bill.general_provisions || 'No description available.';
+        }
+
+        function vote(choice) {
+            const bill = quizBills[currentIndex];
+            matcher.recordVote(bill.bill_number, choice);
+            showQuestion(currentIndex + 1);
+        }
+
+        function showResults() {
+            document.getElementById('quiz-container').classList.add('hidden');
+            document.getElementById('results-container').classList.remove('hidden');
+
+            const matches = matcher.calculateMatches();
+            const resultsList = document.getElementById('results-list');
+
+            if (matches.length === 0) {
+                resultsList.innerHTML = '<p class="text-gray-600">Not enough data to calculate matches. Try answering more questions!</p>';
+                return;
+            }
+
+            let html = '';
+            matches.slice(0, 20).forEach((match, i) => {
+                const barColor = match.matchPct >= 75 ? 'bg-green-500' : match.matchPct >= 50 ? 'bg-yellow-500' : 'bg-red-500';
+                
+                html += `
+                    <div class="border-b py-4 ${i === 0 ? 'bg-blue-50 -mx-6 px-6' : ''}">
+                        <div class="flex justify-between items-center mb-2">
+                            <h3 class="font-bold text-lg">${i + 1}. ${match.name}</h3>
+                            <span class="text-2xl font-bold ${match.matchPct >= 75 ? 'text-green-600' : match.matchPct >= 50 ? 'text-yellow-600' : 'text-red-600'}">
+                                ${match.matchPct}%
+                            </span>
+                        </div>
+                        <div class="w-full bg-gray-200 rounded-full h-3 mb-2">
+                            <div class="${barColor} h-3 rounded-full" style="width: ${match.matchPct}%"></div>
+                        </div>
+                        <p class="text-sm text-gray-600">
+                            ${match.agreements} agreements, ${match.disagreements} disagreements (${match.compared} bills compared)
+                        </p>
+                    </div>
+                `;
+            });
+
+            resultsList.innerHTML = html;
+        }
+
+        // Start on page load
+        init();
+    </script>
+</body>
+</html>

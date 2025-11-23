@@ -1,0 +1,26 @@
+{
+  "zip_mappings": {
+    "84101": ["Sen. Luz Escamilla", "Rep. Sandra Hollins"],
+    "84102": ["Sen. Luz Escamilla", "Rep. Angela Romero"],
+    "84103": ["Sen. Jani Iwamoto", "Rep. Jennifer Daily"],
+    "84104": ["Sen. Kathleen Riebe", "Rep. Sandra Hollins"],
+    "84105": ["Sen. Jani Iwamoto", "Rep. Andrew Stoddard"],
+    "84106": ["Sen. Kathleen Riebe", "Rep. Elizabeth Weight"],
+    "84107": ["Sen. Kathleen Riebe", "Rep. Gay Lynn Bennion"],
+    "84108": ["Sen. Jani Iwamoto", "Rep. Carol Spackman Moss"],
+    "84109": ["Sen. Jani Iwamoto", "Rep. Joel Briscoe"],
+    "84111": ["Sen. Luz Escamilla", "Rep. Sandra Hollins"],
+    "84115": ["Sen. Luz Escamilla", "Rep. Angela Romero"],
+    "84116": ["Sen. Luz Escamilla", "Rep. Sandra Hollins"],
+    "84118": ["Sen. Kathleen Riebe", "Rep. Angela Romero"],
+    "84119": ["Sen. Kathleen Riebe", "Rep. Sandra Hollins"],
+    "84120": ["Sen. Luz Escamilla", "Rep. Sandra Hollins"],
+    "84123": ["Sen. Kathleen Riebe", "Rep. Angela Romero"],
+    "84124": ["Sen. Jani Iwamoto", "Rep. Carol Spackman Moss"],
+    "84128": ["Sen. Kathleen Riebe", "Rep. Sandra Hollins"],
+    "84129": ["Sen. Kathleen Riebe", "Rep. Gay Lynn Bennion"],
+    "84180": ["Sen. Luz Escamilla", "Rep. Sandra Hollins"],
+    "84190": ["Sen. Luz Escamilla", "Rep. Sandra Hollins"]
+  },
+  "note": "These are approximate mappings for Salt Lake County. Legislative districts don't align perfectly with ZIP codes."
+}

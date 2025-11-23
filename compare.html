@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Compare | Utah Bill Tracker</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 min-h-screen">
+    <header class="bg-gradient-to-r from-blue-800 to-blue-600 text-white py-6 shadow-lg">
+        <div class="max-w-6xl mx-auto px-4">
+            <div class="flex justify-between items-center">
+                <div>
+                    <h1 class="text-3xl font-bold">⚖️ Compare Tool</h1>
+                    <p class="text-blue-200 mt-1">See how organizations and legislators align</p>
+                </div>
+                <a href="index.html" class="bg-white/20 hover:bg-white/30 px-4 py-2 rounded-lg">← Back</a>
+            </div>
+        </div>
+    </header>
+
+    <main class="max-w-6xl mx-auto px-4 py-8">
+        <div id="loading" class="text-center py-12">
+            <div class="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto"></div>
+            <p class="mt-4 text-gray-600">Loading data...</p>
+        </div>
+
+        <div id="content" class="hidden">
+            <!-- Spectrum -->
+            <div id="spectrum-container" class="bg-white rounded-xl shadow-lg p-6 mb-8"></div>
+
+            <!-- Selection -->
+            <div class="bg-white rounded-xl shadow-lg p-6 mb-8">
+                <h2 class="text-xl font-bold mb-6">🔍 Select Two to Compare</h2>
+                <div class="grid md:grid-cols-2 gap-8">
+                    <div class="border-2 border-blue-200 rounded-lg p-4">
+                        <h3 class="font-semibold text-blue-800 mb-3">First Entity</h3>
+                        <select id="type1" class="w-full p-3 border rounded-lg mb-3">
+                            <option value="">-- Type --</option>
+                            <option value="org">Organization</option>
+                            <option value="leg">Legislator</option>
+                        </select>
+                        <select id="entity1" class="w-full p-3 border rounded-lg" disabled></select>
+                    </div>
+                    <div class="border-2 border-green-200 rounded-lg p-4">
+                        <h3 class="font-semibold text-green-800 mb-3">Second Entity</h3>
+                        <select id="type2" class="w-full p-3 border rounded-lg mb-3">
+                            <option value="">-- Type --</option>
+                            <option value="org">Organization</option>
+                            <option value="leg">Legislator</option>
+                        </select>
+                        <select id="entity2" class="w-full p-3 border rounded-lg" disabled></select>
+                    </div>
+                </div>
+                <div class="mt-6 text-center">
+                    <button id="compare-btn" onclick="runComparison()" disabled
+                            class="bg-blue-600 hover:bg-blue-700 disabled:bg-gray-400 text-white font-bold py-3 px-8 rounded-lg text-lg">
+                        ⚖️ Compare Now
+                    </button>
+                </div>
+            </div>
+
+            <!-- Results -->
+            <div id="results" class="hidden">
+                <div class="bg-white rounded-xl shadow-lg p-8 mb-8 text-center">
+                    <h2 class="text-2xl font-bold mb-4">Alignment Score</h2>
+                    <div id="score-circle" class="w-32 h-32 mx-auto rounded-full flex items-center justify-center text-4xl font-bold text-white mb-4 bg-gray-400">--</div>
+                    <p id="score-label" class="text-xl font-medium">--</p>
+                    <p id="score-detail" class="text-gray-500 mt-2">Based on 0 bills</p>
+                </div>
+                <div class="grid md:grid-cols-2 gap-8">
+                    <div class="bg-white rounded-xl shadow-lg p-6">
+                        <h3 class="text-xl font-bold text-green-700 mb-4">✅ Agreements (<span id="agree-count">0</span>)</h3>
+                        <div id="agree-list" class="space-y-2 max-h-96 overflow-y-auto"></div>
+                    </div>
+                    <div class="bg-white rounded-xl shadow-lg p-6">
+                        <h3 class="text-xl font-bold text-red-700 mb-4">❌ Disagreements (<span id="disagree-count">0</span>)</h3>
+                        <div id="disagree-list" class="space-y-2 max-h-96 overflow-y-auto"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        let bills = [];
+        let legislators = {};
+        let ideology = [];
+        let sel1 = { type: null, id: null, name: null };
+        let sel2 = { type: null, id: null, name: null };
+
+        async function init() {
+            try {
+                const [billsRes, compareRes, ideoRes] = await Promise.all([
+                    fetch('data/bills.json'),
+                    fetch('data/compare_data.json'),
+                    fetch('data/org_ideology.json')
+                ]);
+                
+                const billsData = await billsRes.json();
+                bills = billsData.bills || billsData;
+                
+                const compareData = await compareRes.json();
+                legislators = compareData.legislators || {};
+                
+                const ideoData = await ideoRes.json();
+                ideology = ideoData.organizations || [];
+
+                console.log(`Loaded: ${bills.length} bills, ${Object.keys(legislators).length} legislators, ${ideology.length} orgs`);
+
+                renderSpectrum();
+                setupDropdowns();
+                
+                document.getElementById('loading').classList.add('hidden');
+                document.getElementById('content').classList.remove('hidden');
+            } catch (err) {
+                console.error(err);
+                document.getElementById('loading').innerHTML = '<p class="text-red-600">Error loading data</p>';
+            }
+        }
+
+        function renderSpectrum() {
+            let markers = ideology.map(org => {
+                const pos = ((org.ideology_score + 1) / 2) * 100;
+                return `<div class="absolute transform -translate-x-1/2 cursor-pointer hover:scale-125 transition" 
+                            style="left:${pos}%;top:0" title="${org.name}: ${org.ideology}">
+                            <span class="text-2xl">${org.emoji}</span>
+                        </div>`;
+            }).join('');
+
+            document.getElementById('spectrum-container').innerHTML = `
+                <h2 class="text-xl font-bold mb-4">📊 Political Spectrum</h2>
+                <div class="relative h-16 mt-8 mb-4">
+                    <div class="absolute inset-x-0 top-6 h-4 bg-gradient-to-r from-blue-500 via-gray-300 to-red-500 rounded-full"></div>
+                    ${markers}
+                </div>
+                <div class="flex justify-between text-sm text-gray-500">
+                    <span>← Progressive</span><span>Centrist</span><span>Conservative →</span>
+                </div>`;
+        }
+
+        function setupDropdowns() {
+            document.getElementById('type1').onchange = () => updateOptions(1);
+            document.getElementById('type2').onchange = () => updateOptions(2);
+            document.getElementById('entity1').onchange = () => updateSelection(1);
+            document.getElementById('entity2').onchange = () => updateSelection(2);
+        }
+
+        function updateOptions(num) {
+            const type = document.getElementById(`type${num}`).value;
+            const select = document.getElementById(`entity${num}`);
+            
+            if (!type) { select.disabled = true; select.innerHTML = ''; return; }
+            
+            select.disabled = false;
+            let html = '<option value="">-- Select --</option>';
+            
+            if (type === 'org') {
+                ideology.forEach(org => {
+                    html += `<option value="${org.field_name}">${org.emoji} ${org.name}</option>`;
+                });
+            } else {
+                Object.entries(legislators).sort((a,b) => a[1].name.localeCompare(b[1].name)).forEach(([id, leg]) => {
+                    const party = leg.party === 'R' ? '🔴' : '🔵';
+                    html += `<option value="${id}">${party} ${leg.name}</option>`;
+                });
+            }
+            select.innerHTML = html;
+        }
+
+        function updateSelection(num) {
+            const type = document.getElementById(`type${num}`).value;
+            const id = document.getElementById(`entity${num}`).value;
+            const name = document.getElementById(`entity${num}`).selectedOptions[0]?.text || id;
+            
+            if (num === 1) sel1 = { type, id, name };
+            else sel2 = { type, id, name };
+            
+            document.getElementById('compare-btn').disabled = !(sel1.id && sel2.id);
+        }
+
+        function getPositions(type, id) {
+            const positions = {};
+            
+            if (type === 'org') {
+                const field = id + '_position';
+                bills.forEach(bill => {
+                    const pos = bill[field];
+                    if (pos && pos !== 'Watching' && pos !== 'Monitor') {
+                        positions[bill.bill_number] = pos;
+                    }
+                });
+            } else if (legislators[id]) {
+                const leg = legislators[id];
+                (leg.yea_votes || []).forEach(b => positions[b] = 'Support');
+                (leg.nay_votes || []).forEach(b => positions[b] = 'Oppose');
+            }
+            
+            console.log(`${type} ${id}: ${Object.keys(positions).length} positions`);
+            return positions;
+        }
+
+        function runComparison() {
+            const pos1 = getPositions(sel1.type, sel1.id);
+            const pos2 = getPositions(sel2.type, sel2.id);
+            
+            const common = Object.keys(pos1).filter(b => pos2[b]);
+            const agreements = [];
+            const disagreements = [];
+            
+            common.forEach(billNum => {
+                const p1 = pos1[billNum];
+                const p2 = pos2[billNum];
+                const bill = bills.find(b => b.bill_number === billNum);
+                
+                if (p1 === p2) {
+                    agreements.push({ bill: billNum, position: p1, title: bill?.title || '' });
+                } else {
+                    disagreements.push({ bill: billNum, pos1: p1, pos2: p2, title: bill?.title || '' });
+                }
+            });
+            
+            const total = agreements.length + disagreements.length;
+            const pct = total > 0 ? Math.round((agreements.length / total) * 100) : 0;
+            
+            displayResults(pct, total, agreements, disagreements);
+        }
+
+        function displayResults(pct, total, agreements, disagreements) {
+            document.getElementById('results').classList.remove('hidden');
+            document.getElementById('results').scrollIntoView({ behavior: 'smooth' });
+            
+            const circle = document.getElementById('score-circle');
+            circle.textContent = pct + '%';
+            circle.className = `w-32 h-32 mx-auto rounded-full flex items-center justify-center text-4xl font-bold text-white mb-4 ${
+                pct >= 70 ? 'bg-green-500' : pct >= 40 ? 'bg-yellow-500' : 'bg-red-500'
+            }`;
+            
+            document.getElementById('score-label').textContent = 
+                pct >= 80 ? '🤝 Strong Alignment' : pct >= 60 ? '✅ Good Alignment' : 
+                pct >= 40 ? '⚖️ Moderate' : '❌ Low Alignment';
+            document.getElementById('score-detail').textContent = `Based on ${total} bills`;
+            
+            document.getElementById('agree-count').textContent = agreements.length;
+            document.getElementById('disagree-count').textContent = disagreements.length;
+            
+            document.getElementById('agree-list').innerHTML = agreements.length ? 
+                agreements.map(a => `<div class="p-2 bg-green-50 rounded border border-green-200">
+                    <span class="font-mono font-bold">${a.bill}</span> - ${a.position}
+                    <div class="text-xs text-gray-600 truncate">${a.title}</div>
+                </div>`).join('') : '<p class="text-gray-500">None</p>';
+            
+            document.getElementById('disagree-list').innerHTML = disagreements.length ?
+                disagreements.map(d => `<div class="p-2 bg-red-50 rounded border border-red-200">
+                    <span class="font-mono font-bold">${d.bill}</span>
+                    <div class="text-xs">${sel1.name}: ${d.pos1} vs ${sel2.name}: ${d.pos2}</div>
+                    <div class="text-xs text-gray-600 truncate">${d.title}</div>
+                </div>`).join('') : '<p class="text-gray-500">None</p>';
+        }
+
+        init();
+    </script>
+</body>
+</html>

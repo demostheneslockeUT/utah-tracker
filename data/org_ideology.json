@@ -1,0 +1,37 @@
+{
+  "organizations": [
+    {"field_name": "heal_utah", "name": "HEAL Utah", "emoji": "🌱", "ideology": "Progressive", "ideology_score": -0.7, "category": "Environment"},
+    {"field_name": "libertas_institute", "name": "Libertas Institute", "emoji": "🗽", "ideology": "Libertarian", "ideology_score": 0.6, "category": "Think Tank"},
+    {"field_name": "utah_education_association", "name": "UEA", "emoji": "🎓", "ideology": "Progressive/Labor", "ideology_score": -0.6, "category": "Education"},
+    {"field_name": "planned_parenthood_action_utah", "name": "Planned Parenthood", "emoji": "🏥", "ideology": "Progressive", "ideology_score": -0.8, "category": "Healthcare"},
+    {"field_name": "utah_pta", "name": "Utah PTA", "emoji": "👨‍👩‍👧", "ideology": "Centrist", "ideology_score": 0.0, "category": "Education"},
+    {"field_name": "utah_league_of_cities_and_towns", "name": "ULCT", "emoji": "🏛️", "ideology": "Centrist", "ideology_score": 0.1, "category": "Government"},
+    {"field_name": "alliance_for_a_better_utah", "name": "Better Utah", "emoji": "📊", "ideology": "Progressive", "ideology_score": -0.5, "category": "Advocacy"},
+    {"field_name": "salt_lake_chamber", "name": "Salt Lake Chamber", "emoji": "💼", "ideology": "Business", "ideology_score": 0.4, "category": "Business"},
+    {"field_name": "equality_utah", "name": "Equality Utah", "emoji": "🏳️‍🌈", "ideology": "Progressive", "ideology_score": -0.7, "category": "Civil Rights"},
+    {"field_name": "aclu_utah", "name": "ACLU Utah", "emoji": "⚖️", "ideology": "Civil Liberties", "ideology_score": -0.6, "category": "Civil Rights"},
+    {"field_name": "utah_farm_bureau", "name": "Utah Farm Bureau", "emoji": "🚜", "ideology": "Conservative", "ideology_score": 0.5, "category": "Agriculture"},
+    {"field_name": "bike_utah", "name": "Bike Utah", "emoji": "🚴", "ideology": "Centrist", "ideology_score": -0.2, "category": "Transportation"},
+    {"field_name": "sierra_club_utah", "name": "Sierra Club", "emoji": "🌲", "ideology": "Progressive", "ideology_score": -0.7, "category": "Environment"},
+    {"field_name": "voices_for_utah_children", "name": "Voices Children", "emoji": "👶", "ideology": "Progressive", "ideology_score": -0.4, "category": "Children"},
+    {"field_name": "chamber_west", "name": "Chamber West", "emoji": "🏢", "ideology": "Business", "ideology_score": 0.3, "category": "Business"},
+    {"field_name": "climate_utah", "name": "Climate Utah", "emoji": "🌡️", "ideology": "Progressive", "ideology_score": -0.6, "category": "Environment"},
+    {"field_name": "breathe_utah", "name": "BREATHE Utah", "emoji": "💨", "ideology": "Progressive", "ideology_score": -0.5, "category": "Environment"},
+    {"field_name": "great_salt_lake_audubon", "name": "Audubon", "emoji": "🦆", "ideology": "Environmental", "ideology_score": -0.5, "category": "Wildlife"},
+    {"field_name": "friends_of_great_salt_lake", "name": "FOGSL", "emoji": "💧", "ideology": "Environmental", "ideology_score": -0.5, "category": "Water"},
+    {"field_name": "upea", "name": "UPEA", "emoji": "👔", "ideology": "Labor", "ideology_score": -0.4, "category": "Labor"},
+    {"field_name": "rwau", "name": "RWAU", "emoji": "🚿", "ideology": "Centrist", "ideology_score": 0.1, "category": "Utilities"},
+    {"field_name": "trans_legislation_tracker", "name": "Trans Tracker", "emoji": "🏳️‍⚧️", "ideology": "Progressive", "ideology_score": -0.8, "category": "Civil Rights"},
+    {"field_name": "red_acre_center", "name": "Red Acre", "emoji": "🌾", "ideology": "Centrist", "ideology_score": 0.0, "category": "Agriculture"},
+    {"field_name": "utah_bankers_association", "name": "Utah Bankers", "emoji": "🏦", "ideology": "Business", "ideology_score": 0.5, "category": "Finance"},
+    {"field_name": "upha", "name": "UPHA", "emoji": "🩺", "ideology": "Centrist", "ideology_score": -0.2, "category": "Healthcare"},
+    {"field_name": "utah_parents_united", "name": "Parents United", "emoji": "👪", "ideology": "Conservative", "ideology_score": 0.7, "category": "Education"}
+  ],
+  "ideology_scale": {
+    "progressive": {"min": -1.0, "max": -0.5, "color": "#3B82F6"},
+    "center_left": {"min": -0.5, "max": -0.2, "color": "#60A5FA"},
+    "centrist": {"min": -0.2, "max": 0.2, "color": "#9CA3AF"},
+    "center_right": {"min": 0.2, "max": 0.5, "color": "#F87171"},
+    "conservative": {"min": 0.5, "max": 1.0, "color": "#EF4444"}
+  }
+}

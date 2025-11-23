@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Find Your Political Match - Utah Legislators</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-50">
+    <nav class="bg-white shadow-sm">
+        <div class="max-w-4xl mx-auto px-4 py-3">
+            <a href="../index.html" class="text-blue-600 hover:text-blue-800 font-semibold">← Back to Tracker</a>
+        </div>
+    </nav>
+
+    <div class="max-w-4xl mx-auto px-4 py-12">
+        <!-- Intro Screen -->
+        <div id="intro-screen">
+            <h1 class="text-4xl font-bold mb-4">🗳️ Find Your Political Match</h1>
+            <p class="text-xl text-gray-600 mb-8">Answer 10 questions on actual Utah bills to see which legislators vote like you</p>
+            
+            <div class="bg-blue-50 border-2 border-blue-200 rounded-lg p-6 mb-8">
+                <h3 class="text-lg font-bold mb-2">How it works:</h3>
+                <ul class="space-y-2 text-gray-700">
+                    <li>✅ 10 questions on real 2025 Utah bills</li>
+                    <li>✅ Takes ~3 minutes</li>
+                    <li>✅ See your % match with all 104 legislators</li>
+                    <li>✅ Find your district rep's alignment</li>
+                    <li>✅ Compare to HEAL, Libertas, and other orgs</li>
+                </ul>
+            </div>
+
+            <div class="bg-yellow-50 border-2 border-yellow-200 rounded-lg p-6 mb-8">
+                <h3 class="text-lg font-bold mb-2">💡 Want the full picture?</h3>
+                <p class="mb-3">After this quiz, take the comprehensive <a href="https://www.isidewith.com/political-quiz" target="_blank" class="text-blue-600 underline">iSideWith quiz</a> to see your broader political ideology (economic, social, foreign policy).</p>
+                <p class="text-sm text-gray-600">This quiz focuses specifically on Utah state legislation.</p>
+            </div>
+
+            <button onclick="startQuiz()" class="w-full bg-blue-600 text-white px-8 py-4 rounded-lg text-xl font-bold hover:bg-blue-700 shadow-lg">
+                Start Quiz →
+            </button>
+        </div>
+
+        <!-- Quiz Screen -->
+        <div id="quiz-screen" class="hidden">
+            <div class="mb-6">
+                <div class="flex justify-between text-sm text-gray-600 mb-2">
+                    <span>Question <span id="current-q">1</span> of 10</span>
+                    <span id="progress-pct">10%</span>
+                </div>
+                <div class="w-full bg-gray-200 rounded-full h-2">
+                    <div id="progress-bar" class="bg-blue-600 h-2 rounded-full transition-all" style="width: 10%"></div>
+                </div>
+            </div>
+
+            <div id="question-container" class="bg-white rounded-lg shadow-lg p-8">
+                <!-- Populated by JavaScript -->
+            </div>
+        </div>
+
+        <!-- Results Screen -->
+        <div id="results-screen" class="hidden">
+            <!-- Populated by JavaScript -->
+        </div>
+    </div>
+
+    <script src="quiz.js"></script>
+</body>
+</html>

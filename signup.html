@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up - Utah Legislative Tracker</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-50 min-h-screen">
+    <!-- Navigation -->
+    <nav class="bg-white shadow-sm sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 py-3">
+            <div class="flex justify-between items-center">
+                <a href="index.html" class="text-xl font-bold text-blue-600">ezleut.com</a>
+                <div class="flex gap-6">
+                    <a href="index.html" class="text-gray-700 hover:text-blue-600 font-medium">Tracker</a>
+                    <a href="quiz.html" class="text-gray-700 hover:text-blue-600 font-medium">Quiz</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <main class="max-w-2xl mx-auto px-4 py-12">
+        <div class="bg-white rounded-xl shadow-lg p-8">
+            <h1 class="text-3xl font-bold text-center mb-2">🏛️ Join the Tracker</h1>
+            <p class="text-gray-600 text-center mb-8">Get personalized bill tracking and email updates</p>
+
+            <!-- Benefits -->
+            <div class="bg-blue-50 rounded-lg p-4 mb-8">
+                <div class="grid grid-cols-2 gap-3 text-sm">
+                    <div class="flex items-center gap-2">
+                        <span class="text-green-500">✓</span> Personalized dashboard
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <span class="text-green-500">✓</span> Email alerts on bills
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <span class="text-green-500">✓</span> Weekly digest
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <span class="text-green-500">✓</span> Auto-find legislators
+                    </div>
+                </div>
+            </div>
+
+            <form id="signup-form" class="space-y-6">
+                <!-- Name & Email -->
+                <div class="grid md:grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-sm font-medium mb-1">Name *</label>
+                        <input type="text" name="name" required
+                               class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium mb-1">Email *</label>
+                        <input type="email" name="email" required
+                               class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500">
+                    </div>
+                </div>
+
+                <!-- ZIP & Phone -->
+                <div class="grid md:grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-sm font-medium mb-1">ZIP Code * <span class="text-gray-500 text-xs">(for your legislators)</span></label>
+                        <input type="text" name="zip" required pattern="[0-9]{5}"
+                               class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500"
+                               placeholder="84101">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium mb-1">Phone <span class="text-gray-500 text-xs">(optional, for SMS)</span></label>
+                        <input type="tel" name="phone"
+                               class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500"
+                               placeholder="801-555-1234">
+                    </div>
+                </div>
+
+                <!-- Political Views -->
+                <div>
+                    <label class="block text-sm font-medium mb-2">How would you describe your political views?</label>
+                    <div class="grid grid-cols-5 gap-2">
+                        <label class="flex flex-col items-center p-2 border rounded-lg cursor-pointer hover:bg-blue-50 transition">
+                            <input type="radio" name="political_view" value="Very Progressive" class="mb-1">
+                            <span class="text-xs text-center">Very Progressive</span>
+                        </label>
+                        <label class="flex flex-col items-center p-2 border rounded-lg cursor-pointer hover:bg-blue-50 transition">
+                            <input type="radio" name="political_view" value="Progressive" class="mb-1">
+                            <span class="text-xs text-center">Progressive</span>
+                        </label>
+                        <label class="flex flex-col items-center p-2 border rounded-lg cursor-pointer hover:bg-blue-50 transition">
+                            <input type="radio" name="political_view" value="Moderate" class="mb-1" checked>
+                            <span class="text-xs text-center">Moderate</span>
+                        </label>
+                        <label class="flex flex-col items-center p-2 border rounded-lg cursor-pointer hover:bg-blue-50 transition">
+                            <input type="radio" name="political_view" value="Conservative" class="mb-1">
+                            <span class="text-xs text-center">Conservative</span>
+                        </label>
+                        <label class="flex flex-col items-center p-2 border rounded-lg cursor-pointer hover:bg-blue-50 transition">
+                            <input type="radio" name="political_view" value="Very Conservative" class="mb-1">
+                            <span class="text-xs text-center">Very Conservative</span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Top Issues -->
+                <div>
+                    <label class="block text-sm font-medium mb-2">Top Issues (select up to 5)</label>
+                    <div class="grid grid-cols-3 gap-2" id="issues-grid">
+                        <!-- Populated by JS -->
+                    </div>
+                </div>
+
+                <!-- Organizations to Follow -->
+                <div>
+                    <label class="block text-sm font-medium mb-2">Organizations to follow *</label>
+                    <p class="text-xs text-gray-500 mb-2">Your tracker will highlight positions from these orgs</p>
+                    <div class="grid grid-cols-2 gap-2 max-h-48 overflow-y-auto border rounded-lg p-3" id="orgs-grid">
+                        <!-- Populated by JS -->
+                    </div>
+                </div>
+
+                <!-- Email Preferences -->
+                <div>
+                    <label class="block text-sm font-medium mb-2">Email Frequency</label>
+                    <select name="email_frequency" class="w-full px-4 py-2 border rounded-lg">
+                        <option value="weekly">Weekly Digest</option>
+                        <option value="daily">Daily Updates</option>
+                        <option value="realtime">Real-time Alerts</option>
+                        <option value="none">No Emails (I'll check the site)</option>
+                    </select>
+                </div>
+
+                <!-- Submit -->
+                <button type="submit" id="submit-btn"
+                        class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-lg transition">
+                    🚀 Create My Dashboard
+                </button>
+
+                <p class="text-xs text-gray-500 text-center">
+                    Free forever. We'll never share your info.
+                </p>
+            </form>
+        </div>
+    </main>
+
+    <script src="js/signup.js"></script>
+</body>
+</html>

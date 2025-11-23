@@ -1,0 +1,41 @@
+/* Author Position - Distinctive Purple Style */
+.position-author {
+    background: linear-gradient(135deg, #f3e8ff 0%, #e9d5ff 100%) !important;
+    border: 2px solid #a855f7 !important;
+    border-left: 4px solid #7e22ce !important;
+    color: #6b21a8 !important;
+    font-weight: 700 !important;
+    padding: 12px !important;
+    margin-bottom: 8px !important;
+    box-shadow: 0 2px 4px rgba(126, 34, 206, 0.15) !important;
+}
+
+.position-author .author-label {
+    color: #7e22ce;
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    font-weight: 800;
+}
+
+.position-author .author-text {
+    color: #6b21a8;
+    font-size: 0.875rem;
+    font-weight: 700;
+}
+
+/* Regular org positions - subtle */
+.position-support {
+    background-color: #dcfce7;
+    color: #15803d;
+}
+
+.position-oppose {
+    background-color: #fee2e2;
+    color: #dc2626;
+}
+
+.position-watching {
+    background-color: #dbeafe;
+    color: #1e40af;
+}

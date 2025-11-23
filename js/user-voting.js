@@ -122,6 +122,8 @@ function getVoteIcon(position) {
 
 // Check if bill has vote and return icon
 function getVoteStatus(billNumber) {
-    const vote = votingSystem.getVote(billNumber);
+    // Try both formats: HB0001 and HB1
+    const formatted = billNumber.replace(/([A-Z]+)0+/, '$1');
+    const vote = votingSystem.getVote(billNumber) || votingSystem.getVote(formatted);
     return vote ? getVoteIcon(vote) : null;
 }

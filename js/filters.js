@@ -88,7 +88,10 @@ function applyAllFilters() {
         const myVotes = JSON.parse(localStorage.getItem('user_bill_votes') || '{}');
         const votedBills = Object.keys(myVotes);
         console.log('My votes:', votedBills);
-        filtered = filtered.filter(bill => myVotes[bill.bill_number]);
+        filtered = filtered.filter(bill => {
+            const formatted = bill.bill_number.replace(/([A-Z]+)0+/, "$1");
+            return myVotes[formatted] || myVotes[bill.bill_number];
+        });
         console.log(`After my-votes filter: ${filtered.length} bills`);
     }
     

@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Utah Legislators - Alignment Scores</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="bg-gray-100 min-h-screen">
+    <!-- Header -->
+    <header class="bg-blue-900 text-white py-4 shadow-lg">
+        <div class="container mx-auto px-4">
+            <div class="flex justify-between items-center">
+                <a href="index.html" class="text-2xl font-bold">🏛️ Utah Legislative Tracker</a>
+                <nav class="space-x-4">
+                    <a href="index.html" class="hover:text-blue-200">Bills</a>
+                    <a href="legislators.html" class="text-blue-200 font-semibold">Legislators</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <main class="container mx-auto px-4 py-8">
+        <h1 class="text-3xl font-bold mb-2">Legislator Alignment Scores</h1>
+        <p class="text-gray-600 mb-6">Based on <strong>contested votes only</strong> (where vote was 20-80% split) for meaningful comparison.</p>
+
+        <!-- Filters -->
+        <div class="bg-white rounded-lg shadow p-4 mb-6">
+            <div class="flex flex-wrap gap-4">
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-1">Chamber</label>
+                    <select id="chamberFilter" class="border rounded px-3 py-2">
+                        <option value="">All</option>
+                        <option value="House">House</option>
+                        <option value="Senate">Senate</option>
+                    </select>
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-1">Party</label>
+                    <select id="partyFilter" class="border rounded px-3 py-2">
+                        <option value="">All</option>
+                        <option value="R">Republican</option>
+                        <option value="D">Democrat</option>
+                    </select>
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-1">Sort by Alignment With</label>
+                    <select id="sortOrg" class="border rounded px-3 py-2">
+                        <option value="">Name</option>
+                        <!-- Populated by JS -->
+                    </select>
+                </div>
+                <div class="flex items-end">
+                    <input type="text" id="searchInput" placeholder="Search legislator..." 
+                           class="border rounded px-3 py-2 w-48">
+                </div>
+            </div>
+        </div>
+
+        <!-- Stats -->
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
+            <div class="bg-white rounded-lg shadow p-4 text-center">
+                <div class="text-3xl font-bold text-blue-600" id="totalLegislators">0</div>
+                <div class="text-sm text-gray-500">Legislators</div>
+            </div>
+            <div class="bg-white rounded-lg shadow p-4 text-center">
+                <div class="text-3xl font-bold text-red-600" id="totalR">0</div>
+                <div class="text-sm text-gray-500">Republicans</div>
+            </div>
+            <div class="bg-white rounded-lg shadow p-4 text-center">
+                <div class="text-3xl font-bold text-blue-600" id="totalD">0</div>
+                <div class="text-sm text-gray-500">Democrats</div>
+            </div>
+            <div class="bg-white rounded-lg shadow p-4 text-center">
+                <div class="text-3xl font-bold text-green-600" id="totalOrgs">0</div>
+                <div class="text-sm text-gray-500">Organizations</div>
+            </div>
+        </div>
+
+        <!-- Legislator Grid -->
+        <div id="legislatorGrid" class="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+            <!-- Populated by JS -->
+        </div>
+    </main>
+
+    <!-- Legislator Modal -->
+    <div id="legislatorModal" class="fixed inset-0 bg-black bg-opacity-50 hidden z-50 overflow-y-auto">
+        <div class="min-h-screen px-4 py-8 flex items-start justify-center">
+            <div class="bg-white rounded-lg shadow-xl max-w-2xl w-full p-6 relative">
+                <button onclick="closeModal()" class="absolute top-4 right-4 text-gray-500 hover:text-gray-700 text-2xl">&times;</button>
+                <div id="modalContent">
+                    <!-- Populated by JS -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/legislators.js"></script>
+</body>
+</html>

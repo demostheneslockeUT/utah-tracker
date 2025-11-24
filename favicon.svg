@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <!-- Utah state outline with light gold fill -->
+  <path d="M 27 8 
+           L 72 8 
+           L 72 33 
+           L 92 33 
+           L 92 92 
+           L 27 92 
+           Z" 
+        fill="#FFF8DC"
+        stroke="#002855" 
+        stroke-width="3"
+        stroke-linejoin="round"/>
+  <!-- Capitol emoji centered -->
+  <text x="57" y="70" font-size="42" text-anchor="middle">🏛️</text>
+</svg>

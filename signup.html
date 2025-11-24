@@ -1,6 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<!-- Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-G9P475F3F4"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-G9P475F3F4');
+</script>
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sign Up - Utah Legislative Tracker</title>
@@ -14,7 +23,7 @@
                 <a href="index.html" class="text-xl font-bold text-blue-600">ezleut.com</a>
                 <div class="flex gap-6">
                     <a href="index.html" class="text-gray-700 hover:text-blue-600 font-medium">Tracker</a>
-                    <a href="quiz.html" class="text-gray-700 hover:text-blue-600 font-medium">Quiz</a>
+                    <a href="quiz/index.html" class="text-gray-700 hover:text-blue-600 font-medium">Quiz</a>
                 </div>
             </div>
         </div>
@@ -29,16 +38,16 @@
             <div class="bg-blue-50 rounded-lg p-4 mb-8">
                 <div class="grid grid-cols-2 gap-3 text-sm">
                     <div class="flex items-center gap-2">
-                        <span class="text-green-500">✓</span> Personalized dashboard
+                        <span class="text-green-500">✓</span> Weekly digest emails
                     </div>
                     <div class="flex items-center gap-2">
-                        <span class="text-green-500">✓</span> Email alerts on bills
+                        <span class="text-green-500">✓</span> Track orgs you care about
                     </div>
                     <div class="flex items-center gap-2">
-                        <span class="text-green-500">✓</span> Weekly digest
+                        <span class="text-green-500">✓</span> Find your legislators
                     </div>
                     <div class="flex items-center gap-2">
-                        <span class="text-green-500">✓</span> Auto-find legislators
+                        <span class="text-green-500">✓</span> Controversial bill alerts
                     </div>
                 </div>
             </div>
@@ -67,16 +76,32 @@
                                placeholder="84101">
                     </div>
                     <div>
-                        <label class="block text-sm font-medium mb-1">Phone <span class="text-gray-500 text-xs">(optional, for SMS)</span></label>
+                        <label class="block text-sm font-medium mb-1">Phone <span class="text-gray-500 text-xs">(optional)</span></label>
                         <input type="tel" name="phone"
                                class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500"
                                placeholder="801-555-1234">
                     </div>
                 </div>
 
+                <!-- User Type (Optional) -->
+                <div>
+                    <label class="block text-sm font-medium mb-1">What best describes you? <span class="text-gray-500 text-xs">(optional)</span></label>
+                    <select name="user_type" class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500">
+                        <option value="">-- Select --</option>
+                        <option value="Citizen">Engaged Citizen</option>
+                        <option value="Activist">Activist/Advocate</option>
+                        <option value="Lobbyist">Lobbyist</option>
+                        <option value="Journalist">Journalist/Media</option>
+                        <option value="Researcher">Researcher/Academic</option>
+                        <option value="Government">Government Staff</option>
+                        <option value="Student">Student</option>
+                        <option value="Other">Other</option>
+                    </select>
+                </div>
+
                 <!-- Political Views -->
                 <div>
-                    <label class="block text-sm font-medium mb-2">How would you describe your political views?</label>
+                    <label class="block text-sm font-medium mb-2">Political leaning <span class="text-gray-500 text-xs">(helps personalize content)</span></label>
                     <div class="grid grid-cols-5 gap-2">
                         <label class="flex flex-col items-center p-2 border rounded-lg cursor-pointer hover:bg-blue-50 transition">
                             <input type="radio" name="political_view" value="Very Progressive" class="mb-1">
@@ -103,7 +128,7 @@
 
                 <!-- Top Issues -->
                 <div>
-                    <label class="block text-sm font-medium mb-2">Top Issues (select up to 5)</label>
+                    <label class="block text-sm font-medium mb-2">Top Issues <span class="text-gray-500 text-xs">(select up to 5)</span></label>
                     <div class="grid grid-cols-3 gap-2" id="issues-grid">
                         <!-- Populated by JS -->
                     </div>
@@ -112,7 +137,7 @@
                 <!-- Organizations to Follow -->
                 <div>
                     <label class="block text-sm font-medium mb-2">Organizations to follow *</label>
-                    <p class="text-xs text-gray-500 mb-2">Your tracker will highlight positions from these orgs</p>
+                    <p class="text-xs text-gray-500 mb-2">We'll highlight these in your weekly emails</p>
                     <div class="grid grid-cols-2 gap-2 max-h-48 overflow-y-auto border rounded-lg p-3" id="orgs-grid">
                         <!-- Populated by JS -->
                     </div>
@@ -122,9 +147,8 @@
                 <div>
                     <label class="block text-sm font-medium mb-2">Email Frequency</label>
                     <select name="email_frequency" class="w-full px-4 py-2 border rounded-lg">
-                        <option value="weekly">Weekly Digest</option>
+                        <option value="weekly">Weekly Digest (Recommended)</option>
                         <option value="daily">Daily Updates</option>
-                        <option value="realtime">Real-time Alerts</option>
                         <option value="none">No Emails (I'll check the site)</option>
                     </select>
                 </div>
@@ -132,13 +156,23 @@
                 <!-- Submit -->
                 <button type="submit" id="submit-btn"
                         class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-lg transition">
-                    🚀 Create My Dashboard
+                    🚀 Sign Me Up
                 </button>
 
                 <p class="text-xs text-gray-500 text-center">
-                    Free forever. We'll never share your info.
+                    Free forever. We'll never share your info. <a href="mailto:demostheneslockeUT@proton.me" class="text-blue-600">Contact us</a>
                 </p>
             </form>
+
+            <!-- Success Message (hidden by default) -->
+            <div id="success-message" class="hidden text-center py-8">
+                <div class="text-6xl mb-4">🎉</div>
+                <h2 class="text-2xl font-bold text-green-600 mb-2">You're In!</h2>
+                <p class="text-gray-600 mb-4">Check your email for a welcome message.</p>
+                <a href="index.html" class="inline-block bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-lg">
+                    Start Exploring Bills →
+                </a>
+            </div>
         </div>
     </main>
 

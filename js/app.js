@@ -209,7 +209,7 @@ function createBillCard(bill) {
                 <a href="bill.html?bill=${bill.bill_number}" class="text-xl font-bold text-blue-600 hover:text-blue-800">
                     ${formatBillNumber(bill.bill_number)}
                 </a>
-                <span class="text-xs px-2 py-1 bg-gray-100 rounded">${bill.status || 'Filed'}</span>
+                <span class="absolute top-4 left-1/2 transform -translate-x-1/2 text-xs px-2 py-1 bg-gray-100 rounded z-10">${bill.status || 'Filed'}</span>
             </div>
             
             <p class="text-gray-700 mb-4 line-clamp-2 text-sm">${bill.title || ''}</p>

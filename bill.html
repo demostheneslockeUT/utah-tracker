@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bill Details - Utah Legislative Tracker</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="bg-gray-100 min-h-screen">
+    <header class="bg-blue-900 text-white py-4 shadow-lg">
+        <div class="container mx-auto px-4">
+            <div class="flex justify-between items-center">
+                <a href="index.html" class="text-2xl font-bold">🏛️ Utah Legislative Tracker</a>
+                <nav class="space-x-4">
+                    <a href="index.html" class="hover:text-blue-200">Bills</a>
+                    <a href="legislators.html" class="hover:text-blue-200">Legislators</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <main class="container mx-auto px-4 py-8">
+        <div id="loading" class="text-center py-12">
+            <div class="text-xl text-gray-500">Loading bill details...</div>
+        </div>
+
+        <div id="error" class="hidden text-center py-12">
+            <div class="text-xl text-red-500">Bill not found</div>
+            <a href="index.html" class="text-blue-600 hover:underline mt-4 inline-block">← Back to tracker</a>
+        </div>
+
+        <div id="billContent" class="hidden">
+            <a href="index.html" class="text-blue-600 hover:underline mb-4 inline-block">← Back to tracker</a>
+
+            <!-- Header -->
+            <div class="bg-white rounded-lg shadow-lg p-6 mb-6">
+                <div class="flex flex-wrap justify-between items-start gap-4">
+                    <div>
+                        <h1 id="billNumber" class="text-3xl font-bold text-blue-900 mb-2"></h1>
+                        <h2 id="billTitle" class="text-xl text-gray-700 mb-4"></h2>
+                        <div class="flex flex-wrap gap-2">
+                            <span id="billStatus" class="px-3 py-1 rounded-full text-sm font-semibold"></span>
+                            <span id="billSponsor" class="px-3 py-1 bg-gray-100 rounded-full text-sm"></span>
+                        </div>
+                    </div>
+                    <div class="flex items-start gap-3">
+                        <!-- Position Boxes: Author (purple) + User (orange) -->
+                        <div id="positionBoxes" class="flex gap-2"></div>
+                        <!-- Action Buttons -->
+                        <div class="flex flex-col gap-2">
+                            <a id="officialLink" href="#" target="_blank" 
+                               class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded text-center">
+                                📄 Official Page
+                            </a>
+                            <button onclick="toggleWatchlist()" id="watchlistBtn"
+                                    class="border border-yellow-500 text-yellow-600 hover:bg-yellow-50 px-4 py-2 rounded">
+                                ⭐ Add to Watchlist
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- AI Summary -->
+            <div id="summarySection" class="bg-gradient-to-r from-purple-50 to-blue-50 rounded-lg shadow p-6 mb-6">
+                <h3 class="text-lg font-bold text-purple-900 mb-3">🤖 Plain English Summary</h3>
+                <div id="aiSummary" class="text-gray-700">
+                    <p id="summaryText" class="mb-4"></p>
+                    <div id="summaryDetails" class="grid md:grid-cols-2 gap-4">
+                        <div>
+                            <h4 class="font-semibold text-purple-800 mb-2">Who it affects:</h4>
+                            <ul id="affectsList" class="list-disc list-inside text-sm space-y-1"></ul>
+                        </div>
+                        <div>
+                            <h4 class="font-semibold text-purple-800 mb-2">Key provisions:</h4>
+                            <ul id="provisionsList" class="list-disc list-inside text-sm space-y-1"></ul>
+                        </div>
+                    </div>
+                </div>
+                <div id="noSummary" class="hidden text-gray-500 italic">
+                    Summary not yet available for this bill.
+                </div>
+            </div>
+
+            <!-- Organization Positions -->
+            <div class="bg-white rounded-lg shadow p-6 mb-6">
+                <h3 class="text-lg font-bold mb-4">🏢 Organization Positions</h3>
+                <div id="orgPositions" class="grid md:grid-cols-2 lg:grid-cols-3 gap-4"></div>
+                <div id="noPositions" class="hidden text-gray-500 italic">
+                    No organizations have taken a position on this bill yet.
+                </div>
+            </div>
+
+            <!-- Vote Breakdown -->
+            <div id="voteSection" class="bg-white rounded-lg shadow p-6 mb-6">
+                <h3 class="text-lg font-bold mb-4">🗳️ Vote Breakdown</h3>
+                <div id="voteBreakdown" class="space-y-6"></div>
+                <div id="noVotes" class="hidden text-gray-500 italic">
+                    No recorded votes yet.
+                </div>
+            </div>
+
+            <!-- Legislator Votes Detail -->
+            <div id="legislatorVotes" class="bg-white rounded-lg shadow p-6 mb-6 hidden">
+                <h3 class="text-lg font-bold mb-4">👥 How Legislators Voted</h3>
+                <div id="voteDetails" class="grid md:grid-cols-2 gap-6"></div>
+            </div>
+
+            <!-- Actions -->
+            <div class="bg-gray-50 rounded-lg shadow p-6">
+                <h3 class="text-lg font-bold mb-4">⚡ Take Action</h3>
+                <div class="flex flex-wrap gap-4">
+                    <a id="contactRep" href="#" 
+                       class="bg-green-600 hover:bg-green-700 text-white px-6 py-3 rounded-lg font-semibold">
+                        📞 Contact Your Rep
+                    </a>
+                    <button onclick="shareBill()" id="shareBtn"
+                            class="bg-blue-500 hover:bg-blue-600 text-white px-6 py-3 rounded-lg font-semibold">
+                        🔗 Share
+                    </button>
+                    <button onclick="copyLink()" 
+                            class="border border-gray-300 hover:bg-gray-100 px-6 py-3 rounded-lg font-semibold">
+                        📋 Copy Link
+                    </button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="js/bill-detail.js"></script>
+</body>
+</html>

@@ -6,6 +6,26 @@ function formatBillNumber(billNum) {
     return billNum.replace(/([A-Z]+)0+/, '$1');
 }
 
+// Generate author position box HTML
+function getAuthorPositionBox(position) {
+    if (!position) return "";
+    
+    const icon = position === "Support" ? "✅" : position === "Oppose" ? "❌" : "⚪";
+    const bgClass = "bg-purple-500 text-white";
+    
+    return `
+        <div class="group relative">
+            <div class="w-10 h-10 rounded-lg shadow-lg flex items-center justify-center text-lg font-bold border-2 border-purple-600 ${bgClass}">
+                ${icon}
+            </div>
+            <div class="absolute bottom-full right-0 mb-2 px-2 py-1 bg-gray-900 text-white text-xs rounded whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none">
+                Author: ${position}
+            </div>
+        </div>
+    `;
+}
+
+
 // State
 let allBills = [];
 let selectedOrgs = new Set();
@@ -85,7 +105,7 @@ function getPositions(bill) {
     
     // Find all position fields dynamically
     for (const [key, value] of Object.entries(bill)) {
-        if (key.endsWith('_position') && value && value !== '' && value !== 'N/A') {
+        if (key.endsWith('_position') && key !== 'author_position' && value && value !== '' && value !== 'N/A') {
             const orgKey = key.replace('_position', '');
             const display = orgDisplay[orgKey] || { emoji: '📋', name: orgKey };
             positions.push({
@@ -173,28 +193,8 @@ function createBillCard(bill) {
     const positions = getPositions(bill);
     const positionBubbles = renderPositionBubbles(positions, bill.bill_number);
     const statusColor = getStatusColor(bill.status);
-    const authorPosition = bill.author_position || null;
     
-    // Build positions HTML - author first with special styling
-    let positionsHTML = '';
-    
-    if (authorPosition && authorPosition.trim()) {
-        positionsHTML += `
-            <div class="position-author mb-3">
-                <div class="author-label">✍️ AUTHOR'S POSITION</div>
-                <div class="author-text">${authorPosition}</div>
-            </div>
-        `;
-    }
-    
-    // My Rep / My Senator bubbles FIRST (if they voted)
-    if (typeof myRepsVotes !== 'undefined' && myRepsVotes.loaded) {
-        const myRepsBubbles = myRepsVotes.getBubblesHTML(bill.bill_number);
-        if (myRepsBubbles) {
-            positionsHTML += '<div class="mb-2">' + myRepsBubbles + '</div>';
-        }
-    }
-    
+    let positionsHTML = "";
     if (positions.length > 0) {
         positionsHTML += positionBubbles;
     }
@@ -206,7 +206,7 @@ function createBillCard(bill) {
     return `
         <div class="bg-white rounded-lg shadow hover:shadow-xl transition-all duration-200 p-6 border-l-4 ${statusColor} relative">
             <div class="flex justify-between items-center mb-3">
-                <a href="${bill.url}" target="_blank" class="text-xl font-bold text-blue-600 hover:text-blue-800">
+                <a href="bill.html?bill=${bill.bill_number}" class="text-xl font-bold text-blue-600 hover:text-blue-800">
                     ${formatBillNumber(bill.bill_number)}
                 </a>
                 <span class="text-xs px-2 py-1 bg-gray-100 rounded">${bill.status || 'Filed'}</span>
@@ -229,46 +229,57 @@ function createBillCard(bill) {
                 </div>
             </div>
             
-            <!-- Voting UI - Top Right -->
-            <div class="absolute top-4 right-4 z-20">
-                <!-- Add Vote Button -->
-                <button 
-                    id="vote-add-${formatBillNumber(bill.bill_number)}"
-                    onclick="toggleVotingButtons('${formatBillNumber(bill.bill_number)}')"
-                    class="bg-orange-400 bg-opacity-80 hover:bg-orange-500 text-white font-bold w-10 h-10 rounded-lg shadow-lg transition ${getVoteStatus(bill.bill_number) ? 'hidden' : ''}">
-                    +
-                </button>
+            <!-- Position Boxes - Top Right -->
+            <div class="absolute top-4 right-4 z-20 flex items-center gap-2">
+                <!-- Author Position Box (Purple) -->
+                ${getAuthorPositionBox(bill.author_position)}
                 
-                <!-- Selected Vote Indicator -->
-                <button
-                    id="vote-selected-${formatBillNumber(bill.bill_number)}"
-                    onclick="toggleVotingButtons('${formatBillNumber(bill.bill_number)}')"
-                    class="bg-orange-400 bg-opacity-80 hover:bg-orange-500 text-white font-bold w-10 h-10 rounded-lg shadow-lg transition ${getVoteStatus(bill.bill_number) ? '' : 'hidden'}">
-                    ${getVoteStatus(bill.bill_number) || '+'}
-                </button>
-                
-                <!-- Voting Buttons (Hidden by default) -->
-                <div id="vote-buttons-${formatBillNumber(bill.bill_number)}" class="hidden absolute top-0 right-0 flex flex-col gap-2 bg-white p-2 rounded-lg shadow-xl border-2 border-orange-400">
+                <!-- User Vote Box (Orange) -->
+                <div class="group relative">
+                    <!-- Add Vote Button -->
                     <button 
-                        onclick="castVote('${formatBillNumber(bill.bill_number)}', 'Support'); event.stopPropagation();"
-                        class="bg-green-500 hover:bg-green-600 text-white font-bold px-4 py-2 rounded-lg transition whitespace-nowrap">
-                        ✅ Support
+                        id="vote-add-${formatBillNumber(bill.bill_number)}"
+                        onclick="toggleVotingButtons('${formatBillNumber(bill.bill_number)}')"
+                        class="w-10 h-10 rounded-lg shadow-lg flex items-center justify-center text-lg font-bold border-2 border-orange-500 bg-orange-400 text-white hover:bg-orange-500 transition ${getVoteStatus(bill.bill_number) ? 'hidden' : ''}">
+                        +
                     </button>
-                    <button 
-                        onclick="castVote('${formatBillNumber(bill.bill_number)}', 'Oppose'); event.stopPropagation();"
-                        class="bg-red-500 hover:bg-red-600 text-white font-bold px-4 py-2 rounded-lg transition whitespace-nowrap">
-                        ❌ Oppose
+                    
+                    <!-- Selected Vote Indicator -->
+                    <button
+                        id="vote-selected-${formatBillNumber(bill.bill_number)}"
+                        onclick="toggleVotingButtons('${formatBillNumber(bill.bill_number)}')"
+                        class="w-10 h-10 rounded-lg shadow-lg flex items-center justify-center text-lg font-bold border-2 border-orange-500 bg-orange-400 text-white hover:bg-orange-500 transition ${getVoteStatus(bill.bill_number) ? '' : 'hidden'}">
+                        ${getVoteStatus(bill.bill_number) || '+'}
                     </button>
-                    <button 
-                        onclick="castVote('${formatBillNumber(bill.bill_number)}', 'Neutral'); event.stopPropagation();"
-                        class="bg-gray-400 hover:bg-gray-500 text-white font-bold px-4 py-2 rounded-lg transition whitespace-nowrap">
-                        ⚪ Neutral
-                    </button>
-                    <button 
-                        onclick="toggleVotingButtons('${formatBillNumber(bill.bill_number)}'); event.stopPropagation();"
-                        class="bg-gray-200 hover:bg-gray-300 text-gray-700 font-bold px-4 py-2 rounded-lg transition">
-                        Cancel
-                    </button>
+                    
+                    <!-- Tooltip for User Vote -->
+                    <div class="absolute bottom-full right-0 mb-2 px-2 py-1 bg-gray-900 text-white text-xs rounded whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none">
+                        Your Vote
+                    </div>
+                    
+                    <!-- Voting Buttons Dropdown -->
+                    <div id="vote-buttons-${formatBillNumber(bill.bill_number)}" class="hidden absolute top-0 right-0 flex flex-col gap-2 bg-white p-2 rounded-lg shadow-xl border-2 border-orange-400 z-30">
+                        <button 
+                            onclick="castVote('${formatBillNumber(bill.bill_number)}', 'Support'); event.stopPropagation();"
+                            class="bg-green-500 hover:bg-green-600 text-white font-bold px-4 py-2 rounded-lg transition whitespace-nowrap">
+                            ✅ Support
+                        </button>
+                        <button 
+                            onclick="castVote('${formatBillNumber(bill.bill_number)}', 'Oppose'); event.stopPropagation();"
+                            class="bg-red-500 hover:bg-red-600 text-white font-bold px-4 py-2 rounded-lg transition whitespace-nowrap">
+                            ❌ Oppose
+                        </button>
+                        <button 
+                            onclick="castVote('${formatBillNumber(bill.bill_number)}', 'Neutral'); event.stopPropagation();"
+                            class="bg-gray-400 hover:bg-gray-500 text-white font-bold px-4 py-2 rounded-lg transition whitespace-nowrap">
+                            ⚪ Neutral
+                        </button>
+                        <button 
+                            onclick="toggleVotingButtons('${formatBillNumber(bill.bill_number)}'); event.stopPropagation();"
+                            class="bg-gray-200 hover:bg-gray-300 text-gray-700 font-bold px-4 py-2 rounded-lg transition">
+                            Cancel
+                        </button>
+                    </div>
                 </div>
             </div>
 

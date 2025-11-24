@@ -1,8 +1,8 @@
 /**
  * Sign-up page logic
  * - Loads organizations dynamically from bills.json
- * - Submits to Google Sheets (your data collection)
- * - Saves to localStorage (their personalized experience)
+ * - Submits to Google Sheets via Apps Script
+ * - Saves to localStorage for personalized experience
  */
 
 const ISSUES = [
@@ -12,11 +12,10 @@ const ISSUES = [
     'Public Lands', 'Elections'
 ];
 
-// Will be loaded from bills.json
 let ORGANIZATIONS = [];
 
-// Your Google Apps Script URL
-const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxrjEY8Ri2hrA3GkIMFvwNDVVV4sWvPkzZeRhGwarg0v3kIRTWhHtRI46IW_1WZKaVHKQ/exec';
+// Your Google Apps Script URL - handles form submissions
+const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyp0Qyv8W72mP80YG8tzutT3Xwz1Wj1flqCubvu-2ZhWqDXoMA9T-yiuZ4jzOU-lhMs2g/exec';
 
 // Load organizations from bills.json
 async function loadOrganizations() {
@@ -30,32 +29,28 @@ async function loadOrganizations() {
                 emoji: org.emoji,
                 id: org.field_name
             }));
-            console.log(`✅ Loaded ${ORGANIZATIONS.length} organizations from bills.json`);
+            console.log(`✅ Loaded ${ORGANIZATIONS.length} organizations`);
         } else {
-            console.warn('No organizations found in bills.json, using fallback');
             useFallbackOrgs();
         }
     } catch (error) {
         console.error('Failed to load organizations:', error);
         useFallbackOrgs();
     }
-    
-    // Now populate the form
     populateOrgs();
 }
 
-// Fallback if bills.json fails to load
 function useFallbackOrgs() {
     ORGANIZATIONS = [
         { name: 'HEAL Utah', emoji: '🌱', id: 'heal_utah' },
         { name: 'Libertas Institute', emoji: '🗽', id: 'libertas' },
         { name: 'Utah Education Association', emoji: '🎓', id: 'utah_education_association' },
         { name: 'ACLU of Utah', emoji: '⚖️', id: 'aclu_of_utah' },
-        { name: 'Equality Utah', emoji: '🏳️‍🌈', id: 'equality_utah' }
+        { name: 'Equality Utah', emoji: '🏳️‍🌈', id: 'equality_utah' },
+        { name: 'Salt Lake Chamber', emoji: '🏢', id: 'salt_lake_chamber' }
     ];
 }
 
-// Populate issues checkboxes
 function populateIssues() {
     const grid = document.getElementById('issues-grid');
     if (!grid) return;
@@ -77,13 +72,12 @@ function populateIssues() {
     });
 }
 
-// Populate organizations checkboxes
 function populateOrgs() {
     const grid = document.getElementById('orgs-grid');
     if (!grid) return;
     
     if (ORGANIZATIONS.length === 0) {
-        grid.innerHTML = '<p class="text-gray-500 text-sm">Loading organizations...</p>';
+        grid.innerHTML = '<p class="text-gray-500 text-sm">Loading...</p>';
         return;
     }
     
@@ -95,7 +89,6 @@ function populateOrgs() {
     `).join('');
 }
 
-// Handle form submission
 function setupFormHandler() {
     const form = document.getElementById('signup-form');
     if (!form) return;
@@ -105,55 +98,66 @@ function setupFormHandler() {
         
         const btn = document.getElementById('submit-btn');
         btn.disabled = true;
-        btn.textContent = '⏳ Creating your dashboard...';
+        btn.textContent = '⏳ Signing you up...';
         
         const formData = new FormData(form);
         
-        // Collect all data - match weekly digest field names
+        // Collect data - field names match Google Sheet columns
         const userData = {
+            // Required
             Name: formData.get('name'),
             Email: formData.get('email'),
-            Zip: formData.get('zip'),
-            Phone: formData.get('phone') || '',
-            Political_View: formData.get('political_view') || 'Moderate',
-            Issues: Array.from(document.querySelectorAll('.issue-checkbox:checked')).map(cb => cb.value).join(', '),
-            Followed_Orgs: Array.from(document.querySelectorAll('.org-checkbox:checked')).map(cb => cb.value).join(', '),
+            ZIP: formData.get('zip'),
+            Followed_Orgs: Array.from(document.querySelectorAll('.org-checkbox:checked'))
+                .map(cb => cb.value).join(', '),
             Email_Frequency: mapEmailFrequency(formData.get('email_frequency')),
-            Signup_Date: new Date().toISOString(),
-            Source: 'Website',
-            User_ID: generateUserId()
+            
+            // Optional
+            Phone: formData.get('phone') || '',
+            User_Type: formData.get('user_type') || '',
+            Political_Views: formData.get('political_view') || 'Moderate',
+            Top_Issues: Array.from(document.querySelectorAll('.issue-checkbox:checked'))
+                .map(cb => cb.value).join(', '),
+            
+            // Auto-generated
+            Timestamp: new Date().toISOString(),
+            User_ID: generateUserId(),
+            Source: 'Website'
         };
         
-        // Validate orgs selected
+        // Validate required fields
         if (!userData.Followed_Orgs) {
             alert('Please select at least one organization to follow');
             btn.disabled = false;
-            btn.textContent = '🚀 Create My Dashboard';
+            btn.textContent = '🚀 Sign Me Up';
             return;
         }
         
-        // Save to localStorage (their personalized experience)
+        // Save to localStorage first (instant personalization)
         saveUserPreferences(userData);
         
-        // Submit to Google Sheets (your data collection)
+        // Submit to Google Sheets
         try {
             await submitToGoogleSheets(userData);
             console.log('✅ Submitted to Google Sheets');
+            
+            // Show success message
+            form.classList.add('hidden');
+            document.getElementById('success-message').classList.remove('hidden');
+            
         } catch (err) {
-            console.error('Google Sheets submission failed:', err);
+            console.error('Submission error:', err);
+            // Still show success since localStorage saved
+            form.classList.add('hidden');
+            document.getElementById('success-message').classList.remove('hidden');
         }
-        
-        // Redirect to personalized tracker
-        window.location.href = 'index.html?welcome=true';
     });
 }
 
-// Map form values to weekly digest expected values
 function mapEmailFrequency(value) {
     const map = {
         'weekly': 'Weekly Digest',
         'daily': 'Daily Updates',
-        'realtime': 'Real-time Alerts',
         'none': 'None'
     };
     return map[value] || 'Weekly Digest';
@@ -164,11 +168,20 @@ function generateUserId() {
 }
 
 function saveUserPreferences(userData) {
+    // Main user object
     localStorage.setItem('utah_tracker_user', JSON.stringify(userData));
-    localStorage.setItem('user_zip', userData.Zip);
+    
+    // Quick-access items for other pages
+    localStorage.setItem('user_zip', userData.ZIP);
+    localStorage.setItem('user_name', userData.Name);
+    localStorage.setItem('user_email', userData.Email);
     localStorage.setItem('followed_orgs', JSON.stringify(userData.Followed_Orgs.split(', ')));
-    localStorage.setItem('user_issues', JSON.stringify(userData.Issues.split(', ')));
-    console.log('✅ Saved user preferences to localStorage');
+    
+    if (userData.Top_Issues) {
+        localStorage.setItem('user_issues', JSON.stringify(userData.Top_Issues.split(', ')));
+    }
+    
+    console.log('✅ Saved to localStorage');
 }
 
 async function submitToGoogleSheets(userData) {
@@ -177,8 +190,10 @@ async function submitToGoogleSheets(userData) {
         return;
     }
     
-    console.log('Submitting to Google Sheets...');
+    console.log('Submitting to Google Sheets...', userData);
     
+    // Using no-cors mode since Apps Script doesn't support CORS
+    // The response won't be readable but data will be saved
     const response = await fetch(APPS_SCRIPT_URL, {
         method: 'POST',
         mode: 'no-cors',

@@ -67,7 +67,7 @@
                     <a href="blog/which-rung.html" class="text-white hover:text-yellow-400 font-medium py-2">📝 Blog</a>
                     <a href="legislators.html" class="text-white hover:text-yellow-400 font-medium py-2">👔 Legislators</a>
                     <a href="https://docs.google.com/spreadsheets/d/19W8O5_oL2c42JzDB8NnVsrsoRPtapW2bggCsyNFnBho" target="_blank" class="text-white hover:text-yellow-400 font-medium py-2">📋 Full Sheet</a>
-                    <a href="signup.html" class="bg-blue-900 hover:bg-blue-800 text-yellow-400 font-semibold px-4 py-3 rounded text-center mt-2">✨ Sign Up Free</a>
+                    <a href="signup.html" class="bg-yellow-500 hover:bg-yellow-400 text-blue-900 font-semibold px-4 py-3 rounded text-center mt-2">✨ Sign Up Free</a>
                 </div>
             </div>
         </div>
@@ -308,11 +308,11 @@
     </main>
 
     <!-- Footer -->
-    <footer class="bg-gray-700 text-white py-8 mt-12">
+    <footer class="bg-blue-900 text-yellow-400 py-8 mt-12">
         <div class="max-w-7xl mx-auto px-4 text-center">
             <p class="mb-2">Utah Legislative Bill Tracker</p>
-            <p class="text-sm text-gray-400">Helping Utah citizens understand what their legislature is doing</p>
-            <p class="text-xs text-gray-500 mt-4">Data updated from pipeline runs • Not affiliated with Utah Legislature</p>
+            <p class="text-sm text-yellow-200">Helping Utah citizens understand what their legislature is doing</p>
+            <p class="text-xs text-yellow-300 mt-4">Data updated from pipeline runs • Not affiliated with Utah Legislature</p>
         </div>
     </footer>
 
@@ -330,39 +330,3 @@
     <script src="js/personalization.js"></script>
 </body>
 </html>
-
-<!-- Legal Disclaimer -->
-<div class="mt-12 p-6 bg-yellow-50 border-2 border-yellow-400 rounded-lg">
-  <h3 class="text-lg font-bold text-yellow-900 mb-2">
-    ⚠️ Important Disclaimer
-  </h3>
-  <p class="text-sm text-yellow-800 mb-3">
-    Organization positions are automatically scraped from public websites and may contain errors. 
-    <strong>Always verify positions directly with organizations before making decisions.</strong>
-  </p>
-  <p class="text-xs text-yellow-700">
-    Click any organization position to see the source. 
-    <a href="mailto:YOUR_EMAIL" class="underline">Report errors here</a>.
-  </p>
-</div>
-
-<!-- Footer -->
-<footer class="mt-8 py-6 border-t text-center text-xs text-gray-500">
-  <p class="mb-2">
-    This tracker is for educational purposes only. No warranties expressed or implied.
-    The creator assumes no liability for inaccurate information.
-  </p>
-  <p>
-    Data last updated: <span id="last-updated"></span>
-  </p>
-</footer>
-
-<script>
-// Show last update time
-fetch('data/bills.json')
-  .then(r => r.json())
-  .then(data => {
-    document.getElementById('last-updated').textContent = 
-      new Date(data.stats.last_updated).toLocaleString();
-  });
-</script>

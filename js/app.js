@@ -253,7 +253,7 @@ function createBillCard(bill) {
     }
     
     return `
-        <div class="bg-white rounded-lg shadow hover:shadow-xl transition-all duration-200 p-6 border-l-4 ${statusColor} relative">
+        <div class="bill-card bg-white rounded-lg shadow hover:shadow-xl transition-all duration-200 p-6 border-l-4 ${statusColor} relative">
             <div class="flex justify-between items-center mb-3">
                 <a href="bill.html?bill=${bill.bill_number}" class="text-xl font-bold text-blue-600 hover:text-blue-800">
                     ${formatBillNumber(bill.bill_number)}

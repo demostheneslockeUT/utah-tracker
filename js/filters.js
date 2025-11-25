@@ -22,14 +22,14 @@ function setFilter(filterType) {
     
     // Update button styles
     document.querySelectorAll('[data-filter]').forEach(btn => {
-        btn.classList.remove('bg-blue-600', 'text-white');
+        btn.classList.remove('bg-blue-900', 'text-yellow-400');
         btn.classList.add('bg-gray-200', 'text-gray-700');
     });
     
     const activeBtn = document.querySelector(`[data-filter="${filterType}"]`);
     if (activeBtn) {
         activeBtn.classList.remove('bg-gray-200', 'text-gray-700');
-        activeBtn.classList.add('bg-blue-600', 'text-white');
+        activeBtn.classList.add('bg-blue-900', 'text-yellow-400');
     }
     
     applyAllFilters();

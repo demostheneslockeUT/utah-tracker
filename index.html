@@ -102,6 +102,28 @@
         <div class="grid md:grid-cols-4 gap-6 mb-8">
             <!-- Filters Sidebar -->
             <div class="md:col-span-1">
+                <!-- Stats Summary -->
+                <div class="bg-blue-900 text-white rounded-lg shadow p-4 mb-4">
+                    <div class="grid grid-cols-2 gap-3 text-center">
+                        <div>
+                            <div class="text-2xl font-bold text-yellow-400" id="stat-total">-</div>
+                            <div class="text-xs opacity-80">Bills</div>
+                        </div>
+                        <div>
+                            <div class="text-2xl font-bold text-yellow-400" id="stat-positions">-</div>
+                            <div class="text-xs opacity-80">With Positions</div>
+                        </div>
+                        <div>
+                            <div class="text-2xl font-bold text-red-400" id="stat-controversial">-</div>
+                            <div class="text-xs opacity-80">Controversial</div>
+                        </div>
+                        <div>
+                            <div class="text-2xl font-bold text-green-400" id="stat-agreement">-</div>
+                            <div class="text-xs opacity-80">Agreement</div>
+                        </div>
+                    </div>
+                </div>
+                
                 <div class="bg-white rounded-lg shadow p-6 sticky top-4">
                     <h3 class="font-bold text-lg mb-4">Filter by</h3>
                     
@@ -205,6 +227,18 @@
             
             <!-- Main Content Area -->
             <div id="bills-section" class="md:col-span-3">
+                <!-- Quiz Card -->
+                <div class="bg-gradient-to-r from-purple-500 to-blue-600 rounded-lg shadow-lg p-8 mb-6 text-white">
+                    <h2 class="text-3xl font-bold mb-3">🗳️ Which Utah Legislators Vote Like You?</h2>
+                    <p class="text-lg mb-6 opacity-90">Answer 10 quick questions on real Utah bills to see your political matches</p>
+                    <div class="flex gap-4 items-center">
+                        <a href="quiz/index.html" class="bg-white text-purple-600 px-8 py-4 rounded-lg font-bold text-lg hover:bg-gray-100 shadow-lg">
+                            Take the Quiz →
+                        </a>
+                        <span class="text-sm opacity-75">⏱️ Takes 3 minutes</span>
+                    </div>
+                </div>
+
                 <!-- Search Bar -->
                 <div class="bg-white rounded-lg shadow p-6 mb-6">
                     <input 
@@ -229,38 +263,7 @@
                             ⭐ My Votes
                         </button>
                     </div>
-                    
-                    <!-- OLD Filter Buttons - Remove below -->
-                    <div class="hidden flex gap-3 mt-4 flex-wrap">
-                        <button id="btn-all" class="px-4 py-2 bg-blue-600 text-white rounded-lg font-semibold">
-                            All Bills
-                        </button>
-                        <button id="btn-controversial" class="px-4 py-2 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300">
-                            🔥 Controversial
-                        </button>
-                        <button id="btn-agreement" class="px-4 py-2 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300">
-                            🤝 High Agreement
-                        </button>
-                        <a href="signup.html" class="bg-blue-900 hover:bg-blue-800 text-yellow-400 font-semibold px-3 py-1 rounded">✨ Sign Up</a>
-                <a href="https://docs.google.com/spreadsheets/d/19W8O5_oL2c42JzDB8NnVsrsoRPtapW2bggCsyNFnBho" 
-                           target="_blank"
-                           class="px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 font-semibold">
-                            📊 Full Tracker
-                        </a>
-                    </div>
                 </div>
-
-        <!-- Quiz Card -->
-        <div class="bg-gradient-to-r from-purple-500 to-blue-600 rounded-lg shadow-lg p-8 mb-6 text-white">
-            <h2 class="text-3xl font-bold mb-3">🗳️ Which Utah Legislators Vote Like You?</h2>
-            <p class="text-lg mb-6 opacity-90">Answer 10 quick questions on real Utah bills to see your political matches</p>
-            <div class="flex gap-4 items-center">
-                <a href="quiz/index.html" class="bg-white text-purple-600 px-8 py-4 rounded-lg font-bold text-lg hover:bg-gray-100 shadow-lg">
-                    Take the Quiz →
-                </a>
-                <span class="text-sm opacity-75">⏱️ Takes 3 minutes</span>
-            </div>
-        </div>
 
                 <!-- Bills Grid -->
 

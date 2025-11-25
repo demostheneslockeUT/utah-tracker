@@ -111,10 +111,12 @@ async function loadBills() {
         buildOrgFilters();
         displayBills(allBills);
         
-        document.getElementById('loading').style.display = 'none';
+        const overlay = document.getElementById('loading-overlay');
+        if (overlay) overlay.classList.add('hidden');
     } catch (error) {
         console.error('Error loading bills:', error);
-        document.getElementById('loading').innerHTML = 
+        const overlay = document.getElementById('loading-overlay');
+        if (overlay) overlay.innerHTML = 
             '<div class="text-red-600">Error loading bills. Please refresh.</div>';
     }
 }

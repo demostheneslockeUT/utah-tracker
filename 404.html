@@ -2,7 +2,6 @@
 <html lang="en">
 <head>
     <link rel="icon" href="favicon.svg" type="image/svg+xml">
-    <!-- Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-G9P475F3F4"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
@@ -10,31 +9,42 @@
       gtag('js', new Date());
       gtag('config', 'G-G9P475F3F4');
     </script>
-    <!-- Social Meta Tags -->
     <meta property="og:title" content="Page Not Found - Utah Legislative Tracker">
-    <meta property="og:description" content="Making Utah politics easier.">
+    <meta property="og:description" content="Making Utah politics easier for everyone.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://ez-le-ut.com">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Page Not Found - Utah Legislative Tracker</title>
+    <title>404 - Page Not Found | ez-le-ut.com</title>
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body class="bg-gray-300 min-h-screen flex items-center justify-center">
-    <div class="text-center px-6">
-        <img src="lost-bill.svg" alt="Lost Bill" class="w-48 h-auto mx-auto mb-6">
-        <h1 class="text-6xl font-bold text-gray-800 mb-4">404</h1>
-        <p class="text-xl text-gray-600 mb-8">This bill seems to have failed in committee.</p>
-        <div class="space-x-4">
-            <a href="/" class="inline-block bg-blue-900 text-white px-6 py-3 rounded-lg font-semibold hover:bg-blue-800 transition">
-                ← Back to Tracker
-            </a>
-            <a href="/signup.html" class="inline-block bg-yellow-500 text-blue-900 px-6 py-3 rounded-lg font-semibold hover:bg-yellow-400 transition">
-                Sign Up for Updates
-            </a>
+<body class="min-h-screen flex flex-col">
+    <!-- Background with Utah image -->
+    <div class="fixed inset-0 z-0">
+        <div class="absolute inset-0 bg-cover bg-center" style="background-image: url('images/banner-monument-valley.jpg');"></div>
+        <div class="absolute inset-0 bg-blue-900/70"></div>
+    </div>
+    
+    <!-- Content -->
+    <div class="relative z-10 flex-1 flex items-center justify-center px-6">
+        <div class="text-center">
+            <p class="text-9xl font-bold text-yellow-400 mb-2">404</p>
+            <h1 class="text-3xl font-bold text-white mb-4">This bill failed in committee</h1>
+            <p class="text-xl text-blue-100 mb-8">The page you're looking for doesn't exist or has been moved.</p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <a href="/" class="inline-block bg-yellow-500 text-blue-900 px-8 py-4 rounded-lg font-bold hover:bg-yellow-400 transition text-lg">
+                    🏛️ Back to Tracker
+                </a>
+                <a href="/signup.html" class="inline-block bg-white/20 text-white border-2 border-white px-8 py-4 rounded-lg font-bold hover:bg-white/30 transition text-lg">
+                    ✉️ Get Updates
+                </a>
+            </div>
         </div>
     </div>
-    <div id="site-footer"></div>
-    <script src="js/components.js"></script>
+    
+    <!-- Simple footer -->
+    <div class="relative z-10 text-center py-6">
+        <p class="text-blue-200 text-sm">Making Utah politics easier for everyone</p>
+    </div>
 </body>
 </html>

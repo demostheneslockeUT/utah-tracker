@@ -1,4 +1,19 @@
 
+
+// Mobile filter toggle
+function toggleFilters() {
+    const content = document.getElementById("filter-content");
+    const arrow = document.getElementById("filter-arrow");
+    
+    if (content.classList.contains("hidden")) {
+        content.classList.remove("hidden");
+        arrow.classList.remove("rotate-180");
+    } else {
+        content.classList.add("hidden");
+        arrow.classList.add("rotate-180");
+    }
+}
+
 // Format bill number: HB0022 → HB22
 function formatBillNumber(billNum) {
     if (!billNum) return '';

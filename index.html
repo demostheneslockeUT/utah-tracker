@@ -142,9 +142,20 @@
         <!-- Search and Filters -->
         <div class="grid md:grid-cols-4 gap-6 mb-8">
             <!-- Filters Sidebar -->
-            <div class="md:col-span-1">
-                <div class="bg-white rounded-lg shadow p-6 sticky top-4">
-                    <h3 class="font-bold text-lg mb-4">Filter by</h3>
+            <div class="md:col-span-1 order-2 md:order-1">
+                <div class="bg-white rounded-lg shadow p-4 md:p-6 md:sticky md:top-20">
+                    <!-- Mobile: Collapsible Header -->
+                    <button onclick="toggleFilters()" class="w-full flex justify-between items-center md:hidden mb-2">
+                        <h3 class="font-bold text-lg">🔍 Filters <span id="filter-badge" class="text-blue-600 hidden"></span></h3>
+                        <svg id="filter-arrow" class="w-5 h-5 transform rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                        </svg>
+                    </button>
+                    <!-- Desktop: Regular Header -->
+                    <h3 class="hidden md:block font-bold text-lg mb-4">Filter by</h3>
+                    
+                    <!-- Collapsible Content -->
+                    <div id="filter-content" class="hidden md:block">
                     
                     <!-- Filter Type Tabs -->
                     <div class="flex border-b mb-4">
@@ -245,9 +256,9 @@
             </div>
             
             <!-- Main Content Area -->
-            <div class="md:col-span-3">
+            <div class="md:col-span-3 order-1 md:order-2">
                 <!-- Search Bar -->
-                <div class="bg-white rounded-lg shadow p-6 mb-6">
+                <div class="bg-white rounded-lg shadow p-4 md:p-6 mb-4 md:mb-6">
                     <input 
                         type="text" 
                         id="search-input"
@@ -332,7 +343,7 @@
     <script src="js/legislator-contact.js"></script>
     <script src="js/legislator-contact-fixes.js"></script>
     <script src="js/user-voting.js"></script>
-    <script src="js/app.js"></script>
+    <script src="js/app.js?v=2"></script>
     <script src="js/my-reps-votes.js"></script>
     <script src="js/filters.js"></script>
 

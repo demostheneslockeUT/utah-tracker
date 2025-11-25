@@ -1,5 +1,3 @@
-
-
 // Mobile filter toggle
 function toggleFilters() {
     const content = document.getElementById("filter-content");
@@ -11,6 +9,34 @@ function toggleFilters() {
     } else {
         content.classList.add("hidden");
         arrow.classList.add("rotate-180");
+    }
+}
+
+// Update filter count badge on mobile
+function updateFilterBadge() {
+    const orgCount = document.querySelectorAll(".org-filter:checked").length;
+    const statusCount = document.querySelectorAll(".status-filter:checked").length;
+    const topicCount = document.querySelectorAll(".topic-filter:checked").length;
+    const total = orgCount + statusCount + topicCount;
+    
+    const badge = document.getElementById("filter-badge");
+    if (badge) {
+        if (total > 0) {
+            badge.textContent = "(" + total + ")";
+            badge.classList.remove("hidden");
+        } else {
+            badge.classList.add("hidden");
+        }
+    }
+}
+
+// Scroll to results after filtering (mobile)
+function scrollToResults() {
+    if (window.innerWidth < 768) {
+        const container = document.getElementById("bills-container");
+        if (container) {
+            container.scrollIntoView({ behavior: "smooth", block: "start" });
+        }
     }
 }
 
@@ -378,6 +404,8 @@ function applyFilters() {
     }
     
     displayBills(filtered);
+    updateFilterBadge();
+    scrollToResults();
 }
 
 function getPositionValues(bill) {
@@ -472,6 +500,8 @@ function handleSearch(e) {
     }
     
     displayBills(filtered);
+    updateFilterBadge();
+    scrollToResults();
 }
 
 // contactLegislatorAboutBill is in simple-contact.js
@@ -524,6 +554,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 );
             }
             displayBills(filtered);
+    updateFilterBadge();
+    scrollToResults();
         });
     }
 });

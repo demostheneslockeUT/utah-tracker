@@ -26,7 +26,7 @@ function setFilter(filterType) {
         btn.classList.add('bg-gray-200', 'text-gray-700');
     });
     
-    const activeBtn = document.querySelector(`[data-filter="${filterType}"]`);
+const activeBtn = document.querySelector(`[data-filter="${filterType}"]`);
     if (activeBtn) {
         activeBtn.classList.remove('bg-gray-200', 'text-gray-700');
         activeBtn.classList.add('bg-blue-900', 'text-yellow-400');

@@ -565,3 +565,118 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 });
+
+// Carousel functions
+function scrollCarousel(direction) {
+    const carousel = document.getElementById('feature-carousel');
+    const cardWidth = 336; // 320px card + 16px gap
+    carousel.scrollBy({ left: direction * cardWidth, behavior: 'smooth' });
+}
+
+function scrollToCard(index) {
+    const carousel = document.getElementById('feature-carousel');
+    const cardWidth = 336;
+    carousel.scrollTo({ left: index * cardWidth, behavior: 'smooth' });
+}
+
+// Feature Carousel Data & Functions
+const featureCards = [
+    {
+        emoji: '🗳️',
+        title: 'Legislator Quiz',
+        desc: 'Answer 10 questions on real Utah bills to find your political matches',
+        link: 'quiz/index.html',
+        cta: 'Take Quiz →',
+        gradient: 'from-purple-500 to-blue-600',
+        btnClass: 'bg-white text-purple-600'
+    },
+    {
+        emoji: '⚖️',
+        title: 'Compare Positions',
+        desc: 'See how different organizations stand on the same bills side-by-side',
+        link: 'compare.html',
+        cta: 'Compare →',
+        gradient: 'from-blue-900 to-blue-700',
+        btnClass: 'bg-yellow-400 text-blue-900'
+    },
+    {
+        emoji: '👔',
+        title: 'Legislator Alignment',
+        desc: 'See how your representatives vote compared to advocacy organizations',
+        link: 'legislators.html',
+        cta: 'View Legislators →',
+        gradient: 'from-green-600 to-teal-600',
+        btnClass: 'bg-white text-green-600'
+    },
+    {
+        emoji: '📝',
+        title: 'Which Rung Are You On?',
+        desc: 'Explore high-rung vs low-rung political thinking and assess yourself',
+        link: 'blog/which-rung.html',
+        cta: 'Read Blog →',
+        gradient: 'from-orange-500 to-red-500',
+        btnClass: 'bg-white text-orange-600'
+    },
+    {
+        emoji: '✨',
+        title: 'Get Updates',
+        desc: 'Sign up for personalized alerts when bills you care about move',
+        link: 'signup.html',
+        cta: 'Sign Up Free →',
+        gradient: 'from-yellow-500 to-orange-500',
+        btnClass: 'bg-blue-900 text-yellow-400'
+    }
+];
+
+let currentCard = 0;
+let carouselInterval;
+
+function updateCard(index) {
+    const card = featureCards[index];
+    const container = document.getElementById('feature-card');
+    
+    // Update content
+    document.getElementById('card-emoji').textContent = card.emoji;
+    document.getElementById('card-title').textContent = card.title;
+    document.getElementById('card-desc').textContent = card.desc;
+    document.getElementById('card-link').href = card.link;
+    document.getElementById('card-link').className = `inline-block ${card.btnClass} px-6 py-3 rounded-lg font-bold hover:opacity-90 transition`;
+    document.getElementById('card-cta').textContent = card.cta;
+    
+    // Update gradient
+    container.className = `rounded-lg shadow-lg p-8 text-white transition-all duration-500 bg-gradient-to-r ${card.gradient}`;
+    
+    // Update dots
+    for (let i = 0; i < 5; i++) {
+        document.getElementById(`dot-${i}`).className = i === index 
+            ? 'w-2 h-2 rounded-full bg-white' 
+            : 'w-2 h-2 rounded-full bg-white/40 hover:bg-white/60';
+    }
+    
+    currentCard = index;
+}
+
+function nextCard() {
+    updateCard((currentCard + 1) % featureCards.length);
+    resetInterval();
+}
+
+function prevCard() {
+    updateCard((currentCard - 1 + featureCards.length) % featureCards.length);
+    resetInterval();
+}
+
+function goToCard(index) {
+    updateCard(index);
+    resetInterval();
+}
+
+function resetInterval() {
+    clearInterval(carouselInterval);
+    carouselInterval = setInterval(() => nextCard(), 5000);
+}
+
+// Start auto-rotation when page loads
+document.addEventListener('DOMContentLoaded', function() {
+    carouselInterval = setInterval(() => nextCard(), 5000);
+});

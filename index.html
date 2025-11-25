@@ -227,15 +227,40 @@
             
             <!-- Main Content Area -->
             <div id="bills-section" class="md:col-span-3">
-                <!-- Quiz Card -->
-                <div class="bg-gradient-to-r from-purple-500 to-blue-600 rounded-lg shadow-lg p-8 mb-6 text-white">
-                    <h2 class="text-3xl font-bold mb-3">🗳️ Which Utah Legislators Vote Like You?</h2>
-                    <p class="text-lg mb-6 opacity-90">Answer 10 quick questions on real Utah bills to see your political matches</p>
-                    <div class="flex gap-4 items-center">
-                        <a href="quiz/index.html" class="bg-white text-purple-600 px-8 py-4 rounded-lg font-bold text-lg hover:bg-gray-100 shadow-lg">
-                            Take the Quiz →
-                        </a>
-                        <span class="text-sm opacity-75">⏱️ Takes 3 minutes</span>
+                <!-- Feature Carousel (Single Card) -->
+                <div class="relative mb-6">
+                    <div id="feature-card" class="rounded-lg shadow-lg p-8 text-white transition-all duration-500 bg-gradient-to-r from-purple-500 to-blue-600">
+                        <div class="flex items-start justify-between">
+                            <div class="flex-1">
+                                <span id="card-emoji" class="text-4xl">🗳️</span>
+                                <h3 id="card-title" class="text-2xl font-bold mt-3 mb-2">Legislator Quiz</h3>
+                                <p id="card-desc" class="opacity-90 mb-4">Answer 10 questions on real Utah bills to find your political matches</p>
+                                <a id="card-link" href="quiz/index.html" class="inline-block bg-white text-purple-600 px-6 py-3 rounded-lg font-bold hover:bg-gray-100 transition">
+                                    <span id="card-cta">Take Quiz →</span>
+                                </a>
+                            </div>
+                            <!-- Navigation Arrows -->
+                            <div class="flex flex-col gap-2 ml-4">
+                                <button onclick="prevCard()" class="bg-white/20 hover:bg-white/30 rounded-full p-2">
+                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
+                                    </svg>
+                                </button>
+                                <button onclick="nextCard()" class="bg-white/20 hover:bg-white/30 rounded-full p-2">
+                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
+                        <!-- Dots -->
+                        <div class="flex justify-center gap-2 mt-4">
+                            <button onclick="goToCard(0)" id="dot-0" class="w-2 h-2 rounded-full bg-white"></button>
+                            <button onclick="goToCard(1)" id="dot-1" class="w-2 h-2 rounded-full bg-white/40 hover:bg-white/60"></button>
+                            <button onclick="goToCard(2)" id="dot-2" class="w-2 h-2 rounded-full bg-white/40 hover:bg-white/60"></button>
+                            <button onclick="goToCard(3)" id="dot-3" class="w-2 h-2 rounded-full bg-white/40 hover:bg-white/60"></button>
+                            <button onclick="goToCard(4)" id="dot-4" class="w-2 h-2 rounded-full bg-white/40 hover:bg-white/60"></button>
+                        </div>
                     </div>
                 </div>
 

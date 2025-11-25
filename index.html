@@ -98,10 +98,48 @@
     </header>
     <!-- Main Content -->
     <main class="max-w-7xl mx-auto px-4 py-8">
+        <!-- Feature Carousel (Full Width) -->
+        <div class="relative mb-8">
+            <div id="feature-card" class="rounded-lg shadow-lg p-8 text-white transition-all duration-500 bg-gradient-to-r from-purple-500 to-blue-600">
+                <div class="flex items-start justify-between">
+                    <div class="flex-1">
+                        <span id="card-emoji" class="text-4xl">🗳️</span>
+                        <h3 id="card-title" class="text-2xl font-bold mt-3 mb-2">Legislator Quiz</h3>
+                        <p id="card-desc" class="opacity-90 mb-4">Answer 10 questions on real Utah bills to find your political matches</p>
+                        <a id="card-link" href="quiz/index.html" class="inline-block bg-white text-purple-600 px-6 py-3 rounded-lg font-bold hover:bg-gray-100 transition">
+                            <span id="card-cta">Take Quiz →</span>
+                        </a>
+                    </div>
+                    <!-- Navigation Arrows -->
+                    <div class="flex flex-col gap-2 ml-4">
+                        <button onclick="prevCard()" class="bg-white/20 hover:bg-white/30 rounded-full p-2">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
+                            </svg>
+                        </button>
+                        <button onclick="nextCard()" class="bg-white/20 hover:bg-white/30 rounded-full p-2">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+                <!-- Dots -->
+                <div class="flex justify-center gap-2 mt-4">
+                    <button onclick="goToCard(0)" id="dot-0" class="w-2 h-2 rounded-full bg-white"></button>
+                    <button onclick="goToCard(1)" id="dot-1" class="w-2 h-2 rounded-full bg-white/40 hover:bg-white/60"></button>
+                    <button onclick="goToCard(2)" id="dot-2" class="w-2 h-2 rounded-full bg-white/40 hover:bg-white/60"></button>
+                    <button onclick="goToCard(3)" id="dot-3" class="w-2 h-2 rounded-full bg-white/40 hover:bg-white/60"></button>
+                    <button onclick="goToCard(4)" id="dot-4" class="w-2 h-2 rounded-full bg-white/40 hover:bg-white/60"></button>
+                </div>
+            </div>
+        </div>
+
         <!-- Search and Filters -->
         <div class="grid md:grid-cols-4 gap-6 mb-8">
             <!-- Filters Sidebar -->
             <div class="md:col-span-1">
+                <div class="sticky top-20">
                 <!-- Stats Summary -->
                 <div class="bg-blue-900 text-white rounded-lg shadow p-4 mb-4">
                     <div class="grid grid-cols-2 gap-3 text-center">
@@ -124,7 +162,7 @@
                     </div>
                 </div>
                 
-                <div class="bg-white rounded-lg shadow p-6 sticky top-4">
+                <div class="bg-white rounded-lg shadow p-6">
                     <h3 class="font-bold text-lg mb-4">Filter by</h3>
                     
                     <!-- Filter Type Tabs -->
@@ -223,47 +261,11 @@
                         </label>
                     </div>
                 </div>
+                </div>
             </div>
             
             <!-- Main Content Area -->
             <div id="bills-section" class="md:col-span-3">
-                <!-- Feature Carousel (Single Card) -->
-                <div class="relative mb-6">
-                    <div id="feature-card" class="rounded-lg shadow-lg p-8 text-white transition-all duration-500 bg-gradient-to-r from-purple-500 to-blue-600">
-                        <div class="flex items-start justify-between">
-                            <div class="flex-1">
-                                <span id="card-emoji" class="text-4xl">🗳️</span>
-                                <h3 id="card-title" class="text-2xl font-bold mt-3 mb-2">Legislator Quiz</h3>
-                                <p id="card-desc" class="opacity-90 mb-4">Answer 10 questions on real Utah bills to find your political matches</p>
-                                <a id="card-link" href="quiz/index.html" class="inline-block bg-white text-purple-600 px-6 py-3 rounded-lg font-bold hover:bg-gray-100 transition">
-                                    <span id="card-cta">Take Quiz →</span>
-                                </a>
-                            </div>
-                            <!-- Navigation Arrows -->
-                            <div class="flex flex-col gap-2 ml-4">
-                                <button onclick="prevCard()" class="bg-white/20 hover:bg-white/30 rounded-full p-2">
-                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
-                                    </svg>
-                                </button>
-                                <button onclick="nextCard()" class="bg-white/20 hover:bg-white/30 rounded-full p-2">
-                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
-                                    </svg>
-                                </button>
-                            </div>
-                        </div>
-                        <!-- Dots -->
-                        <div class="flex justify-center gap-2 mt-4">
-                            <button onclick="goToCard(0)" id="dot-0" class="w-2 h-2 rounded-full bg-white"></button>
-                            <button onclick="goToCard(1)" id="dot-1" class="w-2 h-2 rounded-full bg-white/40 hover:bg-white/60"></button>
-                            <button onclick="goToCard(2)" id="dot-2" class="w-2 h-2 rounded-full bg-white/40 hover:bg-white/60"></button>
-                            <button onclick="goToCard(3)" id="dot-3" class="w-2 h-2 rounded-full bg-white/40 hover:bg-white/60"></button>
-                            <button onclick="goToCard(4)" id="dot-4" class="w-2 h-2 rounded-full bg-white/40 hover:bg-white/60"></button>
-                        </div>
-                    </div>
-                </div>
-
                 <!-- Search Bar -->
                 <div class="bg-white rounded-lg shadow p-6 mb-6">
                     <input 

@@ -587,8 +587,8 @@ const featureCards = [
         desc: 'Answer 10 questions on real Utah bills to find your political matches',
         link: 'quiz/index.html',
         cta: 'Take Quiz →',
-        bgImage: 'https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?w=1200&q=80', // Arches
-        parkName: 'Arches National Park'
+        bgImage: 'images/banner-arches.jpg', // Arches
+        parkName: 'Arches'
     },
     {
         emoji: '⚖️',
@@ -596,7 +596,7 @@ const featureCards = [
         desc: 'See how different organizations stand on the same bills side-by-side',
         link: 'compare.html',
         cta: 'Compare →',
-        bgImage: 'https://images.unsplash.com/photo-1604975701397-6365ccbd028a?w=1200&q=80', // Bryce Canyon
+        bgImage: 'images/banner-canyon.jpg', // Bryce Canyon
         parkName: 'Bryce Canyon'
     },
     {
@@ -605,8 +605,8 @@ const featureCards = [
         desc: 'See how your representatives vote compared to advocacy organizations',
         link: 'legislators.html',
         cta: 'View Legislators →',
-        bgImage: 'https://images.unsplash.com/photo-1568607689150-17e625c1ebba?w=1200&q=80', // Canyonlands
-        parkName: 'Canyonlands'
+        bgImage: 'images/banner-monument-valley.jpg', // Canyonlands
+        parkName: 'The Wave'
     },
     {
         emoji: '📝',
@@ -614,8 +614,8 @@ const featureCards = [
         desc: 'Explore high-rung vs low-rung political thinking and assess yourself',
         link: 'blog/which-rung.html',
         cta: 'Read Blog →',
-        bgImage: 'https://images.unsplash.com/photo-1559763555-47a05ce14c47?w=1200&q=80', // Capitol Reef
-        parkName: 'Capitol Reef'
+        bgImage: 'images/banner-highway.jpg', // Capitol Reef
+        parkName: 'The Subway'
     },
     {
         emoji: '✨',
@@ -623,8 +623,8 @@ const featureCards = [
         desc: 'Sign up for personalized alerts when bills you care about move',
         link: 'signup.html',
         cta: 'Sign Up Free →',
-        bgImage: 'https://images.unsplash.com/photo-1535979863199-3c77338429a0?w=1200&q=80', // Zion Angels Landing
-        parkName: 'Zion - Angels Landing'
+        bgImage: 'images/banner-zion.jpg', // Zion Angels Landing
+        parkName: 'Angels Landing'
     }
 ];
 

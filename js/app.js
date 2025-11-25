@@ -120,10 +120,16 @@ async function loadBills() {
 }
 
 function updateStats(stats) {
-    document.getElementById('stat-total').textContent = stats.total_bills || 0;
-    document.getElementById('stat-positions').textContent = stats.bills_with_positions || 0;
-    document.getElementById('stat-controversial').textContent = stats.controversial || 0;
-    document.getElementById('stat-agreement').textContent = stats.high_agreement || 0;
+    // Handle missing stat elements gracefully (they may be removed from UI)
+    const statTotal = document.getElementById('stat-total');
+    const statPositions = document.getElementById('stat-positions');
+    const statControversial = document.getElementById('stat-controversial');
+    const statAgreement = document.getElementById('stat-agreement');
+    
+    if (statTotal) statTotal.textContent = stats.total_bills || 0;
+    if (statPositions) statPositions.textContent = stats.bills_with_positions || 0;
+    if (statControversial) statControversial.textContent = stats.controversial || 0;
+    if (statAgreement) statAgreement.textContent = stats.high_agreement || 0;
 }
 
 function displayBills(bills) {

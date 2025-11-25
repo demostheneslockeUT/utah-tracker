@@ -62,26 +62,31 @@
     </header>
     <!-- Main Content -->
     <main class="max-w-7xl mx-auto px-4 py-8">
-        <!-- Feature Carousel (Full Width) -->
+        <!-- Feature Carousel (Full Width) - Utah National Parks Theme -->
         <div class="relative mb-8">
-            <div id="feature-card" class="rounded-lg shadow-lg p-8 text-white transition-all duration-500 bg-gradient-to-r from-purple-500 to-blue-600">
-                <div class="flex items-start justify-between">
+            <div id="feature-card" class="rounded-lg shadow-lg overflow-hidden transition-all duration-500 relative h-64">
+                <!-- Background Image -->
+                <div id="card-bg" class="absolute inset-0 bg-cover bg-center transition-all duration-500" style="background-image: url('https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?w=1200&q=80');"></div>
+                <!-- Dark Overlay -->
+                <div class="absolute inset-0 bg-black/50"></div>
+                <!-- Content -->
+                <div class="relative z-10 p-8 h-full flex items-start justify-between text-white">
                     <div class="flex-1">
-                        <span id="card-emoji" class="text-4xl">🗳️</span>
-                        <h3 id="card-title" class="text-2xl font-bold mt-3 mb-2">Legislator Quiz</h3>
-                        <p id="card-desc" class="opacity-90 mb-4">Answer 10 questions on real Utah bills to find your political matches</p>
-                        <a id="card-link" href="quiz/index.html" class="inline-block bg-white text-purple-600 px-6 py-3 rounded-lg font-bold hover:bg-gray-100 transition">
+                        <span id="card-emoji" class="text-4xl drop-shadow-lg">🗳️</span>
+                        <h3 id="card-title" class="text-2xl font-bold mt-3 mb-2 drop-shadow-lg">Legislator Quiz</h3>
+                        <p id="card-desc" class="opacity-90 mb-4 drop-shadow">Answer 10 questions on real Utah bills to find your political matches</p>
+                        <a id="card-link" href="quiz/index.html" id="card-btn" class="inline-block bg-white text-blue-900 px-6 py-3 rounded-lg font-bold hover:bg-yellow-400 transition shadow-lg">
                             <span id="card-cta">Take Quiz →</span>
                         </a>
                     </div>
                     <!-- Navigation Arrows -->
                     <div class="flex flex-col gap-2 ml-4">
-                        <button onclick="prevCard()" class="bg-white/20 hover:bg-white/30 rounded-full p-2">
+                        <button onclick="prevCard()" class="bg-white/30 hover:bg-white/50 rounded-full p-2 backdrop-blur-sm">
                             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
                             </svg>
                         </button>
-                        <button onclick="nextCard()" class="bg-white/20 hover:bg-white/30 rounded-full p-2">
+                        <button onclick="nextCard()" class="bg-white/30 hover:bg-white/50 rounded-full p-2 backdrop-blur-sm">
                             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
                             </svg>
@@ -89,7 +94,7 @@
                     </div>
                 </div>
                 <!-- Dots -->
-                <div class="flex justify-center gap-2 mt-4">
+                <div class="absolute bottom-4 left-0 right-0 flex justify-center gap-2 z-10">
                     <button onclick="goToCard(0)" id="dot-0" class="w-2 h-2 rounded-full bg-white"></button>
                     <button onclick="goToCard(1)" id="dot-1" class="w-2 h-2 rounded-full bg-white/40 hover:bg-white/60"></button>
                     <button onclick="goToCard(2)" id="dot-2" class="w-2 h-2 rounded-full bg-white/40 hover:bg-white/60"></button>

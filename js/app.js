@@ -587,8 +587,8 @@ const featureCards = [
         desc: 'Answer 10 questions on real Utah bills to find your political matches',
         link: 'quiz/index.html',
         cta: 'Take Quiz →',
-        gradient: 'from-purple-500 to-blue-600',
-        btnClass: 'bg-white text-purple-600'
+        bgImage: 'https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?w=1200&q=80', // Arches
+        parkName: 'Arches National Park'
     },
     {
         emoji: '⚖️',
@@ -596,8 +596,8 @@ const featureCards = [
         desc: 'See how different organizations stand on the same bills side-by-side',
         link: 'compare.html',
         cta: 'Compare →',
-        gradient: 'from-blue-900 to-blue-700',
-        btnClass: 'bg-yellow-400 text-blue-900'
+        bgImage: 'https://images.unsplash.com/photo-1604975701397-6365ccbd028a?w=1200&q=80', // Bryce Canyon
+        parkName: 'Bryce Canyon'
     },
     {
         emoji: '👔',
@@ -605,8 +605,8 @@ const featureCards = [
         desc: 'See how your representatives vote compared to advocacy organizations',
         link: 'legislators.html',
         cta: 'View Legislators →',
-        gradient: 'from-green-600 to-teal-600',
-        btnClass: 'bg-white text-green-600'
+        bgImage: 'https://images.unsplash.com/photo-1568607689150-17e625c1ebba?w=1200&q=80', // Canyonlands
+        parkName: 'Canyonlands'
     },
     {
         emoji: '📝',
@@ -614,8 +614,8 @@ const featureCards = [
         desc: 'Explore high-rung vs low-rung political thinking and assess yourself',
         link: 'blog/which-rung.html',
         cta: 'Read Blog →',
-        gradient: 'from-orange-500 to-red-500',
-        btnClass: 'bg-white text-orange-600'
+        bgImage: 'https://images.unsplash.com/photo-1559763555-47a05ce14c47?w=1200&q=80', // Capitol Reef
+        parkName: 'Capitol Reef'
     },
     {
         emoji: '✨',
@@ -623,8 +623,8 @@ const featureCards = [
         desc: 'Sign up for personalized alerts when bills you care about move',
         link: 'signup.html',
         cta: 'Sign Up Free →',
-        gradient: 'from-yellow-500 to-orange-500',
-        btnClass: 'bg-blue-900 text-yellow-400'
+        bgImage: 'https://images.unsplash.com/photo-1535979863199-3c77338429a0?w=1200&q=80', // Zion Angels Landing
+        parkName: 'Zion - Angels Landing'
     }
 ];
 
@@ -633,24 +633,28 @@ let carouselInterval;
 
 function updateCard(index) {
     const card = featureCards[index];
-    const container = document.getElementById('feature-card');
     
     // Update content
     document.getElementById('card-emoji').textContent = card.emoji;
     document.getElementById('card-title').textContent = card.title;
     document.getElementById('card-desc').textContent = card.desc;
     document.getElementById('card-link').href = card.link;
-    document.getElementById('card-link').className = `inline-block ${card.btnClass} px-6 py-3 rounded-lg font-bold hover:opacity-90 transition`;
     document.getElementById('card-cta').textContent = card.cta;
     
-    // Update gradient
-    container.className = `rounded-lg shadow-lg p-8 text-white transition-all duration-500 bg-gradient-to-r ${card.gradient}`;
+    // Update background image
+    const bgElement = document.getElementById('card-bg');
+    if (bgElement) {
+        bgElement.style.backgroundImage = "url('" + card.bgImage + "')";
+    }
     
     // Update dots
     for (let i = 0; i < 5; i++) {
-        document.getElementById(`dot-${i}`).className = i === index 
-            ? 'w-2 h-2 rounded-full bg-white' 
-            : 'w-2 h-2 rounded-full bg-white/40 hover:bg-white/60';
+        const dot = document.getElementById('dot-' + i);
+        if (dot) {
+            dot.className = i === index 
+                ? 'w-2 h-2 rounded-full bg-white' 
+                : 'w-2 h-2 rounded-full bg-white/40 hover:bg-white/60';
+        }
     }
     
     currentCard = index;
@@ -678,5 +682,8 @@ function resetInterval() {
 
 // Start auto-rotation when page loads
 document.addEventListener('DOMContentLoaded', function() {
+    // Initialize first card
+    updateCard(0);
+    // Start auto-rotation
     carouselInterval = setInterval(() => nextCard(), 5000);
 });

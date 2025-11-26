@@ -1,0 +1,1857 @@
+{
+  "generated_date": "2025-11-26T13:57:24",
+  "total_bills": 77,
+  "notes": {
+    "HB0024": {
+      "state_government": {},
+      "local_government": "",
+      "individuals_businesses": "",
+      "regulatory_impact": "",
+      "summary": "This bill does not create a new program or significantly expand an existing program.\n                        ",
+      "fiscal_years": [
+        "2025",
+        "2026",
+        "2027"
+      ],
+      "total_expenditures": {
+        "FY2025": "$0",
+        "FY2026": "$0",
+        "FY2027": "$0"
+      },
+      "total_revenues": {
+        "FY2025": "$0",
+        "FY2026": "$0",
+        "FY2027": "$0"
+      },
+      "net_impact": {},
+      "impact_level": "Minimal"
+    },
+    "HB0037": {
+      "state_government": {},
+      "local_government": "",
+      "individuals_businesses": "",
+      "regulatory_impact": "",
+      "summary": "This bill does not create a new program or significantly expand an existing program.\n                        ",
+      "fiscal_years": [
+        "2025",
+        "2026",
+        "2027"
+      ],
+      "total_expenditures": {
+        "FY2025": "$250,000",
+        "FY2026": "$2,070,700",
+        "FY2027": "$1,245,700"
+      },
+      "total_revenues": {
+        "FY2025": "$0",
+        "FY2026": "$0",
+        "FY2027": "$0"
+      },
+      "net_impact": {},
+      "impact_level": "High"
+    },
+    "HB0046": {
+      "state_government": {},
+      "local_government": "",
+      "individuals_businesses": "",
+      "regulatory_impact": "",
+      "summary": "This bill does not create a new program or significantly expand an existing program.\n                        ",
+      "fiscal_years": [
+        "2025",
+        "2026",
+        "2027"
+      ],
+      "total_expenditures": {
+        "FY2025": "$0",
+        "FY2026": "$0",
+        "FY2027": "$0"
+      },
+      "total_revenues": {
+        "FY2025": "$0",
+        "FY2026": "$0",
+        "FY2027": "$0"
+      },
+      "net_impact": {},
+      "impact_level": "Minimal"
+    },
+    "HB0047": {
+      "state_government": {},
+      "local_government": "",
+      "individuals_businesses": "",
+      "regulatory_impact": "",
+      "summary": "This bill does not create a new program or significantly expand an existing program.\n                        ",
+      "fiscal_years": [
+        "2025",
+        "2026",
+        "2027"
+      ],
+      "total_expenditures": {
+        "FY2025": "$0",
+        "FY2026": "$0",
+        "FY2027": "$0"
+      },
+      "total_revenues": {
+        "FY2025": "$0",
+        "FY2026": "$0",
+        "FY2027": "$0"
+      },
+      "net_impact": {},
+      "impact_level": "Minimal"
+    },
+    "HB0085": {
+      "state_government": {},
+      "local_government": "",
+      "individuals_businesses": "",
+      "regulatory_impact": "",
+      "summary": "This bill does not create a new program or significantly expand an existing program.\n                        ",
+      "fiscal_years": [
+        "2025",
+        "2026",
+        "2027"
+      ],
+      "total_expenditures": {
+        "FY2025": "$17,100",
+        "FY2026": "$44,000",
+        "FY2027": "$3,700"
+      },
+      "total_revenues": {
+        "FY2025": "$0",
+        "FY2026": "$0",
+        "FY2027": "$0"
+      },
+      "net_impact": {},
+      "impact_level": "Low"
+    },
+    "HB0102": {
+      "state_government": {},
+      "local_government": "",
+      "individuals_businesses": "",
+      "regulatory_impact": "",
+      "summary": "This bill does not create a new program or significantly expand an existing program.\n                        ",
+      "fiscal_years": [
+        "2025",
+        "2026",
+        "2027"
+      ],
+      "total_expenditures": {
+        "FY2025": "$0",
+        "FY2026": "$0",
+        "FY2027": "$0"
+      },
+      "total_revenues": {
+        "FY2025": "$0",
+        "FY2026": "$0",
+        "FY2027": "$0"
+      },
+      "net_impact": {},
+      "impact_level": "Minimal"
+    },
+    "HB0106": {
+      "state_government": {},
+      "local_government": "",
+      "individuals_businesses": "",
+      "regulatory_impact": "",
+      "summary": "This bill does not create a new program or significantly expand an existing program.\n                        ",
+      "fiscal_years": [
+        "2025",
+        "2026",
+        "2027"
+      ],
+      "total_expenditures": {
+        "FY2025": "$7,800",
+        "FY2026": "$0",
+        "FY2027": "$0"
+      },
+      "total_revenues": {
+        "FY2025": "$(3,700,000)",
+        "FY2026": "$(236,000,000)",
+        "FY2027": "$(195,000,000)"
+      },
+      "net_impact": {},
+      "impact_level": "Low"
+    },
+    "HB0114": {
+      "state_government": {},
+      "local_government": "",
+      "individuals_businesses": "",
+      "regulatory_impact": "",
+      "summary": "This bill does not create a new program or significantly expand an existing program.\n                        ",
+      "fiscal_years": [
+        "2025",
+        "2026",
+        "2027"
+      ],
+      "total_expenditures": {
+        "FY2025": "$0",
+        "FY2026": "$(4,800)",
+        "FY2027": "$(4,800)"
+      },
+      "total_revenues": {
+        "FY2025": "$0",
+        "FY2026": "$(5,600)",
+        "FY2027": "$(5,600)"
+      },
+      "net_impact": {},
+      "impact_level": "Low"
+    },
+    "HB0119": {
+      "state_government": {},
+      "local_government": "",
+      "individuals_businesses": "",
+      "regulatory_impact": "",
+      "summary": "This bill does not create a new program or significantly expand an existing program.\n                        ",
+      "fiscal_years": [
+        "2025",
+        "2026",
+        "2027"
+      ],
+      "total_expenditures": {
+        "FY2025": "$0",
+        "FY2026": "$0",
+        "FY2027": "$0"
+      },
+      "total_revenues": {
+        "FY2025": "$0",
+        "FY2026": "$0",
+        "FY2027": "$0"
+      },
+      "net_impact": {},
+      "impact_level": "Minimal"
+    },
+    "HB0121": {
+      "state_government": {},
+      "local_government": "",
+      "individuals_businesses": "",
+      "regulatory_impact": "",
+      "summary": "This bill does not create a new program or significantly expand an existing program.\n                        ",
+      "fiscal_years": [
+        "2025",
+        "2026",
+        "2027"
+      ],
+      "total_expenditures": {
+        "FY2025": "$0",
+        "FY2026": "$17,600",
+        "FY2027": "$0"
+      },
+      "total_revenues": {
+        "FY2025": "$0",
+        "FY2026": "$0",
+        "FY2027": "$0"
+      },
+      "net_impact": {},
+      "impact_level": "Low"
+    },
+    "HB0130": {
+      "state_government": {},
+      "local_government": "",
+      "individuals_businesses": "",
+      "regulatory_impact": "",
+      "summary": "This bill does not create a new program or significantly expand an existing program.\n                        ",
+      "fiscal_years": [
+        "2025",
+        "2026",
+        "2027"
+      ],
+      "total_expenditures": {
+        "FY2025": "$0",
+        "FY2026": "$0",
+        "FY2027": "$0"
+      },
+      "total_revenues": {
+        "FY2025": "$0",
+        "FY2026": "$(22,800,000)",
+        "FY2027": "$(24,100,000)"
+      },
+      "net_impact": {},
+      "impact_level": "Minimal"
+    },
+    "HB0157": {
+      "state_government": {},
+      "local_government": "",
+      "individuals_businesses": "",
+      "regulatory_impact": "",
+      "summary": "This bill creates a new program or significantly expands an existing program.\n                            ",
+      "fiscal_years": [
+        "2025",
+        "2026",
+        "2027"
+      ],
+      "total_expenditures": {
+        "FY2025": "$0",
+        "FY2026": "$148,200",
+        "FY2027": "$148,200"
+      },
+      "total_revenues": {
+        "FY2025": "$0",
+        "FY2026": "$0",
+        "FY2027": "$0"
+      },
+      "net_impact": {},
+      "impact_level": "Medium"
+    },
+    "HB0160": {
+      "state_government": {},
+      "local_government": "",
+      "individuals_businesses": "",
+      "regulatory_impact": "",
+      "summary": "This bill does not create a new program or significantly expand an existing program.\n                        ",
+      "fiscal_years": [
+        "2025",
+        "2026",
+        "2027"
+      ],
+      "total_expenditures": {
+        "FY2025": "$0",
+        "FY2026": "$0",
+        "FY2027": "$0"
+      },
+      "total_revenues": {
+        "FY2025": "$0",
+        "FY2026": "$0",
+        "FY2027": "$0"
+      },
+      "net_impact": {},
+      "impact_level": "Minimal"
+    },
+    "HB0170": {
+      "state_government": {},
+      "local_government": "",
+      "individuals_businesses": "",
+      "regulatory_impact": "",
+      "summary": "This bill does not create a new program or significantly expand an existing program.\n                        ",
+      "fiscal_years": [
+        "2025",
+        "2026",
+        "2027"
+      ],
+      "total_expenditures": {
+        "FY2025": "$0",
+        "FY2026": "$0",
+        "FY2027": "$0"
+      },
+      "total_revenues": {
+        "FY2025": "$0",
+        "FY2026": "$0",
+        "FY2027": "$0"
+      },
+      "net_impact": {},
+      "impact_level": "Minimal"
+    },
+    "HB0179": {
+      "state_government": {},
+      "local_government": "",
+      "individuals_businesses": "",
+      "regulatory_impact": "",
+      "summary": "This bill does not create a new program or significantly expand an existing program.\n                        ",
+      "fiscal_years": [
+        "2025",
+        "2026",
+        "2027"
+      ],
+      "total_expenditures": {
+        "FY2025": "$0",
+        "FY2026": "$0",
+        "FY2027": "$0"
+      },
+      "total_revenues": {
+        "FY2025": "$0",
+        "FY2026": "$(143,800,000)",
+        "FY2027": "$(158,000,000)"
+      },
+      "net_impact": {},
+      "impact_level": "Minimal"
+    },
+    "HB0180": {
+      "state_government": {},
+      "local_government": "",
+      "individuals_businesses": "",
+      "regulatory_impact": "",
+      "summary": "This bill does not create a new program or significantly expand an existing program.\n                        ",
+      "fiscal_years": [
+        "2025",
+        "2026",
+        "2027"
+      ],
+      "total_expenditures": {
+        "FY2025": "$0",
+        "FY2026": "$0",
+        "FY2027": "$0"
+      },
+      "total_revenues": {
+        "FY2025": "$0",
+        "FY2026": "$0",
+        "FY2027": "$0"
+      },
+      "net_impact": {},
+      "impact_level": "Minimal"
+    },
+    "HB0192": {
+      "state_government": {},
+      "local_government": "",
+      "individuals_businesses": "",
+      "regulatory_impact": "",
+      "summary": "This bill does not create a new program or significantly expand an existing program.\n                        ",
+      "fiscal_years": [
+        "2025",
+        "2026",
+        "2027"
+      ],
+      "total_expenditures": {
+        "FY2025": "$0",
+        "FY2026": "$0",
+        "FY2027": "$0"
+      },
+      "total_revenues": {
+        "FY2025": "$0",
+        "FY2026": "$0",
+        "FY2027": "$0"
+      },
+      "net_impact": {},
+      "impact_level": "Minimal"
+    },
+    "HB0209": {
+      "state_government": {},
+      "local_government": "",
+      "individuals_businesses": "",
+      "regulatory_impact": "",
+      "summary": "This bill does not create a new program or significantly expand an existing program.\n                        ",
+      "fiscal_years": [
+        "2025",
+        "2026",
+        "2027"
+      ],
+      "total_expenditures": {
+        "FY2025": "$0",
+        "FY2026": "$0",
+        "FY2027": "$0"
+      },
+      "total_revenues": {
+        "FY2025": "$0",
+        "FY2026": "$0",
+        "FY2027": "$0"
+      },
+      "net_impact": {},
+      "impact_level": "Minimal"
+    },
+    "HB0212": {
+      "state_government": {},
+      "local_government": "",
+      "individuals_businesses": "",
+      "regulatory_impact": "",
+      "summary": "This bill creates a new program or significantly expands an existing program.\n                            ",
+      "fiscal_years": [
+        "2025",
+        "2026",
+        "2027"
+      ],
+      "total_expenditures": {
+        "FY2025": "$0",
+        "FY2026": "$100,000",
+        "FY2027": "$250,000"
+      },
+      "total_revenues": {
+        "FY2025": "$0",
+        "FY2026": "$100,000",
+        "FY2027": "$250,000"
+      },
+      "net_impact": {},
+      "impact_level": "Medium"
+    },
+    "HB0220": {
+      "state_government": {},
+      "local_government": "",
+      "individuals_businesses": "",
+      "regulatory_impact": "",
+      "summary": "This bill does not create a new program or significantly expand an existing program.\n                        ",
+      "fiscal_years": [
+        "2025",
+        "2026",
+        "2027"
+      ],
+      "total_expenditures": {
+        "FY2025": "$0",
+        "FY2026": "$0",
+        "FY2027": "$0"
+      },
+      "total_revenues": {
+        "FY2025": "$0",
+        "FY2026": "$0",
+        "FY2027": "$0"
+      },
+      "net_impact": {},
+      "impact_level": "Minimal"
+    },
+    "HB0229": {
+      "state_government": {},
+      "local_government": "",
+      "individuals_businesses": "",
+      "regulatory_impact": "",
+      "summary": "This bill does not create a new program or significantly expand an existing program.\n                        ",
+      "fiscal_years": [
+        "2025",
+        "2026",
+        "2027"
+      ],
+      "total_expenditures": {
+        "FY2025": "$0",
+        "FY2026": "$0",
+        "FY2027": "$0"
+      },
+      "total_revenues": {
+        "FY2025": "$0",
+        "FY2026": "$0",
+        "FY2027": "$0"
+      },
+      "net_impact": {},
+      "impact_level": "Minimal"
+    },
+    "HB0230": {
+      "state_government": {},
+      "local_government": "",
+      "individuals_businesses": "",
+      "regulatory_impact": "",
+      "summary": "This bill creates a new program or significantly expands an existing program.\n                            ",
+      "fiscal_years": [
+        "2025",
+        "2026",
+        "2027"
+      ],
+      "total_expenditures": {
+        "FY2025": "$0",
+        "FY2026": "$0",
+        "FY2027": "$0"
+      },
+      "total_revenues": {
+        "FY2025": "$0",
+        "FY2026": "$0",
+        "FY2027": "$0"
+      },
+      "net_impact": {},
+      "impact_level": "Minimal"
+    },
+    "HB0249": {
+      "state_government": {},
+      "local_government": "General Fund",
+      "individuals_businesses": "",
+      "regulatory_impact": "",
+      "summary": "This bill creates a new program or significantly expands an existing program.\n                            ",
+      "fiscal_years": [
+        "2025",
+        "2026",
+        "2027"
+      ],
+      "total_expenditures": {
+        "FY2025": "$0",
+        "FY2026": "$722,300",
+        "FY2027": "$420,300"
+      },
+      "total_revenues": {
+        "FY2025": "$0",
+        "FY2026": "$0",
+        "FY2027": "$0"
+      },
+      "net_impact": {},
+      "impact_level": "Medium"
+    },
+    "HB0255": {
+      "state_government": {},
+      "local_government": "Total Revenues",
+      "individuals_businesses": "",
+      "regulatory_impact": "",
+      "summary": "This bill does not create a new program or significantly expand an existing program.\n                        ",
+      "fiscal_years": [
+        "2025",
+        "2026",
+        "2027"
+      ],
+      "total_expenditures": {
+        "FY2025": "$0",
+        "FY2026": "$0",
+        "FY2027": "$0"
+      },
+      "total_revenues": {
+        "FY2025": "$0",
+        "FY2026": "$0",
+        "FY2027": "$0"
+      },
+      "net_impact": {},
+      "impact_level": "Minimal"
+    },
+    "HB0256": {
+      "state_government": {},
+      "local_government": "",
+      "individuals_businesses": "",
+      "regulatory_impact": "",
+      "summary": "This bill does not create a new program or significantly expand an existing program.\n                        ",
+      "fiscal_years": [
+        "2025",
+        "2026",
+        "2027"
+      ],
+      "total_expenditures": {
+        "FY2025": "$0",
+        "FY2026": "$0",
+        "FY2027": "$0"
+      },
+      "total_revenues": {
+        "FY2025": "$0",
+        "FY2026": "$0",
+        "FY2027": "$0"
+      },
+      "net_impact": {},
+      "impact_level": "Minimal"
+    },
+    "HB0265": {
+      "state_government": {},
+      "local_government": "",
+      "individuals_businesses": "",
+      "regulatory_impact": "",
+      "summary": "This bill does not create a new program or significantly expand an existing program.\n                        ",
+      "fiscal_years": [
+        "2025",
+        "2026",
+        "2027"
+      ],
+      "total_expenditures": {
+        "FY2025": "$0",
+        "FY2026": "$150,000",
+        "FY2027": "$150,000"
+      },
+      "total_revenues": {
+        "FY2025": "$0",
+        "FY2026": "$0",
+        "FY2027": "$0"
+      },
+      "net_impact": {},
+      "impact_level": "Medium"
+    },
+    "HB0285": {
+      "state_government": {},
+      "local_government": "",
+      "individuals_businesses": "",
+      "regulatory_impact": "",
+      "summary": "This bill does not create a new program or significantly expand an existing program.\n                        ",
+      "fiscal_years": [
+        "2025",
+        "2026",
+        "2027"
+      ],
+      "total_expenditures": {
+        "FY2025": "$400",
+        "FY2026": "$16,200",
+        "FY2027": "$13,300"
+      },
+      "total_revenues": {
+        "FY2025": "$0",
+        "FY2026": "$0",
+        "FY2027": "$0"
+      },
+      "net_impact": {},
+      "impact_level": "Low"
+    },
+    "HB0286": {
+      "state_government": {},
+      "local_government": "",
+      "individuals_businesses": "",
+      "regulatory_impact": "",
+      "summary": "This bill creates a new program or significantly expands an existing program.\n                            ",
+      "fiscal_years": [
+        "2025",
+        "2026",
+        "2027"
+      ],
+      "total_expenditures": {
+        "FY2025": "$0",
+        "FY2026": "$28,336,800",
+        "FY2027": "$28,336,800"
+      },
+      "total_revenues": {
+        "FY2025": "$0",
+        "FY2026": "$0",
+        "FY2027": "$0"
+      },
+      "net_impact": {},
+      "impact_level": "Very High"
+    },
+    "HB0290": {
+      "state_government": {},
+      "local_government": "",
+      "individuals_businesses": "",
+      "regulatory_impact": "",
+      "summary": "This bill could also cost justice courts an unknown amount in court processing costs. This bill does not create a new program or significantly expand an existing program.\n                        ",
+      "fiscal_years": [
+        "2025",
+        "2026",
+        "2027"
+      ],
+      "total_expenditures": {
+        "FY2025": "$0",
+        "FY2026": "$0",
+        "FY2027": "$0"
+      },
+      "total_revenues": {
+        "FY2025": "$0",
+        "FY2026": "$0",
+        "FY2027": "$0"
+      },
+      "net_impact": {},
+      "impact_level": "Minimal"
+    },
+    "HB0318": {
+      "state_government": {},
+      "local_government": "",
+      "individuals_businesses": "",
+      "regulatory_impact": "",
+      "summary": "This bill does not create a new program or significantly expand an existing program.\n                        ",
+      "fiscal_years": [
+        "2025",
+        "2026",
+        "2027"
+      ],
+      "total_expenditures": {
+        "FY2025": "$0",
+        "FY2026": "$0",
+        "FY2027": "$0"
+      },
+      "total_revenues": {
+        "FY2025": "$0",
+        "FY2026": "$0",
+        "FY2027": "$0"
+      },
+      "net_impact": {},
+      "impact_level": "Minimal"
+    },
+    "HB0328": {
+      "state_government": {},
+      "local_government": "",
+      "individuals_businesses": "",
+      "regulatory_impact": "",
+      "summary": "This bill does not create a new program or significantly expand an existing program.\n                        ",
+      "fiscal_years": [
+        "2025",
+        "2026",
+        "2027"
+      ],
+      "total_expenditures": {
+        "FY2025": "$0",
+        "FY2026": "$0",
+        "FY2027": "$0"
+      },
+      "total_revenues": {
+        "FY2025": "$0",
+        "FY2026": "$0",
+        "FY2027": "$0"
+      },
+      "net_impact": {},
+      "impact_level": "Minimal"
+    },
+    "HB0330": {
+      "state_government": {},
+      "local_government": "",
+      "individuals_businesses": "",
+      "regulatory_impact": "",
+      "summary": "This bill does not create a new program or significantly expand an existing program.\n                        ",
+      "fiscal_years": [
+        "2025",
+        "2026",
+        "2027"
+      ],
+      "total_expenditures": {
+        "FY2025": "$0",
+        "FY2026": "$45,000",
+        "FY2027": "$45,000"
+      },
+      "total_revenues": {
+        "FY2025": "$0",
+        "FY2026": "$0",
+        "FY2027": "$0"
+      },
+      "net_impact": {},
+      "impact_level": "Low"
+    },
+    "HB0355": {
+      "state_government": {},
+      "local_government": "",
+      "individuals_businesses": "",
+      "regulatory_impact": "",
+      "summary": "This bill does not create a new program or significantly expand an existing program.\n                        ",
+      "fiscal_years": [
+        "2025",
+        "2026",
+        "2027"
+      ],
+      "total_expenditures": {
+        "FY2025": "$0",
+        "FY2026": "$0",
+        "FY2027": "$0"
+      },
+      "total_revenues": {
+        "FY2025": "$0",
+        "FY2026": "$0",
+        "FY2027": "$0"
+      },
+      "net_impact": {},
+      "impact_level": "Minimal"
+    },
+    "HB0386": {
+      "state_government": {},
+      "local_government": "",
+      "individuals_businesses": "",
+      "regulatory_impact": "",
+      "summary": "This bill does not create a new program or significantly expand an existing program.\n                        ",
+      "fiscal_years": [
+        "2025",
+        "2026",
+        "2027"
+      ],
+      "total_expenditures": {
+        "FY2025": "$0",
+        "FY2026": "$0",
+        "FY2027": "$0"
+      },
+      "total_revenues": {
+        "FY2025": "$0",
+        "FY2026": "$0",
+        "FY2027": "$0"
+      },
+      "net_impact": {},
+      "impact_level": "Minimal"
+    },
+    "HB0401": {
+      "state_government": {},
+      "local_government": "",
+      "individuals_businesses": "",
+      "regulatory_impact": "",
+      "summary": "This bill does not create a new program or significantly expand an existing program.\n                        ",
+      "fiscal_years": [
+        "2025",
+        "2026",
+        "2027"
+      ],
+      "total_expenditures": {
+        "FY2025": "$0",
+        "FY2026": "$39,400",
+        "FY2027": "$39,400"
+      },
+      "total_revenues": {
+        "FY2025": "$0",
+        "FY2026": "$3,600",
+        "FY2027": "$3,600"
+      },
+      "net_impact": {},
+      "impact_level": "Low"
+    },
+    "HB0408": {
+      "state_government": {},
+      "local_government": "",
+      "individuals_businesses": "",
+      "regulatory_impact": "",
+      "summary": "This bill does not create a new program or significantly expand an existing program.\n                        ",
+      "fiscal_years": [
+        "2025",
+        "2026",
+        "2027"
+      ],
+      "total_expenditures": {
+        "FY2025": "$0",
+        "FY2026": "$0",
+        "FY2027": "$0"
+      },
+      "total_revenues": {
+        "FY2025": "$0",
+        "FY2026": "$0",
+        "FY2027": "$0"
+      },
+      "net_impact": {},
+      "impact_level": "Minimal"
+    },
+    "HB0433": {
+      "state_government": {},
+      "local_government": "",
+      "individuals_businesses": "",
+      "regulatory_impact": "",
+      "summary": "This bill does not create a new program or significantly expand an existing program.\n                        ",
+      "fiscal_years": [
+        "2025",
+        "2026",
+        "2027"
+      ],
+      "total_expenditures": {
+        "FY2025": "$0",
+        "FY2026": "$0",
+        "FY2027": "$0"
+      },
+      "total_revenues": {
+        "FY2025": "$0",
+        "FY2026": "$0",
+        "FY2027": "$0"
+      },
+      "net_impact": {},
+      "impact_level": "Minimal"
+    },
+    "HB0447": {
+      "state_government": {},
+      "local_government": "",
+      "individuals_businesses": "",
+      "regulatory_impact": "",
+      "summary": "This bill does not create a new program or significantly expand an existing program.\n                        ",
+      "fiscal_years": [
+        "2025",
+        "2026",
+        "2027"
+      ],
+      "total_expenditures": {
+        "FY2025": "$0",
+        "FY2026": "$130,150,000",
+        "FY2027": "$150,000"
+      },
+      "total_revenues": {
+        "FY2025": "$0",
+        "FY2026": "$65,000,000",
+        "FY2027": "$0"
+      },
+      "net_impact": {},
+      "impact_level": "Very High"
+    },
+    "HB0455": {
+      "state_government": {},
+      "local_government": "",
+      "individuals_businesses": "",
+      "regulatory_impact": "",
+      "summary": "This bill does not create a new program or significantly expand an existing program.\n                        ",
+      "fiscal_years": [
+        "2025",
+        "2026",
+        "2027"
+      ],
+      "total_expenditures": {
+        "FY2025": "$11,200",
+        "FY2026": "$82,635,200",
+        "FY2027": "$82,635,200"
+      },
+      "total_revenues": {
+        "FY2025": "$0",
+        "FY2026": "$82,633,400",
+        "FY2027": "$82,633,400"
+      },
+      "net_impact": {},
+      "impact_level": "Very High"
+    },
+    "HB0465": {
+      "state_government": {},
+      "local_government": "",
+      "individuals_businesses": "",
+      "regulatory_impact": "",
+      "summary": "This bill creates a new program or significantly expands an existing program.\n                            ",
+      "fiscal_years": [
+        "2025",
+        "2026",
+        "2027"
+      ],
+      "total_expenditures": {
+        "FY2025": "$1,105,000",
+        "FY2026": "$2,228,900",
+        "FY2027": "$2,228,900"
+      },
+      "total_revenues": {
+        "FY2025": "$1,105,000",
+        "FY2026": "$2,289,000",
+        "FY2027": "$2,289,000"
+      },
+      "net_impact": {},
+      "impact_level": "High"
+    },
+    "HB0466": {
+      "state_government": {},
+      "local_government": "",
+      "individuals_businesses": "",
+      "regulatory_impact": "",
+      "summary": "This bill does not create a new program or significantly expand an existing program.\n                        ",
+      "fiscal_years": [
+        "2025",
+        "2026",
+        "2027"
+      ],
+      "total_expenditures": {
+        "FY2025": "$0",
+        "FY2026": "$0",
+        "FY2027": "$0"
+      },
+      "total_revenues": {
+        "FY2025": "$0",
+        "FY2026": "$0",
+        "FY2027": "$0"
+      },
+      "net_impact": {},
+      "impact_level": "Minimal"
+    },
+    "HB0474": {
+      "state_government": {},
+      "local_government": "",
+      "individuals_businesses": "",
+      "regulatory_impact": "",
+      "summary": "This bill creates a new program or significantly expands an existing program.\n                            ",
+      "fiscal_years": [
+        "2025",
+        "2026",
+        "2027"
+      ],
+      "total_expenditures": {
+        "FY2025": "$0",
+        "FY2026": "$171,700",
+        "FY2027": "$156,700"
+      },
+      "total_revenues": {
+        "FY2025": "$0",
+        "FY2026": "$0",
+        "FY2027": "$0"
+      },
+      "net_impact": {},
+      "impact_level": "Medium"
+    },
+    "HB0477": {
+      "state_government": {},
+      "local_government": "",
+      "individuals_businesses": "",
+      "regulatory_impact": "",
+      "summary": "This bill does not create a new program or significantly expand an existing program.\n                        ",
+      "fiscal_years": [
+        "2025",
+        "2026",
+        "2027"
+      ],
+      "total_expenditures": {
+        "FY2025": "$0",
+        "FY2026": "$0",
+        "FY2027": "$0"
+      },
+      "total_revenues": {
+        "FY2025": "$0",
+        "FY2026": "$0",
+        "FY2027": "$0"
+      },
+      "net_impact": {},
+      "impact_level": "Minimal"
+    },
+    "HB0525": {
+      "state_government": {},
+      "local_government": "",
+      "individuals_businesses": "",
+      "regulatory_impact": "",
+      "summary": "This bill does not create a new program or significantly expand an existing program.\n                        ",
+      "fiscal_years": [
+        "2025",
+        "2026",
+        "2027"
+      ],
+      "total_expenditures": {
+        "FY2025": "$31,000",
+        "FY2026": "$0",
+        "FY2027": "$0"
+      },
+      "total_revenues": {
+        "FY2025": "$0",
+        "FY2026": "$(787,000)",
+        "FY2027": "$(1,833,400)"
+      },
+      "net_impact": {},
+      "impact_level": "Low"
+    },
+    "SB0048": {
+      "state_government": {},
+      "local_government": "",
+      "individuals_businesses": "",
+      "regulatory_impact": "",
+      "summary": "This bill creates a new program or significantly expands an existing program.\n                            ",
+      "fiscal_years": [
+        "2025",
+        "2026",
+        "2027"
+      ],
+      "total_expenditures": {
+        "FY2025": "$0",
+        "FY2026": "$0",
+        "FY2027": "$0"
+      },
+      "total_revenues": {
+        "FY2025": "$0",
+        "FY2026": "$5,000",
+        "FY2027": "$5,000"
+      },
+      "net_impact": {},
+      "impact_level": "Minimal"
+    },
+    "SB0057": {
+      "state_government": {},
+      "local_government": "",
+      "individuals_businesses": "",
+      "regulatory_impact": "",
+      "summary": "This bill creates a new program or significantly expands an existing program.\n                            ",
+      "fiscal_years": [
+        "2025",
+        "2026",
+        "2027"
+      ],
+      "total_expenditures": {
+        "FY2025": "$0",
+        "FY2026": "$104,100",
+        "FY2027": "$84,100"
+      },
+      "total_revenues": {
+        "FY2025": "$0",
+        "FY2026": "$0",
+        "FY2027": "$0"
+      },
+      "net_impact": {},
+      "impact_level": "Medium"
+    },
+    "SB0061": {
+      "state_government": {},
+      "local_government": "",
+      "individuals_businesses": "",
+      "regulatory_impact": "",
+      "summary": "This bill does not create a new program or significantly expand an existing program.\n                        ",
+      "fiscal_years": [
+        "2025",
+        "2026",
+        "2027"
+      ],
+      "total_expenditures": {
+        "FY2025": "$0",
+        "FY2026": "$0",
+        "FY2027": "$0"
+      },
+      "total_revenues": {
+        "FY2025": "$0",
+        "FY2026": "$0",
+        "FY2027": "$0"
+      },
+      "net_impact": {},
+      "impact_level": "Minimal"
+    },
+    "SB0063": {
+      "state_government": {},
+      "local_government": "",
+      "individuals_businesses": "",
+      "regulatory_impact": "",
+      "summary": "This bill does not create a new program or significantly expand an existing program.\n                        ",
+      "fiscal_years": [
+        "2025",
+        "2026",
+        "2027"
+      ],
+      "total_expenditures": {
+        "FY2025": "$0",
+        "FY2026": "$0",
+        "FY2027": "$0"
+      },
+      "total_revenues": {
+        "FY2025": "$0",
+        "FY2026": "$0",
+        "FY2027": "$0"
+      },
+      "net_impact": {},
+      "impact_level": "Minimal"
+    },
+    "SB0071": {
+      "state_government": {},
+      "local_government": "",
+      "individuals_businesses": "",
+      "regulatory_impact": "",
+      "summary": "This bill does not create a new program or significantly expand an existing program.\n                        ",
+      "fiscal_years": [
+        "2025",
+        "2026",
+        "2027"
+      ],
+      "total_expenditures": {
+        "FY2025": "$0",
+        "FY2026": "$0",
+        "FY2027": "$0"
+      },
+      "total_revenues": {
+        "FY2025": "$0",
+        "FY2026": "$(143,800,000)",
+        "FY2027": "$(158,000,000)"
+      },
+      "net_impact": {},
+      "impact_level": "Minimal"
+    },
+    "SB0072": {
+      "state_government": {},
+      "local_government": "",
+      "individuals_businesses": "",
+      "regulatory_impact": "",
+      "summary": "This bill does not create a new program or significantly expand an existing program.\n                        ",
+      "fiscal_years": [
+        "2025",
+        "2026",
+        "2027"
+      ],
+      "total_expenditures": {
+        "FY2025": "$0",
+        "FY2026": "$0",
+        "FY2027": "$0"
+      },
+      "total_revenues": {
+        "FY2025": "$0",
+        "FY2026": "$0",
+        "FY2027": "$0"
+      },
+      "net_impact": {},
+      "impact_level": "Minimal"
+    },
+    "SB0080": {
+      "state_government": {},
+      "local_government": "",
+      "individuals_businesses": "",
+      "regulatory_impact": "",
+      "summary": "This bill does not create a new program or significantly expand an existing program.\n                        ",
+      "fiscal_years": [
+        "2025",
+        "2026",
+        "2027"
+      ],
+      "total_expenditures": {
+        "FY2025": "$0",
+        "FY2026": "$0",
+        "FY2027": "$31,200"
+      },
+      "total_revenues": {
+        "FY2025": "$0",
+        "FY2026": "$0",
+        "FY2027": "$1,081,200"
+      },
+      "net_impact": {},
+      "impact_level": "Low"
+    },
+    "SB0085": {
+      "state_government": {},
+      "local_government": "",
+      "individuals_businesses": "",
+      "regulatory_impact": "",
+      "summary": "This bill does not create a new program or significantly expand an existing program.\n                        ",
+      "fiscal_years": [
+        "2025",
+        "2026",
+        "2027",
+        "2028",
+        "2029"
+      ],
+      "total_expenditures": {
+        "FY2025": "$0",
+        "FY2026": "$7,800",
+        "FY2027": "$0"
+      },
+      "total_revenues": {
+        "FY2025": "$0",
+        "FY2026": "$(1,600,000)",
+        "FY2027": "$(1,500,000)"
+      },
+      "net_impact": {},
+      "impact_level": "Low"
+    },
+    "SB0092": {
+      "state_government": {},
+      "local_government": "",
+      "individuals_businesses": "",
+      "regulatory_impact": "",
+      "summary": "This bill does not create a new program or significantly expand an existing program.\n                        ",
+      "fiscal_years": [
+        "2025",
+        "2026",
+        "2027"
+      ],
+      "total_expenditures": {
+        "FY2025": "$75,000",
+        "FY2026": "$5,000",
+        "FY2027": "$0"
+      },
+      "total_revenues": {
+        "FY2025": "$0",
+        "FY2026": "$0",
+        "FY2027": "$0"
+      },
+      "net_impact": {},
+      "impact_level": "Low"
+    },
+    "SB0093": {
+      "state_government": {},
+      "local_government": "",
+      "individuals_businesses": "",
+      "regulatory_impact": "",
+      "summary": "This bill does not create a new program or significantly expand an existing program.\n                        ",
+      "fiscal_years": [
+        "2025",
+        "2026",
+        "2027"
+      ],
+      "total_expenditures": {
+        "FY2025": "$20,000",
+        "FY2026": "$480,000",
+        "FY2027": "$480,000"
+      },
+      "total_revenues": {
+        "FY2025": "$0",
+        "FY2026": "$0",
+        "FY2027": "$0"
+      },
+      "net_impact": {},
+      "impact_level": "Medium"
+    },
+    "SB0116": {
+      "state_government": {},
+      "local_government": "",
+      "individuals_businesses": "",
+      "regulatory_impact": "",
+      "summary": "This bill does not create a new program or significantly expand an existing program.\n                        ",
+      "fiscal_years": [
+        "2025",
+        "2026",
+        "2027"
+      ],
+      "total_expenditures": {
+        "FY2025": "$7,800",
+        "FY2026": "$0",
+        "FY2027": "$0"
+      },
+      "total_revenues": {
+        "FY2025": "$(1,800,000)",
+        "FY2026": "$(118,000,000)",
+        "FY2027": "$(97,000,000)"
+      },
+      "net_impact": {},
+      "impact_level": "Low"
+    },
+    "SB0131": {
+      "state_government": {},
+      "local_government": "",
+      "individuals_businesses": "",
+      "regulatory_impact": "",
+      "summary": "This bill does not create a new program or significantly expand an existing program.\n                        ",
+      "fiscal_years": [
+        "2025",
+        "2026",
+        "2027"
+      ],
+      "total_expenditures": {
+        "FY2025": "$0",
+        "FY2026": "$0",
+        "FY2027": "$0"
+      },
+      "total_revenues": {
+        "FY2025": "$0",
+        "FY2026": "$0",
+        "FY2027": "$0"
+      },
+      "net_impact": {},
+      "impact_level": "Minimal"
+    },
+    "SB0134": {
+      "state_government": {},
+      "local_government": "",
+      "individuals_businesses": "",
+      "regulatory_impact": "",
+      "summary": "This bill does not create a new program or significantly expand an existing program.\n                        ",
+      "fiscal_years": [
+        "2025",
+        "2026",
+        "2027"
+      ],
+      "total_expenditures": {
+        "FY2025": "$0",
+        "FY2026": "$0",
+        "FY2027": "$0"
+      },
+      "total_revenues": {
+        "FY2025": "$0",
+        "FY2026": "$0",
+        "FY2027": "$0"
+      },
+      "net_impact": {},
+      "impact_level": "Minimal"
+    },
+    "SB0137": {
+      "state_government": {},
+      "local_government": "",
+      "individuals_businesses": "",
+      "regulatory_impact": "",
+      "summary": "This bill creates a new program or significantly expands an existing program.\n                            ",
+      "fiscal_years": [
+        "2025",
+        "2026",
+        "2027"
+      ],
+      "total_expenditures": {
+        "FY2025": "$6,900",
+        "FY2026": "$0",
+        "FY2027": "$0"
+      },
+      "total_revenues": {
+        "FY2025": "$0",
+        "FY2026": "$0",
+        "FY2027": "$0"
+      },
+      "net_impact": {},
+      "impact_level": "Low"
+    },
+    "SB0138": {
+      "state_government": {},
+      "local_government": "",
+      "individuals_businesses": "",
+      "regulatory_impact": "",
+      "summary": "This bill does not create a new program or significantly expand an existing program.\n                        ",
+      "fiscal_years": [
+        "2025",
+        "2026",
+        "2027"
+      ],
+      "total_expenditures": {
+        "FY2025": "$0",
+        "FY2026": "$0",
+        "FY2027": "$0"
+      },
+      "total_revenues": {
+        "FY2025": "$0",
+        "FY2026": "$0",
+        "FY2027": "$0"
+      },
+      "net_impact": {},
+      "impact_level": "Minimal"
+    },
+    "SB0142": {
+      "state_government": {},
+      "local_government": "",
+      "individuals_businesses": "",
+      "regulatory_impact": "",
+      "summary": "This bill does not create a new program or significantly expand an existing program.\n                        ",
+      "fiscal_years": [
+        "2025",
+        "2026",
+        "2027"
+      ],
+      "total_expenditures": {
+        "FY2025": "$0",
+        "FY2026": "$95,500",
+        "FY2027": "$10,000"
+      },
+      "total_revenues": {
+        "FY2025": "$0",
+        "FY2026": "$0",
+        "FY2027": "$0"
+      },
+      "net_impact": {},
+      "impact_level": "Low"
+    },
+    "SB0163": {
+      "state_government": {},
+      "local_government": "",
+      "individuals_businesses": "",
+      "regulatory_impact": "",
+      "summary": "This bill does not create a new program or significantly expand an existing program.\n                        ",
+      "fiscal_years": [
+        "2025",
+        "2026",
+        "2027"
+      ],
+      "total_expenditures": {
+        "FY2025": "$0",
+        "FY2026": "$0",
+        "FY2027": "$0"
+      },
+      "total_revenues": {
+        "FY2025": "$0",
+        "FY2026": "$0",
+        "FY2027": "$0"
+      },
+      "net_impact": {},
+      "impact_level": "Minimal"
+    },
+    "SB0165": {
+      "state_government": {},
+      "local_government": "",
+      "individuals_businesses": "",
+      "regulatory_impact": "",
+      "summary": "This bill does not create a new program or significantly expand an existing program.\n                        ",
+      "fiscal_years": [
+        "2025",
+        "2026",
+        "2027"
+      ],
+      "total_expenditures": {
+        "FY2025": "$0",
+        "FY2026": "$0",
+        "FY2027": "$0"
+      },
+      "total_revenues": {
+        "FY2025": "$0",
+        "FY2026": "$0",
+        "FY2027": "$0"
+      },
+      "net_impact": {},
+      "impact_level": "Minimal"
+    },
+    "SB0168": {
+      "state_government": {},
+      "local_government": "",
+      "individuals_businesses": "",
+      "regulatory_impact": "",
+      "summary": "This bill creates a new program or significantly expands an existing program.\n                            ",
+      "fiscal_years": [
+        "2025",
+        "2026",
+        "2027"
+      ],
+      "total_expenditures": {
+        "FY2025": "$0",
+        "FY2026": "$308,000",
+        "FY2027": "$308,000"
+      },
+      "total_revenues": {
+        "FY2025": "$0",
+        "FY2026": "$0",
+        "FY2027": "$0"
+      },
+      "net_impact": {},
+      "impact_level": "Medium"
+    },
+    "SB0179": {
+      "state_government": {},
+      "local_government": "Total Revenues",
+      "individuals_businesses": "",
+      "regulatory_impact": "",
+      "summary": "This bill does not create a new program or significantly expand an existing program.\n                        ",
+      "fiscal_years": [
+        "2025",
+        "2026",
+        "2027"
+      ],
+      "total_expenditures": {
+        "FY2025": "$0",
+        "FY2026": "$0",
+        "FY2027": "$0"
+      },
+      "total_revenues": {
+        "FY2025": "$0",
+        "FY2026": "$0",
+        "FY2027": "$0"
+      },
+      "net_impact": {},
+      "impact_level": "Minimal"
+    },
+    "SB0181": {
+      "state_government": {},
+      "local_government": "",
+      "individuals_businesses": "",
+      "regulatory_impact": "",
+      "summary": "This bill creates a new program or significantly expands an existing program.\n                            ",
+      "fiscal_years": [
+        "2025",
+        "2026",
+        "2027"
+      ],
+      "total_expenditures": {
+        "FY2025": "$800",
+        "FY2026": "$276,810,000",
+        "FY2027": "$11,429,700"
+      },
+      "total_revenues": {
+        "FY2025": "$0",
+        "FY2026": "$276,808,000",
+        "FY2027": "$11,427,700"
+      },
+      "net_impact": {},
+      "impact_level": "Very High"
+    },
+    "SB0193": {
+      "state_government": {},
+      "local_government": "",
+      "individuals_businesses": "",
+      "regulatory_impact": "",
+      "summary": "This bill creates a new program or significantly expands an existing program.\n                            ",
+      "fiscal_years": [
+        "2025",
+        "2026",
+        "2027",
+        "2028"
+      ],
+      "total_expenditures": {
+        "FY2025": "$0",
+        "FY2026": "$0",
+        "FY2027": "$15,943,000"
+      },
+      "total_revenues": {
+        "FY2025": "$0",
+        "FY2026": "$0",
+        "FY2027": "$10,145,600"
+      },
+      "net_impact": {},
+      "impact_level": "Very High"
+    },
+    "SB0203": {
+      "state_government": {},
+      "local_government": "",
+      "individuals_businesses": "",
+      "regulatory_impact": "",
+      "summary": "This bill does not create a new program or significantly expand an existing program.\n                        ",
+      "fiscal_years": [
+        "2025",
+        "2026",
+        "2027"
+      ],
+      "total_expenditures": {
+        "FY2025": "$0",
+        "FY2026": "$0",
+        "FY2027": "$0"
+      },
+      "total_revenues": {
+        "FY2025": "$0",
+        "FY2026": "$0",
+        "FY2027": "$0"
+      },
+      "net_impact": {},
+      "impact_level": "Minimal"
+    },
+    "SB0213": {
+      "state_government": {},
+      "local_government": "",
+      "individuals_businesses": "",
+      "regulatory_impact": "",
+      "summary": "This bill does not create a new program or significantly expand an existing program.\n                        ",
+      "fiscal_years": [
+        "2025",
+        "2026",
+        "2027"
+      ],
+      "total_expenditures": {
+        "FY2025": "$0",
+        "FY2026": "$0",
+        "FY2027": "$0"
+      },
+      "total_revenues": {
+        "FY2025": "$0",
+        "FY2026": "$0",
+        "FY2027": "$0"
+      },
+      "net_impact": {},
+      "impact_level": "Minimal"
+    },
+    "SB0221": {
+      "state_government": {},
+      "local_government": "",
+      "individuals_businesses": "",
+      "regulatory_impact": "",
+      "summary": "This bill creates a new program or significantly expands an existing program.\n                            ",
+      "fiscal_years": [
+        "2025",
+        "2026",
+        "2027"
+      ],
+      "total_expenditures": {
+        "FY2025": "$700",
+        "FY2026": "$32,100",
+        "FY2027": "$31,500"
+      },
+      "total_revenues": {
+        "FY2025": "$0",
+        "FY2026": "$5,300",
+        "FY2027": "$4,000"
+      },
+      "net_impact": {},
+      "impact_level": "Low"
+    },
+    "SB0224": {
+      "state_government": {},
+      "local_government": "",
+      "individuals_businesses": "",
+      "regulatory_impact": "",
+      "summary": "This bill does not create a new program or significantly expand an existing program.\n                        ",
+      "fiscal_years": [
+        "2025",
+        "2026",
+        "2027"
+      ],
+      "total_expenditures": {
+        "FY2025": "$3,900",
+        "FY2026": "$0",
+        "FY2027": "$0"
+      },
+      "total_revenues": {
+        "FY2025": "$0",
+        "FY2026": "$(4,500,000)",
+        "FY2027": "$(4,500,000)"
+      },
+      "net_impact": {},
+      "impact_level": "Low"
+    },
+    "SB0227": {
+      "state_government": {},
+      "local_government": "",
+      "individuals_businesses": "",
+      "regulatory_impact": "",
+      "summary": "This bill does not create a new program or significantly expand an existing program.\n                        ",
+      "fiscal_years": [
+        "2025",
+        "2026",
+        "2027"
+      ],
+      "total_expenditures": {
+        "FY2025": "$0",
+        "FY2026": "$185,000",
+        "FY2027": "$185,000"
+      },
+      "total_revenues": {
+        "FY2025": "$0",
+        "FY2026": "$0",
+        "FY2027": "$0"
+      },
+      "net_impact": {},
+      "impact_level": "Medium"
+    },
+    "SB0235": {
+      "state_government": {},
+      "local_government": "",
+      "individuals_businesses": "",
+      "regulatory_impact": "",
+      "summary": "This bill does not create a new program or significantly expand an existing program.\n                        ",
+      "fiscal_years": [
+        "2025",
+        "2026",
+        "2027"
+      ],
+      "total_expenditures": {
+        "FY2025": "$0",
+        "FY2026": "$0",
+        "FY2027": "$0"
+      },
+      "total_revenues": {
+        "FY2025": "$0",
+        "FY2026": "$0",
+        "FY2027": "$0"
+      },
+      "net_impact": {},
+      "impact_level": "Minimal"
+    },
+    "SB0244": {
+      "state_government": {},
+      "local_government": "",
+      "individuals_businesses": "",
+      "regulatory_impact": "",
+      "summary": "This bill does not create a new program or significantly expand an existing program.\n                        ",
+      "fiscal_years": [
+        "2025",
+        "2026",
+        "2027"
+      ],
+      "total_expenditures": {
+        "FY2025": "$0",
+        "FY2026": "$7,800",
+        "FY2027": "$235,800"
+      },
+      "total_revenues": {
+        "FY2025": "$0",
+        "FY2026": "$900,000",
+        "FY2027": "$85,100,000"
+      },
+      "net_impact": {},
+      "impact_level": "Medium"
+    },
+    "SB0262": {
+      "state_government": {},
+      "local_government": "",
+      "individuals_businesses": "",
+      "regulatory_impact": "",
+      "summary": "This bill creates a new program or significantly expands an existing program.\n                            ",
+      "fiscal_years": [
+        "2025",
+        "2026",
+        "2027"
+      ],
+      "total_expenditures": {
+        "FY2025": "$92,500",
+        "FY2026": "$263,200",
+        "FY2027": "$263,200"
+      },
+      "total_revenues": {
+        "FY2025": "$0",
+        "FY2026": "$0",
+        "FY2027": "$0"
+      },
+      "net_impact": {},
+      "impact_level": "Medium"
+    },
+    "SB0277": {
+      "state_government": {},
+      "local_government": "",
+      "individuals_businesses": "",
+      "regulatory_impact": "",
+      "summary": "This bill creates a new program or significantly expands an existing program.\n                            ",
+      "fiscal_years": [
+        "2025",
+        "2026",
+        "2027"
+      ],
+      "total_expenditures": {
+        "FY2025": "$0",
+        "FY2026": "$447,900",
+        "FY2027": "$447,900"
+      },
+      "total_revenues": {
+        "FY2025": "$0",
+        "FY2026": "$0",
+        "FY2027": "$0"
+      },
+      "net_impact": {},
+      "impact_level": "Medium"
+    },
+    "SB0305": {
+      "state_government": {},
+      "local_government": "",
+      "individuals_businesses": "",
+      "regulatory_impact": "",
+      "summary": "This bill does not create a new program or significantly expand an existing program.\n                        ",
+      "fiscal_years": [
+        "2025",
+        "2026",
+        "2027"
+      ],
+      "total_expenditures": {
+        "FY2025": "$0",
+        "FY2026": "$0",
+        "FY2027": "$0"
+      },
+      "total_revenues": {
+        "FY2025": "$0",
+        "FY2026": "$0",
+        "FY2027": "$0"
+      },
+      "net_impact": {},
+      "impact_level": "Minimal"
+    },
+    "SB0330": {
+      "state_government": {},
+      "local_government": "",
+      "individuals_businesses": "",
+      "regulatory_impact": "",
+      "summary": "This bill creates a new program or significantly expands an existing program.\n                            ",
+      "fiscal_years": [
+        "2025",
+        "2026",
+        "2027"
+      ],
+      "total_expenditures": {
+        "FY2025": "$1,100",
+        "FY2026": "$34,500",
+        "FY2027": "$15,600"
+      },
+      "total_revenues": {
+        "FY2025": "$0",
+        "FY2026": "$22,400",
+        "FY2027": "$22,400"
+      },
+      "net_impact": {},
+      "impact_level": "Low"
+    }
+  }
+}

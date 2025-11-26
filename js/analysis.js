@@ -3,6 +3,7 @@
  */
 
 let languageData = {};
+let fiscalData = {};
 let billsData = {};
 
 function getBillFromURL() {
@@ -19,18 +20,21 @@ async function init() {
     }
     
     try {
-        const [langRes, billsRes] = await Promise.all([
+        const [langRes, fiscalRes, billsRes] = await Promise.all([
             fetch('data/bill_language.json'),
+            fetch('data/fiscal_notes.json'),
             fetch('data/bills.json')
         ]);
         
         languageData = await langRes.json();
+        fiscalData = await fiscalRes.json();
         const billsJson = await billsRes.json();
         billsData = {};
         billsJson.bills.forEach(b => billsData[b.bill_number] = b);
         
         renderBillHeader(billNumber);
         renderLanguageAnalysis(billNumber);
+        renderFiscalAnalysis(billNumber);
         
     } catch (err) {
         console.error('Error loading data:', err);
@@ -47,6 +51,129 @@ function renderBillHeader(billNumber) {
     document.title = `${billNumber} Analysis | Utah Legislative Tracker`;
 }
 
+function renderFiscalAnalysis(billNumber) {
+    const fiscal = fiscalData.notes?.[billNumber];
+    const bill = billsData[billNumber];
+    const container = document.getElementById('fiscalContent');
+    
+    if (!fiscal) {
+        container.innerHTML = `
+            <div class="text-center py-6 text-slate-500">
+                <p class="text-3xl mb-2">📊</p>
+                <p>No detailed fiscal note available.</p>
+                ${bill?.fiscal_note_html ? `<a href="${bill.fiscal_note_html}" target="_blank" class="text-blue-600 hover:underline text-sm">View official fiscal note →</a>` : ''}
+            </div>
+        `;
+        return;
+    }
+    
+    // Impact badge color
+    const impactColors = {
+        'Minimal': 'bg-gray-100 text-gray-700',
+        'Low': 'bg-green-100 text-green-700',
+        'Medium': 'bg-yellow-100 text-yellow-700',
+        'High': 'bg-orange-100 text-orange-700',
+        'Very High': 'bg-red-100 text-red-700'
+    };
+    const impactClass = impactColors[fiscal.impact_level] || 'bg-gray-100 text-gray-700';
+    
+    let html = `
+        <!-- Impact Badge -->
+        <div class="flex items-center gap-3 mb-4">
+            <span class="px-4 py-2 rounded-full font-bold ${impactClass}">
+                ${fiscal.impact_level} Fiscal Impact
+            </span>
+            ${bill?.fiscal_note_html ? `<a href="${bill.fiscal_note_html}" target="_blank" class="text-blue-600 hover:underline text-sm">View full fiscal note →</a>` : ''}
+        </div>
+    `;
+    
+    // Expenditure/Revenue table
+    if (Object.keys(fiscal.total_expenditures).length > 0 || Object.keys(fiscal.total_revenues).length > 0) {
+        const years = fiscal.fiscal_years.slice(0, 3);
+        
+        html += `
+            <div class="overflow-x-auto mb-4">
+                <table class="w-full text-sm border-collapse">
+                    <thead>
+                        <tr class="bg-slate-100">
+                            <th class="text-left p-2 border">Category</th>
+                            ${years.map(y => `<th class="text-right p-2 border">FY${y}</th>`).join('')}
+                        </tr>
+                    </thead>
+                    <tbody>
+        `;
+        
+        // Revenues row
+        if (Object.keys(fiscal.total_revenues).length > 0) {
+            html += `<tr class="bg-green-50">
+                <td class="p-2 border font-medium text-green-700">Total Revenues</td>`;
+            years.forEach(y => {
+                const val = fiscal.total_revenues[`FY${y}`] || '$0';
+                html += `<td class="p-2 border text-right text-green-700">${val}</td>`;
+            });
+            html += `</tr>`;
+        }
+        
+        // Expenditures row
+        if (Object.keys(fiscal.total_expenditures).length > 0) {
+            html += `<tr class="bg-red-50">
+                <td class="p-2 border font-medium text-red-700">Total Expenditures</td>`;
+            years.forEach(y => {
+                const val = fiscal.total_expenditures[`FY${y}`] || '$0';
+                html += `<td class="p-2 border text-right text-red-700">${val}</td>`;
+            });
+            html += `</tr>`;
+        }
+        
+        // Net impact row
+        if (Object.keys(fiscal.net_impact).length > 0) {
+            html += `<tr class="bg-slate-50 font-bold">
+                <td class="p-2 border">Net Impact</td>`;
+            years.forEach(y => {
+                const val = fiscal.net_impact[`FY${y}`] || '-';
+                const isNegative = val.includes('(') || val.includes('-');
+                const colorClass = isNegative ? 'text-red-600' : 'text-green-600';
+                html += `<td class="p-2 border text-right ${colorClass}">${val}</td>`;
+            });
+            html += `</tr>`;
+        }
+        
+        html += `</tbody></table></div>`;
+    }
+    
+    // Summary
+    if (fiscal.summary) {
+        html += `
+            <div class="bg-slate-50 rounded-lg p-4 mb-4">
+                <h4 class="font-semibold text-slate-700 mb-2">Summary</h4>
+                <p class="text-sm text-slate-600">${fiscal.summary}</p>
+            </div>
+        `;
+    }
+    
+    // Impact on different groups
+    const impacts = [
+        { label: '🏛️ Local Government', value: fiscal.local_government },
+        { label: '👥 Individuals & Businesses', value: fiscal.individuals_businesses },
+        { label: '📋 Regulatory Impact', value: fiscal.regulatory_impact }
+    ].filter(i => i.value && i.value.length > 10);
+    
+    if (impacts.length > 0) {
+        html += `<div class="space-y-2">`;
+        impacts.forEach(impact => {
+            html += `
+                <div class="border-l-4 border-slate-300 pl-3 py-1">
+                    <span class="font-medium text-slate-700">${impact.label}:</span>
+                    <span class="text-sm text-slate-600 ml-1">${impact.value}</span>
+                </div>
+            `;
+        });
+        html += `</div>`;
+    }
+    
+    container.innerHTML = html;
+}
+
 function renderLanguageAnalysis(billNumber) {
     const analysis = languageData.analyses?.[billNumber];
     const container = document.getElementById('analysisContent');
@@ -56,7 +183,6 @@ function renderLanguageAnalysis(billNumber) {
             <div class="text-center py-8 text-slate-500">
                 <p class="text-4xl mb-3">📊</p>
                 <p>Language analysis not available for this bill.</p>
-                <p class="text-sm mt-2">Analysis is generated for controversial bills with organization positions.</p>
             </div>
         `;
         return;
@@ -70,7 +196,6 @@ function renderLanguageAnalysis(billNumber) {
     const discretionaryPct = total > 0 ? (totals.discretionary / total * 100).toFixed(0) : 0;
     
     let html = `
-        <!-- Summary Stats with Tooltips -->
         <div class="grid grid-cols-3 gap-4 mb-6">
             <div class="tooltip-container bg-green-50 border border-green-200 rounded-lg p-4 text-center cursor-help">
                 <div class="tooltip">Government MUST do this. Required by law.</div>
@@ -92,7 +217,6 @@ function renderLanguageAnalysis(billNumber) {
             </div>
         </div>
         
-        <!-- Visual Bar -->
         <div class="mb-6">
             <div class="text-sm text-slate-600 mb-2">Language Distribution</div>
             <div class="flex rounded-lg overflow-hidden h-8">
@@ -111,7 +235,6 @@ function renderLanguageAnalysis(billNumber) {
         </div>
     `;
     
-    // Interpretation
     let interpretation = '';
     if (totals.mandatory > totals.discretionary * 2) {
         interpretation = `<strong>Highly prescriptive bill.</strong> Creates many mandatory requirements with limited agency discretion.`;
@@ -125,26 +248,21 @@ function renderLanguageAnalysis(billNumber) {
         <div class="bg-slate-100 rounded-lg p-4 mb-6">
             <div class="text-sm text-slate-700">${interpretation}</div>
         </div>
+        <div class="space-y-4">
     `;
-    
-    // Sample sentences with expandable
-    html += `<div class="space-y-4">`;
     
     if (analysis.shall.sentences.length > 0) {
         html += renderSentenceSection('Mandatory Actions (SHALL)', analysis.shall.sentences, 'mandatory', 'shall');
     }
-    
     if (analysis.shall_not.sentences.length > 0 || analysis.may_not.sentences.length > 0) {
         const prohibited = [...(analysis.shall_not.sentences || []), ...(analysis.may_not.sentences || [])];
         html += renderSentenceSection('Prohibited Actions', prohibited, 'prohibited', 'prohibited');
     }
-    
     if (analysis.may.sentences.length > 0) {
         html += renderSentenceSection('Discretionary Actions (MAY)', analysis.may.sentences, 'discretionary', 'may');
     }
     
     html += `</div>`;
-    
     container.innerHTML = html;
 }
 
@@ -187,11 +305,7 @@ function renderSentenceSection(title, sentences, type, id) {
         `;
     }
     
-    html += `
-            </div>
-        </div>
-    `;
-    
+    html += `</div></div>`;
     return html;
 }
 
@@ -212,11 +326,6 @@ function toggleMore(id) {
 function showError(message) {
     document.getElementById('billNumber').textContent = 'Error';
     document.getElementById('billTitle').textContent = message;
-    document.getElementById('analysisContent').innerHTML = `
-        <div class="text-center py-8 text-red-500">
-            <p>${message}</p>
-        </div>
-    `;
 }
 
 document.addEventListener('DOMContentLoaded', init);

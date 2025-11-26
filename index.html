@@ -122,6 +122,46 @@
             transform: translateY(-4px);
         }
     </style>
+
+    <!-- Custom Checkbox Styling -->
+    <style>
+        .status-filter,
+        .topic-filter,
+        .org-filter {
+            appearance: none;
+            -webkit-appearance: none;
+            width: 18px;
+            height: 18px;
+            border: 2px solid #002855;
+            border-radius: 4px;
+            cursor: pointer;
+            position: relative;
+            flex-shrink: 0;
+            background: white;
+        }
+        .status-filter:checked,
+        .topic-filter:checked,
+        .org-filter:checked {
+            background: #002855;
+        }
+        .status-filter:checked::after,
+        .topic-filter:checked::after,
+        .org-filter:checked::after {
+            content: "\2713";
+            position: absolute;
+            color: #C5A30F;
+            font-size: 14px;
+            font-weight: bold;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+        .status-filter:hover,
+        .topic-filter:hover,
+        .org-filter:hover {
+            border-color: #C5A30F;
+        }
+    </style>
 </head>
 <body class="bg-gray-300">
     <!-- Loading Overlay -->

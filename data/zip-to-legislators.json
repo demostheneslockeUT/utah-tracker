@@ -1,26 +1,94 @@
 {
   "zip_mappings": {
-    "84101": ["Sen. Luz Escamilla", "Rep. Sandra Hollins"],
-    "84102": ["Sen. Luz Escamilla", "Rep. Angela Romero"],
-    "84103": ["Sen. Jani Iwamoto", "Rep. Jennifer Daily"],
-    "84104": ["Sen. Kathleen Riebe", "Rep. Sandra Hollins"],
-    "84105": ["Sen. Jani Iwamoto", "Rep. Andrew Stoddard"],
-    "84106": ["Sen. Kathleen Riebe", "Rep. Elizabeth Weight"],
-    "84107": ["Sen. Kathleen Riebe", "Rep. Gay Lynn Bennion"],
-    "84108": ["Sen. Jani Iwamoto", "Rep. Carol Spackman Moss"],
-    "84109": ["Sen. Jani Iwamoto", "Rep. Joel Briscoe"],
-    "84111": ["Sen. Luz Escamilla", "Rep. Sandra Hollins"],
-    "84115": ["Sen. Luz Escamilla", "Rep. Angela Romero"],
-    "84116": ["Sen. Luz Escamilla", "Rep. Sandra Hollins"],
-    "84118": ["Sen. Kathleen Riebe", "Rep. Angela Romero"],
-    "84119": ["Sen. Kathleen Riebe", "Rep. Sandra Hollins"],
-    "84120": ["Sen. Luz Escamilla", "Rep. Sandra Hollins"],
-    "84123": ["Sen. Kathleen Riebe", "Rep. Angela Romero"],
-    "84124": ["Sen. Jani Iwamoto", "Rep. Carol Spackman Moss"],
-    "84128": ["Sen. Kathleen Riebe", "Rep. Sandra Hollins"],
-    "84129": ["Sen. Kathleen Riebe", "Rep. Gay Lynn Bennion"],
-    "84180": ["Sen. Luz Escamilla", "Rep. Sandra Hollins"],
-    "84190": ["Sen. Luz Escamilla", "Rep. Sandra Hollins"]
+    "84101": [
+      "Wilson, Chris H.",
+      "Miller, Grant Amjad"
+    ],
+    "84102": [
+      "Wilson, Chris H.",
+      "Romero, Angela"
+    ],
+    "84103": [
+      "Wilson, Chris H.",
+      "Hollins, Sandra"
+    ],
+    "84104": [
+      "Wilson, Chris H.",
+      "MacPherson, Matt"
+    ],
+    "84105": [
+      "Millner, Ann",
+      "Miller, Grant Amjad"
+    ],
+    "84106": [
+      "Stevenson, Jerry W",
+      "Loubet, Anthony E."
+    ],
+    "84107": [
+      "Pitcher, Stephanie",
+      "Dunnigan, James A."
+    ],
+    "84108": [
+      "Weiler, Todd",
+      "Owens, Doug"
+    ],
+    "84109": [
+      "Adams, J. Stuart",
+      "Peck, Nicholeen P."
+    ],
+    "84115": [
+      "Plumb, Jen",
+      "Fitisemanu, Jake"
+    ],
+    "84116": [
+      "Johnson, John D.",
+      "Dailey-Provost, Jennifer"
+    ],
+    "84117": [
+      "Riebe, Kathleen A.",
+      "Stoddard, Andrew"
+    ],
+    "84118": [
+      "Harper, Wayne A.",
+      "Bennion, Gay Lynn"
+    ],
+    "84119": [
+      "Fillmore, Lincoln",
+      "Miller, Tracy"
+    ],
+    "84120": [
+      "Fillmore, Lincoln",
+      "Eliason, Steve"
+    ],
+    "84121": [
+      "McCay, Daniel",
+      "Pierucci, Candice B."
+    ],
+    "84123": [
+      "Pitcher, Stephanie",
+      "Matthews, Ashlee"
+    ],
+    "84124": [
+      "Weiler, Todd",
+      "Hayes, Sahara"
+    ],
+    "84060": [
+      "Balderree, Heidi",
+      "Kohler, Mike L."
+    ],
+    "84321": [
+      "Sandall, Scott D.",
+      "Petersen, Michael J."
+    ],
+    "84604": [
+      "Stratton, Keven J.",
+      "Welton, Doug"
+    ],
+    "84601": [
+      "Stratton, Keven J.",
+      "Burton, Jefferson S."
+    ]
   },
-  "note": "These are approximate mappings for Salt Lake County. Legislative districts don't align perfectly with ZIP codes."
+  "note": "Updated with 2025 legislators. ZIP codes may span multiple districts.",
+  "last_updated": "2025-11-25"
 }

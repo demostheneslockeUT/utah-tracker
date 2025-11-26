@@ -129,7 +129,7 @@ function renderAssessmentBanner() {
                         <p class="text-sm text-gray-600">Based on your assessment, we're targeting: ${weakTopics.join(', ')}</p>
                     </div>
                 </div>
-                <a href="rung-assessment.html" class="text-sm text-navy underline">Retake assessment</a>
+                <a href="tools/rung-assessment.html" class="text-sm text-navy underline">Retake assessment</a>
             `;
         } else {
             banner.innerHTML = `
@@ -148,7 +148,7 @@ function renderAssessmentBanner() {
                     <p class="text-sm text-gray-600">Get personalized challenges based on your tribal triggers.</p>
                 </div>
             </div>
-            <a href="rung-assessment.html" class="bg-navy text-white px-4 py-2 rounded-lg text-sm font-medium hover:bg-blue-800 transition">
+            <a href="tools/rung-assessment.html" class="bg-navy text-yellow-400 px-4 py-2 rounded-lg text-sm font-medium hover:bg-blue-800 transition">
                 Take Assessment →
             </a>
         `;

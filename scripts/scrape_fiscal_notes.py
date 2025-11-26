@@ -135,7 +135,7 @@ def generate_all_fiscal():
         bills_data = json.load(f)
     
     # Get controversial bills
-    controversial = [b for b in bills_data['bills'] if b.get('controversy_score', 0) > 0]
+    controversial = bills_data['bills']  # Process ALL bills
     print(f"Processing {len(controversial)} controversial bills...")
     
     output_file = 'data/fiscal_notes.json'

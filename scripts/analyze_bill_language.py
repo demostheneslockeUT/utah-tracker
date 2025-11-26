@@ -77,23 +77,23 @@ def analyze_bill(bill_number, session="2025"):
         'bill_number': bill_number,
         'shall': {
             'count': len(shall_positive),
-            'sentences': shall_positive
+            'sentences': shall_positive[:10]
         },
         'shall_not': {
             'count': len(shall_not_sentences),
-            'sentences': shall_not_sentences
+            'sentences': shall_not_sentences[:10]
         },
         'may': {
             'count': len(may_positive),
-            'sentences': may_positive
+            'sentences': may_positive[:10]
         },
         'may_not': {
             'count': len(may_not_sentences),
-            'sentences': may_not_sentences
+            'sentences': may_not_sentences[:10]
         },
         'must': {
             'count': len(must_positive),
-            'sentences': must_positive
+            'sentences': must_positive[:10]
         },
         'totals': {
             'mandatory': len(shall_positive) + len(must_positive),
@@ -110,7 +110,7 @@ def generate_all_analyses():
         bills_data = json.load(f)
     
     # Get controversial bills (have org positions with disagreement)
-    controversial = [b for b in bills_data['bills'] if b.get('controversy_score', 0) > 0]
+    controversial = bills_data['bills']  # Process ALL bills
     print(f"Found {len(controversial)} controversial bills to analyze")
     
     # Load existing analyses if any

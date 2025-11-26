@@ -60,7 +60,7 @@ async function init() {
         try {
             const sumRes = await fetch('data/bill_summaries.json');
             if (sumRes.ok) {
-                summariesData = await sumRes.json();
+                const sumData = await sumRes.json(); summariesData = sumData.summaries || {};
             }
         } catch (e) {
             console.log('No summaries available');
@@ -250,39 +250,51 @@ function getStatusColor(status) {
 function renderSummary() {
     const summary = summariesData[currentBill.bill_number];
     
-    if (summary && summary.summary) {
-        document.getElementById('summaryText').textContent = summary.summary;
+    if (summary && summary.plain_summary) {
+        // We have an AI-generated summary
+        document.getElementById('summaryText').textContent = summary.plain_summary;
         
-        const affectsList = document.getElementById('affectsList');
-        const provisionsList = document.getElementById('provisionsList');
-        
-        affectsList.innerHTML = '';
-        provisionsList.innerHTML = '';
-        
-        if (summary.affects && summary.affects.length > 0) {
-            summary.affects.forEach(item => {
-                const li = document.createElement('li');
-                li.textContent = item;
-                affectsList.appendChild(li);
-            });
+        // Who's affected
+        const affectedEl = document.getElementById('affectedText');
+        if (affectedEl && summary.who_affected) {
+            affectedEl.textContent = summary.who_affected;
+            document.getElementById('whoAffected').classList.remove('hidden');
         }
         
-        if (summary.provisions && summary.provisions.length > 0) {
-            summary.provisions.forEach(item => {
-                const li = document.createElement('li');
-                li.textContent = item;
-                provisionsList.appendChild(li);
-            });
+        // Arguments
+        const argForEl = document.getElementById('argumentFor');
+        const argAgainstEl = document.getElementById('argumentAgainst');
+        if (argForEl && summary.argument_for) {
+            argForEl.textContent = summary.argument_for;
+        }
+        if (argAgainstEl && summary.argument_against) {
+            argAgainstEl.textContent = summary.argument_against;
+        }
+        if (summary.argument_for || summary.argument_against) {
+            document.getElementById('argumentsGrid').classList.remove('hidden');
+        }
+        
+        // Key question
+        const keyQEl = document.getElementById('keyQuestion');
+        if (keyQEl && summary.key_question) {
+            keyQEl.textContent = summary.key_question;
+            document.getElementById('keyQuestionSection').classList.remove('hidden');
+        }
+        
+        // Full bill link
+        const fullBillLink = document.getElementById('fullBillLink');
+        if (fullBillLink && currentBill.url) {
+            fullBillLink.href = currentBill.url;
         }
         
         document.getElementById('aiSummary').classList.remove('hidden');
         document.getElementById('noSummary').classList.add('hidden');
     } else {
-        document.getElementById('summaryText').textContent = 
-            `This bill addresses: ${currentBill.title}`;
-        document.getElementById('summaryDetails').classList.add('hidden');
-        document.getElementById('aiSummary').classList.remove('hidden');
-        document.getElementById('noSummary').classList.add('hidden');
+        // No AI summary - show fallback
+        document.getElementById('fallbackSummary').textContent = 
+            currentBill.general_provisions || `This bill addresses: ${currentBill.title}`;
+        document.getElementById('aiSummary').classList.add('hidden');
+        document.getElementById('noSummary').classList.remove('hidden');
     }
 }
 

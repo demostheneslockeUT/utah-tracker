@@ -1,0 +1,1210 @@
+{
+  "generated_date": "2025-11-26T10:35:20.489080",
+  "model": "claude-sonnet-4-20250514",
+  "total_bills": 77,
+  "summaries": {
+    "HB0085": {
+      "plain_summary": "This bill changes how Utah handles environmental permits for businesses by requiring the state to create new rules for federal air quality limits and expand a streamlined permitting program. It essentially aims to make it easier for certain types of businesses to get environmental permits through a simpler 'permit by rule' process.",
+      "who_affected": "This bill primarily affects businesses that need air quality permits to operate, as well as the Utah Division of Air Quality that must implement these changes.",
+      "argument_for": "This bill reduces bureaucratic red tape and speeds up the permitting process for businesses, which can encourage economic development and job creation in Utah. By expanding the 'permit by rule' program and creating clearer guidance on federal requirements, businesses can navigate environmental compliance more efficiently while still meeting air quality standards.",
+      "argument_against": "Streamlining environmental permits could weaken air quality protections and reduce oversight of potentially harmful emissions. Environmental groups worry that making permits easier to obtain might prioritize economic interests over public health and environmental protection, potentially leading to increased pollution in Utah's communities.",
+      "key_question": "How will Utah ensure that streamlined permitting processes maintain adequate environmental protections while achieving the goal of regulatory efficiency?",
+      "title": "Environmental Permitting Modifications",
+      "positions": {
+        "Chamber West": "Oppose",
+        "Libertas": "Support",
+        "Utah Audubon Council": "Oppose"
+      },
+      "controversy_score": 3,
+      "url": "https://le.utah.gov/~2025/bills/static/HB0085.html",
+      "generated_at": "2025-11-26T10:35:28.706981"
+    },
+    "HB0024": {
+      "plain_summary": "This bill extends a law that limits how much employers can be held legally responsible when their employees are convicted of crimes. Instead of letting this protection for employers expire, the bill keeps it in place for a longer period.",
+      "who_affected": "This bill primarily affects employers who hire workers and could potentially face lawsuits if those employees commit crimes, as well as victims who might seek compensation from employers for employee criminal acts.",
+      "argument_for": "Employers should not be held financially responsible for criminal acts committed by their employees that they could not reasonably predict or prevent. This protection encourages businesses to hire workers, including those with past issues, without fear of excessive legal liability. It helps maintain a fair balance where employers are only responsible for their own negligence in hiring or supervision, not for independent criminal choices made by employees.",
+      "argument_against": "Employers have a responsibility to properly screen, train, and supervise their employees to protect the public from foreseeable harm. Limiting liability too much could reduce employers' incentives to conduct adequate background checks or provide proper oversight. Victims of crimes committed by employees may be left without adequate legal recourse to recover damages when employers have been negligent in their hiring or management practices.",
+      "key_question": "What specific circumstances should employers be held liable for employee criminal acts, and does this law strike the right balance between protecting businesses and ensuring victims have legal remedies?",
+      "title": "Limitations on Liability Amendments",
+      "positions": {
+        "Salt Lake Chamber": "Support",
+        "Chamber West": "Oppose"
+      },
+      "controversy_score": 2,
+      "url": "https://le.utah.gov/~2025/bills/static/HB0024.html",
+      "generated_at": "2025-11-26T10:35:39.646619"
+    },
+    "HB0037": {
+      "plain_summary": "This bill gives cities and counties new tools to encourage more housing development, especially affordable housing, by allowing them to offer incentives like higher density development. It also requires the state to create a comprehensive housing plan by 2025 to address Utah's housing shortage.",
+      "who_affected": "This bill primarily affects local governments (cities and counties), housing developers, current homeowners, and people seeking affordable housing in Utah.",
+      "argument_for": "Utah faces a severe housing shortage that is pricing out middle-class families and essential workers like teachers and firefighters. This bill provides flexible, market-based tools that allow local communities to voluntarily incentivize more housing construction while maintaining local control over development decisions. The diverse coalition of supporters, from business groups to environmental organizations, shows this is a balanced approach that can increase housing supply without heavy-handed mandates.",
+      "argument_against": "Increasing housing density and development incentives could fundamentally change the character of established neighborhoods, potentially lowering property values and straining local infrastructure like roads, schools, and utilities. Local communities may face pressure to approve developments they don't want, and the focus on affordable housing could lead to poorly planned growth that creates more problems than it solves.",
+      "key_question": "How will this bill ensure that increased housing development doesn't overwhelm local infrastructure and services, and what safeguards exist to protect existing neighborhoods from unwanted density increases?",
+      "title": "Utah Housing Amendments",
+      "positions": {
+        "Salt Lake Chamber": "Support",
+        "Sierra Club Utah": "Support",
+        "Chamber West": "Oppose",
+        "Libertas": "Support",
+        "Utah League Of Cities And Towns": "Support"
+      },
+      "controversy_score": 2,
+      "url": "https://le.utah.gov/~2025/bills/static/HB0037.html",
+      "generated_at": "2025-11-26T10:35:50.200098"
+    },
+    "HB0046": {
+      "plain_summary": "This bill changes the rules about what happens when someone's application for water rights expires or lapses, specifically how much time they have to reinstate their application. It also makes some technical corrections to existing water law procedures.",
+      "who_affected": "This bill primarily affects farmers, developers, municipalities, and other entities who apply for water rights in Utah, as well as environmental groups concerned about water allocation.",
+      "argument_for": "Supporters likely argue this provides necessary flexibility for legitimate water users who may have missed deadlines due to bureaucratic delays, economic hardships, or other valid circumstances beyond their control. The changes could help ensure that viable water projects aren't permanently lost due to technicalities, while still maintaining appropriate oversight through the state engineer's office.",
+      "argument_against": "Opponents probably contend that allowing easier reinstatement of lapsed water applications could undermine the 'use it or lose it' principle that prevents water speculation and hoarding. They may worry this creates loopholes that allow developers to tie up water rights indefinitely without putting them to beneficial use, potentially harming both environmental flows and other legitimate water users.",
+      "key_question": "What specific time limits and conditions govern the reinstatement process, and do these safeguards adequately prevent water speculation while still providing reasonable flexibility for legitimate users?",
+      "title": "Water Rights Applications Amendments",
+      "positions": {
+        "Chamber West": "Oppose",
+        "Utah Audubon Council": "Support",
+        "Utah Farm Bureau": "Support"
+      },
+      "controversy_score": 2,
+      "url": "https://le.utah.gov/~2025/bills/static/HB0046.html",
+      "generated_at": "2025-11-26T10:36:00.386676"
+    },
+    "HB0047": {
+      "plain_summary": "This bill changes rules about water rights for livestock (cattle, sheep, etc.) that graze on public lands like national forests. It removes some certificate requirements and addresses what happens when federal agencies reduce the number of animals allowed to graze on public land.",
+      "who_affected": "This bill primarily affects ranchers who graze livestock on public lands, as well as federal land management agencies that oversee grazing permits.",
+      "argument_for": "Ranchers need clearer, more secure water rights to maintain viable livestock operations on public lands, which supports rural economies and traditional agricultural practices. The bill likely streamlines bureaucratic processes and protects existing grazing operations from arbitrary reductions in grazing permits, ensuring ranchers can continue providing food production while managing public lands responsibly.",
+      "argument_against": "Weakening oversight of livestock water use on public lands could lead to overuse of limited water resources and environmental damage to sensitive ecosystems. Reducing federal agencies' ability to manage grazing levels may compromise their mandate to protect wildlife habitat, water quality, and natural resources for all public land users, not just livestock operators.",
+      "key_question": "Does this bill strike the right balance between supporting ranchers' economic needs and protecting public land resources for wildlife, recreation, and environmental conservation?",
+      "title": "Public Lands Watering Rights Amendments",
+      "positions": {
+        "Utah Audubon Council": "Oppose",
+        "Utah Farm Bureau": "Support",
+        "Rural Water Association Of Utah": "Support"
+      },
+      "controversy_score": 2,
+      "url": "https://le.utah.gov/~2025/bills/static/HB0047.html",
+      "generated_at": "2025-11-26T10:36:11.394233"
+    },
+    "HB0102": {
+      "plain_summary": "This bill changes how Utah distributes money that's already set aside to reduce class sizes in schools. Instead of spreading the money equally, it would send more funding to school districts that need it most, while requiring those districts to report how they use the money.",
+      "who_affected": "This bill primarily affects students and teachers in Utah's highest-need school districts, who would receive prioritized funding for smaller class sizes.",
+      "argument_for": "Smaller class sizes allow teachers to give more individual attention to each student, leading to better learning outcomes and academic achievement. By directing these funds to the highest-need schools first, the state ensures that students who face the greatest challenges get the additional support they need most, while requiring accountability through reporting helps ensure the money is used effectively.",
+      "argument_against": "Changing funding formulas can create uncertainty for school districts that may have been counting on previous funding levels for their planning and staffing decisions. Additional reporting requirements place administrative burdens on school districts, requiring them to spend time and resources on paperwork rather than direct education, and targeting funds only to 'highest need' areas may leave other districts without adequate resources for class size reduction.",
+      "key_question": "How will the state define and measure 'highest need' schools, and will this new formula provide sustainable, predictable funding that allows districts to make long-term staffing commitments?",
+      "title": "Class Size Reduction Amendments",
+      "positions": {
+        "Chamber West": "Oppose",
+        "Utah Education Association": "Support"
+      },
+      "controversy_score": 2,
+      "url": "https://le.utah.gov/~2025/bills/static/HB0102.html",
+      "generated_at": "2025-11-26T10:36:21.836562"
+    },
+    "HB0106": {
+      "plain_summary": "This bill changes Utah's income tax rates for both individuals and businesses, and creates new tax credits for employers who provide child care and for families with young children (under 5 years old). The bill reduces how much tax people and companies pay while providing incentives for child care support.",
+      "who_affected": "This bill primarily affects Utah taxpayers (individuals and businesses), employers who provide child care benefits, and families with children under 5 years old.",
+      "argument_for": "Tax reductions will put more money back in the pockets of Utah families and businesses, stimulating economic growth and making Utah more competitive for business investment. The child care tax credits will help address Utah's child care shortage by incentivizing employers to offer these benefits, while also providing direct financial relief to families during the expensive early childhood years when child care costs are highest.",
+      "argument_against": "Reducing tax revenue will limit the state's ability to adequately fund essential public services, particularly education, which already faces funding challenges in Utah. The benefits of tax cuts and credits may primarily help higher-income families and businesses who can already afford child care, while doing little to address the underlying shortage of affordable child care options for working families who need it most.",
+      "key_question": "Will the economic benefits and child care incentives generated by these tax reductions offset the potential impact on funding for public services like education?",
+      "title": "Income Tax Revisions",
+      "positions": {
+        "Salt Lake Chamber": "Support",
+        "Voices For Utah Children": "Oppose",
+        "Chamber West": "Support",
+        "Utah Education Association": "Oppose",
+        "Utah Pta": "Oppose"
+      },
+      "controversy_score": 2,
+      "url": "https://le.utah.gov/~2025/bills/static/HB0106.html",
+      "generated_at": "2025-11-26T10:36:32.260552"
+    },
+    "HB0114": {
+      "plain_summary": "This bill changes Utah's architecture licensing law to reduce the types of activities that would be considered illegal for unlicensed people to perform. It narrows what counts as 'unlawful conduct' when someone without an architecture license does architecture-related work.",
+      "who_affected": "This bill primarily affects unlicensed individuals who perform architecture-related work, licensed architects, and potentially consumers who hire people for building design services.",
+      "argument_for": "This bill promotes economic freedom and reduces unnecessary regulatory barriers that prevent qualified individuals from offering their services. By narrowing what constitutes unlawful conduct, it allows more competition in the marketplace while still maintaining appropriate protections, which can lead to lower costs and more options for consumers seeking architecture services.",
+      "argument_against": "Loosening restrictions on architecture licensing could compromise public safety by allowing unqualified individuals to perform complex building design work that requires professional expertise. Licensed architects undergo rigorous training and testing to ensure buildings are safe, structurally sound, and meet code requirements - reducing these protections could put the public at risk.",
+      "key_question": "What specific architecture activities are being removed from the 'unlawful conduct' category, and do these changes maintain adequate protection for public safety while promoting fair competition?",
+      "title": "Architects Licensing Act Amendments",
+      "positions": {
+        "Chamber West": "Oppose",
+        "Libertas": "Support"
+      },
+      "controversy_score": 2,
+      "url": "https://le.utah.gov/~2025/bills/static/HB0114.html",
+      "generated_at": "2025-11-26T10:36:42.004789"
+    },
+    "HB0119": {
+      "plain_summary": "This bill changes the rules for homeowners associations (HOAs) regarding solar panels on houses. It prevents HOAs from completely banning solar panels, but still allows them to set reasonable restrictions on how and where they can be installed.",
+      "who_affected": "This bill primarily affects homeowners living in neighborhoods with homeowners associations who want to install solar panels on their properties.",
+      "argument_for": "This bill strikes a reasonable balance between property rights and community standards. It ensures homeowners can access clean energy and reduce their electricity bills without being blocked by overly restrictive HOAs, while still allowing associations to maintain neighborhood aesthetics and property values through reasonable placement and installation guidelines.",
+      "argument_against": "This bill creates confusion by both stopping and authorizing restrictions in the same legislation, potentially leading to legal disputes and inconsistent enforcement. It may undermine the ability of homeowners associations to maintain uniform community standards and could result in poorly planned solar installations that negatively impact neighborhood appearance and property values.",
+      "key_question": "How will this bill's seemingly contradictory language be interpreted and enforced when HOAs and homeowners disagree about what constitutes 'reasonable' solar panel restrictions?",
+      "title": "Solar Panel Restrictions in Homeowners Associations Amendments",
+      "positions": {
+        "Heal Utah": "Support",
+        "Alliance For A Better Utah": "Oppose",
+        "Utah Audubon Council": "Support"
+      },
+      "controversy_score": 2,
+      "url": "https://le.utah.gov/~2025/bills/static/HB0119.html",
+      "generated_at": "2025-11-26T10:36:51.537519"
+    },
+    "HB0121": {
+      "plain_summary": "This bill requires Utah schools to teach students about preventing sexual violence, what to do if sexual assault happens, and the legal consequences of sharing explicit images electronically. Schools would also have to look at local sexual assault data to help shape their health education programs.",
+      "who_affected": "This bill primarily affects Utah students, teachers, and school administrators in public schools that provide health education.",
+      "argument_for": "Supporters argue this education is critically needed to protect students and reduce sexual violence. By teaching prevention strategies and legal consequences, students will be better equipped to recognize inappropriate behavior, protect themselves and others, and understand serious legal ramifications of actions like sharing explicit images. Using local data ensures the curriculum addresses real problems in each community.",
+      "argument_against": "Opponents likely argue this represents government overreach into sensitive topics that should be addressed by families rather than schools. They may contend that mandating specific curriculum content reduces local control over education and forces schools to cover topics that some parents and communities find inappropriate for the classroom setting, potentially conflicting with family values and beliefs.",
+      "key_question": "How will schools balance providing important safety education while respecting diverse family values and maintaining appropriate parental involvement in sensitive health topics?",
+      "title": "Health Education Amendments",
+      "positions": {
+        "Utah Education Association": "Support",
+        "Friends Of Great Salt Lake": "Oppose"
+      },
+      "controversy_score": 2,
+      "url": "https://le.utah.gov/~2025/bills/static/HB0121.html",
+      "generated_at": "2025-11-26T10:37:01.771967"
+    },
+    "HB0130": {
+      "plain_summary": "This bill would allow more Utah retirees to get a tax credit that reduces how much state income tax they pay on their Social Security benefits. It does this by raising the income limits for who can qualify for this tax break.",
+      "who_affected": "This bill primarily affects Utah retirees who receive Social Security benefits, particularly those with moderate incomes who currently make too much money to qualify for the existing tax credit.",
+      "argument_for": "Retirees on fixed incomes are struggling with inflation and rising costs, and many worked their entire careers paying into Social Security with the expectation of receiving those benefits in retirement. Expanding this tax credit would provide meaningful financial relief to middle-class seniors who aren't wealthy but make slightly too much to qualify for the current credit, helping them keep more of their hard-earned Social Security benefits.",
+      "argument_against": "Reducing taxes on Social Security benefits means less revenue for the state, which could require cuts to important public services or higher taxes elsewhere to make up the difference. This tax break primarily benefits older, more affluent residents while potentially shifting the tax burden to younger working families and essential public programs that serve all Utahns.",
+      "key_question": "What would be the total cost to the state budget of expanding this tax credit, and how would Utah make up for that lost revenue?",
+      "title": "Social Security Tax Amendments",
+      "positions": {
+        "Chamber West": "Oppose",
+        "Utah Public Employees Association": "Support"
+      },
+      "controversy_score": 2,
+      "url": "https://le.utah.gov/~2025/bills/static/HB0130.html",
+      "generated_at": "2025-11-26T10:37:12.114335"
+    },
+    "HB0157": {
+      "plain_summary": "This bill requires Utah's Office of Energy Development to create energy education programs for K-12 schools, train teachers on energy topics, and develop workforce programs to prepare students for energy-related careers. It also creates an advisory group to help guide these efforts and requires annual reporting to lawmakers.",
+      "who_affected": "This bill primarily affects K-12 students, teachers, and educators across Utah, as well as those seeking careers in the energy sector.",
+      "argument_for": "Energy literacy is essential for students to understand how power generation, energy efficiency, and emerging technologies affect their daily lives and future career opportunities. Utah has significant energy resources and a growing clean energy sector, so comprehensive energy education can prepare students for well-paying jobs in traditional energy, renewables, and energy technology fields. Educational programs that cover all energy sources objectively will help students make informed decisions as future consumers, voters, and workers.",
+      "argument_against": "There are concerns that energy education programs developed by Utah's Office of Energy Development may present a biased perspective that favors traditional fossil fuel industries over renewable energy and climate science. Given Utah's economic ties to oil, gas, and coal, opponents worry the curriculum could downplay environmental impacts or climate change while promoting continued fossil fuel development. This could misinform students about the urgent need to transition to clean energy sources.",
+      "key_question": "What safeguards exist to ensure the energy education curriculum presents scientifically accurate, balanced information about all energy sources including their environmental impacts and economic trade-offs?",
+      "title": "Energy Education Amendments",
+      "positions": {
+        "Sierra Club Utah": "Oppose",
+        "Chamber West": "Support",
+        "Libertas": "Support",
+        "Utah Audubon Council": "Oppose",
+        "Friends Of Great Salt Lake": "Oppose"
+      },
+      "controversy_score": 2,
+      "url": "https://le.utah.gov/~2025/bills/static/HB0157.html",
+      "generated_at": "2025-11-26T10:37:23.381398"
+    },
+    "HB0160": {
+      "plain_summary": "This bill changes the rules for getting professional licenses in several fields like architecture, environmental health, land surveying, substance abuse counseling, and geology. It requires that people have multiple different ways to qualify for these licenses, not just one path.",
+      "who_affected": "This bill primarily affects professionals seeking licenses in architecture, environmental health science, land surveying, substance use disorder counseling, and geology, as well as the regulatory boards that oversee these professions.",
+      "argument_for": "Multiple pathways to licensure make these professions more accessible to qualified individuals who may have gained expertise through different routes like experience, alternative education, or specialized training. This approach recognizes that competence can be demonstrated in various ways beyond traditional degree requirements, potentially addressing workforce shortages in these critical fields while maintaining professional standards.",
+      "argument_against": "Standardized educational requirements ensure all licensed professionals have received comprehensive, consistent training that protects public safety and maintains professional quality. Alternative pathways could potentially lower standards or create confusion about qualifications, which may undermine public trust and professional credibility in fields where expertise directly impacts public health, safety, and welfare.",
+      "key_question": "How will the state ensure that alternative pathways to licensure maintain the same rigorous standards and public safety protections as traditional degree-based requirements?",
+      "title": "Professional License Degree Amendments",
+      "positions": {
+        "Chamber West": "Oppose",
+        "Libertas": "Support"
+      },
+      "controversy_score": 2,
+      "url": "https://le.utah.gov/~2025/bills/static/HB0160.html",
+      "generated_at": "2025-11-26T10:37:32.498463"
+    },
+    "HB0170": {
+      "plain_summary": "This bill requires the state to create short, neutral summaries of ballot initiatives and referendums that voters can read instead of the full legal text when signing petitions. It also sets up a process for challenging these summaries if someone thinks they're biased or inaccurate.",
+      "who_affected": "This bill primarily affects Utah voters who sign petitions for ballot initiatives and referendums, as well as the organizations that sponsor these campaigns.",
+      "argument_for": "Voters deserve accessible information when making important civic decisions, and current legal language is often too complex for average citizens to understand. Impartial summaries would increase meaningful participation in the democratic process by ensuring people know what they're actually signing, while the challenge process protects against biased or misleading descriptions.",
+      "argument_against": "Adding bureaucratic layers and summary requirements could slow down or complicate the citizen initiative process, potentially making it harder for grassroots movements to qualify measures for the ballot. Business groups may worry this creates additional regulatory hurdles that could be exploited to delay or derail legitimate policy proposals through frivolous summary challenges.",
+      "key_question": "Will the summary requirement genuinely improve voter understanding and participation, or will it create unnecessary barriers that make it harder for citizens to exercise their constitutional right to propose legislation?",
+      "title": "Initiatives and Referenda Amendments",
+      "positions": {
+        "Aclu Of Utah": "Support",
+        "Chamber West": "Oppose"
+      },
+      "controversy_score": 2,
+      "url": "https://le.utah.gov/~2025/bills/static/HB0170.html",
+      "generated_at": "2025-11-26T10:37:42.703826"
+    },
+    "HB0179": {
+      "plain_summary": "This bill would eliminate income limits that currently prevent higher-income seniors from getting a tax credit on their Social Security benefits. Currently, only seniors below certain income thresholds can claim this tax credit, but this bill would allow all seniors to claim it regardless of how much money they make.",
+      "who_affected": "This bill primarily affects Utah seniors who receive Social Security benefits, especially middle and upper-middle income retirees who currently earn too much to qualify for the tax credit.",
+      "argument_for": "All seniors paid into Social Security throughout their working years and shouldn't face double taxation on benefits they've already earned. Removing income limits treats all retirees fairly and provides tax relief that could help seniors afford rising costs of living, healthcare, and housing on fixed incomes.",
+      "argument_against": "Tax credits should be targeted to those who need them most rather than providing tax breaks to wealthy retirees who are already financially secure. Removing income limits reduces state tax revenue that could otherwise fund essential public services like education and infrastructure that benefit all Utahns.",
+      "key_question": "Should tax relief for Social Security benefits be targeted based on financial need, or should all seniors receive the same tax treatment regardless of their total income?",
+      "title": "Social Security Tax Modifications",
+      "positions": {
+        "Chamber West": "Oppose",
+        "Utah Education Association": "Support",
+        "Utah Public Employees Association": "Support"
+      },
+      "controversy_score": 2,
+      "url": "https://le.utah.gov/~2025/bills/static/HB0179.html",
+      "generated_at": "2025-11-26T10:37:51.538618"
+    },
+    "HB0180": {
+      "plain_summary": "This bill would require Utah state government agencies to pay employees based on their skills and abilities, rather than other factors. It would also ban state employers from asking job candidates or current employees about their current or past salaries.",
+      "who_affected": "Current and prospective employees of Utah state government agencies and departments.",
+      "argument_for": "This bill promotes fair pay by ensuring compensation is tied to actual job qualifications rather than potentially discriminatory factors. By prohibiting salary history questions, it helps break cycles where workers who were historically underpaid (often women and minorities) continue to receive lower wages based on past inequities rather than their true worth.",
+      "argument_against": "Restricting employers from knowing salary history makes it harder to set competitive compensation packages and could lead to inefficient hiring decisions. Businesses need flexibility in compensation discussions to attract talent and manage budgets effectively, and overly prescriptive pay requirements could create bureaucratic burdens that ultimately harm both employers and employees.",
+      "key_question": "How will state agencies practically implement 'ability, knowledge, and skills' as compensation criteria while ensuring the process remains objective and doesn't create new administrative burdens?",
+      "title": "Employee Compensation Amendments",
+      "positions": {
+        "Chamber West": "Oppose",
+        "Utah Public Employees Association": "Support"
+      },
+      "controversy_score": 2,
+      "url": "https://le.utah.gov/~2025/bills/static/HB0180.html",
+      "generated_at": "2025-11-26T10:38:02.286395"
+    },
+    "HB0192": {
+      "plain_summary": "This bill would restrict what families can spend public education scholarship money on by prohibiting certain types of expenses. It's essentially putting new limits on how these government-funded scholarships for private school education can be used.",
+      "who_affected": "This bill primarily affects families who receive public education scholarships to send their children to private schools or alternative educational programs.",
+      "argument_for": "Supporters likely argue that taxpayer-funded education scholarships should have clear guardrails to ensure the money is spent on legitimate educational expenses rather than potentially inappropriate or non-educational items. The Utah Education Association's support suggests this may help ensure scholarship funds are used responsibly and don't undermine public education funding by allowing misuse of taxpayer dollars.",
+      "argument_against": "Opponents likely argue that additional restrictions limit parental choice and flexibility in their children's education, potentially making it harder for families to access the full range of educational resources their children need. Libertas's opposition suggests this may represent government overreach that reduces the effectiveness of school choice programs by creating unnecessary bureaucratic barriers.",
+      "key_question": "What specific expenses would be prohibited, and do these restrictions strike the right balance between protecting taxpayer interests and preserving meaningful educational choice for families?",
+      "title": "Public Education Scholarship Program Use Amendments",
+      "positions": {
+        "Libertas": "Oppose",
+        "Utah Education Association": "Support"
+      },
+      "controversy_score": 2,
+      "url": "https://le.utah.gov/~2025/bills/static/HB0192.html",
+      "generated_at": "2025-11-26T10:38:12.220893"
+    },
+    "HB0209": {
+      "plain_summary": "This bill makes it easier for parents to homeschool their children by reducing paperwork requirements and removing some government oversight. Parents no longer need to file certain forms when starting homeschool at the beginning of a school year, and they don't have to disclose their criminal background history to the school district.",
+      "who_affected": "This bill primarily affects homeschooling families and local school districts that process homeschool documentation.",
+      "argument_for": "Supporters argue this bill removes unnecessary bureaucratic barriers that make homeschooling more difficult for parents who are exercising their fundamental right to direct their children's education. The criminal background check requirement was particularly problematic because it created an invasive government screening process for parents educating their own children, when no such requirement exists for parents sending kids to public school. Streamlining the paperwork allows families to focus on education rather than administrative burdens.",
+      "argument_against": "Opponents worry that reducing oversight and documentation requirements could make it easier for parents to use homeschooling as a cover to keep children out of school entirely, potentially putting vulnerable children at risk. The criminal background disclosure requirement served as an important safeguard to ensure children's safety, and removing basic accountability measures could allow educational neglect or abuse to go undetected. Some level of government oversight helps ensure all children receive adequate education.",
+      "key_question": "What is the appropriate balance between parental rights to homeschool without government interference and the state's responsibility to ensure all children receive adequate education and protection?",
+      "title": "Homeschool Amendments",
+      "positions": {
+        "Voices For Utah Children": "Oppose",
+        "Libertas": "Support"
+      },
+      "controversy_score": 2,
+      "url": "https://le.utah.gov/~2025/bills/static/HB0209.html",
+      "generated_at": "2025-11-26T10:38:23.795761"
+    },
+    "HB0212": {
+      "plain_summary": "This bill creates a process for electric utility companies to use new, advanced transmission technologies to move electricity more efficiently. It sets up rules for how utilities must prove these technologies are cost-effective and allows them to pass approved costs on to customers.",
+      "who_affected": "This primarily affects electric utility companies and their customers who would ultimately pay for approved advanced transmission technology upgrades through their electricity bills.",
+      "argument_for": "Advanced transmission technologies can make the electric grid more efficient, reliable, and capable of handling renewable energy sources like wind and solar. By creating a clear approval process, Utah can modernize its electrical infrastructure to reduce power outages, lower long-term costs, and support environmental goals while ensuring utilities can recover reasonable investments in beneficial technologies.",
+      "argument_against": "This bill essentially guarantees that utility companies can pass the costs of expensive new technologies directly to consumers without sufficient oversight or competition. Utilities have little incentive to control costs when they know customers will be required to pay for these upgrades, potentially leading to higher electricity bills for families and businesses without clear evidence the benefits justify the expense.",
+      "key_question": "What specific oversight mechanisms will ensure that the cost-effectiveness analyses are truly independent and protect consumers from paying for unnecessary or overpriced transmission technology upgrades?",
+      "title": "Advanced Transmission Technologies",
+      "positions": {
+        "Chamber West": "Oppose",
+        "Libertas": "Support",
+        "Utah Audubon Council": "Support"
+      },
+      "controversy_score": 2,
+      "url": "https://le.utah.gov/~2025/bills/static/HB0212.html",
+      "generated_at": "2025-11-26T10:38:35.057743"
+    },
+    "HB0220": {
+      "plain_summary": "This bill would allow people injured in accidents involving ride-sharing services like Uber or Lyft to sue the company directly if the company didn't maintain proper insurance coverage. Currently, injured passengers or other drivers may have limited legal options when transportation network companies fail to carry adequate insurance.",
+      "who_affected": "This bill primarily affects passengers and other drivers who could be injured in accidents involving ride-sharing vehicles, as well as transportation network companies like Uber and Lyft operating in Utah.",
+      "argument_for": "Injured parties deserve clear legal recourse when transportation companies fail to meet their insurance obligations, especially since these companies profit from arranging rides and should be held accountable for maintaining proper coverage. This bill would protect consumers and ensure that ride-sharing companies cannot shirk their responsibility to carry adequate insurance, leaving injured people without compensation for medical bills and other damages.",
+      "argument_against": "Adding new lawsuit opportunities could increase legal costs and regulatory burden on transportation network companies, potentially leading to higher prices for consumers or reduced service availability. Existing insurance requirements and legal remedies may already provide sufficient protection, and creating additional liability could discourage innovation in the transportation sector or cause companies to limit operations in Utah.",
+      "key_question": "What are the current insurance requirements for transportation network companies in Utah, and are existing legal remedies insufficient to protect injured parties in accidents involving ride-sharing vehicles?",
+      "title": "Transportation Network Company Amendments",
+      "positions": {
+        "Chamber West": "Oppose",
+        "Friends Of Great Salt Lake": "Support"
+      },
+      "controversy_score": 2,
+      "url": "https://le.utah.gov/~2025/bills/static/HB0220.html",
+      "generated_at": "2025-11-26T10:38:45.230136"
+    },
+    "HB0229": {
+      "plain_summary": "This bill allows Utah to reserve land corridors not just for future roads and highways, but also for fixed public transit systems like light rail or bus rapid transit. It updates the state's corridor preservation laws to include these transit facilities when planning for future transportation needs.",
+      "who_affected": "This bill primarily affects local governments, transit agencies, property developers, and residents in areas where future transit corridors might be preserved.",
+      "argument_for": "Preserving corridors for transit infrastructure is essential for long-term regional planning and prevents costly land acquisition delays that plague major transit projects. By securing these corridors early, Utah can build more comprehensive public transportation systems that reduce traffic congestion and provide sustainable mobility options. This proactive approach protects taxpayers from the exponentially higher costs of acquiring developed land later.",
+      "argument_against": "Corridor preservation for transit can restrict property owners' development rights and reduce property values in affected areas, creating unfair burdens on landowners who may wait years or decades for projects that might never be built. The broad authority to preserve transit corridors could lead to government overreach, with agencies claiming extensive land rights based on speculative future transit needs rather than concrete, funded projects.",
+      "key_question": "What specific safeguards and timelines exist to ensure that corridor preservation doesn't indefinitely restrict property rights for transit projects that may never receive funding or construction approval?",
+      "title": "Transportation Funds Amendments",
+      "positions": {
+        "Chamber West": "Oppose",
+        "Utah Audubon Council": "Support"
+      },
+      "controversy_score": 2,
+      "url": "https://le.utah.gov/~2025/bills/static/HB0229.html",
+      "generated_at": "2025-11-26T10:38:56.396996"
+    },
+    "HB0230": {
+      "plain_summary": "This bill allows Utah's state treasurer to invest public money in digital currencies like Bitcoin, and prevents local governments from restricting cryptocurrency businesses. It also protects people's right to use blockchain technology and mine digital currencies in industrial areas without excessive regulations.",
+      "who_affected": "This bill primarily affects cryptocurrency businesses, digital asset users, local governments, and Utah taxpayers whose public funds could be invested in digital assets.",
+      "argument_for": "Utah should position itself as a leader in emerging financial technology by embracing digital assets and blockchain innovation. The bill protects individual economic freedom and prevents government overreach, while allowing the state to potentially benefit from investing in appreciating digital assets. By creating clear, business-friendly regulations, Utah can attract innovative companies and jobs in the growing cryptocurrency sector.",
+      "argument_against": "Investing taxpayer money in highly volatile digital assets like Bitcoin exposes public funds to significant financial risk and potential losses. The bill may limit local communities' ability to regulate noisy or energy-intensive cryptocurrency mining operations that could negatively impact residents. Rushing to embrace unproven financial technologies with public money could lead to substantial losses that taxpayers would ultimately bear.",
+      "key_question": "Is it appropriate for the state to invest taxpayer money in volatile digital assets, and what safeguards exist to protect public funds from significant losses?",
+      "title": "Blockchain and Digital Innovation Amendments",
+      "positions": {
+        "Chamber West": "Oppose",
+        "Libertas": "Support"
+      },
+      "controversy_score": 2,
+      "url": "https://le.utah.gov/~2025/bills/static/HB0230.html",
+      "generated_at": "2025-11-26T10:39:06.187799"
+    },
+    "HB0249": {
+      "plain_summary": "This Utah law creates new government groups to promote nuclear energy development and establishes special zones where energy projects can get extra support and funding. It sets up a fund to invest in electrical energy development projects and creates councils to coordinate energy planning across the state.",
+      "who_affected": "This bill primarily affects Utah energy companies, nuclear industry developers, environmental groups, and Utah taxpayers who will fund the investment programs.",
+      "argument_for": "Supporters argue this bill positions Utah as a leader in clean nuclear energy, which can provide reliable, carbon-free electricity to meet growing energy demands. The coordinated approach through new councils and designated zones will streamline development, attract investment, and create high-paying jobs while reducing dependence on fossil fuels and supporting climate goals.",
+      "argument_against": "Opponents contend that nuclear power carries significant safety and environmental risks, including radioactive waste disposal challenges and potential accidents. They argue the state should instead invest public funds in renewable energy sources like solar and wind, which are becoming cheaper and don't pose long-term environmental hazards or require complex regulatory oversight.",
+      "key_question": "How will the state ensure that public investment in energy development through this fund provides adequate returns to taxpayers while maintaining proper environmental and safety oversight?",
+      "title": "Nuclear Power Amendments",
+      "positions": {
+        "Salt Lake Chamber": "Support",
+        "Sierra Club Utah": "Oppose",
+        "Heal Utah": "Oppose",
+        "Utah Audubon Council": "Oppose"
+      },
+      "controversy_score": 2,
+      "url": "https://le.utah.gov/~2025/bills/static/HB0249.html",
+      "generated_at": "2025-11-26T10:39:16.852064"
+    },
+    "HB0255": {
+      "plain_summary": "This bill makes it easier for farmers and ranchers in Utah's smaller counties to split off pieces of their agricultural land to create new property parcels. Previously, landowners with at least 50 acres of farmland had restrictions on how they could divide their property, but this law relaxes those rules.",
+      "who_affected": "This primarily affects agricultural landowners with 50+ acres in Utah's third through sixth class counties (the smaller, more rural counties), along with local planning departments that oversee land use decisions.",
+      "argument_for": "This bill protects property rights by giving farmers and ranchers more flexibility to manage their land as they see fit, whether for financial needs, family inheritance planning, or business purposes. Rural landowners should have reasonable freedom to divide their own property without excessive government restrictions, especially when they've invested in maintaining large agricultural operations.",
+      "argument_against": "Relaxing subdivision rules for agricultural land could lead to sprawling development that fragments valuable farmland and wildlife habitat, making both less viable long-term. Once agricultural land is subdivided, it rarely returns to farming use, potentially threatening Utah's food security, rural character, and natural ecosystems that depend on large, contiguous open spaces.",
+      "key_question": "Does this bill include adequate safeguards to ensure that subdivided agricultural parcels will continue to be used for farming rather than converted to residential or commercial development?",
+      "title": "Local Land Use Modifications",
+      "positions": {
+        "Libertas": "Support",
+        "Utah Audubon Council": "Oppose"
+      },
+      "controversy_score": 2,
+      "url": "https://le.utah.gov/~2025/bills/static/HB0255.html",
+      "generated_at": "2025-11-26T10:39:28.085712"
+    },
+    "HB0256": {
+      "plain_summary": "This bill gives Utah cities and counties more power to regulate short-term rentals like Airbnb properties. It allows local governments to require licenses for short-term rental owners, use online listings as evidence of violations, and ask websites to remove listings that break local rules.",
+      "who_affected": "This bill primarily affects short-term rental property owners (like Airbnb hosts), local governments (cities and counties), and indirectly guests who use short-term rentals.",
+      "argument_for": "Local communities need tools to manage short-term rentals that can disrupt neighborhoods with noise, parking problems, and reduced housing availability for residents. This bill provides reasonable oversight by allowing cities and counties to require basic business licenses and enforce existing zoning laws, while using modern technology (online listings) as evidence when violations occur.",
+      "argument_against": "This bill creates unnecessary government overreach that could stifle the sharing economy and limit property owners' rights to use their homes as they see fit. The regulations may burden small property owners with complex licensing requirements and give local governments too much power to restrict legitimate business activities based on online listings alone.",
+      "key_question": "Does this bill strike the right balance between protecting neighborhood quality of life and preserving property owners' rights to operate short-term rentals?",
+      "title": "Municipal and County Zoning Amendments",
+      "positions": {
+        "Libertas": "Oppose",
+        "Utah League Of Cities And Towns": "Support"
+      },
+      "controversy_score": 2,
+      "url": "https://le.utah.gov/~2025/bills/static/HB0256.html",
+      "generated_at": "2025-11-26T10:39:38.520068"
+    },
+    "HB0265": {
+      "plain_summary": "This bill requires Utah's colleges and universities to create plans for moving money away from underperforming programs toward more successful ones. It also limits how many credit hours schools can require for degrees and allows for three-year bachelor's degree programs.",
+      "who_affected": "This bill primarily affects students, faculty, and administrators at Utah's public colleges and universities, as well as taxpayers who fund higher education.",
+      "argument_for": "This bill promotes fiscal responsibility by ensuring taxpayer dollars go toward high-quality, in-demand programs rather than inefficient ones that don't serve students well. By streamlining degree requirements and enabling three-year programs, it can reduce college costs and help students graduate faster with less debt. The strategic reallocation ensures resources flow to programs that actually prepare students for careers and contribute to Utah's economic growth.",
+      "argument_against": "This bill could lead to the elimination of important but less popular academic programs in humanities, arts, and specialized fields that contribute to a well-rounded education and cultural enrichment. The focus on 'strategic' programs may prioritize short-term economic metrics over long-term educational value and could reduce academic freedom. Accelerated degree programs might compromise educational quality by rushing students through their studies without adequate depth of learning.",
+      "key_question": "How will the state determine which programs are truly 'strategic' and worth investing in versus those that should be defunded, and will this process adequately consider the long-term educational and cultural value of diverse academic disciplines?",
+      "title": "Higher Education Strategic Reinvestment",
+      "positions": {
+        "Chamber West": "Oppose",
+        "Libertas": "Support"
+      },
+      "controversy_score": 2,
+      "url": "https://le.utah.gov/~2025/bills/static/HB0265.html",
+      "generated_at": "2025-11-26T10:39:49.501790"
+    },
+    "HB0285": {
+      "plain_summary": "This bill reorganizes how Utah funds water infrastructure projects by consolidating different water funds and changing how cities get loans for water systems. It also requires better planning and creates new rules for prioritizing which water projects get funded first.",
+      "who_affected": "This bill primarily affects Utah cities and water utilities that need funding for water infrastructure projects, as well as state agencies that manage water funding programs.",
+      "argument_for": "Supporters likely argue this streamlines Utah's water funding system by eliminating redundant programs and creating more efficient fund management. The requirement for capital asset management plans and reserve funding helps ensure cities properly maintain their water systems long-term, protecting taxpayers from emergency repairs and service disruptions.",
+      "argument_against": "Opponents likely argue this consolidation reduces local control and flexibility for cities seeking water infrastructure funding. The new planning requirements and prioritization processes may create bureaucratic barriers that delay critical water projects, especially for smaller communities that lack resources to navigate complex state processes.",
+      "key_question": "Will this consolidation actually speed up funding for urgent water infrastructure needs, or will the new bureaucratic requirements slow down projects that communities desperately need?",
+      "title": "Water Infrastructure Modifications",
+      "positions": {
+        "Chamber West": "Oppose",
+        "Alliance For A Better Utah": "Oppose",
+        "Utah Audubon Council": "Support"
+      },
+      "controversy_score": 2,
+      "url": "https://le.utah.gov/~2025/bills/static/HB0285.html",
+      "generated_at": "2025-11-26T10:40:03.729307"
+    },
+    "HB0286": {
+      "plain_summary": "This bill would require Utah to automatically transfer a portion of money from liquor sales each year to a special housing fund that helps people afford homes. The Department of Workforce Services would then distribute this money for housing assistance programs.",
+      "who_affected": "This bill primarily affects low-income individuals and families seeking affordable housing assistance, as well as taxpayers who fund state programs.",
+      "argument_for": "Supporters likely argue that Utah faces a severe affordable housing crisis that requires dedicated, reliable funding to address. By creating an automatic transfer from liquor sales revenue, the state ensures consistent funding for housing assistance without competing annually with other budget priorities. This approach provides stability for housing programs and helps vulnerable populations, including people with disabilities, secure safe and affordable housing.",
+      "argument_against": "Opponents likely argue that dedicating specific revenue streams to particular programs reduces legislative flexibility and good fiscal management. They may contend that automatically earmarking liquor sales revenue limits lawmakers' ability to respond to changing priorities and economic conditions. Business groups might worry that increased government spending on housing could crowd out private sector solutions or create market distortions.",
+      "key_question": "How much liquor sales revenue would be transferred annually, and is this the most effective way to address Utah's housing affordability challenges compared to other policy approaches?",
+      "title": "Olene Walker Housing Loan Fund Amendments",
+      "positions": {
+        "Chamber West": "Oppose",
+        "Disability Law Center": "Support"
+      },
+      "controversy_score": 2,
+      "url": "https://le.utah.gov/~2025/bills/static/HB0286.html",
+      "generated_at": "2025-11-26T10:40:13.870216"
+    },
+    "HB0290": {
+      "plain_summary": "This bill creates clearer rules about when cars can drive in or block bicycle lanes in Utah. It defines key terms and sets restrictions to help keep bike lanes clear for cyclists to use safely.",
+      "who_affected": "This bill primarily affects cyclists, drivers, delivery vehicles, rideshare services, and anyone who parks or stops near bicycle lanes.",
+      "argument_for": "This bill enhances cyclist safety by clearly defining when vehicles can legitimately use bike lanes and preventing unnecessary obstructions. Clear rules protect vulnerable road users while still allowing necessary vehicle access for deliveries, emergencies, and turning movements. Better defined regulations reduce confusion for both drivers and cyclists about proper bike lane usage.",
+      "argument_against": "The restrictions could create practical problems for businesses needing delivery access, rideshare pickups, and emergency vehicles. Overly strict bike lane rules might increase traffic congestion by forcing all vehicles into fewer lanes. The bill may create enforcement challenges and could penalize drivers who briefly use bike lanes out of necessity when no cyclists are present.",
+      "key_question": "Does this bill strike the right balance between protecting cyclist safety and maintaining practical access for legitimate vehicle needs like deliveries and emergency services?",
+      "title": "Bicycle Lane Safety Amendments",
+      "positions": {
+        "Heal Utah": "Support",
+        "Alliance For A Better Utah": "Oppose"
+      },
+      "controversy_score": 2,
+      "url": "https://le.utah.gov/~2025/bills/static/HB0290.html",
+      "generated_at": "2025-11-26T10:40:23.501442"
+    },
+    "HB0318": {
+      "plain_summary": "This bill would require cities and counties in Utah to limit how much grass/lawn new homeowners can plant on their property. Local governments could make even stricter rules if they want to.",
+      "who_affected": "This bill primarily affects people building new homes in Utah, as well as city and county governments who would need to create and enforce the new lawn restrictions.",
+      "argument_for": "Utah faces serious water scarcity issues, and traditional grass lawns consume enormous amounts of water that could be better used elsewhere. By requiring limits on turf for new construction, the state can conserve precious water resources while encouraging drought-resistant landscaping that's better suited to Utah's desert climate.",
+      "argument_against": "This bill represents government overreach into private property rights, telling homeowners what they can and cannot do with their own land. Property owners should have the freedom to landscape their homes as they choose, and blanket restrictions ignore individual circumstances and could hurt property values and quality of life.",
+      "key_question": "How will this bill balance legitimate water conservation needs with individual property rights and local control?",
+      "title": "Residential Turf Amendments",
+      "positions": {
+        "Chamber West": "Oppose",
+        "Utah Audubon Council": "Support",
+        "Friends Of Great Salt Lake": "Support",
+        "Utah Farm Bureau": "Oppose"
+      },
+      "controversy_score": 2,
+      "url": "https://le.utah.gov/~2025/bills/static/HB0318.html",
+      "generated_at": "2025-11-26T10:40:32.452900"
+    },
+    "HB0328": {
+      "plain_summary": "This bill would ban overhead spray irrigation (like sprinkler systems) for new construction and major renovations in Utah, with some exceptions allowed in certain circumstances. Cities and counties would be required to enforce this ban as part of their building approval process.",
+      "who_affected": "This bill primarily affects property developers, homeowners planning new construction or major renovations, landscaping companies, and local government agencies that approve building permits.",
+      "argument_for": "Utah faces severe water scarcity issues, and overhead spray irrigation is highly inefficient, losing significant water to evaporation and wind drift. By requiring more efficient irrigation methods like drip systems for new developments, the state can conserve precious water resources while still maintaining landscaping, which is crucial for protecting the Great Salt Lake and Utah's long-term water security.",
+      "argument_against": "This bill adds unnecessary regulatory burden and costs to new development projects, potentially making housing and commercial development more expensive when Utah already faces affordability challenges. The restrictions could limit landscaping options and property values, while imposing additional compliance costs and bureaucratic oversight on both developers and local governments who must enforce these new requirements.",
+      "key_question": "What specific exceptions are allowed under the 'certain circumstances' provision, and how will this affect the cost and feasibility of new development projects in Utah?",
+      "title": "Water Usage Amendments",
+      "positions": {
+        "Chamber West": "Oppose",
+        "Utah Audubon Council": "Support",
+        "Friends Of Great Salt Lake": "Support"
+      },
+      "controversy_score": 2,
+      "url": "https://le.utah.gov/~2025/bills/static/HB0328.html",
+      "generated_at": "2025-11-26T10:40:42.204743"
+    },
+    "HB0330": {
+      "plain_summary": "This bill would create new rules about water sprinkler systems, likely requiring more efficient sprinkler heads that waste less water. It would ban certain types of inefficient sprinklers and create a system to enforce these requirements.",
+      "who_affected": "This bill primarily affects homeowners, businesses, and agricultural users who install or maintain irrigation and sprinkler systems throughout Utah.",
+      "argument_for": "Utah faces severe water scarcity issues, and inefficient sprinkler systems waste enormous amounts of this precious resource through poor spray patterns and excessive evaporation. Requiring more efficient sprinkler technology would help preserve Utah's limited water supplies for future generations while potentially reducing water bills for consumers once they upgrade their systems.",
+      "argument_against": "Mandating new sprinkler requirements would force property owners to spend significant money replacing existing systems that may be working fine, creating an unfair financial burden especially on rural communities and small businesses. The government shouldn't dictate what type of sprinklers people can use on their own property, and enforcement could create new bureaucratic costs and complications.",
+      "key_question": "What would be the estimated cost for typical property owners to comply with these new sprinkler requirements, and would there be any financial assistance or phase-in period to help with the transition?",
+      "title": "Water Sprinkler Efficiency Requirements",
+      "positions": {
+        "Chamber West": "Oppose",
+        "Utah Audubon Council": "Support",
+        "Friends Of Great Salt Lake": "Support",
+        "Rural Water Association Of Utah": "Oppose"
+      },
+      "controversy_score": 2,
+      "url": "https://le.utah.gov/~2025/bills/static/HB0330.html",
+      "generated_at": "2025-11-26T10:40:52.227020"
+    },
+    "HB0355": {
+      "plain_summary": "This bill changes Utah's laws about mining operations and facilities that extract materials needed for critical infrastructure like roads, bridges, and utilities. It makes it harder for local governments to stop or restrict these operations once they've been established, giving mining companies more long-term protection to continue their work.",
+      "who_affected": "This bill primarily affects mining companies, local communities near mining operations, local government officials who regulate land use, and residents concerned about environmental impacts.",
+      "argument_for": "Utah needs reliable access to materials like sand, gravel, and stone that are essential for building and maintaining roads, bridges, water systems, and other critical infrastructure. This bill protects these vital operations from being shut down by changing local politics or regulations, ensuring communities can continue to access affordable materials needed for public works projects and economic development.",
+      "argument_against": "This bill reduces local communities' ability to protect themselves from harmful mining operations by making it extremely difficult to stop or modify mining activities, even when they cause air pollution, noise, traffic problems, or environmental damage. It prioritizes mining company profits over residents' health, quality of life, and local democratic control over land use decisions.",
+      "key_question": "Does this bill strike the right balance between ensuring access to materials needed for infrastructure while still allowing communities to protect public health and have meaningful input on industrial operations in their neighborhoods?",
+      "title": "Mining and Critical Infrastructure Materials Amendments",
+      "positions": {
+        "Heal Utah": "Oppose",
+        "Utah League Of Cities And Towns": "Oppose",
+        "Alliance For A Better Utah": "Support",
+        "Utah Audubon Council": "Oppose",
+        "Breathe Utah": "Oppose"
+      },
+      "controversy_score": 2,
+      "url": "https://le.utah.gov/~2025/bills/static/HB0355.html",
+      "generated_at": "2025-11-26T10:41:02.603165"
+    },
+    "HB0386": {
+      "plain_summary": "This bill changes the rules about when the public can access Utah's rivers and streams for recreation like fishing or boating. It modifies how the state determines which waterways are considered 'navigable' and when people have the right to use them, even if they flow through private property.",
+      "who_affected": "This bill primarily affects outdoor recreationists (anglers, boaters, hikers), private landowners whose property includes or borders streams and rivers, and farmers or ranchers with water rights.",
+      "argument_for": "Private property rights must be protected, and landowners shouldn't have their property devalued or invaded by unclear access laws. This bill provides needed clarity about which waters truly qualify for public access, preventing disputes and ensuring that property owners can reasonably control access to streams that may not have historically been used for navigation or commerce.",
+      "argument_against": "Public waters belong to all citizens, and this bill appears to restrict traditional access rights that outdoor enthusiasts have long enjoyed for fishing, wildlife viewing, and recreation. Limiting access to streams and rivers could harm Utah's outdoor recreation economy and prevent people from enjoying natural resources that should be available to everyone, not just those who own waterfront property.",
+      "key_question": "Does this bill strike the right balance between protecting private property rights and preserving public access to Utah's natural water resources for recreation and conservation?",
+      "title": "Public Waters Access Act Amendments",
+      "positions": {
+        "Utah Audubon Council": "Oppose",
+        "Utah Farm Bureau": "Support"
+      },
+      "controversy_score": 2,
+      "url": "https://le.utah.gov/~2025/bills/static/HB0386.html",
+      "generated_at": "2025-11-26T10:41:13.847084"
+    },
+    "HB0401": {
+      "plain_summary": "This Utah bill would make it a crime to perform certain adult-oriented performances in public places or where minors can see them. The bill doesn't specify exactly what performances would be banned, but it would create criminal penalties for violations.",
+      "who_affected": "This bill would primarily affect performers, entertainers, and venues that host adult-oriented performances, as well as parents and communities concerned about what content minors are exposed to.",
+      "argument_for": "Supporters argue this bill protects children from inappropriate sexual content that could be harmful to their development. They believe parents should have the right to control what their children are exposed to, and that certain adult performances should be restricted to appropriate venues and audiences, similar to how we regulate other age-restricted content.",
+      "argument_against": "Opponents argue this bill could violate First Amendment free speech protections and may be written so broadly that it criminalizes legitimate artistic expression. They worry it could disproportionately target LGBTQ+ performers and events, and that vague language about 'adult-oriented performance' could lead to selective or discriminatory enforcement.",
+      "key_question": "How specifically does this bill define 'adult-oriented performance' and what safeguards exist to ensure it doesn't criminalize protected speech or artistic expression?",
+      "title": "Adult-oriented Performance Amendments",
+      "positions": {
+        "Aclu Of Utah": "Oppose",
+        "Friends Of Great Salt Lake": "Support",
+        "Trans Legislation Tracker": "Oppose"
+      },
+      "controversy_score": 2,
+      "url": "https://le.utah.gov/~2025/bills/static/HB0401.html",
+      "generated_at": "2025-11-26T10:41:23.004482"
+    },
+    "HB0408": {
+      "plain_summary": "This bill would allow voters in a school district to petition for a referendum to overturn decisions made by their local school board, including decisions to raise taxes or impose new taxes. It creates a formal process for residents to challenge school board actions through a local vote.",
+      "who_affected": "This bill primarily affects school district residents, local school boards, and potentially students and teachers whose programs could be impacted by reversed board decisions.",
+      "argument_for": "This bill enhances democratic accountability by giving voters direct power to check school board decisions they disagree with. It ensures that major decisions, especially tax increases, have genuine community support rather than being imposed by a small group of elected officials. This process could increase civic engagement and ensure school boards are more responsive to their constituents' wishes.",
+      "argument_against": "This bill could undermine effective school governance by allowing vocal minorities to paralyze necessary but unpopular decisions through constant referendum threats. School boards are elected to make informed decisions based on expertise and comprehensive information, and subjecting routine governance to referendums could delay critical educational needs and create budget uncertainty that harms students.",
+      "key_question": "How would this referendum process balance democratic accountability with the need for school boards to make timely, sometimes difficult decisions in students' best interests?",
+      "title": "School Board Referendum Amendments",
+      "positions": {
+        "Chamber West": "Oppose",
+        "Libertas": "Support",
+        "Utah Education Association": "Oppose"
+      },
+      "controversy_score": 2,
+      "url": "https://le.utah.gov/~2025/bills/static/HB0408.html",
+      "generated_at": "2025-11-26T10:41:33.065923"
+    },
+    "HB0433": {
+      "plain_summary": "This bill would allow farm buildings used for agritourism activities (like barn weddings, farm tours, or pumpkin patches) to be exempt from following the same strict building codes that apply to regular commercial buildings. Instead of meeting standard construction requirements, these agricultural structures could operate under less stringent regulations.",
+      "who_affected": "This bill primarily affects farmers who want to host agritourism activities, visitors to agritourism sites, and local government building inspectors and code enforcement officials.",
+      "argument_for": "Farmers need regulatory relief to diversify their income and keep family farms financially viable, especially during challenging economic times in agriculture. Requiring expensive building code compliance for simple farm structures used occasionally for tours or events creates unnecessary barriers that could force small farms out of business. Agritourism provides valuable economic opportunities for rural communities and helps preserve agricultural land use.",
+      "argument_against": "Building codes exist to protect public safety, and visitors to agritourism sites deserve the same safety protections as people visiting any other commercial venue. Exempting these structures from safety standards could put tourists at risk from structural failures, fires, or other hazards, potentially creating liability issues for both property owners and local governments. Local municipalities should retain authority to ensure all public venues meet appropriate safety standards.",
+      "key_question": "How can Utah balance supporting rural economic development through agritourism while ensuring adequate safety protections for visitors to these farm-based activities?",
+      "title": "Agritourism Building Amendments",
+      "positions": {
+        "Utah League Of Cities And Towns": "Oppose",
+        "Utah Farm Bureau": "Support"
+      },
+      "controversy_score": 2,
+      "url": "https://le.utah.gov/~2025/bills/static/HB0433.html",
+      "generated_at": "2025-11-26T10:41:44.161576"
+    },
+    "HB0447": {
+      "plain_summary": "This bill creates a state grant program to help school districts build or expand 'catalyst centers' - specialized facilities that provide career and technical education aligned with local job market needs. The grants can be used over multiple years and can pay for buildings and equipment, with the goal of better preparing students for in-demand careers.",
+      "who_affected": "This bill primarily affects high school students, school districts, and local employers by creating new pathways for career-focused education and workforce development.",
+      "argument_for": "Catalyst centers will better prepare students for high-paying, in-demand careers by providing hands-on training in facilities equipped with modern technology and industry-standard equipment. By aligning education with actual labor market needs and allowing industry experts to teach without traditional licensing barriers, students will graduate with marketable skills that lead directly to good jobs, benefiting both individuals and Utah's economic competitiveness.",
+      "argument_against": "This program may divert resources away from traditional academic subjects and could create an inequitable two-track system where some students are steered toward vocational training while others get college-prep education. There are also concerns about accountability and whether these specialized centers will truly meet their promised outcomes, especially given the significant public investment required for facilities and equipment that may become obsolete as technology changes.",
+      "key_question": "How will the state ensure that catalyst centers truly provide students with valuable, transferable skills while maintaining academic rigor and not limiting students' future educational opportunities?",
+      "title": "Statewide Catalyst Campus Model",
+      "positions": {
+        "Salt Lake Chamber": "Support",
+        "Chamber West": "Oppose",
+        "Utah Education Association": "Support"
+      },
+      "controversy_score": 2,
+      "url": "https://le.utah.gov/~2025/bills/static/HB0447.html",
+      "generated_at": "2025-11-26T10:41:56.080786"
+    },
+    "HB0455": {
+      "plain_summary": "This bill makes changes to Utah's school voucher program that gives families taxpayer money to spend on private schools or homeschooling. The changes add stricter rules about who qualifies, create limits on how the money can be spent, and require better tracking of where the funds go.",
+      "who_affected": "This bill primarily affects families using school vouchers for private schools or homeschooling, the organizations that manage these voucher programs, and taxpayers who fund the scholarships.",
+      "argument_for": "These amendments strengthen accountability and prevent abuse of taxpayer funds by adding income verification, spending limits, and audit requirements. The changes ensure that voucher money is actually spent on legitimate educational expenses rather than being misused, while still preserving school choice for families who want alternatives to traditional public schools.",
+      "argument_against": "While accountability measures sound reasonable, these restrictions could create bureaucratic barriers that make it harder for families to access educational options that work for their children. The spending limits and administrative requirements may reduce the flexibility that makes school choice programs valuable, potentially limiting educational opportunities rather than expanding them.",
+      "key_question": "Do these new accountability measures strike the right balance between preventing misuse of taxpayer funds and maintaining meaningful educational choice for families?",
+      "title": "Utah Fits All Scholarship Program Amendments",
+      "positions": {
+        "Libertas": "Support",
+        "Utah Education Association": "Oppose"
+      },
+      "controversy_score": 2,
+      "url": "https://le.utah.gov/~2025/bills/static/HB0455.html",
+      "generated_at": "2025-11-26T10:42:05.305975"
+    },
+    "HB0465": {
+      "plain_summary": "This bill requires Salt Lake City police to work with the state Department of Public Safety through a formal agreement and report on their activities. It also gives the state power to take city-owned property outside city limits in certain situations and changes how police departments must handle disciplinary actions against officers.",
+      "who_affected": "This bill primarily affects Salt Lake City (as the county seat of Salt Lake County), its police department, law enforcement officers, and potentially other large Utah cities.",
+      "argument_for": "Supporters likely argue this bill ensures better coordination between local and state law enforcement agencies to improve public safety outcomes. The reporting requirements increase transparency and accountability, while the employment protection provisions ensure law enforcement officers receive fair due process before facing disciplinary action, which could help retain qualified officers.",
+      "argument_against": "Opponents likely argue this bill undermines local government autonomy by forcing cities into state agreements and giving the state eminent domain power over city property. Local governments and business chambers may view this as state overreach that reduces cities' ability to manage their own affairs and make decisions best suited to their communities' needs.",
+      "key_question": "Does this bill appropriately balance the need for coordinated public safety with respect for local government authority and self-determination?",
+      "title": "Public Safety Amendments",
+      "positions": {
+        "Chamber West": "Oppose",
+        "Utah League Of Cities And Towns": "Oppose",
+        "Alliance For A Better Utah": "Support",
+        "Disability Law Center": "Oppose"
+      },
+      "controversy_score": 2,
+      "url": "https://le.utah.gov/~2025/bills/static/HB0465.html",
+      "generated_at": "2025-11-26T10:42:15.433791"
+    },
+    "HB0466": {
+      "plain_summary": "This bill requires companies planning major mergers to file copies of their federal merger paperwork with Utah's Attorney General. The Attorney General would keep these documents private but could use them to investigate potential antitrust violations that might harm Utah consumers.",
+      "who_affected": "This primarily affects large corporations planning mergers or acquisitions that meet federal reporting thresholds, as well as Utah's Attorney General's office.",
+      "argument_for": "Utah needs better tools to protect its consumers from anti-competitive mergers that could lead to higher prices or reduced choices. By receiving the same information that federal regulators get, Utah can identify mergers that might harm local markets or specific industries important to the state. This uniform approach across states creates consistency for businesses while ensuring state-level oversight of competition issues.",
+      "argument_against": "This creates unnecessary regulatory duplication since federal agencies already review major mergers for antitrust concerns. Adding state-level filing requirements increases compliance costs and administrative burdens for businesses without clear evidence that additional oversight is needed. The bill may also create legal uncertainty about how multiple state attorneys general might take conflicting positions on the same merger.",
+      "key_question": "Does Utah have specific competition concerns that aren't adequately addressed by existing federal antitrust enforcement, and will this additional oversight meaningfully protect Utah consumers without imposing excessive regulatory burden on businesses?",
+      "title": "Uniform Antitrust Pre-Merger Notification Act Amendments",
+      "positions": {
+        "Salt Lake Chamber": "Support",
+        "Chamber West": "Oppose"
+      },
+      "controversy_score": 2,
+      "url": "https://le.utah.gov/~2025/bills/static/HB0466.html",
+      "generated_at": "2025-11-26T10:42:26.920950"
+    },
+    "HB0474": {
+      "plain_summary": "This bill creates new ways for the state legislature to monitor and control how government agencies make rules that affect businesses and professionals. It requires agencies to collect public feedback about existing licensing rules and puts limits on how much money agencies can spend when implementing new regulations.",
+      "who_affected": "This bill primarily affects state government agencies, licensed professionals, and businesses that must comply with state regulations.",
+      "argument_for": "Government agencies often create burdensome regulations without adequate public input or consideration of costs, stifling economic growth and making it harder for people to work in their chosen professions. This bill ensures taxpayers and affected businesses have a voice in the regulatory process while preventing agencies from implementing costly rules without proper oversight. It promotes transparency and accountability by requiring agencies to justify their regulations and consider the real-world impact on citizens and businesses.",
+      "argument_against": "Additional oversight mechanisms could slow down important regulatory processes and make it harder for agencies to respond quickly to public safety concerns or changing circumstances. The feedback requirements and cost limitations may create bureaucratic red tape that prevents agencies from effectively carrying out their mission to protect consumers and ensure professional standards. This could ultimately weaken important protections that licensing and regulations provide to the public.",
+      "key_question": "Will these oversight mechanisms strike the right balance between preventing regulatory overreach and allowing agencies to effectively protect public safety and welfare?",
+      "title": "Regulatory Oversight Amendments",
+      "positions": {
+        "Salt Lake Chamber": "Oppose",
+        "Libertas": "Support"
+      },
+      "controversy_score": 2,
+      "url": "https://le.utah.gov/~2025/bills/static/HB0474.html",
+      "generated_at": "2025-11-26T10:42:38.269242"
+    },
+    "HB0477": {
+      "plain_summary": "This bill makes it harder for schools to ban parents and community members from school property by narrowing when someone can be charged with trespassing. It specifically protects people who speak at school board meetings from being banned just for what they say during public comment periods.",
+      "who_affected": "This bill primarily affects parents, community members who attend school board meetings, and school administrators who manage access to school property.",
+      "argument_for": "Parents and citizens have a fundamental right to participate in public education governance and express their concerns at school board meetings. Schools should not be able to silence dissenting voices or ban community members from public property simply because they disagree with their viewpoints. This bill ensures that democratic participation in education decisions is protected while still allowing schools to maintain order.",
+      "argument_against": "Schools need clear authority to maintain safe and orderly environments for students and staff, which may require removing disruptive individuals from school property. This bill could tie administrators' hands when dealing with people who create hostile environments at school board meetings or on school grounds. Existing legal protections already prevent abuse of trespass laws, making these changes unnecessary and potentially harmful to school safety.",
+      "key_question": "Does this bill strike the right balance between protecting citizens' rights to participate in school governance and maintaining schools' ability to ensure safe, orderly environments?",
+      "title": "School Trespass Amendments",
+      "positions": {
+        "Libertas": "Support",
+        "Alliance For A Better Utah": "Oppose"
+      },
+      "controversy_score": 2,
+      "url": "https://le.utah.gov/~2025/bills/static/HB0477.html",
+      "generated_at": "2025-11-26T10:42:48.285159"
+    },
+    "HB0525": {
+      "plain_summary": "This bill would ban registration of older heavy trucks (over 14,000 pounds) made before 2010 starting in 2030, and immediately restrict some truck registrations in certain counties. It also offers tax credits to encourage people to buy newer, cleaner heavy-duty vehicles.",
+      "who_affected": "This primarily affects trucking companies, farmers, construction businesses, and other commercial operators who own or operate heavy-duty vehicles over 14,000 pounds.",
+      "argument_for": "Older heavy trucks are major sources of air pollution and harmful emissions that damage public health, especially in areas like Salt Lake City that already struggle with poor air quality. By phasing out pre-2010 trucks and incentivizing cleaner vehicles, Utah can significantly reduce pollution-related health problems like asthma and respiratory disease while still giving businesses time to transition to newer equipment.",
+      "argument_against": "This mandate will impose substantial financial hardship on small businesses, farmers, and trucking companies who rely on older but functional vehicles and cannot afford to replace their entire fleets. The policy could drive up transportation and goods costs for consumers, hurt rural businesses that operate on thin margins, and eliminate perfectly good working trucks that many businesses depend on for their livelihood.",
+      "key_question": "Does this bill provide adequate financial support and transition time for small businesses and farmers to replace older trucks without causing significant economic hardship?",
+      "title": "Clean Truck Amendments",
+      "positions": {
+        "Chamber West": "Oppose",
+        "Heal Utah": "Support",
+        "Utah Audubon Council": "Support",
+        "Utah Farm Bureau": "Oppose",
+        "Breathe Utah": "Support"
+      },
+      "controversy_score": 2,
+      "url": "https://le.utah.gov/~2025/bills/static/HB0525.html",
+      "generated_at": "2025-11-26T10:42:59.056764"
+    },
+    "SB0048": {
+      "plain_summary": "This bill changes the rules for mental health therapists in Utah by allowing them to do more types of treatment and creates a special fund for training and oversight. It makes some technical fixes to existing laws and expands what licensed therapists are legally allowed to do with their patients.",
+      "who_affected": "This bill primarily affects licensed mental health therapists, their patients, and potentially businesses that provide mental health services.",
+      "argument_for": "Expanding therapists' scope of practice could improve patient access to mental health care by allowing qualified professionals to provide a broader range of treatments without requiring referrals to other specialists. The new education and enforcement fund could enhance training standards and professional oversight, ultimately leading to better quality care for Utahns struggling with mental health issues.",
+      "argument_against": "Expanding scope of practice without sufficient safeguards could lead to therapists providing treatments beyond their expertise, potentially putting patients at risk. Business organizations may be concerned about increased regulatory costs, compliance burdens, or potential liability issues that could make mental health services more expensive or difficult to provide.",
+      "key_question": "What specific treatments or services are therapists now allowed to provide that they couldn't before, and what training or oversight requirements ensure they're qualified to provide these expanded services safely?",
+      "title": "Behavioral Health Amendments",
+      "positions": {
+        "Chamber West": "Oppose",
+        "Disability Law Center": "Support"
+      },
+      "controversy_score": 2,
+      "url": "https://le.utah.gov/~2025/bills/static/SB0048.html",
+      "generated_at": "2025-11-26T10:43:09.399743"
+    },
+    "SB0057": {
+      "plain_summary": "This bill changes the legal definition of what counts as a 'newborn child' under Utah's safe haven law, which allows parents to safely surrender babies at designated locations without facing criminal charges. The bill modifies the age or condition requirements that determine which infants qualify for this protection.",
+      "who_affected": "This primarily affects new parents considering surrendering their infants, healthcare workers and first responders who receive surrendered babies, and the infants themselves who may or may not qualify for safe haven protections.",
+      "argument_for": "Supporters likely argue this bill improves child safety by clarifying or expanding which infants can be safely surrendered, potentially preventing child abandonment in unsafe situations. The legislation may address gaps in the current law that could leave some vulnerable newborns without adequate legal protections, ensuring more children have access to safe placement options.",
+      "argument_against": "Opponents probably contend that changing the definition could create legal confusion or unintended consequences for families and service providers. They may argue the current definition works effectively and worry that modifications could either restrict access to safe haven protections or create administrative burdens that complicate emergency situations involving infant welfare.",
+      "key_question": "How does the new definition of 'newborn child' differ from the previous definition, and will this change help or hinder parents' ability to safely surrender infants when necessary?",
+      "title": "Newborn Relinquishment Amendments",
+      "positions": {
+        "Chamber West": "Oppose",
+        "Alliance For A Better Utah": "Oppose",
+        "Friends Of Great Salt Lake": "Support"
+      },
+      "controversy_score": 2,
+      "url": "https://le.utah.gov/~2025/bills/static/SB0057.html",
+      "generated_at": "2025-11-26T10:43:20.300639"
+    },
+    "SB0061": {
+      "plain_summary": "This bill requires electric companies to do more analysis and coordinate with federal agencies before they can use eminent domain (the government power to take private property for public use) to build high-voltage power lines. It also requires utilities to report annually on their eminent domain actions and efforts to use federal lands instead of private property.",
+      "who_affected": "This bill primarily affects private property owners who might have their land taken for power line construction, electric utility companies building transmission infrastructure, and federal land management agencies.",
+      "argument_for": "This bill protects private property rights by ensuring utilities thoroughly explore alternatives before seizing private land through eminent domain. By requiring coordination with federal agencies and infrastructure analysis, it prevents unnecessary taking of private property when federal lands might be suitable alternatives, respecting the principle that eminent domain should be a last resort.",
+      "argument_against": "This bill could significantly delay critical energy infrastructure projects by adding bureaucratic hurdles and lengthy coordination processes with federal agencies. The additional requirements may increase costs and slow down the construction of power lines needed for energy security and economic development, while federal coordination is often complex and time-consuming.",
+      "key_question": "Will the additional analysis and coordination requirements meaningfully protect private property rights without unreasonably delaying essential energy infrastructure projects?",
+      "title": "Energy Corridor Amendments",
+      "positions": {
+        "Chamber West": "Oppose",
+        "Libertas": "Support",
+        "Utah Audubon Council": "Oppose"
+      },
+      "controversy_score": 2,
+      "url": "https://le.utah.gov/~2025/bills/static/SB0061.html",
+      "generated_at": "2025-11-26T10:43:31.519558"
+    },
+    "SB0063": {
+      "plain_summary": "This bill changes Utah's waste tire recycling rules to allow landfills to accept old tires if they have equipment to shred them up first. It also lets smaller counties get money back for handling tire disposal at their landfills.",
+      "who_affected": "This bill primarily affects landfill operators, smaller rural counties (third through sixth class), and waste tire disposal facilities across Utah.",
+      "argument_for": "This bill provides practical solutions for rural communities that struggle with tire disposal costs and limited recycling options. By allowing shredded tires in landfills and providing reimbursement to smaller counties, it reduces the financial burden on local governments while still requiring size reduction to minimize environmental impact. The mobile shredding requirement ensures tires take up less space and are less likely to create the problems associated with whole tire disposal.",
+      "argument_against": "Allowing any tires into landfills, even shredded ones, undermines the environmental goals of tire recycling and sets a concerning precedent that could weaken waste diversion efforts. Tires contain materials that don't break down naturally and can leach chemicals into groundwater, so they should be recycled into useful products like playground surfaces or road materials rather than buried. This change may reduce incentives for developing better recycling infrastructure statewide.",
+      "key_question": "Does this bill strike the right balance between helping rural communities manage tire disposal costs and maintaining strong environmental protections for groundwater and waste reduction?",
+      "title": "Waste Tire Recycling Amendments",
+      "positions": {
+        "Chamber West": "Oppose",
+        "Utah Audubon Council": "Support"
+      },
+      "controversy_score": 2,
+      "url": "https://le.utah.gov/~2025/bills/static/SB0063.html",
+      "generated_at": "2025-11-26T10:43:42.577189"
+    },
+    "SB0071": {
+      "plain_summary": "This bill reduces taxes for more Utah retirees by allowing people with higher incomes to still get a tax credit on their Social Security benefits. Previously, this tax break was only available to retirees with lower incomes, but now more middle-income seniors will qualify.",
+      "who_affected": "This bill primarily affects Utah retirees who receive Social Security benefits, especially those with moderate to middle incomes who previously earned too much to qualify for the tax credit.",
+      "argument_for": "Retirees on fixed incomes are struggling with rising costs of living, and Social Security benefits were never intended to be heavily taxed since recipients already paid into the system during their working years. Expanding this tax credit helps more seniors keep more of their retirement income, allowing them to better afford necessities like housing, healthcare, and groceries during their golden years.",
+      "argument_against": "Reducing taxes on Social Security benefits primarily benefits middle and upper-middle class retirees rather than those most in need, while reducing state revenue that could fund essential services like education and infrastructure. This tax break may force the state to either cut important programs or raise taxes elsewhere, potentially burdening working families to give tax relief to retirees who may be financially better off.",
+      "key_question": "Will the lost tax revenue from this expansion significantly impact Utah's ability to fund essential state services, and are there more targeted ways to help seniors who are truly struggling financially?",
+      "title": "Social Security Tax Revisions",
+      "positions": {
+        "Chamber West": "Oppose",
+        "Utah Public Employees Association": "Support"
+      },
+      "controversy_score": 2,
+      "url": "https://le.utah.gov/~2025/bills/static/SB0071.html",
+      "generated_at": "2025-11-26T10:43:53.636118"
+    },
+    "SB0072": {
+      "plain_summary": "This bill would make family leave insurance (which helps people take time off for new babies or sick family members) follow the same rules as other types of insurance that replace income when you can't work. It basically puts family leave insurance under the same legal requirements and protections as disability insurance.",
+      "who_affected": "This bill primarily affects Utah workers who might need family leave, insurance companies that offer family leave policies, and employers who provide or purchase family leave insurance for their employees.",
+      "argument_for": "Family leave insurance deserves the same consumer protections and regulatory oversight as other income replacement insurance because families depend on these benefits during critical life events like childbirth or caring for seriously ill relatives. Bringing family leave insurance under established insurance regulations ensures that when workers need these benefits most, they can trust the coverage will be reliable and properly administered, just like disability insurance.",
+      "argument_against": "Adding more regulatory requirements to family leave insurance could make it more expensive and complicated for employers to offer, potentially reducing access to these benefits rather than improving them. The additional compliance costs and administrative burden from treating family leave insurance like disability insurance might discourage businesses from providing family leave benefits, ultimately hurting the workers the bill aims to help.",
+      "key_question": "Will applying disability insurance regulations to family leave insurance make these benefits more reliable and accessible for workers, or will the added costs and complexity reduce employers' willingness to offer family leave benefits?",
+      "title": "Family Leave Requirements Amendments",
+      "positions": {
+        "Voices For Utah Children": "Support",
+        "Chamber West": "Oppose"
+      },
+      "controversy_score": 2,
+      "url": "https://le.utah.gov/~2025/bills/static/SB0072.html",
+      "generated_at": "2025-11-26T10:44:03.672498"
+    },
+    "SB0080": {
+      "plain_summary": "This bill allows Utah state agencies to charge fees based on how much water people and businesses use. The money collected from these fees would go into a fund for water infrastructure projects, though some users like farmers and wholesale water suppliers wouldn't have to pay.",
+      "who_affected": "This bill primarily affects municipal water users, businesses, and other water consumers, while exempting agricultural users, wholesale water suppliers, and certain special districts.",
+      "argument_for": "Water fees create a market-based incentive for conservation, encouraging more efficient water use during times of growing demand and limited supply. The revenue generated can fund critical water infrastructure improvements that benefit everyone, while exemptions for agriculture protect food production. This approach uses economic signals to promote responsible water stewardship without heavy-handed regulations.",
+      "argument_against": "Water fees essentially create a new tax on an essential resource that people cannot live without, potentially burdening households and businesses with additional costs. The exemptions for certain sectors create an unfair system where some major water users avoid fees while others pay, and there's concern that bureaucratic fee-setting could become arbitrary or excessive without proper oversight.",
+      "key_question": "How will the state ensure that water fees remain reasonable and fair while still providing meaningful incentives for conservation, and why should some water users be exempt while others pay?",
+      "title": "Water Fee Amendments",
+      "positions": {
+        "Chamber West": "Oppose",
+        "Utah Audubon Council": "Support"
+      },
+      "controversy_score": 2,
+      "url": "https://le.utah.gov/~2025/bills/static/SB0080.html",
+      "generated_at": "2025-11-26T10:44:14.574808"
+    },
+    "SB0085": {
+      "plain_summary": "This bill would automatically reduce Utah's income tax rate when the state collects more tax revenue than it originally predicted. It creates a formula to calculate how much to reduce taxes and requires the state to publish the new tax rate each year.",
+      "who_affected": "This bill primarily affects all Utah residents who pay state income taxes, as well as public services that depend on state income tax funding like education and social services.",
+      "argument_for": "When government collects more money than expected, that surplus should be returned to taxpayers rather than growing government spending. This creates an automatic mechanism to ensure Utahns keep more of their hard-earned money when the state's revenue exceeds projections. It promotes fiscal responsibility by preventing the government from automatically spending every dollar it collects.",
+      "argument_against": "Automatic tax cuts could undermine funding for essential public services like education, disability services, and infrastructure that Utah communities depend on. Revenue surpluses often represent one-time windfalls that are better used to address long-term needs or build reserves rather than permanent tax reductions. This approach removes legislative discretion to make thoughtful decisions about how best to use unexpected revenue based on current state priorities and needs.",
+      "key_question": "Should Utah prioritize returning surplus revenue to taxpayers through automatic tax cuts, or should legislators retain flexibility to invest surplus funds in public services and infrastructure based on changing state needs?",
+      "title": "Income Tax Rate Amendments",
+      "positions": {
+        "Chamber West": "Oppose",
+        "Libertas": "Support",
+        "Utah Education Association": "Oppose",
+        "Disability Law Center": "Oppose"
+      },
+      "controversy_score": 2,
+      "url": "https://le.utah.gov/~2025/bills/static/SB0085.html",
+      "generated_at": "2025-11-26T10:44:25.277894"
+    },
+    "SB0092": {
+      "plain_summary": "This bill requires a study of how much water golf courses use in Utah and makes that water usage data private from public view. It also requires the state to create a master plan for managing state-owned golf courses.",
+      "who_affected": "This bill primarily affects golf course owners and operators, environmental groups concerned about water conservation, and Utah taxpayers who want transparency about water usage data.",
+      "argument_for": "Golf courses provide important recreational opportunities and economic benefits, so they deserve protection from potential harassment or unfair targeting based on their water usage. A comprehensive study and master plan will help ensure golf courses operate efficiently while contributing to Utah's economy and quality of life. Making the data protected allows for honest reporting without fear of misuse by activists.",
+      "argument_against": "In a drought-prone state like Utah, citizens have a right to know how much water different industries are using, especially for recreational purposes like golf. Making this data secret reduces government transparency and prevents informed public debate about water priorities during water shortages. The public should be able to access information about water usage to hold both government and private entities accountable for conservation efforts.",
+      "key_question": "Does protecting golf course water usage data from public view serve a legitimate purpose, or does it unnecessarily reduce transparency about how Utah's limited water resources are being allocated?",
+      "title": "Golf Course Amendments",
+      "positions": {
+        "Chamber West": "Oppose",
+        "Utah Audubon Council": "Support",
+        "Friends Of Great Salt Lake": "Support"
+      },
+      "controversy_score": 2,
+      "url": "https://le.utah.gov/~2025/bills/static/SB0092.html",
+      "generated_at": "2025-11-26T10:44:35.605784"
+    },
+    "SB0093": {
+      "plain_summary": "This bill creates a special advisory group focused on juvenile justice careers, similar to other career advisory councils that already exist in Utah. The council would likely help connect young people with training and job opportunities in fields related to juvenile justice and rehabilitation.",
+      "who_affected": "This bill primarily affects young people interested in juvenile justice careers, educational institutions offering related programs, and organizations working in youth rehabilitation and criminal justice.",
+      "argument_for": "Creating a dedicated juvenile justice talent advisory council recognizes the specialized skills needed in youth rehabilitation and ensures adequate training pipelines for this critical field. Given the unique challenges of working with at-risk youth, having focused career development could improve outcomes for both workers and the young people they serve, potentially reducing recidivism and better supporting youth rehabilitation.",
+      "argument_against": "Adding another advisory council may create unnecessary bureaucracy and administrative costs without clear evidence that existing career development resources are insufficient. The business community may be concerned about expanding government involvement in workforce development when market-driven solutions and existing advisory structures could address any workforce needs more efficiently.",
+      "key_question": "What specific gaps in juvenile justice career training does this new council address that aren't already covered by existing workforce development programs or advisory bodies?",
+      "title": "Juvenile Justice Career Training Amendments",
+      "positions": {
+        "Voices For Utah Children": "Support",
+        "Chamber West": "Oppose"
+      },
+      "controversy_score": 2,
+      "url": "https://le.utah.gov/~2025/bills/static/SB0093.html",
+      "generated_at": "2025-11-26T10:44:45.536649"
+    },
+    "SB0116": {
+      "plain_summary": "This bill would change how much individuals and businesses pay in state income taxes in Utah. The specific details of whether taxes would go up or down aren't provided, but it modifies the current tax rates for both people and corporations.",
+      "who_affected": "This bill would affect all Utah residents who pay state income tax and all businesses that pay corporate income tax in Utah.",
+      "argument_for": "Supporters likely argue that tax modifications could stimulate economic growth by allowing individuals and businesses to keep more of their earnings, which they can then spend or invest back into the economy. Lower tax rates may also make Utah more competitive in attracting new businesses and residents, potentially creating jobs and expanding the tax base over time.",
+      "argument_against": "Opponents likely argue that reducing tax revenue could force cuts to essential public services like education, healthcare, and infrastructure that Utah families depend on. Given that education and children's advocacy groups oppose this bill, they may be concerned that schools and programs for children would face funding shortfalls that could harm student outcomes and family support services.",
+      "key_question": "How much revenue would the state lose from these tax changes, and what specific programs or services might be affected by the reduced funding?",
+      "title": "Income Tax Modifications",
+      "positions": {
+        "Voices For Utah Children": "Oppose",
+        "Chamber West": "Oppose",
+        "Libertas": "Support",
+        "Utah Education Association": "Oppose"
+      },
+      "controversy_score": 2,
+      "url": "https://le.utah.gov/~2025/bills/static/SB0116.html",
+      "generated_at": "2025-11-26T10:44:56.323711"
+    },
+    "SB0131": {
+      "plain_summary": "This bill allows water companies to include commitments to send water to the Great Salt Lake as part of their official water conservation plans. Currently, water conservation plans focus on reducing human water use, but this would let providers also count water they dedicate to helping the lake as part of their conservation efforts.",
+      "who_affected": "This bill primarily affects water utility companies, municipal water providers, and indirectly anyone concerned about the Great Salt Lake's water levels and the broader environmental impacts.",
+      "argument_for": "The Great Salt Lake is facing a critical water crisis that threatens Utah's environment, air quality, and economy, as low water levels create toxic dust storms and harm the ecosystem. Allowing water providers to formally commit water to the lake through conservation plans creates a structured, accountable way to address this emergency while still meeting conservation goals. This approach recognizes that saving the lake is itself a form of water conservation that benefits all Utahns long-term.",
+      "argument_against": "Water conservation plans should focus on actual conservation - reducing consumption and waste - rather than allowing providers to meet conservation requirements by simply redirecting water to the lake. This could create a loophole that reduces pressure on utilities to implement genuine efficiency measures and demand reduction programs. Businesses and residents might end up paying higher water costs or facing restrictions while water is diverted away from economic productive uses without achieving real conservation.",
+      "key_question": "Will this bill lead to more water actually being saved overall, or will it simply allow water providers to meet conservation targets by redirecting water rather than reducing total consumption?",
+      "title": "Water Commitment Amendments",
+      "positions": {
+        "Chamber West": "Oppose",
+        "Alliance For A Better Utah": "Support",
+        "Utah Audubon Council": "Support"
+      },
+      "controversy_score": 2,
+      "url": "https://le.utah.gov/~2025/bills/static/SB0131.html",
+      "generated_at": "2025-11-26T10:45:07.850574"
+    },
+    "SB0134": {
+      "plain_summary": "This bill updates Utah's laws about medical decision-making by adopting a standardized national framework called the Uniform Health Care Decisions Act. It clarifies how people can make advance directives (instructions for their medical care if they become unable to decide), including mental health decisions, and establishes clearer rules about who can make medical decisions for someone when they can't decide for themselves.",
+      "who_affected": "This bill primarily affects patients, their families, healthcare providers, and anyone involved in medical decision-making when a patient cannot make decisions for themselves.",
+      "argument_for": "Supporters argue this bill provides much-needed clarity and consistency by adopting proven national standards that have worked well in other states. The Disability Law Center's support suggests the bill better protects vulnerable individuals' rights and autonomy in medical decision-making. Standardizing these processes reduces confusion for families and healthcare providers during already difficult medical situations.",
+      "argument_against": "Opponents likely worry that expanding who can serve as healthcare surrogates (including allowing healthcare providers in limited circumstances) could lead to conflicts of interest or decisions that don't truly reflect patients' wishes. Business groups like Chamber West may be concerned about increased liability exposure for healthcare facilities or the administrative burden of implementing new procedures and forms.",
+      "key_question": "Does this bill adequately protect patients' autonomy and wishes while providing practical solutions for medical decision-making, or does it create new risks by expanding who can make these critical decisions?",
+      "title": "Health Care Decisions Act Amendments",
+      "positions": {
+        "Chamber West": "Oppose",
+        "Disability Law Center": "Support"
+      },
+      "controversy_score": 2,
+      "url": "https://le.utah.gov/~2025/bills/static/SB0134.html",
+      "generated_at": "2025-11-26T10:45:19.345691"
+    },
+    "SB0137": {
+      "plain_summary": "This bill creates a new online course program specifically for private school students, allowing them to take state-approved online classes for credit. The program would be run by an independent company hired by the state, but funded separately from public school money.",
+      "who_affected": "This bill primarily affects private school students and their families, giving them access to online course options that were previously only available to public school students.",
+      "argument_for": "Private school families pay taxes that support public education while also paying private tuition, so they deserve access to educational resources their tax dollars help fund. This program expands educational opportunities for private school students without taking any money away from public schools, since it requires separate funding. It promotes educational choice and ensures all Utah students have access to high-quality online learning options.",
+      "argument_against": "This creates a parallel education system that could divert attention and resources away from improving public schools that serve the majority of Utah students. The program may create administrative complexity and costs that ultimately burden taxpayers, while primarily benefiting families who have already chosen to leave the public system. Public education advocates worry this is another step toward privatizing education functions that should remain focused on public schools.",
+      "key_question": "How will this program be funded and will it create any indirect costs or administrative burdens that could impact public education resources or taxpayers?",
+      "title": "Course Choice Empowerment",
+      "positions": {
+        "Libertas": "Support",
+        "Utah Education Association": "Oppose",
+        "Utah Pta": "Oppose"
+      },
+      "controversy_score": 2,
+      "url": "https://le.utah.gov/~2025/bills/static/SB0137.html",
+      "generated_at": "2025-11-26T10:45:31.325712"
+    },
+    "SB0138": {
+      "plain_summary": "This bill would allow government agencies and police to use data from automatic license plate readers (cameras that scan and record license plates) for law enforcement purposes, even in some cases where they didn't get a warrant first. Currently, there are more restrictions on when this data can be used.",
+      "who_affected": "This primarily affects all drivers whose license plates are scanned by these readers, as well as law enforcement agencies who would gain broader access to this location tracking data.",
+      "argument_for": "Law enforcement needs quick access to license plate data to effectively solve crimes, find missing persons, and locate stolen vehicles. Requiring warrants for every use of this data could create dangerous delays when time is critical, such as during amber alerts or when tracking suspects who pose immediate public safety threats. This tool helps police work more efficiently while still maintaining appropriate oversight.",
+      "argument_against": "Allowing warrantless access to license plate reader data creates a massive surveillance system that tracks citizens' movements without their knowledge or consent. This violates Fourth Amendment protections against unreasonable searches and could lead to abuse, as the government would be able to monitor where law-abiding citizens go without any judicial oversight or probable cause requirements.",
+      "key_question": "What specific safeguards and limitations will prevent this expanded access to location tracking data from being misused or violating citizens' privacy rights?",
+      "title": "License Plate Reader Amendments",
+      "positions": {
+        "Libertas": "Oppose",
+        "Utah League Of Cities And Towns": "Support"
+      },
+      "controversy_score": 2,
+      "url": "https://le.utah.gov/~2025/bills/static/SB0138.html",
+      "generated_at": "2025-11-26T10:45:41.566560"
+    },
+    "SB0142": {
+      "plain_summary": "This law requires app stores like Apple's App Store and Google Play to verify users' ages and get parental permission before minors can download apps or agree to terms of service. It also requires app developers to check that parental consent was obtained before allowing minors to use their apps.",
+      "who_affected": "This bill primarily affects app store operators (like Apple and Google), app developers, parents, and minors who use mobile apps in Utah.",
+      "argument_for": "Parents deserve meaningful control over what digital services their children access and what data companies collect from them. Current age verification systems are often ineffective, allowing minors to easily bypass protections by lying about their age. This law ensures parents have real oversight of their children's digital activities and prevents companies from exploiting minors through contracts they cannot legally consent to.",
+      "argument_against": "This law creates significant technical and compliance burdens that could discourage app developers from serving Utah users or force costly redesigns of existing systems. Age verification requirements raise serious privacy concerns by requiring collection of sensitive personal information, and the law's complexity could lead to inconsistent enforcement that actually reduces protections for minors while stifling innovation in the tech sector.",
+      "key_question": "Will this law effectively protect minors online without creating privacy risks or technical barriers that harm legitimate app developers and user experience?",
+      "title": "App Store Accountability Act",
+      "positions": {
+        "Salt Lake Chamber": "Oppose",
+        "Libertas": "Oppose",
+        "Utah Pta": "Support"
+      },
+      "controversy_score": 2,
+      "url": "https://le.utah.gov/~2025/bills/static/SB0142.html",
+      "generated_at": "2025-11-26T10:45:51.806602"
+    },
+    "SB0163": {
+      "plain_summary": "This bill updates Utah's laws about how the public can request government records and how government agencies must respond. It sets new deadlines for responses, changes fees that can be charged, requires employee training on records laws, and makes it a crime to destroy records to avoid releasing them to the public.",
+      "who_affected": "This bill primarily affects government employees who handle public records requests, citizens and organizations who request government documents, and anyone seeking government transparency.",
+      "argument_for": "Supporters likely argue this bill strengthens government accountability by making record destruction to avoid disclosure a criminal offense and requiring annual compliance reviews. The standardized training requirements and clearer deadlines should make the system more consistent and efficient for both government workers and citizens. These reforms could reduce confusion and disputes while ensuring important records are properly preserved for public access.",
+      "argument_against": "Opponents may worry that modified fee structures and response requirements could make it more expensive or difficult for citizens to access government records. Environmental groups like Friends of Great Salt Lake might be concerned that certain provisions could create new barriers to obtaining documents related to environmental oversight or regulatory compliance. The changes might also create additional bureaucratic hurdles that slow down the records request process.",
+      "key_question": "Do the specific changes to fees and response deadlines make it easier or harder for ordinary citizens to access government records compared to current law?",
+      "title": "Government Records Amendments",
+      "positions": {
+        "Chamber West": "Support",
+        "Friends Of Great Salt Lake": "Oppose"
+      },
+      "controversy_score": 2,
+      "url": "https://le.utah.gov/~2025/bills/static/SB0163.html",
+      "generated_at": "2025-11-26T10:46:03.330679"
+    },
+    "SB0165": {
+      "plain_summary": "This bill creates new rules and restrictions for when city governments want to provide internet service to their residents. It requires cities to follow specific procedures for bonding, reporting, and public disclosure if they decide to offer broadband internet as a municipal service.",
+      "who_affected": "This bill primarily affects Utah city governments that currently provide or are considering providing internet service to their residents, as well as the citizens who might receive those services.",
+      "argument_for": "Municipal broadband projects often fail financially and burden taxpayers with debt when cities compete with private companies in areas outside their expertise. These requirements ensure transparency and accountability, forcing cities to carefully consider the financial risks before committing public money to internet ventures. The regulations protect taxpayers from potentially costly municipal failures while still allowing cities to pursue broadband if they can meet reasonable standards.",
+      "argument_against": "Many Utah communities, especially rural areas, lack adequate internet options because private companies find them unprofitable to serve. Municipal broadband can fill these gaps and provide affordable, high-quality internet service where the private market has failed. These new restrictions and bureaucratic requirements will make it harder for cities to respond to their residents' needs and could prevent communities from accessing essential internet infrastructure.",
+      "key_question": "Does this bill strike the right balance between protecting taxpayers from financial risk and allowing communities to address internet service gaps where private companies aren't meeting residents' needs?",
+      "title": "Municipal Broadband Service Amendments",
+      "positions": {
+        "Libertas": "Support",
+        "Utah League Of Cities And Towns": "Oppose"
+      },
+      "controversy_score": 2,
+      "url": "https://le.utah.gov/~2025/bills/static/SB0165.html",
+      "generated_at": "2025-11-26T10:46:15.973571"
+    },
+    "SB0168": {
+      "plain_summary": "This bill creates a formal system for government employees (like teachers, firefighters, and city workers) to organize into unions and negotiate with their employers about wages, benefits, and working conditions. It establishes a Labor Relations Board to oversee this process and sets up rules for how negotiations, disputes, and elections would work.",
+      "who_affected": "This bill primarily affects all public employees in Utah (state, county, and local government workers) and the government agencies that employ them.",
+      "argument_for": "Public employees deserve the same right to collective bargaining that private sector workers have had for decades, allowing them to have a meaningful voice in their working conditions and compensation. A formal process with clear rules and dispute resolution mechanisms would actually create more stability and predictability for both employers and employees, reducing workplace conflicts and improving public services through better employee retention and satisfaction.",
+      "argument_against": "Collective bargaining for public employees creates an inherent conflict of interest where unions can use political influence to elect officials who will then negotiate favorably with them, ultimately increasing costs for taxpayers. Unlike private companies, government agencies cannot simply raise prices to cover increased labor costs, meaning taxpayers bear the burden of any wage or benefit increases negotiated through this process.",
+      "key_question": "How would this bill balance protecting public employees' rights to organize with ensuring fiscal responsibility to taxpayers who fund government operations?",
+      "title": "Public Employee Negotiation Amendments",
+      "positions": {
+        "Chamber West": "Oppose",
+        "Utah Public Employees Association": "Support"
+      },
+      "controversy_score": 2,
+      "url": "https://le.utah.gov/~2025/bills/static/SB0168.html",
+      "generated_at": "2025-11-26T10:46:26.829302"
+    },
+    "SB0179": {
+      "plain_summary": "This bill requires all Utah cities and counties to create a clear process for reviewing new types of businesses that aren't already listed as allowed in their current zoning rules. Instead of leaving new business types in limbo, local governments must establish procedures to evaluate whether these unlisted businesses should be permitted.",
+      "who_affected": "This bill primarily affects entrepreneurs starting new or innovative businesses, and local government planning departments that review business permits.",
+      "argument_for": "This bill promotes economic innovation and entrepreneurship by ensuring new business models aren't automatically rejected simply because they don't fit existing categories. It creates predictable, fair processes that give entrepreneurs a clear path to operate legally, while still allowing local communities to maintain appropriate oversight and standards for businesses in their areas.",
+      "argument_against": "This bill could burden local governments with additional bureaucratic processes and costs while potentially forcing communities to allow businesses they don't want. It may undermine local control by pressuring municipalities to approve businesses that don't align with their community vision or existing zoning plans, even if residents prefer to maintain current business restrictions.",
+      "key_question": "How will this bill balance encouraging new business innovation with preserving local communities' ability to control what types of businesses operate in their neighborhoods?",
+      "title": "Local Regulation of Business Entities Amendments",
+      "positions": {
+        "Chamber West": "Oppose",
+        "Libertas": "Support"
+      },
+      "controversy_score": 2,
+      "url": "https://le.utah.gov/~2025/bills/static/SB0179.html",
+      "generated_at": "2025-11-26T10:46:36.889946"
+    },
+    "SB0181": {
+      "plain_summary": "This bill changes parking requirements for new housing developments to make it easier and cheaper to build homes and apartments. It reduces how many parking spaces developers must include with new housing projects, which supporters say will lower housing costs.",
+      "who_affected": "This bill primarily affects real estate developers, renters and homebuyers, local city governments, and residents of neighborhoods where new housing is built.",
+      "argument_for": "Reducing parking requirements will significantly lower the cost of building new housing, making homes and apartments more affordable for Utah families. Current parking mandates force developers to build expensive parking spaces that drive up housing costs, and many urban areas have more parking than residents actually need in an era of ride-sharing and public transit.",
+      "argument_against": "Reducing parking requirements will create serious parking shortages in neighborhoods, forcing residents to compete for limited street parking and creating traffic congestion as people circle looking for spaces. This policy removes local communities' ability to set parking standards that match their specific needs and infrastructure capacity.",
+      "key_question": "Will the reduction in parking requirements actually lead to meaningfully lower housing costs, or will it primarily create parking problems without solving affordability?",
+      "title": "Housing Affordability Amendments",
+      "positions": {
+        "Salt Lake Chamber": "Support",
+        "Chamber West": "Oppose",
+        "Utah League Of Cities And Towns": "Support"
+      },
+      "controversy_score": 2,
+      "url": "https://le.utah.gov/~2025/bills/static/SB0181.html",
+      "generated_at": "2025-11-26T10:46:47.207960"
+    },
+    "SB0193": {
+      "plain_summary": "This bill would require Utah to automatically increase how much it pays doctors, hospitals, and other healthcare providers who treat Medicaid patients each year. Currently, these payment rates can stay the same for years, but this bill would build annual increases into the state budget.",
+      "who_affected": "This bill primarily affects Medicaid patients, healthcare providers who treat Medicaid patients, and Utah taxpayers who fund the Medicaid program.",
+      "argument_for": "Medicaid traditionally pays healthcare providers much less than private insurance, making many doctors reluctant to accept Medicaid patients and creating access barriers for Utah's most vulnerable citizens. Annual rate increases would help ensure Medicaid patients can find providers willing to treat them and receive quality care, while also helping providers keep up with rising costs of medical equipment, staff wages, and facility expenses.",
+      "argument_against": "Mandating automatic annual increases in Medicaid reimbursement rates would significantly increase state spending without allowing lawmakers to evaluate whether such increases are necessary or effective each year. This approach removes budgetary flexibility during economic downturns and forces taxpayers to fund potentially unnecessary increases while other critical state programs might need funding more urgently.",
+      "key_question": "Should Utah guarantee annual Medicaid rate increases to improve healthcare access, or maintain legislative discretion to adjust rates based on yearly budget priorities and economic conditions?",
+      "title": "Medicaid Provider Reimbursement Amendments",
+      "positions": {
+        "Chamber West": "Oppose",
+        "Disability Law Center": "Support"
+      },
+      "controversy_score": 2,
+      "url": "https://le.utah.gov/~2025/bills/static/SB0193.html",
+      "generated_at": "2025-11-26T10:46:57.844365"
+    },
+    "SB0203": {
+      "plain_summary": "This bill changes the rules about who can file lawsuits in Utah courts by making it harder for people to sue unless they can prove they were directly harmed. It essentially raises the bar for bringing legal cases to court.",
+      "who_affected": "This bill primarily affects anyone who wants to file a lawsuit in Utah courts, particularly advocacy groups, unions, and individuals who might want to challenge government actions or policies.",
+      "argument_for": "Supporters likely argue this bill prevents frivolous lawsuits and ensures only people with legitimate, direct harm can clog up the court system. By requiring clearer proof of personal injury before allowing lawsuits, it protects businesses and government entities from costly legal challenges by parties who aren't actually affected by the issues they're suing over.",
+      "argument_against": "Opponents probably contend this bill makes it too difficult for citizens and advocacy groups to hold powerful interests accountable through the courts. It could prevent important public interest lawsuits that protect workers, students, or communities by requiring such strict proof of direct harm that many legitimate cases challenging harmful policies would be thrown out before being heard.",
+      "key_question": "Does this bill strike the right balance between preventing frivolous lawsuits and preserving citizens' ability to use the courts to challenge potentially harmful government or corporate actions?",
+      "title": "Judicial Standing Amendments",
+      "positions": {
+        "Chamber West": "Support",
+        "Utah Education Association": "Oppose"
+      },
+      "controversy_score": 2,
+      "url": "https://le.utah.gov/~2025/bills/static/SB0203.html",
+      "generated_at": "2025-11-26T10:47:07.681835"
+    },
+    "SB0213": {
+      "plain_summary": "This bill eliminates sales taxes on materials and equipment that companies use to manufacture batteries and other energy storage devices in Utah. Companies that make these products won't have to pay state sales tax when they buy raw materials or factory equipment.",
+      "who_affected": "This bill primarily affects companies that manufacture batteries and energy storage equipment in Utah, as well as Utah taxpayers who will see reduced tax revenue.",
+      "argument_for": "This tax incentive will attract clean energy manufacturing jobs to Utah and help the state compete with other states offering similar incentives to growing industries. By reducing costs for energy storage manufacturers, Utah can position itself as a leader in the renewable energy sector while creating high-paying manufacturing jobs and diversifying the state's economy.",
+      "argument_against": "This bill reduces tax revenue that could fund essential public services like education, infrastructure, and public safety. It creates unfair advantages for one specific industry over others, and there's no guarantee that the tax breaks will actually result in significant job creation or economic benefits that justify the lost revenue to Utah taxpayers.",
+      "key_question": "Will the economic benefits from attracting energy storage manufacturing actually generate enough new jobs and tax revenue to offset the tax revenue Utah will lose from this exemption?",
+      "title": "Sales and Use Tax Modifications",
+      "positions": {
+        "Chamber West": "Oppose",
+        "Heal Utah": "Support"
+      },
+      "controversy_score": 2,
+      "url": "https://le.utah.gov/~2025/bills/static/SB0213.html",
+      "generated_at": "2025-11-26T10:47:18.130525"
+    },
+    "SB0221": {
+      "plain_summary": "This bill would require home-based childcare providers to get licenses or certifications when they care for a certain number of children. It also strengthens background check requirements and limits how many very young children one provider can watch at the same time.",
+      "who_affected": "This bill primarily affects people who provide childcare in their homes, parents who use home-based childcare services, and the state agency that oversees childcare regulations.",
+      "argument_for": "Supporters argue this bill protects children's safety by ensuring childcare providers meet professional standards and undergo proper screening. Requiring licensure and certification helps guarantee that providers have adequate training and safe environments, while limiting the number of very young children per provider ensures each child receives appropriate attention and supervision.",
+      "argument_against": "Opponents likely argue this bill creates unnecessary bureaucratic barriers that will reduce the availability and affordability of childcare options for families. The licensing and certification requirements may force some current providers out of business or discourage new ones from starting, ultimately making it harder for working parents to find accessible childcare in their communities.",
+      "key_question": "Will the safety benefits of increased regulation outweigh the potential reduction in childcare availability and the added costs for providers and families?",
+      "title": "Child Care Revisions",
+      "positions": {
+        "Voices For Utah Children": "Support",
+        "Chamber West": "Oppose"
+      },
+      "controversy_score": 2,
+      "url": "https://le.utah.gov/~2025/bills/static/SB0221.html",
+      "generated_at": "2025-11-26T10:47:28.122338"
+    },
+    "SB0224": {
+      "plain_summary": "This bill would increase the amount of property tax relief that homeowners and renters can receive from the state. It raises both the income limits for who qualifies and the dollar amounts of the tax credits people can claim.",
+      "who_affected": "This bill primarily affects Utah homeowners and renters with moderate incomes who currently receive or could qualify for state property tax credits.",
+      "argument_for": "Supporters likely argue this bill provides necessary relief to working families struggling with Utah's rising housing costs and property taxes. By expanding both eligibility and credit amounts, the state can help more middle-class families afford to stay in their homes and communities, which strengthens local economies and prevents displacement.",
+      "argument_against": "Opponents likely argue this bill reduces state revenue that could fund essential services like education and infrastructure, while primarily benefiting property owners rather than addressing root causes of housing affordability. They may contend that broad tax credits are an inefficient way to help those most in need compared to targeted programs for low-income residents.",
+      "key_question": "What is the total cost of these expanded tax credits to the state budget, and what services or programs might be affected by the reduced revenue?",
+      "title": "Property Tax Relief Modifications",
+      "positions": {
+        "Libertas": "Support",
+        "Alliance For A Better Utah": "Oppose",
+        "Disability Law Center": "Support"
+      },
+      "controversy_score": 2,
+      "url": "https://le.utah.gov/~2025/bills/static/SB0224.html",
+      "generated_at": "2025-11-26T10:47:37.382151"
+    },
+    "SB0227": {
+      "plain_summary": "This bill creates special rules for how electric companies provide power to very large electricity users, like data centers or big factories. It allows these big customers to make separate deals for electricity that don't follow the same pricing rules as regular homes and businesses, while requiring protections so regular customers don't get stuck with higher costs.",
+      "who_affected": "This bill primarily affects large electricity users (like data centers, manufacturing facilities), electric utilities, and indirectly all retail electricity customers who could see cost impacts.",
+      "argument_for": "This bill could attract major businesses and data centers to Utah by offering them flexible, competitive electricity arrangements that meet their unique high-volume needs. By creating separate pathways for large users, it prevents these customers from leaving the state for better energy deals elsewhere, which would ultimately benefit Utah's economy and job market. The transparency requirements ensure regular customers are protected from unfair cost-shifting.",
+      "argument_against": "This bill essentially creates a two-tiered electricity system that could unfairly subsidize large corporations at the expense of regular homeowners and small businesses. By exempting big users from standard rate regulations, it risks allowing utilities to offer sweetheart deals to large customers while passing hidden costs onto everyday Utahns who have no choice in their electricity provider. This undermines the principle of fair, regulated utility pricing that protects all consumers equally.",
+      "key_question": "How will the Public Service Commission ensure that the costs and benefits of serving large electricity users are fairly allocated so that regular customers don't end up subsidizing special deals for big corporations?",
+      "title": "Electricity Supply Amendments",
+      "positions": {
+        "Chamber West": "Oppose",
+        "Utah Audubon Council": "Support"
+      },
+      "controversy_score": 2,
+      "url": "https://le.utah.gov/~2025/bills/static/SB0227.html",
+      "generated_at": "2025-11-26T10:47:50.404224"
+    },
+    "SB0235": {
+      "plain_summary": "This bill clarifies who owns geothermal energy resources (like underground hot water and steam) when they're found beneath private property. It appears to strengthen property owners' rights to these underground energy resources, though it includes some exceptions.",
+      "who_affected": "This bill primarily affects private landowners, geothermal energy companies, and potentially the broader public's access to renewable energy resources.",
+      "argument_for": "Property owners should have clear rights to the natural resources beneath their land, including geothermal energy, as this is a fundamental principle of property ownership. Clarifying these ownership rights will encourage private investment in geothermal development and reduce legal uncertainty, ultimately leading to more renewable energy production and economic benefits for landowners and the state.",
+      "argument_against": "Geothermal resources are part of Utah's natural heritage that should benefit all citizens, not just private landowners who happen to own property above these resources. Giving exclusive ownership rights to private parties could limit public access to clean energy development and may prioritize individual profit over broader environmental and public interests in developing renewable energy resources.",
+      "key_question": "What are the specific exceptions mentioned in the bill, and how do they balance private property rights with public interest in renewable energy development?",
+      "title": "Natural Resources Ownership",
+      "positions": {
+        "Utah Audubon Council": "Oppose",
+        "Utah Farm Bureau": "Support"
+      },
+      "controversy_score": 2,
+      "url": "https://le.utah.gov/~2025/bills/static/SB0235.html",
+      "generated_at": "2025-11-26T10:48:00.751972"
+    },
+    "SB0244": {
+      "plain_summary": "This bill creates a higher income tax rate for people earning over $1 million per year in Utah. It also makes the earned income tax credit refundable, meaning low-income workers could receive money back even if they don't owe taxes.",
+      "who_affected": "This bill primarily affects high-income earners making over $1 million annually and low-income working families who claim the earned income tax credit.",
+      "argument_for": "Supporters argue this creates a more progressive tax system where those with the greatest ability to pay contribute more to essential public services like education. The refundable earned income tax credit would provide direct financial relief to working families struggling with cost of living, while the additional revenue from high earners could fund critical state programs that benefit all Utahns.",
+      "argument_against": "Opponents argue that higher tax rates on high earners could drive wealthy individuals and businesses to relocate to other states, reducing Utah's economic competitiveness and potentially decreasing overall tax revenue. They contend that Utah's current flat tax system is simpler, more efficient, and has contributed to the state's economic growth by attracting businesses and high-income residents.",
+      "key_question": "Will the additional revenue generated from high earners offset any potential economic loss from wealthy individuals or businesses relocating to lower-tax states?",
+      "title": "Modifications to Income Tax",
+      "positions": {
+        "Voices For Utah Children": "Support",
+        "Chamber West": "Oppose",
+        "Utah Education Association": "Support"
+      },
+      "controversy_score": 2,
+      "url": "https://le.utah.gov/~2025/bills/static/SB0244.html",
+      "generated_at": "2025-11-26T10:48:09.638195"
+    },
+    "SB0262": {
+      "plain_summary": "This bill creates new programs to help first-time homebuyers get loans and buy houses, while also allowing local governments to use special housing funds for things like water hookups and street lights. It also sets up new rules for banks that want to offer special mortgages to people buying their first home.",
+      "who_affected": "This bill primarily affects first-time homebuyers, local governments (cities and counties), banks and financial institutions offering mortgages, and developers working on housing projects.",
+      "argument_for": "This bill addresses Utah's housing affordability crisis by creating multiple pathways for first-time buyers to access homeownership, including shared appreciation loans that reduce upfront costs. The expanded use of housing funds for infrastructure like water and lighting will help reduce development costs, potentially making homes more affordable. These coordinated efforts between state agencies, local governments, and private lenders create a comprehensive approach to increasing homeownership opportunities.",
+      "argument_against": "This bill may create additional government intervention in the housing market that could distort natural pricing mechanisms and create long-term taxpayer obligations through loan programs. The shared appreciation loans and expanded government involvement may increase regulatory burden on financial institutions and developers, potentially slowing housing production. There are concerns that government-subsidized lending programs could repeat past mistakes that led to housing market instability.",
+      "key_question": "How will the state ensure these new loan programs remain financially sustainable and don't create excessive risk for taxpayers while actually making housing more affordable in the long term?",
+      "title": "Housing Affordability Modifications",
+      "positions": {
+        "Chamber West": "Oppose",
+        "Utah League Of Cities And Towns": "Support"
+      },
+      "controversy_score": 2,
+      "url": "https://le.utah.gov/~2025/bills/static/SB0262.html",
+      "generated_at": "2025-11-26T10:48:21.826973"
+    },
+    "SB0277": {
+      "plain_summary": "This bill restructures how Utah manages government records by replacing a committee system with a single director position. The new director will handle appeals when people request government records and will oversee the state's records management system.",
+      "who_affected": "This bill primarily affects Utah citizens who request government records, government employees who manage records, and local government entities throughout the state.",
+      "argument_for": "Replacing a committee with a single qualified director will make government records decisions faster and more consistent, since one expert attorney can act quickly rather than waiting for a committee to meet. This streamlined approach should reduce bureaucratic delays and provide clearer guidance to government agencies, while the director's legal expertise will ensure decisions are well-grounded in records law.",
+      "argument_against": "Concentrating records access decisions in one person eliminates the diverse perspectives and checks-and-balances that a committee provides, potentially making the system less transparent and accountable. A single director may be more susceptible to political pressure or personal bias than a multi-member committee, and citizens lose the benefit of having multiple voices deliberate on important records access disputes.",
+      "key_question": "Will having one director make government records decisions faster and more expert, or does removing the committee system reduce accountability and diverse oversight in records access decisions?",
+      "title": "Government Records Management Amendments",
+      "positions": {
+        "Sierra Club Utah": "Oppose",
+        "Utah League Of Cities And Towns": "Support",
+        "Friends Of Great Salt Lake": "Oppose"
+      },
+      "controversy_score": 2,
+      "url": "https://le.utah.gov/~2025/bills/static/SB0277.html",
+      "generated_at": "2025-11-26T10:48:31.958075"
+    },
+    "SB0305": {
+      "plain_summary": "This bill would require Utah state government buildings and facilities to use water-efficient landscaping that needs less irrigation. It sets new rules for what types of plants and landscaping designs state facilities must use to conserve water.",
+      "who_affected": "This bill primarily affects state government agencies that manage public buildings and facilities, along with landscaping contractors who work on state properties.",
+      "argument_for": "Utah faces ongoing water scarcity challenges, and state government should lead by example in conservation efforts. Water-wise landscaping can significantly reduce water consumption at public facilities while maintaining attractive grounds, saving taxpayer money on irrigation costs over time. Native and drought-resistant plants are often better suited to Utah's climate and require less maintenance once established.",
+      "argument_against": "Mandatory landscaping requirements could increase upfront costs for state facilities and limit flexibility in design choices for different climates across Utah's diverse regions. The requirements might favor certain types of landscaping businesses over others, potentially disrupting existing contracts and relationships. Agricultural and landscaping industries may face reduced demand for traditional irrigation-dependent plants and services.",
+      "key_question": "What will be the actual cost difference between implementing water-wise landscaping versus traditional landscaping at state facilities, and how quickly will any water savings offset the initial investment?",
+      "title": "Water Wise Landscaping Amendments",
+      "positions": {
+        "Utah Audubon Council": "Support",
+        "Utah Farm Bureau": "Oppose"
+      },
+      "controversy_score": 2,
+      "url": "https://le.utah.gov/~2025/bills/static/SB0305.html",
+      "generated_at": "2025-11-26T10:48:42.096637"
+    },
+    "SB0330": {
+      "plain_summary": "This bill changes the rules for how cosmetologists (hair stylists, nail technicians, etc.) get licensed in Utah. It restructures the licensing board, creates new license categories, and establishes apprenticeship programs for people entering these professions.",
+      "who_affected": "This bill primarily affects cosmetologists, barbers, nail technicians, estheticians, and other beauty professionals, as well as beauty schools and their students.",
+      "argument_for": "Supporters likely argue this modernizes an outdated licensing system and could reduce barriers to entry for people wanting to work in cosmetology. The restructuring may eliminate unnecessary requirements that make it harder for people to start careers in beauty services, while the apprenticeship programs could provide more flexible pathways into these professions without expensive formal schooling.",
+      "argument_against": "Opponents likely worry that loosening licensing standards could compromise public health and safety protections that ensure beauty professionals are properly trained in sanitation and safety procedures. They may argue that existing requirements exist for good reasons - to protect consumers from potentially harmful practices - and that reducing oversight could lead to substandard services or unsafe conditions.",
+      "key_question": "Does this bill strike the right balance between making it easier for people to enter cosmetology professions while still maintaining adequate health and safety protections for consumers?",
+      "title": "Cosmetology Modifications",
+      "positions": {
+        "Chamber West": "Oppose",
+        "Libertas": "Support"
+      },
+      "controversy_score": 2,
+      "url": "https://le.utah.gov/~2025/bills/static/SB0330.html",
+      "generated_at": "2025-11-26T10:48:52.339525"
+    }
+  }
+}

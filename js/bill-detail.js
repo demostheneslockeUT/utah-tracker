@@ -173,10 +173,10 @@ function castDetailVote(position) {
         // Re-render position boxes
         const authorPos = currentBill.author_position;
         let positionBoxesHtml = "";
+        positionBoxesHtml += getUserVoteBox(position, billNumber);
         if (authorPos) {
             positionBoxesHtml += getPositionBox(authorPos, "author", "large");
         }
-        positionBoxesHtml += getUserVoteBox(position, billNumber);
         document.getElementById("positionBoxes").innerHTML = positionBoxesHtml;
         
         // Update share button
@@ -206,6 +206,7 @@ function renderBill() {
     
     // Official link
     document.getElementById('officialLink').href = `https://le.utah.gov/~2025/bills/static/${currentBill.bill_number}.html`;
+    document.getElementById('analysisLink').href = `analysis.html?bill=${currentBill.bill_number}`;
     
     // Position boxes (author + user)
     const authorPos = currentBill.author_position;

@@ -253,12 +253,12 @@ function createBillCard(bill) {
     }
     
     return `
-        <div class="bill-card bg-white rounded-lg shadow hover:shadow-xl transition-all duration-200 p-6 border-l-4 ${statusColor} relative">
+        <div class="bill-card bg-white rounded-lg shadow hover:shadow-xl transition-all duration-200 p-6 border-l-4 ${statusColor} relative cursor-pointer" onclick="if(!event.target.closest('button') && !event.target.closest('a')) window.location.href='bill.html?bill=' + '${bill.bill_number}'">
             <div class="flex justify-between items-center mb-3">
-                <a href="bill.html?bill=${bill.bill_number}" class="text-xl font-bold text-blue-600 hover:text-blue-800">
+                <a href="bill.html?bill=${bill.bill_number}" class="text-3xl font-bold text-blue-600 hover:text-blue-800">
                     ${formatBillNumber(bill.bill_number)}
                 </a>
-                <span class="absolute top-4 left-1/2 transform -translate-x-1/2 text-xs px-2 py-1 bg-gray-100 rounded z-10">${bill.status || 'Filed'}</span>
+                <span class="absolute top-4 left-1/2 transform -translate-x-1/2 text-xs px-2 py-1 bg-gray-100 rounded z-10 whitespace-nowrap flex items-center">${bill.status || 'Filed'}</span>
             </div>
             
             <p class="text-gray-700 mb-4 line-clamp-2 text-sm">${bill.title || ''}</p>
@@ -371,11 +371,11 @@ function toggleOrgFilter(orgKey) {
     
     if (selectedOrgs.has(orgKey)) {
         selectedOrgs.delete(orgKey);
-        btn.classList.remove('bg-blue-500', 'text-white');
+        btn.classList.remove('bg-navy', 'text-yellow-400', 'border-navy');
         btn.classList.add('border-gray-300', 'hover:bg-gray-100');
     } else {
         selectedOrgs.add(orgKey);
-        btn.classList.add('bg-blue-500', 'text-white');
+        btn.classList.add('bg-navy', 'text-yellow-400', 'border-navy');
         btn.classList.remove('border-gray-300', 'hover:bg-gray-100');
     }
     
@@ -438,7 +438,7 @@ function setFilter(filterType) {
         console.log('After clear:', selectedOrgs.size);
         // Reset all org button styles
         document.querySelectorAll('[id^="org-"]').forEach(btn => {
-            btn.classList.remove('bg-blue-500', 'text-white');
+            btn.classList.remove('bg-navy', 'text-yellow-400', 'border-navy');
             btn.classList.add('border-gray-300', 'hover:bg-gray-100');
         });
     }

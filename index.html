@@ -40,7 +40,7 @@
             width: 48px;
             height: 48px;
             background: #002855;
-            color: #C5A30F;
+            color: #FACC15;
             border: none;
             border-radius: 50%;
             cursor: pointer;
@@ -50,7 +50,7 @@
             font-size: 24px;
         }
         #scroll-top.visible { opacity: 1; }
-        #scroll-top:hover { background: #C5A30F; color: #002855; }
+        #scroll-top:hover { background: #FACC15; color: #002855; }
 
         button, a {
             transition: all 0.2s ease;
@@ -69,7 +69,7 @@
             width: 48px;
             height: 48px;
             border: 5px solid #1e3a5f;
-            border-bottom-color: #C5A30F;
+            border-bottom-color: #FACC15;
             border-radius: 50%;
             animation: spin 1s linear infinite;
         }
@@ -99,7 +99,7 @@
             width: 48px;
             height: 48px;
             background: #002855;
-            color: #C5A30F;
+            color: #FACC15;
             border: none;
             border-radius: 50%;
             cursor: pointer;
@@ -109,7 +109,7 @@
             font-size: 24px;
         }
         #scroll-top.visible { opacity: 1; }
-        #scroll-top:hover { background: #C5A30F; color: #002855; }
+        #scroll-top:hover { background: #FACC15; color: #002855; }
 
         button, a {
             transition: all 0.2s ease;
@@ -149,7 +149,7 @@
         .org-filter:checked::after {
             content: "\2713";
             position: absolute;
-            color: #C5A30F;
+            color: #FACC15;
             font-size: 14px;
             font-weight: bold;
             top: 50%;
@@ -159,7 +159,7 @@
         .status-filter:hover,
         .topic-filter:hover,
         .org-filter:hover {
-            border-color: #C5A30F;
+            border-color: #FACC15;
         }
     </style>
 </head>
@@ -272,19 +272,19 @@
                     
                     <!-- Filter Type Tabs -->
                     <div class="flex border-b mb-4">
-                        <button onclick="showFilterTab('orgs')" id="tab-orgs" class="px-3 py-2 text-sm font-medium border-b-2 border-blue-600 text-blue-600">
+                        <button onclick="showFilterTab('orgs')" id="tab-orgs" class="px-3 py-2 text-sm font-medium text-gray-500 hover:text-gray-700">
                             Orgs
                         </button>
                         <button onclick="showFilterTab('status')" id="tab-status" class="px-3 py-2 text-sm font-medium text-gray-500 hover:text-gray-700">
                             Status
                         </button>
-                        <button onclick="showFilterTab('topic')" id="tab-topic" class="px-3 py-2 text-sm font-medium text-gray-500 hover:text-gray-700">
+                        <button onclick="showFilterTab('topic')" id="tab-topic" class="px-3 py-2 text-sm font-medium border-b-2 border-blue-600 text-blue-600">
                             Topic
                         </button>
                     </div>
                     
                     <!-- Organizations Filter -->
-                    <div id="filter-orgs" class="space-y-1 max-h-64 overflow-y-auto">
+                    <div id="filter-orgs" class="hidden space-y-1 max-h-64 overflow-y-auto">
                         <div id="org-filters" class="space-y-1">
                         <!-- Populated by JavaScript -->
                         </div>
@@ -319,7 +319,7 @@
                     </div>
                     
                     <!-- Topic Filter (hidden by default) -->
-                    <div id="filter-topic" class="hidden space-y-1 max-h-64 overflow-y-auto">
+                    <div id="filter-topic" class="space-y-1 max-h-64 overflow-y-auto">
                         <label class="flex items-center gap-2 p-2 hover:bg-gray-50 rounded cursor-pointer">
                             <input type="checkbox" class="topic-filter" value="Education" onchange="applyAllFilters()">
                             <span class="text-sm">📚 Education</span>
@@ -421,6 +421,7 @@
     <script src="js/my-reps-modal.js"></script>
     <script src="js/legislator-contact-fixes.js"></script>
     <script src="js/user-voting.js"></script>
+    <script src="js/bill-summaries.js"></script>
     <script src="js/app.js"></script>
     <script src="js/my-reps-votes.js"></script>
     <script src="js/filters.js"></script>

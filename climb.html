@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Climb the Ladder | Utah Legislative Tracker</title>
+    <meta name="description" content="Challenge your political assumptions. Become a higher-rung thinker through targeted prompts that question your tribal reflexes.">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🏛️</text></svg>">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        navy: '#1e3a5f',
+                        gold: '#c9a227',
+                        slate: '#64748b'
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        h1, h2, h3 { font-family: 'Playfair Display', serif; }
+        
+        .prompt-card {
+            transition: all 0.3s ease;
+        }
+        .prompt-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+        }
+        
+        .topic-pill {
+            transition: all 0.2s ease;
+        }
+        .topic-pill:hover {
+            transform: scale(1.05);
+        }
+        .topic-pill.active {
+            background-color: #1e3a5f;
+            color: white;
+        }
+        
+        .level-bar {
+            background: linear-gradient(90deg, #22c55e 0%, #eab308 50%, #ef4444 100%);
+        }
+        
+        .fade-in {
+            animation: fadeIn 0.5s ease-in;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        /* Custom checkbox styling */
+        input[type="checkbox"]:checked {
+            background-color: #1e3a5f !important;
+            border-color: #1e3a5f !important;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 min-h-screen">
+    
+    <!-- Header -->
+    <div id="site-header"></div>
+    
+    <!-- Hero Section -->
+    <section class="bg-gradient-to-br from-navy to-blue-900 text-white py-16">
+        <div class="max-w-4xl mx-auto px-4 text-center">
+            <h1 class="text-4xl md:text-5xl font-bold mb-4">🪜 Climb the Ladder</h1>
+            <p class="text-xl text-yellow-400 mb-6">Challenge your assumptions. Become a higher-rung thinker.</p>
+            <p class="text-yellow-200/80 max-w-2xl mx-auto">
+                These prompts are designed to make you uncomfortable—in a good way. 
+                They challenge tribal thinking and force you to engage with the strongest arguments from the other side.
+            </p>
+        </div>
+    </section>
+    
+    <!-- Assessment Connection Banner -->
+    <div id="assessment-banner" class="bg-gold/10 border-b border-gold/30">
+        <div class="max-w-4xl mx-auto px-4 py-4">
+            <div id="banner-content" class="flex flex-col md:flex-row items-center justify-between gap-4">
+                <!-- Content populated by JS based on assessment status -->
+            </div>
+        </div>
+    </div>
+    
+    <!-- Main Content -->
+    <main class="max-w-6xl mx-auto px-4 py-8">
+        
+        <!-- Challenge Mode Section -->
+        <section id="challenge-section" class="mb-12">
+            <div class="bg-white rounded-xl shadow-lg p-6 md:p-8">
+                <div class="flex items-center gap-3 mb-6">
+                    <span class="text-3xl">🎯</span>
+                    <h2 class="text-2xl font-bold text-navy">Your Challenge</h2>
+                </div>
+                
+                <div id="challenge-container">
+                    <!-- Populated by JS -->
+                </div>
+            </div>
+        </section>
+        
+        <!-- Topic Filter -->
+        <section class="mb-8">
+            <h3 class="text-lg font-semibold text-gray-700 mb-4">Browse by Topic</h3>
+            <div id="topic-filters" class="flex flex-wrap gap-2">
+                <!-- Populated by JS -->
+            </div>
+        </section>
+        
+        <!-- Prompts Grid -->
+        <section id="prompts-section">
+            <div class="flex items-center justify-between mb-6">
+                <h2 class="text-2xl font-bold text-navy">All Prompts</h2>
+                <div class="flex items-center gap-4">
+                    <label class="flex items-center gap-2 text-sm text-gray-600">
+                        <input type="checkbox" id="hide-seen" class="rounded border-gray-300">
+                        <span>Hide seen prompts</span>
+                    </label>
+                    <select id="sort-select" class="text-sm border border-gray-300 rounded-lg px-3 py-2">
+                        <option value="provocative-asc">Easiest first</option>
+                        <option value="provocative-desc">Hardest first</option>
+                        <option value="topic">By topic</option>
+                        <option value="random">Random</option>
+                    </select>
+                </div>
+            </div>
+            
+            <div id="prompts-grid" class="grid gap-6 md:grid-cols-2">
+                <!-- Populated by JS -->
+            </div>
+            
+            <div id="no-prompts" class="hidden text-center py-12 text-gray-500">
+                <span class="text-4xl mb-4 block">🎉</span>
+                <p>You've seen all prompts in this category!</p>
+                <button onclick="clearSeenPrompts()" class="mt-4 text-navy underline">Reset seen prompts</button>
+            </div>
+        </section>
+        
+        <!-- Stats Section -->
+        <section class="mt-12 bg-white rounded-xl shadow-lg p-6">
+            <h3 class="text-xl font-bold text-navy mb-4">📊 Your Progress</h3>
+            <div id="progress-stats" class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                <!-- Populated by JS -->
+            </div>
+        </section>
+        
+    </main>
+    
+    <!-- Prompt Detail Modal -->
+    <div id="prompt-modal" class="fixed inset-0 bg-black/50 z-50 hidden items-center justify-center p-4">
+        <div class="bg-white rounded-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto">
+            <div id="modal-content" class="p-6 md:p-8">
+                <!-- Populated by JS -->
+            </div>
+        </div>
+    </div>
+    
+    <!-- Footer -->
+    <footer class="bg-navy text-white py-8 mt-12">
+        <div class="max-w-6xl mx-auto px-4 text-center">
+            <p class="text-yellow-400 mb-2">Part of the Utah Legislative Tracker</p>
+            <p class="text-sm text-yellow-200/70">
+                "It is the mark of an educated mind to be able to entertain a thought without accepting it." — Aristotle
+            </p>
+        </div>
+    </footer>
+    
+    <!-- Scripts -->
+    <script src="js/components.js"></script>
+    <script src="js/climb.js"></script>
+</body>
+</html>

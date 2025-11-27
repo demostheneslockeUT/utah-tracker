@@ -1,16 +1,21 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
-  <!-- Utah state outline with navy fill and gold outline -->
-  <path d="M 27 8 
-           L 72 8 
-           L 72 33 
-           L 92 33 
-           L 92 92 
-           L 27 92 
-           Z" 
-        fill="#002855"
-        stroke="#C5A30F" 
-        stroke-width="3"
-        stroke-linejoin="round"/>
-  <!-- Capitol emoji centered -->
-  <text x="57" y="70" font-size="42" text-anchor="middle">🏛️</text>
+  <!-- Utah shape with gold border -->
+  <path d="M 27 8 L 72 8 L 72 33 L 92 33 L 92 92 L 27 92 Z" 
+        fill="#002855" stroke="#C5A30F" stroke-width="3" stroke-linejoin="round"/>
+  <!-- Capitol building -->
+  <g transform="translate(57, 55)">
+    <!-- Base/steps -->
+    <rect x="-18" y="12" width="36" height="8" fill="#C5A30F"/>
+    <rect x="-15" y="6" width="30" height="8" fill="#C5A30F"/>
+    <!-- Columns -->
+    <rect x="-12" y="-8" width="3" height="16" fill="#C5A30F"/>
+    <rect x="-5" y="-8" width="3" height="16" fill="#C5A30F"/>
+    <rect x="2" y="-8" width="3" height="16" fill="#C5A30F"/>
+    <rect x="9" y="-8" width="3" height="16" fill="#C5A30F"/>
+    <!-- Roof/triangle -->
+    <polygon points="-14,-8 0,-18 14,-8" fill="#C5A30F"/>
+    <!-- Dome -->
+    <ellipse cx="0" cy="-22" rx="6" ry="5" fill="#C5A30F"/>
+    <rect x="-1" y="-30" width="2" height="6" fill="#C5A30F"/>
+  </g>
 </svg>

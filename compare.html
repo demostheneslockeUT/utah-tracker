@@ -2,6 +2,8 @@
 <html lang="en">
 <head>
     <link rel="icon" href="favicon.svg" type="image/svg+xml">
+    <link rel="icon" href="favicon.png" type="image/png">
+    <link rel="apple-touch-icon" href="apple-touch-icon.png">
     <!-- Social Meta Tags -->
     <meta property="og:title" content="Utah Legislative Tracker">
     <meta property="og:description" content="Making Utah politics easier. Track bills and see where organizations stand.">
@@ -156,10 +158,12 @@
             Object.values(positions).forEach(group => {
                 group.forEach((item, index) => {
                     const verticalOffset = index * 36; // 36px spacing between stacked icons
-                    markers.push(`<div class="absolute transform -translate-x-1/2 cursor-pointer hover:scale-125 transition" 
-                                style="left:${item.pos}%;top:${verticalOffset}px" 
-                                title="${item.org.name}: ${item.org.ideology} (${item.org.ideology_score.toFixed(2)})">
+                    markers.push(`<div class="absolute transform -translate-x-1/2 cursor-pointer hover:scale-125 transition-none group" 
+                                style="left:${item.pos}%;top:${verticalOffset}px">
                                 <span class="text-2xl">${item.org.emoji}</span>
+                                <div class="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 px-2 py-1 bg-gray-900 text-white text-xs rounded whitespace-nowrap opacity-0 group-hover:opacity-100 pointer-events-none z-50">
+                                    ${item.org.name}: ${item.org.ideology}
+                                </div>
                             </div>`);
                 });
             });
@@ -302,5 +306,6 @@
     </script>
     <div id="site-footer"></div>
     <script src="js/components.js"></script>
+    <script src="js/my-reps-modal.js"></script>
 </body>
 </html>

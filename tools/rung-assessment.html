@@ -13,9 +13,79 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         body { margin: 0; padding: 0; }
+        
+        /* Custom slider styling */
+        .political-slider {
+            -webkit-appearance: none;
+            width: 100%;
+            height: 12px;
+            border-radius: 6px;
+            background: linear-gradient(to right, #3498db 0%, #9b59b6 50%, #e74c3c 100%);
+            outline: none;
+            cursor: pointer;
+        }
+        .political-slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            background: white;
+            border: 3px solid #333;
+            cursor: pointer;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+        }
+        .political-slider::-moz-range-thumb {
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            background: white;
+            border: 3px solid #333;
+            cursor: pointer;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+        }
+        
+        /* Tooltip styling */
+        .tooltip-trigger {
+            position: relative;
+            border-bottom: 1px dashed #666;
+            cursor: help;
+        }
+        .tooltip-trigger:hover .tooltip-content {
+            visibility: visible;
+            opacity: 1;
+        }
+        .tooltip-content {
+            visibility: hidden;
+            opacity: 0;
+            position: absolute;
+            bottom: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #333;
+            color: white;
+            padding: 8px 12px;
+            border-radius: 6px;
+            font-size: 13px;
+            width: 280px;
+            text-align: left;
+            z-index: 100;
+            transition: opacity 0.2s;
+            margin-bottom: 8px;
+            font-weight: normal;
+            line-height: 1.4;
+        }
+        .tooltip-content::after {
+            content: '';
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            border: 6px solid transparent;
+            border-top-color: #333;
+        }
     </style>
 </head>
-<body>
+<body class="bg-slate-300 min-h-screen">
     <div id="site-header"></div>
     <div id="root"></div>
     
@@ -38,55 +108,150 @@
           const [currentIssue, setCurrentIssue] = useState(null);
           const [showResults, setShowResults] = useState(false);
 
+          // Questions - reordered with easy one first
           const questions = {
-            political: [
-              { value: -2, label: 'Far Left' },
-              { value: -1, label: 'Left-leaning' },
-              { value: 0, label: 'Centrist' },
-              { value: 1, label: 'Right-leaning' },
-              { value: 2, label: 'Far Right' }
-            ],
             rung: [
-              { points: 2, text: 'I can explain the opposing view so well they\'d agree with my summary' },
-              { points: 2, text: 'I\'ve changed my mind on a related policy in the last 2 years' },
-              { points: 2, text: 'I can name specific evidence that would change my mind' },
-              { points: 2, text: 'I regularly read sources from people I disagree with on this' },
-              { points: 2, text: 'I view this as a trade-off between values, not good vs evil' }
+              { 
+                id: 'sources',
+                text: 'I regularly read sources from people I disagree with on this',
+                hasTextInput: false
+              },
+              { 
+                id: 'steelman',
+                text: 'I can steel-man the opposing view so well they\'d agree with my summary',
+                hasTextInput: true,
+                textPlaceholder: 'Explain the opposing view in your own words...',
+                textLabel: 'Steel-man the opposing argument:',
+                isTextarea: true,
+                hasSteelmanTooltip: true
+              },
+              { 
+                id: 'changed',
+                text: 'I\'ve changed my mind on a related policy in the last 2 years',
+                hasTextInput: true,
+                textPlaceholder: 'What policy did you change your mind on?',
+                textLabel: 'What did you change your mind about?',
+                isTextarea: false
+              },
+              { 
+                id: 'evidence',
+                text: 'I can name specific evidence that would change my mind',
+                hasTextInput: true,
+                textPlaceholder: 'What evidence would change your view?',
+                textLabel: 'What would change your mind?',
+                isTextarea: false
+              },
+              { 
+                id: 'tradeoffs',
+                text: 'I view this as a trade-off between values, not good vs evil',
+                hasTextInput: false,
+                hasTradeoffInputs: true
+              }
             ]
           };
 
           const [tempAssessment, setTempAssessment] = useState({
             political: 0,
-            rungAnswers: []
+            rungChecks: {},      // { questionId: true/false }
+            rungTexts: {},       // { questionId: 'text content' }
+            tradeoffValues: { value1: '', value2: '' }  // For the tradeoff question
           });
 
           const handleStartAssessment = (issue) => {
             setCurrentIssue(issue);
-            setTempAssessment({ political: 0, rungAnswers: [] });
+            setTempAssessment({ 
+              political: 0, 
+              rungChecks: {},
+              rungTexts: {},
+              tradeoffValues: { value1: '', value2: '' }
+            });
           };
 
-          const handleToggleRung = (index) => {
-            const newAnswers = [...tempAssessment.rungAnswers];
-            if (newAnswers.includes(index)) {
-              newAnswers.splice(newAnswers.indexOf(index), 1);
-            } else {
-              newAnswers.push(index);
+          const handleToggleRung = (questionId) => {
+            const newChecks = { ...tempAssessment.rungChecks };
+            newChecks[questionId] = !newChecks[questionId];
+            
+            // Clear text if unchecking
+            const newTexts = { ...tempAssessment.rungTexts };
+            if (!newChecks[questionId]) {
+              delete newTexts[questionId];
             }
-            setTempAssessment({ ...tempAssessment, rungAnswers: newAnswers });
+            
+            // Clear tradeoff values if unchecking tradeoffs
+            let newTradeoffValues = tempAssessment.tradeoffValues;
+            if (questionId === 'tradeoffs' && !newChecks[questionId]) {
+              newTradeoffValues = { value1: '', value2: '' };
+            }
+            
+            setTempAssessment({ 
+              ...tempAssessment, 
+              rungChecks: newChecks,
+              rungTexts: newTexts,
+              tradeoffValues: newTradeoffValues
+            });
+          };
+
+          const handleTextChange = (questionId, value) => {
+            setTempAssessment({
+              ...tempAssessment,
+              rungTexts: {
+                ...tempAssessment.rungTexts,
+                [questionId]: value
+              }
+            });
+          };
+
+          const handleTradeoffChange = (field, value) => {
+            setTempAssessment({
+              ...tempAssessment,
+              tradeoffValues: {
+                ...tempAssessment.tradeoffValues,
+                [field]: value
+              }
+            });
+          };
+
+          const calculateRungScore = () => {
+            let score = 0;
+            questions.rung.forEach(q => {
+              if (tempAssessment.rungChecks[q.id]) {
+                if (q.hasTextInput) {
+                  // 1 point for check, 1 more for text
+                  score += 1;
+                  if (tempAssessment.rungTexts[q.id]?.trim().length > 10) {
+                    score += 1;
+                  }
+                } else if (q.hasTradeoffInputs) {
+                  // 1 point for check, 1 more for both values filled
+                  score += 1;
+                  const v1 = tempAssessment.tradeoffValues.value1?.trim();
+                  const v2 = tempAssessment.tradeoffValues.value2?.trim();
+                  if (v1 && v2 && v1.length > 2 && v2.length > 2) {
+                    score += 1;
+                  }
+                } else {
+                  // 2 points for simple checkbox
+                  score += 2;
+                }
+              }
+            });
+            return score;
           };
 
           const handleSaveIssue = () => {
-            const rungScore = tempAssessment.rungAnswers.reduce(
-              (sum, idx) => sum + questions.rung[idx].points, 
-              0
-            );
+            const rungScore = calculateRungScore();
             
             setPositions({
               ...positions,
               [currentIssue.id]: {
                 political: tempAssessment.political,
                 rung: rungScore,
-                issue: currentIssue
+                issue: currentIssue,
+                responses: {
+                  checks: { ...tempAssessment.rungChecks },
+                  texts: { ...tempAssessment.rungTexts },
+                  tradeoffs: { ...tempAssessment.tradeoffValues }
+                }
               }
             });
             setCurrentIssue(null);
@@ -121,7 +286,30 @@
             return 'Zealot';
           };
 
+          const getPositionLabel = (value) => {
+            if (value <= -1.5) return 'Far Left';
+            if (value <= -0.5) return 'Left-leaning';
+            if (value <= 0.5) return 'Centrist';
+            if (value <= 1.5) return 'Right-leaning';
+            return 'Far Right';
+          };
+
+          // Steel-man tooltip component
+          const SteelmanTooltip = ({ children }) => (
+            <span className="tooltip-trigger">
+              {children}
+              <span className="tooltip-content">
+                <strong>Steel-manning</strong> means presenting the opposing argument in its strongest, 
+                most charitable form—so well that someone who holds that view would say 
+                "Yes, that's exactly why I believe this." The opposite of a straw-man.
+              </span>
+            </span>
+          );
+
+          // Assessment screen for a specific issue
           if (currentIssue) {
+            const currentScore = calculateRungScore();
+            
             return (
               <div style={{ padding: '30px', maxWidth: '700px', margin: '0 auto', fontFamily: 'system-ui, -apple-system, sans-serif' }}>
                 <div style={{ marginBottom: '30px' }}>
@@ -131,77 +319,210 @@
                   <p style={{ color: '#666', fontSize: '14px' }}>Answer honestly about how you actually engage with this issue</p>
                 </div>
 
+                {/* Political Position Slider */}
                 <div style={{ background: '#f8f9fa', padding: '25px', borderRadius: '12px', marginBottom: '25px' }}>
                   <h3 style={{ fontSize: '18px', marginBottom: '20px' }}>1. Your Political Position</h3>
-                  <div style={{ display: 'flex', gap: '10px', flexWrap: 'wrap' }}>
-                    {questions.political.map((option) => (
-                      <button
-                        key={option.value}
-                        onClick={() => setTempAssessment({ ...tempAssessment, political: option.value })}
-                        style={{
-                          padding: '12px 20px',
-                          border: tempAssessment.political === option.value ? '2px solid #3498db' : '2px solid #ddd',
-                          background: tempAssessment.political === option.value ? '#e3f2fd' : 'white',
-                          borderRadius: '8px',
-                          cursor: 'pointer',
-                          fontSize: '14px',
-                          fontWeight: tempAssessment.political === option.value ? 'bold' : 'normal',
-                          flex: '1 1 auto',
-                          minWidth: '120px'
-                        }}
-                      >
-                        {option.label}
-                      </button>
-                    ))}
+                  
+                  <div style={{ marginBottom: '15px' }}>
+                    <input
+                      type="range"
+                      min="-2"
+                      max="2"
+                      step="0.1"
+                      value={tempAssessment.political}
+                      onChange={(e) => setTempAssessment({ ...tempAssessment, political: parseFloat(e.target.value) })}
+                      className="political-slider"
+                    />
+                  </div>
+                  
+                  <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '12px', color: '#666', marginBottom: '10px' }}>
+                    <span>Far Left</span>
+                    <span>Left</span>
+                    <span>Center</span>
+                    <span>Right</span>
+                    <span>Far Right</span>
+                  </div>
+                  
+                  <div style={{ textAlign: 'center', fontSize: '18px', fontWeight: 'bold', color: '#333' }}>
+                    {getPositionLabel(tempAssessment.political)}
                   </div>
                 </div>
 
+                {/* Rung Questions */}
                 <div style={{ background: '#f8f9fa', padding: '25px', borderRadius: '12px', marginBottom: '25px' }}>
                   <h3 style={{ fontSize: '18px', marginBottom: '15px' }}>2. Your Thinking Rung</h3>
                   <p style={{ fontSize: '14px', color: '#666', marginBottom: '20px' }}>
-                    Check all that are TRUE for you on this issue (2 points each):
+                    Check what's TRUE for you. For questions with text boxes: 1 point for checking, 1 more for explaining.
                   </p>
                   
-                  {questions.rung.map((q, idx) => (
-                    <div
-                      key={idx}
-                      onClick={() => handleToggleRung(idx)}
-                      style={{
-                        padding: '15px',
-                        background: tempAssessment.rungAnswers.includes(idx) ? '#e8f5e9' : 'white',
-                        border: tempAssessment.rungAnswers.includes(idx) ? '2px solid #27ae60' : '2px solid #ddd',
-                        borderRadius: '8px',
-                        marginBottom: '12px',
-                        cursor: 'pointer',
-                        display: 'flex',
-                        alignItems: 'flex-start',
-                        gap: '12px',
-                        transition: 'all 0.2s'
-                      }}
-                    >
-                      <div style={{
-                        width: '24px',
-                        height: '24px',
-                        borderRadius: '4px',
-                        border: '2px solid ' + (tempAssessment.rungAnswers.includes(idx) ? '#27ae60' : '#ccc'),
-                        background: tempAssessment.rungAnswers.includes(idx) ? '#27ae60' : 'white',
-                        flexShrink: 0,
-                        display: 'flex',
-                        alignItems: 'center',
-                        justifyContent: 'center',
-                        color: 'white',
-                        fontSize: '14px'
-                      }}>
-                        {tempAssessment.rungAnswers.includes(idx) && '✓'}
+                  {questions.rung.map((q, idx) => {
+                    const isChecked = tempAssessment.rungChecks[q.id];
+                    const textValue = tempAssessment.rungTexts[q.id] || '';
+                    const hasValidText = textValue.trim().length > 10;
+                    const v1 = tempAssessment.tradeoffValues.value1?.trim() || '';
+                    const v2 = tempAssessment.tradeoffValues.value2?.trim() || '';
+                    const hasValidTradeoffs = v1.length > 2 && v2.length > 2;
+                    
+                    // Calculate points display
+                    let pointsDisplay;
+                    if (q.hasTextInput) {
+                      pointsDisplay = isChecked ? (hasValidText ? '✓ 2/2 points' : '1/2 points (add explanation for +1)') : '0/2 points';
+                    } else if (q.hasTradeoffInputs) {
+                      pointsDisplay = isChecked ? (hasValidTradeoffs ? '✓ 2/2 points' : '1/2 points (fill both values for +1)') : '0/2 points';
+                    } else {
+                      pointsDisplay = isChecked ? '✓ 2/2 points' : '0/2 points';
+                    }
+                    
+                    return (
+                      <div key={q.id} style={{ marginBottom: '16px' }}>
+                        <div
+                          onClick={() => handleToggleRung(q.id)}
+                          style={{
+                            padding: '15px',
+                            background: isChecked ? '#e8f5e9' : 'white',
+                            border: isChecked ? '2px solid #27ae60' : '2px solid #ddd',
+                            borderRadius: (q.hasTextInput || q.hasTradeoffInputs) && isChecked ? '8px 8px 0 0' : '8px',
+                            cursor: 'pointer',
+                            display: 'flex',
+                            alignItems: 'flex-start',
+                            gap: '12px',
+                            transition: 'all 0.2s'
+                          }}
+                        >
+                          <div style={{
+                            width: '24px',
+                            height: '24px',
+                            borderRadius: '4px',
+                            border: '2px solid ' + (isChecked ? '#27ae60' : '#ccc'),
+                            background: isChecked ? '#27ae60' : 'white',
+                            flexShrink: 0,
+                            display: 'flex',
+                            alignItems: 'center',
+                            justifyContent: 'center',
+                            color: 'white',
+                            fontSize: '14px'
+                          }}>
+                            {isChecked && '✓'}
+                          </div>
+                          <div style={{ flex: 1 }}>
+                            <span style={{ fontSize: '15px', lineHeight: '1.5' }}>
+                              {q.hasSteelmanTooltip ? (
+                                <>I can <SteelmanTooltip>steel-man</SteelmanTooltip> the opposing view so well they'd agree with my summary</>
+                              ) : q.hasTradeoffInputs ? (
+                                <>I view this as a trade-off between values, not good vs evil</>
+                              ) : (
+                                q.text
+                              )}
+                            </span>
+                            <div style={{ fontSize: '12px', color: '#888', marginTop: '4px' }}>
+                              {pointsDisplay}
+                            </div>
+                          </div>
+                        </div>
+                        
+                        {/* Conditional text input for regular text questions */}
+                        {q.hasTextInput && isChecked && (
+                          <div style={{
+                            padding: '15px',
+                            background: '#f0f9f0',
+                            border: '2px solid #27ae60',
+                            borderTop: 'none',
+                            borderRadius: '0 0 8px 8px'
+                          }}>
+                            <label style={{ fontSize: '13px', color: '#555', display: 'block', marginBottom: '8px' }}>
+                              {q.textLabel} <span style={{ color: '#888' }}>(+1 point)</span>
+                            </label>
+                            {q.isTextarea ? (
+                              <textarea
+                                value={textValue}
+                                onChange={(e) => handleTextChange(q.id, e.target.value)}
+                                placeholder={q.textPlaceholder}
+                                onClick={(e) => e.stopPropagation()}
+                                style={{
+                                  width: '100%',
+                                  minHeight: '80px',
+                                  padding: '10px',
+                                  border: '1px solid #ccc',
+                                  borderRadius: '6px',
+                                  fontSize: '14px',
+                                  resize: 'vertical',
+                                  boxSizing: 'border-box'
+                                }}
+                              />
+                            ) : (
+                              <input
+                                type="text"
+                                value={textValue}
+                                onChange={(e) => handleTextChange(q.id, e.target.value)}
+                                placeholder={q.textPlaceholder}
+                                onClick={(e) => e.stopPropagation()}
+                                style={{
+                                  width: '100%',
+                                  padding: '10px',
+                                  border: '1px solid #ccc',
+                                  borderRadius: '6px',
+                                  fontSize: '14px',
+                                  boxSizing: 'border-box'
+                                }}
+                              />
+                            )}
+                          </div>
+                        )}
+                        
+                        {/* Tradeoff inputs for values question */}
+                        {q.hasTradeoffInputs && isChecked && (
+                          <div style={{
+                            padding: '15px',
+                            background: '#f0f9f0',
+                            border: '2px solid #27ae60',
+                            borderTop: 'none',
+                            borderRadius: '0 0 8px 8px'
+                          }}>
+                            <label style={{ fontSize: '13px', color: '#555', display: 'block', marginBottom: '12px' }}>
+                              What values are in tension? <span style={{ color: '#888' }}>(+1 point)</span>
+                            </label>
+                            <div style={{ display: 'flex', alignItems: 'center', gap: '10px', flexWrap: 'wrap' }}>
+                              <span style={{ fontSize: '14px', color: '#555' }}>A trade-off between</span>
+                              <input
+                                type="text"
+                                value={v1}
+                                onChange={(e) => handleTradeoffChange('value1', e.target.value)}
+                                placeholder="e.g., Bodily Autonomy"
+                                onClick={(e) => e.stopPropagation()}
+                                style={{
+                                  padding: '8px 12px',
+                                  border: '1px solid #ccc',
+                                  borderRadius: '6px',
+                                  fontSize: '14px',
+                                  width: '160px'
+                                }}
+                              />
+                              <span style={{ fontSize: '14px', color: '#555', fontWeight: 'bold' }}>vs</span>
+                              <input
+                                type="text"
+                                value={v2}
+                                onChange={(e) => handleTradeoffChange('value2', e.target.value)}
+                                placeholder="e.g., Life of Child"
+                                onClick={(e) => e.stopPropagation()}
+                                style={{
+                                  padding: '8px 12px',
+                                  border: '1px solid #ccc',
+                                  borderRadius: '6px',
+                                  fontSize: '14px',
+                                  width: '160px'
+                                }}
+                              />
+                            </div>
+                          </div>
+                        )}
                       </div>
-                      <span style={{ fontSize: '15px', lineHeight: '1.5' }}>{q.text}</span>
-                    </div>
-                  ))}
+                    );
+                  })}
                   
                   <div style={{ marginTop: '20px', padding: '15px', background: '#fff3cd', borderRadius: '8px', border: '1px solid #ffc107' }}>
-                    <strong>Your Rung Score: {tempAssessment.rungAnswers.reduce((sum, idx) => sum + questions.rung[idx].points, 0)}/10</strong>
+                    <strong>Your Rung Score: {currentScore}/10</strong>
                     <div style={{ fontSize: '13px', marginTop: '5px', color: '#666' }}>
-                      {getRungLabel(tempAssessment.rungAnswers.reduce((sum, idx) => sum + questions.rung[idx].points, 0))}
+                      {getRungLabel(currentScore)}
                     </div>
                   </div>
                 </div>
@@ -242,6 +563,7 @@
             );
           }
 
+          // Results screen
           if (showResults && stats) {
             return (
               <div style={{ padding: '30px', maxWidth: '900px', margin: '0 auto', fontFamily: 'system-ui, -apple-system, sans-serif' }}>
@@ -335,6 +657,49 @@
                   </div>
                 </div>
 
+                {/* Your Responses Section */}
+                <div style={{ background: '#f8f9fa', padding: '25px', borderRadius: '12px', marginBottom: '30px' }}>
+                  <h3 style={{ fontSize: '20px', marginBottom: '20px' }}>Your Reflections</h3>
+                  {Object.values(positions).map((pos, idx) => {
+                    const texts = pos.responses?.texts || {};
+                    const tradeoffs = pos.responses?.tradeoffs || {};
+                    const hasTexts = Object.keys(texts).some(k => texts[k]?.trim());
+                    const hasTradeoffs = tradeoffs.value1?.trim() && tradeoffs.value2?.trim();
+                    
+                    if (!hasTexts && !hasTradeoffs) return null;
+                    
+                    return (
+                      <div key={idx} style={{ marginBottom: '20px', padding: '15px', background: 'white', borderRadius: '8px', border: '1px solid #ddd' }}>
+                        <div style={{ fontWeight: 'bold', marginBottom: '10px' }}>{pos.issue.icon} {pos.issue.name}</div>
+                        {texts.steelman && (
+                          <div style={{ marginBottom: '8px' }}>
+                            <div style={{ fontSize: '12px', color: '#666' }}>Steel-man:</div>
+                            <div style={{ fontSize: '14px', fontStyle: 'italic' }}>"{texts.steelman}"</div>
+                          </div>
+                        )}
+                        {texts.changed && (
+                          <div style={{ marginBottom: '8px' }}>
+                            <div style={{ fontSize: '12px', color: '#666' }}>Changed mind on:</div>
+                            <div style={{ fontSize: '14px' }}>{texts.changed}</div>
+                          </div>
+                        )}
+                        {texts.evidence && (
+                          <div style={{ marginBottom: '8px' }}>
+                            <div style={{ fontSize: '12px', color: '#666' }}>Would change mind if:</div>
+                            <div style={{ fontSize: '14px' }}>{texts.evidence}</div>
+                          </div>
+                        )}
+                        {hasTradeoffs && (
+                          <div>
+                            <div style={{ fontSize: '12px', color: '#666' }}>Values in tension:</div>
+                            <div style={{ fontSize: '14px' }}><strong>{tradeoffs.value1}</strong> vs <strong>{tradeoffs.value2}</strong></div>
+                          </div>
+                        )}
+                      </div>
+                    );
+                  })}
+                </div>
+
                 <div style={{ display: 'flex', gap: '15px' }}>
                   <button
                     onClick={() => setShowResults(false)}
@@ -374,6 +739,7 @@
             );
           }
 
+          // Main issue selection screen
           return (
             <div style={{ padding: '30px', maxWidth: '900px', margin: '0 auto', fontFamily: 'system-ui, -apple-system, sans-serif' }}>
               <div style={{ textAlign: 'center', marginBottom: '40px' }}>
@@ -442,9 +808,10 @@
               <div style={{ marginTop: '50px', padding: '25px', background: '#f8f9fa', borderRadius: '12px' }}>
                 <h3 style={{ fontSize: '20px', marginBottom: '15px' }}>How This Works</h3>
                 <p style={{ fontSize: '15px', lineHeight: '1.6', color: '#666' }}>
-                  For each issue, you'll rate your political position (left to right) and your thinking rung 
-                  (Zealot to Thinker). Be honest with yourself—this is for your eyes only. The goal isn't to 
-                  score perfectly; it's to understand where you're thinking clearly and where you're reacting tribally.
+                  For each issue, you'll rate your political position (left to right) and answer 5 questions about 
+                  how you think about that issue. Some questions ask you to explain your thinking for bonus points.
+                  Be honest—this is for your eyes only. The goal isn't to score perfectly; it's to understand 
+                  where you're thinking clearly and where you're reacting tribally.
                 </p>
               </div>
             </div>

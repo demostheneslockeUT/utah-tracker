@@ -26,7 +26,7 @@
     <title>Compare | Utah Bill Tracker</title>
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body class="bg-gray-300 min-h-screen">
+<body class="bg-slate-300 min-h-screen">
         <div id="site-header"></div>
     
     <script>
@@ -107,6 +107,7 @@
         let bills = [];
         let legislators = {};
         let ideology = [];
+        let contestedBills = new Set();
         let sel1 = { type: null, id: null, name: null };
         let sel2 = { type: null, id: null, name: null };
 
@@ -123,6 +124,8 @@
                 
                 const compareData = await compareRes.json();
                 legislators = compareData.legislators || {};
+                contestedBills = new Set(compareData.contestedBillNumbers || []);
+                console.log("Loaded " + contestedBills.size + " contested bills");
                 
                 const ideoData = await ideoRes.json();
                 ideology = ideoData.organizations || [];
@@ -201,9 +204,9 @@
                     html += `<option value="${org.field_name}">${org.emoji} ${org.name}</option>`;
                 });
             } else {
-                Object.entries(legislators).sort((a,b) => a[1].name.localeCompare(b[1].name)).forEach(([id, leg]) => {
-                    const party = leg.party === 'R' ? '🔴' : '🔵';
-                    html += `<option value="${id}">${party} ${leg.name}</option>`;
+                Object.entries(legislators).sort((a,b) => a[1].info.name.localeCompare(b[1].info.name)).forEach(([id, leg]) => {
+                    const party = leg.info.party === 'R' ? '🔴' : '🔵';
+                    html += `<option value="${id}">${party} ${leg.info.name}</option>`;
                 });
             }
             select.innerHTML = html;
@@ -233,8 +236,8 @@
                 });
             } else if (legislators[id]) {
                 const leg = legislators[id];
-                (leg.yea_votes || []).forEach(b => positions[b] = 'Support');
-                (leg.nay_votes || []).forEach(b => positions[b] = 'Oppose');
+                (leg.votes?.yea || []).forEach(b => positions[b] = 'Support');
+                (leg.votes?.nay || []).forEach(b => positions[b] = 'Oppose');
             }
             
             console.log(`${type} ${id}: ${Object.keys(positions).length} positions`);
@@ -245,7 +248,13 @@
             const pos1 = getPositions(sel1.type, sel1.id);
             const pos2 = getPositions(sel2.type, sel2.id);
             
-            const common = Object.keys(pos1).filter(b => pos2[b]);
+            // Filter to contested bills only when comparing legislators
+            const bothLegislators = sel1.type === 'leg' && sel2.type === 'leg';
+            const common = Object.keys(pos1).filter(b => {
+                if (!pos2[b]) return false;
+                if (bothLegislators && !contestedBills.has(b)) return false;
+                return true;
+            });
             const agreements = [];
             const disagreements = [];
             
@@ -264,10 +273,11 @@
             const total = agreements.length + disagreements.length;
             const pct = total > 0 ? Math.round((agreements.length / total) * 100) : 0;
             
-            displayResults(pct, total, agreements, disagreements);
+            const isContestedComparison = sel1.type === 'leg' && sel2.type === 'leg';
+            displayResults(pct, total, agreements, disagreements, isContestedComparison);
         }
 
-        function displayResults(pct, total, agreements, disagreements) {
+        function displayResults(pct, total, agreements, disagreements, isContested = false) {
             document.getElementById('results').classList.remove('hidden');
             document.getElementById('results').scrollIntoView({ behavior: 'smooth' });
             
@@ -280,7 +290,7 @@
             document.getElementById('score-label').textContent = 
                 pct >= 80 ? '🤝 Strong Alignment' : pct >= 60 ? '✅ Good Alignment' : 
                 pct >= 40 ? '⚖️ Moderate' : '❌ Low Alignment';
-            document.getElementById('score-detail').textContent = `Based on ${total} bills`;
+            document.getElementById('score-detail').textContent = isContested ? `Based on ${total} contested bills (6+ nay votes)` : `Based on ${total} bills`;
             
             document.getElementById('agree-count').textContent = agreements.length;
             document.getElementById('disagree-count').textContent = disagreements.length;

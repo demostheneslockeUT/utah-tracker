@@ -52,6 +52,7 @@ class LegislatorContactSystem {
 }
 
 const contactSystem = new LegislatorContactSystem();
+window.contactSystem = contactSystem;
 
 // Show legislator contact modal
 async function showLegislatorContact() {

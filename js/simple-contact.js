@@ -49,20 +49,16 @@ window.contactLegislatorAboutBill = async function(billNumber, event) {
     }
     
     const userLegislators = contactSystem.getUserLegislators();
-    const firstLegName = userLegislators[0];
-    const legInfo = contactSystem.getLegislatorInfo(firstLegName);
     
-    // Step 4: Generate and send email
-    const template = generateEmailTemplate(bill, userVote, firstLegName);
-    
-    if (legInfo && legInfo.email) {
-        // Has email - open mailto
-        const mailto = `mailto:${legInfo.email}?subject=${encodeURIComponent(template.subject)}&body=${encodeURIComponent(template.body)}`;
-        window.location.href = mailto;
-    } else {
-        // No email - show preview
-        showEmailPreviewModal(template, firstLegName, legInfo);
+    // If multiple legislators, let user choose
+    if (userLegislators.length > 1) {
+        showLegislatorSelectionModal(userLegislators, bill, userVote);
+        return;
     }
+    
+    // Single legislator - proceed directly
+    const legName = userLegislators[0];
+    sendEmailToLegislator(legName, bill, userVote)
 };
 
 function showEmailPreviewModal(template, legName, legInfo) {
@@ -174,3 +170,77 @@ window.debugBill = function(billNumber) {
         console.log('Sample bill:', window.allBills[0]);
     }
 };
+
+
+// Show modal to select which legislator to contact
+function showLegislatorSelectionModal(legislators, bill, userVote) {
+    const existing = document.getElementById('legislator-select-modal');
+    if (existing) existing.remove();
+    
+    const modal = document.createElement('div');
+    modal.id = 'legislator-select-modal';
+    modal.className = 'fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center p-4';
+    modal.onclick = (e) => {
+        if (e.target === modal) modal.remove();
+    };
+    
+    const legislatorButtons = legislators.map(legName => {
+        const info = contactSystem.getLegislatorInfo(legName);
+        const chamber = info?.chamber === 'House' ? '🏠' : '🏛️';
+        const party = info?.party === 'Republican' ? '🔴' : info?.party === 'Democrat' ? '🔵' : '⚪';
+        return `
+            <button onclick="selectLegislatorAndContact('${legName.replace(/'/g, "\'")}', '${bill.bill_number}', '${userVote}')" 
+                class="w-full p-4 border border-gray-200 rounded-lg hover:bg-blue-50 hover:border-blue-300 transition text-left">
+                <div class="flex items-center justify-between">
+                    <div>
+                        <span class="font-semibold text-gray-800">${legName}</span>
+                        <div class="text-sm text-gray-500">${chamber} ${info?.chamber || 'Legislature'} ${party}</div>
+                    </div>
+                    <span class="text-blue-600">→</span>
+                </div>
+            </button>
+        `;
+    }).join('');
+    
+    modal.innerHTML = `
+        <div class="bg-white rounded-xl max-w-md w-full p-6 shadow-xl">
+            <div class="flex items-center justify-between mb-4">
+                <h3 class="text-xl font-bold text-gray-800">📧 Contact Your Legislator</h3>
+                <button onclick="this.closest('#legislator-select-modal').remove()" class="text-gray-400 hover:text-gray-600 text-2xl">&times;</button>
+            </div>
+            <p class="text-gray-600 mb-4">Choose which representative to contact about <strong>${bill.bill_number}</strong>:</p>
+            <div class="space-y-2">
+                ${legislatorButtons}
+            </div>
+            <p class="text-xs text-gray-400 mt-4 text-center">You can contact multiple legislators separately</p>
+        </div>
+    `;
+    
+    document.body.appendChild(modal);
+}
+
+// Handle legislator selection and send email
+window.selectLegislatorAndContact = function(legName, billNumber, userVote) {
+    document.getElementById('legislator-select-modal')?.remove();
+    
+    const bill = window.allBills?.find(b => b.bill_number === billNumber) || {
+        bill_number: billNumber,
+        title: 'Utah Legislative Bill ' + billNumber,
+        status: 'Unknown'
+    };
+    
+    sendEmailToLegislator(legName, bill, userVote);
+};
+
+// Send email to a specific legislator
+function sendEmailToLegislator(legName, bill, userVote) {
+    const legInfo = contactSystem.getLegislatorInfo(legName);
+    const template = generateEmailTemplate(bill, userVote, legName);
+    
+    if (legInfo && legInfo.email) {
+        const mailto = `mailto:${legInfo.email}?subject=${encodeURIComponent(template.subject)}&body=${encodeURIComponent(template.body)}`;
+        window.location.href = mailto;
+    } else {
+        showEmailPreviewModal(template, legName, legInfo);
+    }
+}

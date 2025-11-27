@@ -48,7 +48,7 @@ function renderHeader() {
                     <a href="${base}legislators.html" class="text-yellow-400 hover:text-white font-medium py-2">👔 Legislators</a>
                     <a href="${base}compare.html" class="text-yellow-400 hover:text-white font-medium py-2">⚖️ Compare</a>
                     <a href="${base}climb.html" class="text-yellow-400 hover:text-white font-medium py-2">🪜 Climb</a>
-                    <a href="#" onclick="showMyRepsModal(); return false;" class="text-yellow-400 hover:text-white font-medium py-2">My Reps</a>
+                    <a href="#" onclick="showMyRepsModal(); return false;" class="text-yellow-400 hover:text-white font-medium py-2">🏛️ My Reps</a>
                     <a href="${base}signup.html" class="bg-yellow-500 hover:bg-yellow-400 text-blue-900 font-semibold px-4 py-3 rounded text-center mt-2">✨ Sign Up</a>
                 </div>
             </div>

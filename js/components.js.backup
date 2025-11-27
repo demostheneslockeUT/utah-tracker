@@ -87,11 +87,11 @@ document.addEventListener('DOMContentLoaded', function() {
         headerEl.innerHTML = renderHeader();
     }
     
-    // Render footer - DISABLED: Using static HTML footer instead
-    // const footerEl = document.getElementById('site-footer');
-    // if (footerEl) {
-    //     footerEl.innerHTML = renderFooter();
-    // }
+    // Render footer
+    const footerEl = document.getElementById('site-footer');
+    if (footerEl) {
+        footerEl.innerHTML = renderFooter();
+    }
 });
 
 // Make toggleMobileMenu available globally

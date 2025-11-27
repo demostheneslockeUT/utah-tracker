@@ -371,11 +371,11 @@ function toggleOrgFilter(orgKey) {
     
     if (selectedOrgs.has(orgKey)) {
         selectedOrgs.delete(orgKey);
-        btn.classList.remove('bg-navy', 'text-yellow-400', 'border-navy');
+        btn.classList.remove('bg-[#002855]', 'text-yellow-400', 'border-[#002855]');
         btn.classList.add('border-gray-300', 'hover:bg-gray-100');
     } else {
         selectedOrgs.add(orgKey);
-        btn.classList.add('bg-navy', 'text-yellow-400', 'border-navy');
+        btn.classList.add('bg-[#002855]', 'text-yellow-400', 'border-[#002855]');
         btn.classList.remove('border-gray-300', 'hover:bg-gray-100');
     }
     
@@ -438,7 +438,7 @@ function setFilter(filterType) {
         console.log('After clear:', selectedOrgs.size);
         // Reset all org button styles
         document.querySelectorAll('[id^="org-"]').forEach(btn => {
-            btn.classList.remove('bg-navy', 'text-yellow-400', 'border-navy');
+            btn.classList.remove('bg-[#002855]', 'text-yellow-400', 'border-[#002855]');
             btn.classList.add('border-gray-300', 'hover:bg-gray-100');
         });
     }

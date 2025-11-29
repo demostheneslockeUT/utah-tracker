@@ -5,20 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Utah Redistricting Game | Draw Your Own Congressional Districts</title>
     
-    <!-- Leaflet CSS -->
     <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
     <link rel="icon" type="image/png" href="../../favicon.png">
     <link rel="apple-touch-icon" href="../../apple-touch-icon.png">
     
-    <!-- Leaflet CSS -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
     
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
         
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
@@ -26,31 +20,18 @@
             color: #eee;
         }
         
-        .container {
-            display: flex;
-            height: 100vh;
-        }
+        .container { display: flex; height: 100vh; }
         
-        /* Sidebar */
         .sidebar {
-            width: 320px;
+            width: 360px;
             background: #16213e;
             padding: 20px;
             overflow-y: auto;
             border-right: 2px solid #0f3460;
         }
         
-        .sidebar h1 {
-            font-size: 1.4rem;
-            margin-bottom: 5px;
-            color: #e94560;
-        }
-        
-        .sidebar .subtitle {
-            font-size: 0.85rem;
-            color: #888;
-            margin-bottom: 20px;
-        }
+        .sidebar h1 { font-size: 1.3rem; margin-bottom: 5px; color: #e94560; }
+        .sidebar .subtitle { font-size: 0.85rem; color: #888; margin-bottom: 15px; }
         
         .section {
             background: #1a1a2e;
@@ -60,110 +41,191 @@
         }
         
         .section h3 {
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             color: #e94560;
             margin-bottom: 10px;
             text-transform: uppercase;
             letter-spacing: 1px;
         }
         
-        .stat-row {
+        .mode-toggle { display: flex; gap: 5px; margin-bottom: 15px; }
+        
+        .mode-btn {
+            flex: 1;
+            padding: 12px 8px;
+            border: 2px solid #333;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 0.85rem;
+            font-weight: bold;
+            background: #1a1a2e;
+            color: #888;
+            transition: all 0.2s;
+        }
+        
+        .mode-btn.active { border-color: #e94560; color: #fff; background: #2a1a3e; }
+        .mode-btn:hover { border-color: #e94560; }
+        
+        .district-selector { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; margin-bottom: 15px; }
+        
+        .district-btn {
+            padding: 12px 5px;
+            border: 3px solid transparent;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 0.85rem;
+            font-weight: bold;
+            color: white;
+            transition: all 0.2s;
+            text-align: center;
+        }
+        
+        .district-btn.active { transform: scale(1.05); box-shadow: 0 0 15px rgba(255,255,255,0.3); }
+        
+        .district-btn.d1 { background: #8b5cf6; }
+        .district-btn.d2 { background: #14b8a6; }
+        .district-btn.d3 { background: #f59e0b; }
+        .district-btn.d4 { background: #84cc16; }
+        
+        .district-btn.active.d1 { border-color: #c4b5fd; }
+        .district-btn.active.d2 { border-color: #5eead4; }
+        .district-btn.active.d3 { border-color: #fcd34d; }
+        .district-btn.active.d4 { border-color: #bef264; }
+        
+        .district-btn.eraser { background: #374151; }
+        .district-btn.eraser.active { border-color: #9ca3af; }
+        
+        .stats-table { width: 100%; border-collapse: collapse; font-size: 0.8rem; }
+        .stats-table th { text-align: left; padding: 8px 5px; border-bottom: 1px solid #333; color: #888; font-weight: normal; }
+        .stats-table td { padding: 8px 5px; border-bottom: 1px solid #222; }
+        
+        .stats-table tr.d1 td:first-child { border-left: 4px solid #8b5cf6; padding-left: 8px; }
+        .stats-table tr.d2 td:first-child { border-left: 4px solid #14b8a6; padding-left: 8px; }
+        .stats-table tr.d3 td:first-child { border-left: 4px solid #f59e0b; padding-left: 8px; }
+        .stats-table tr.d4 td:first-child { border-left: 4px solid #84cc16; padding-left: 8px; }
+        
+        .winner-d { color: #3b82f6; font-weight: bold; }
+        .winner-r { color: #ef4444; font-weight: bold; }
+        
+        .results-box {
+            background: #0f3460;
+            border-radius: 8px;
+            padding: 15px;
+            text-align: center;
+        }
+        
+        .results-box .big-number { font-size: 1.8rem; font-weight: bold; margin-bottom: 5px; }
+        .results-box .label { font-size: 0.7rem; color: #888; text-transform: uppercase; }
+        .results-row { display: flex; gap: 10px; margin-bottom: 15px; }
+        .results-row .results-box { flex: 1; }
+        
+        /* Efficiency Gap Explainer */
+        .efficiency-explainer {
+            background: #0f3460;
+            border-radius: 8px;
+            padding: 15px;
+            margin-top: 10px;
+        }
+        
+        .efficiency-explainer h4 {
+            font-size: 0.8rem;
+            color: #e94560;
+            margin-bottom: 8px;
+        }
+        
+        .efficiency-bar-container {
+            position: relative;
+            height: 30px;
+            background: linear-gradient(to right, #1e40af 0%, #374151 50%, #991b1b 100%);
+            border-radius: 15px;
+            margin: 10px 0;
+            overflow: visible;
+        }
+        
+        .efficiency-marker {
+            position: absolute;
+            top: -5px;
+            width: 4px;
+            height: 40px;
+            background: #fff;
+            border-radius: 2px;
+            transform: translateX(-50%);
+            transition: left 0.3s;
+            box-shadow: 0 0 10px rgba(255,255,255,0.5);
+        }
+        
+        .efficiency-labels {
             display: flex;
             justify-content: space-between;
-            padding: 8px 0;
-            border-bottom: 1px solid #333;
+            font-size: 0.65rem;
+            color: #666;
+            margin-top: 5px;
         }
         
-        .stat-row:last-child {
-            border-bottom: none;
-        }
-        
-        .stat-label {
-            color: #888;
-        }
-        
-        .stat-value {
+        .efficiency-value {
+            text-align: center;
+            font-size: 1.1rem;
             font-weight: bold;
+            margin: 10px 0;
         }
         
-        .stat-value.dem { color: #3b82f6; }
-        .stat-value.rep { color: #ef4444; }
-        .stat-value.neutral { color: #eee; }
-        
-        /* Toggle buttons */
-        .toggle-group {
-            display: flex;
-            gap: 5px;
-            margin-bottom: 10px;
+        .efficiency-desc {
+            font-size: 0.7rem;
+            color: #888;
+            line-height: 1.4;
         }
+        
+        .efficiency-desc strong { color: #e94560; }
+        
+        .toggle-group { display: flex; gap: 5px; margin-bottom: 10px; }
         
         .toggle-btn {
             flex: 1;
-            padding: 10px;
+            padding: 8px;
             border: none;
             border-radius: 5px;
             cursor: pointer;
-            font-size: 0.8rem;
+            font-size: 0.75rem;
             font-weight: bold;
             transition: all 0.2s;
         }
         
-        .toggle-btn.active {
-            transform: scale(1.02);
+        .toggle-btn.active { transform: scale(1.02); }
+        .toggle-btn.map-2021 { background: #7f1d1d; color: white; }
+        .toggle-btn.map-2021.active { background: #ef4444; }
+        .toggle-btn.map-2025 { background: #1e3a5f; color: white; }
+        .toggle-btn.map-2025.active { background: #3b82f6; }
+        .toggle-btn.map-none { background: #374151; color: white; }
+        .toggle-btn.map-none.active { background: #6b7280; }
+        
+        .action-btn {
+            width: 100%;
+            padding: 12px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 0.85rem;
+            font-weight: bold;
+            margin-bottom: 8px;
+            transition: all 0.2s;
         }
         
-        .toggle-btn.map-2021 {
-            background: #7f1d1d;
-            color: white;
-        }
-        .toggle-btn.map-2021.active {
-            background: #ef4444;
-        }
+        .action-btn.reset { background: #374151; color: white; }
+        .action-btn.reset:hover { background: #4b5563; }
         
-        .toggle-btn.map-2025 {
-            background: #1e3a5f;
-            color: white;
-        }
-        .toggle-btn.map-2025.active {
-            background: #3b82f6;
-        }
-        
-        .toggle-btn.map-none {
-            background: #374151;
-            color: white;
-        }
-        .toggle-btn.map-none.active {
-            background: #6b7280;
-        }
-        
-        /* Legend */
-        .legend {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 10px 0;
-        }
-        
+        .legend { display: flex; justify-content: space-between; align-items: center; padding: 10px 0; }
         .legend-gradient {
-            height: 15px;
+            height: 12px;
             flex: 1;
             margin: 0 10px;
             border-radius: 3px;
             background: linear-gradient(to right, #2563eb, #9ca3af, #dc2626);
         }
+        .legend-label { font-size: 0.7rem; color: #888; }
         
-        .legend-label {
-            font-size: 0.75rem;
-            color: #888;
-        }
+        #map { flex: 1; height: 100vh; cursor: default; }
+        #map.drawing-mode { cursor: crosshair; }
         
-        /* Map container */
-        #map {
-            flex: 1;
-            height: 100vh;
-        }
-        
-        /* Info box on hover */
         .info-box {
             position: absolute;
             top: 10px;
@@ -176,20 +238,60 @@
             border: 1px solid #0f3460;
         }
         
-        .info-box h4 {
-            color: #e94560;
-            margin-bottom: 10px;
+        .info-box h4 { color: #e94560; margin-bottom: 10px; font-size: 0.9rem; }
+        .info-box .votes { display: flex; gap: 20px; margin-bottom: 10px; }
+        .info-box .dem-votes { color: #3b82f6; font-size: 1.1rem; font-weight: bold; }
+        .info-box .rep-votes { color: #ef4444; font-size: 1.1rem; font-weight: bold; }
+        
+        .info-box .assigned {
+            font-size: 0.75rem;
+            padding: 4px 8px;
+            border-radius: 4px;
+            display: inline-block;
+            font-weight: bold;
         }
         
-        .info-box .votes {
-            display: flex;
-            gap: 20px;
+        .info-box .assigned.d1 { background: #8b5cf6; }
+        .info-box .assigned.d2 { background: #14b8a6; }
+        .info-box .assigned.d3 { background: #f59e0b; color: #000; }
+        .info-box .assigned.d4 { background: #84cc16; color: #000; }
+        .info-box .assigned.unassigned { background: #374151; }
+        
+        .instructions { font-size: 0.75rem; color: #888; line-height: 1.5; margin-top: 10px; }
+        .instructions strong { color: #aaa; }
+        
+        .brush-indicator {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(0,0,0,0.8);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: bold;
+            z-index: 1000;
+            display: none;
+            align-items: center;
+            gap: 10px;
         }
         
-        .info-box .dem-votes { color: #3b82f6; }
-        .info-box .rep-votes { color: #ef4444; }
+        .brush-indicator.active { display: flex; }
         
-        /* Loading */
+        .brush-color {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            border: 2px solid white;
+        }
+        
+        .brush-color.d1 { background: #8b5cf6; }
+        .brush-color.d2 { background: #14b8a6; }
+        .brush-color.d3 { background: #f59e0b; }
+        .brush-color.d4 { background: #84cc16; }
+        .brush-color.eraser { background: #374151; }
+        
         .loading {
             position: absolute;
             top: 50%;
@@ -201,73 +303,176 @@
             border-radius: 10px;
             text-align: center;
         }
-        
         .loading.hidden { display: none; }
+        
+        /* How to play */
+        .how-to-play {
+            background: #1e3a5f;
+            border-radius: 8px;
+            padding: 12px;
+            margin-bottom: 15px;
+            font-size: 0.75rem;
+            line-height: 1.5;
+        }
+        
+        .how-to-play h4 {
+            color: #60a5fa;
+            margin-bottom: 8px;
+            font-size: 0.8rem;
+        }
+        
+        .how-to-play ol {
+            margin-left: 15px;
+            color: #aaa;
+        }
+        
+        .how-to-play li { margin-bottom: 5px; }
     </style>
 </head>
 <body>
     <div class="container">
         <div class="sidebar">
-            <h1>🗺️ Utah Redistricting</h1>
-            <p class="subtitle">See how gerrymandering split Salt Lake County</p>
+            <h1>🗺️ Utah Redistricting Game</h1>
+            <p class="subtitle">See how gerrymandering works</p>
             
-            <div class="section">
-                <h3>District Overlay</h3>
-                <div class="toggle-group">
-                    <button class="toggle-btn map-2021" onclick="showOverlay('2021')">2021 Map</button>
-                    <button class="toggle-btn map-2025" onclick="showOverlay('2025')">2025 Map</button>
-                    <button class="toggle-btn map-none active" onclick="showOverlay('none')">None</button>
-                </div>
-                <p style="font-size: 0.75rem; color: #666; margin-top: 5px;">
-                    <strong>2021:</strong> Legislature's map (split SLC 4 ways)<br>
-                    <strong>2025:</strong> Court-ordered fair map
-                </p>
+            <div class="mode-toggle">
+                <button class="mode-btn active" id="mode-view" onclick="setMode('view')">👁️ View Map</button>
+                <button class="mode-btn" id="mode-draw" onclick="setMode('draw')">🖌️ Draw Districts</button>
             </div>
             
-            <div class="section">
-                <h3>Salt Lake County 2020</h3>
-                <div class="stat-row">
-                    <span class="stat-label">Biden</span>
-                    <span class="stat-value dem" id="biden-total">-</span>
+            <div id="draw-controls" style="display: none;">
+                <div class="how-to-play">
+                    <h4>🎮 How to Play</h4>
+                    <ol>
+                        <li>Select a district color below</li>
+                        <li><strong>Click and drag</strong> across the map to paint precincts</li>
+                        <li>Try to create 4 districts that each have roughly equal population</li>
+                        <li>Watch how different shapes change who wins!</li>
+                    </ol>
                 </div>
-                <div class="stat-row">
-                    <span class="stat-label">Trump</span>
-                    <span class="stat-value rep" id="trump-total">-</span>
+                
+                <div class="section">
+                    <h3>🎨 Select Brush</h3>
+                    <div class="district-selector">
+                        <button class="district-btn d1 active" onclick="selectDistrict(1)">D1</button>
+                        <button class="district-btn d2" onclick="selectDistrict(2)">D2</button>
+                        <button class="district-btn d3" onclick="selectDistrict(3)">D3</button>
+                        <button class="district-btn d4" onclick="selectDistrict(4)">D4</button>
+                    </div>
+                    <button class="district-btn eraser" style="width: 100%;" onclick="selectDistrict(0)">🧹 Eraser</button>
                 </div>
-                <div class="stat-row">
-                    <span class="stat-label">Margin</span>
-                    <span class="stat-value" id="margin-total">-</span>
+                
+                <div class="section">
+                    <h3>📊 Your Districts</h3>
+                    <table class="stats-table">
+                        <thead>
+                            <tr><th>Dist</th><th>Precincts</th><th>Biden</th><th>Trump</th><th>Wins</th></tr>
+                        </thead>
+                        <tbody id="district-stats">
+                            <tr class="d1"><td>D1</td><td>0</td><td>-</td><td>-</td><td>-</td></tr>
+                            <tr class="d2"><td>D2</td><td>0</td><td>-</td><td>-</td><td>-</td></tr>
+                            <tr class="d3"><td>D3</td><td>0</td><td>-</td><td>-</td><td>-</td></tr>
+                            <tr class="d4"><td>D4</td><td>0</td><td>-</td><td>-</td><td>-</td></tr>
+                        </tbody>
+                    </table>
+                    <p class="instructions">
+                        <strong>Colors show partisan lean:</strong> Blue = Dem, Red = Rep<br>
+                        <strong>Borders show your districts:</strong> Purple, Teal, Orange, Green
+                    </p>
                 </div>
-                <div class="stat-row">
-                    <span class="stat-label">Precincts</span>
-                    <span class="stat-value neutral" id="precinct-count">-</span>
+                
+                <div class="section">
+                    <h3>🏆 Seat Count</h3>
+                    <div class="results-row">
+                        <div class="results-box">
+                            <div class="big-number" id="dem-seats" style="color: #3b82f6;">0</div>
+                            <div class="label">Democrat</div>
+                        </div>
+                        <div class="results-box">
+                            <div class="big-number" id="rep-seats" style="color: #ef4444;">0</div>
+                            <div class="label">Republican</div>
+                        </div>
+                    </div>
+                    
+                    <div class="efficiency-explainer">
+                        <h4>📐 Efficiency Gap</h4>
+                        <div class="efficiency-bar-container">
+                            <div class="efficiency-marker" id="efficiency-marker" style="left: 50%;"></div>
+                        </div>
+                        <div class="efficiency-labels">
+                            <span>← Favors Dems</span>
+                            <span>Fair</span>
+                            <span>Favors GOP →</span>
+                        </div>
+                        <div class="efficiency-value" id="efficiency-value">0%</div>
+                        <p class="efficiency-desc">
+                            Measures <strong>"wasted votes"</strong> - votes that don't help elect anyone.
+                            Over <strong>7%</strong> suggests gerrymandering. The Legislature's 2021 map had ~15% favoring Republicans.
+                        </p>
+                    </div>
                 </div>
+                
+                <button class="action-btn reset" onclick="resetDistricts()">🔄 Reset All Districts</button>
             </div>
             
-            <div class="section">
-                <h3>Partisan Lean</h3>
-                <div class="legend">
-                    <span class="legend-label">D+30</span>
-                    <div class="legend-gradient"></div>
-                    <span class="legend-label">R+30</span>
+            <div id="view-controls">
+                <div class="section">
+                    <h3>Compare Official Maps</h3>
+                    <div class="toggle-group">
+                        <button class="toggle-btn map-2021" onclick="showOverlay('2021')">2021 Legislature</button>
+                        <button class="toggle-btn map-2025" onclick="showOverlay('2025')">2025 Court</button>
+                        <button class="toggle-btn map-none active" onclick="showOverlay('none')">None</button>
+                    </div>
+                    <p class="instructions">
+                        <strong style="color:#ef4444">2021:</strong> Legislature split Salt Lake County 4 ways<br>
+                        <strong style="color:#3b82f6">2025:</strong> Court-ordered fair map keeps SLC together
+                    </p>
                 </div>
-            </div>
-            
-            <div class="section">
-                <h3>The Story</h3>
-                <p style="font-size: 0.8rem; line-height: 1.5; color: #aaa;">
-                    In 2021, Utah's Legislature drew congressional districts that split 
-                    Salt Lake County—home to 1/3 of Utah's population—into <strong>all 4 districts</strong>, 
-                    diluting Democratic votes.
-                </p>
-                <p style="font-size: 0.8rem; line-height: 1.5; color: #aaa; margin-top: 10px;">
-                    In November 2025, a judge ordered a new map that keeps most of 
-                    Salt Lake County together, creating Utah's first competitive district since 2020.
-                </p>
+                
+                <div class="section">
+                    <h3>Salt Lake County 2020</h3>
+                    <table class="stats-table">
+                        <tbody>
+                            <tr><td>Biden</td><td id="biden-total" style="color: #3b82f6; font-weight: bold;">-</td></tr>
+                            <tr><td>Trump</td><td id="trump-total" style="color: #ef4444; font-weight: bold;">-</td></tr>
+                            <tr><td>Margin</td><td id="margin-total">-</td></tr>
+                            <tr><td>Precincts</td><td id="precinct-count">-</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+                
+                <div class="section">
+                    <h3>Partisan Lean</h3>
+                    <div class="legend">
+                        <span class="legend-label">D+30</span>
+                        <div class="legend-gradient"></div>
+                        <span class="legend-label">R+30</span>
+                    </div>
+                    <p class="instructions">
+                        Each precinct is colored by how it voted in 2020.
+                        Darker blue = more Democratic, Darker red = more Republican.
+                    </p>
+                </div>
+                
+                <div class="section">
+                    <h3>The Story</h3>
+                    <p class="instructions" style="color: #aaa;">
+                        Salt Lake County has 1/3 of Utah's population and leans Democratic.
+                        In 2021, the Legislature split it into <strong>all 4 congressional districts</strong>,
+                        diluting Democratic votes so Republicans won all 4 seats.
+                        <br><br>
+                        In November 2025, a court ordered a fair map that keeps most of Salt Lake County together.
+                    </p>
+                </div>
             </div>
         </div>
         
         <div id="map"></div>
+        
+        <div class="brush-indicator" id="brush-indicator">
+            <div class="brush-color d1" id="brush-color-indicator"></div>
+            <span>Painting District <span id="brush-district-num">1</span></span>
+        </div>
         
         <div class="info-box" id="info-box" style="display: none;">
             <h4 id="precinct-name">Precinct</h4>
@@ -281,79 +486,124 @@
                     <div style="font-size: 0.7rem; color: #666;">Trump</div>
                 </div>
             </div>
-            <div style="margin-top: 10px; font-size: 0.8rem;" id="hover-margin"></div>
+            <div id="hover-margin" style="font-size: 0.85rem; margin-bottom: 8px;"></div>
+            <div id="hover-assigned"></div>
         </div>
     </div>
     
     <div class="loading" id="loading">
         <div style="font-size: 2rem; margin-bottom: 10px;">🗳️</div>
-        <div>Loading precinct data...</div>
+        <div>Loading 847 precincts...</div>
     </div>
 
-    <!-- Leaflet JS -->
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
     
     <script>
-        // Initialize map centered on Salt Lake County
-        const map = L.map('map', {
-            zoomControl: true
-        }).setView([40.65, -111.9], 11);
+        let mode = 'view';
+        let selectedDistrict = 1;
+        let precinctAssignments = {};
+        let precinctData = null;
+        let precinctLayers = {};
+        let isPainting = false;
         
-        // Dark basemap
+        const districtColors = {
+            1: '#8b5cf6',
+            2: '#14b8a6',
+            3: '#f59e0b',
+            4: '#84cc16'
+        };
+        
+        const map = L.map('map', { zoomControl: true }).setView([40.65, -111.9], 11);
+        
         L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
-            attribution: '© OpenStreetMap contributors © CARTO',
+            attribution: '© OpenStreetMap © CARTO',
             maxZoom: 19
         }).addTo(map);
         
-        // Layers
         let precinctLayer = null;
         let overlay2021 = null;
         let overlay2025 = null;
-        let currentOverlay = 'none';
         
-        // Color scale for partisan lean
-        function getColor(biden, trump) {
+        function getPartisanColor(biden, trump) {
             const total = biden + trump;
             if (total === 0) return '#6b7280';
+            const margin = ((biden / total) - 0.5) * 100;
             
-            const demPct = biden / total;
-            const margin = (demPct - 0.5) * 100; // -50 to +50
-            
-            if (margin > 25) return '#1d4ed8';      // Strong Dem
+            if (margin > 25) return '#1d4ed8';
             if (margin > 15) return '#2563eb';
             if (margin > 8) return '#3b82f6';
             if (margin > 3) return '#60a5fa';
-            if (margin > -3) return '#9ca3af';      // Tossup
+            if (margin > -3) return '#9ca3af';
             if (margin > -8) return '#f87171';
             if (margin > -15) return '#ef4444';
             if (margin > -25) return '#dc2626';
-            return '#b91c1c';                        // Strong Rep
+            return '#b91c1c';
         }
         
-        // Style function for precincts
-        function precinctStyle(feature) {
+        function getPrecinctStyle(feature) {
             const props = feature.properties;
-            return {
-                fillColor: getColor(props.G20PREDBID, props.G20PRERTRU),
-                weight: 0.5,
-                opacity: 1,
-                color: '#333',
-                fillOpacity: 0.8
-            };
+            const precinctId = props.vistapre;
+            const assignment = precinctAssignments[precinctId];
+            
+            // Always show partisan color as fill
+            const fillColor = getPartisanColor(props.G20PREDBID, props.G20PRERTRU);
+            
+            if (mode === 'draw' && assignment) {
+                // Show district as thick border, partisan color as fill
+                return {
+                    fillColor: fillColor,
+                    weight: 4,
+                    opacity: 1,
+                    color: districtColors[assignment],
+                    fillOpacity: 0.7
+                };
+            } else {
+                return {
+                    fillColor: fillColor,
+                    weight: 0.5,
+                    opacity: 1,
+                    color: '#333',
+                    fillOpacity: 0.8
+                };
+            }
         }
         
-        // Hover handlers
-        function highlightFeature(e) {
+        function paintPrecinct(layer) {
+            if (mode !== 'draw') return;
+            
+            const precinctId = layer.feature.properties.vistapre;
+            
+            if (selectedDistrict === 0) {
+                delete precinctAssignments[precinctId];
+            } else {
+                precinctAssignments[precinctId] = selectedDistrict;
+            }
+            
+            layer.setStyle(getPrecinctStyle(layer.feature));
+        }
+        
+        function onMouseOver(e) {
             const layer = e.target;
+            const props = layer.feature.properties;
+            const precinctId = props.vistapre;
+            
+            // Paint if dragging in draw mode
+            if (isPainting && mode === 'draw') {
+                paintPrecinct(layer);
+                updateDistrictStats();
+                return;
+            }
+            
+            // Highlight
+            const assignment = precinctAssignments[precinctId];
             layer.setStyle({
-                weight: 2,
-                color: '#fff',
-                fillOpacity: 1
+                weight: assignment && mode === 'draw' ? 5 : 3,
+                color: assignment && mode === 'draw' ? districtColors[assignment] : '#fff'
             });
             
-            const props = layer.feature.properties;
+            // Update info box
             document.getElementById('info-box').style.display = 'block';
-            document.getElementById('precinct-name').textContent = props.vistapre || 'Unknown';
+            document.getElementById('precinct-name').textContent = precinctId;
             document.getElementById('hover-biden').textContent = props.G20PREDBID.toLocaleString();
             document.getElementById('hover-trump').textContent = props.G20PRERTRU.toLocaleString();
             
@@ -363,64 +613,220 @@
             const winner = margin > 0 ? 'D' : 'R';
             document.getElementById('hover-margin').innerHTML = 
                 `<span style="color: ${margin > 0 ? '#3b82f6' : '#ef4444'}">${winner}+${pct}%</span>`;
+            
+            const assignedEl = document.getElementById('hover-assigned');
+            if (mode === 'draw') {
+                if (assignment) {
+                    assignedEl.innerHTML = `<span class="assigned d${assignment}">District ${assignment}</span>`;
+                } else {
+                    assignedEl.innerHTML = `<span class="assigned unassigned">Not assigned</span>`;
+                }
+            } else {
+                assignedEl.innerHTML = '';
+            }
         }
         
-        function resetHighlight(e) {
-            precinctLayer.resetStyle(e.target);
+        function onMouseOut(e) {
+            if (!isPainting) {
+                precinctLayer.resetStyle(e.target);
+            }
             document.getElementById('info-box').style.display = 'none';
         }
         
+        function onMouseDown(e) {
+            if (mode !== 'draw') return;
+            isPainting = true;
+            paintPrecinct(e.target);
+            updateDistrictStats();
+            document.getElementById('brush-indicator').classList.add('active');
+        }
+        
+        function onMouseUp() {
+            isPainting = false;
+            document.getElementById('brush-indicator').classList.remove('active');
+        }
+        
         function onEachFeature(feature, layer) {
+            precinctLayers[feature.properties.vistapre] = layer;
             layer.on({
-                mouseover: highlightFeature,
-                mouseout: resetHighlight
+                mouseover: onMouseOver,
+                mouseout: onMouseOut,
+                mousedown: onMouseDown
             });
         }
         
-        // District overlay style
-        function districtStyle(color) {
-            return {
-                fillColor: 'transparent',
-                weight: 3,
-                opacity: 1,
-                color: color,
-                dashArray: '5, 5'
-            };
+        // Global mouseup
+        document.addEventListener('mouseup', onMouseUp);
+        
+        function setMode(newMode) {
+            mode = newMode;
+            
+            document.getElementById('mode-view').classList.toggle('active', mode === 'view');
+            document.getElementById('mode-draw').classList.toggle('active', mode === 'draw');
+            document.getElementById('view-controls').style.display = mode === 'view' ? 'block' : 'none';
+            document.getElementById('draw-controls').style.display = mode === 'draw' ? 'block' : 'none';
+            
+            if (mode === 'draw') {
+                map.dragging.disable();
+                document.getElementById('map').classList.add('drawing-mode');
+            } else {
+                map.dragging.enable();
+                document.getElementById('map').classList.remove('drawing-mode');
+            }
+            
+            // Refresh styles
+            if (precinctLayer) {
+                precinctLayer.eachLayer(layer => {
+                    layer.setStyle(getPrecinctStyle(layer.feature));
+                });
+            }
+            
+            // Hide overlays in draw mode
+            if (mode === 'draw') {
+                if (overlay2021) map.removeLayer(overlay2021);
+                if (overlay2025) map.removeLayer(overlay2025);
+                document.querySelectorAll('.toggle-btn').forEach(btn => btn.classList.remove('active'));
+                document.querySelector('.map-none').classList.add('active');
+            }
         }
         
-        // Toggle overlay
+        function selectDistrict(num) {
+            selectedDistrict = num;
+            
+            document.querySelectorAll('.district-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            
+            if (num === 0) {
+                document.querySelector('.district-btn.eraser').classList.add('active');
+                document.getElementById('brush-color-indicator').className = 'brush-color eraser';
+                document.getElementById('brush-district-num').textContent = 'Eraser';
+            } else {
+                document.querySelector(`.district-btn.d${num}`).classList.add('active');
+                document.getElementById('brush-color-indicator').className = `brush-color d${num}`;
+                document.getElementById('brush-district-num').textContent = num;
+            }
+        }
+        
+        function updateDistrictStats() {
+            const stats = {
+                1: {count: 0, biden: 0, trump: 0},
+                2: {count: 0, biden: 0, trump: 0},
+                3: {count: 0, biden: 0, trump: 0},
+                4: {count: 0, biden: 0, trump: 0}
+            };
+            
+            precinctData.features.forEach(f => {
+                const precinctId = f.properties.vistapre;
+                const assignment = precinctAssignments[precinctId];
+                if (assignment) {
+                    stats[assignment].count++;
+                    stats[assignment].biden += f.properties.G20PREDBID;
+                    stats[assignment].trump += f.properties.G20PRERTRU;
+                }
+            });
+            
+            let demSeats = 0, repSeats = 0;
+            let totalWastedDem = 0, totalWastedRep = 0, totalVotes = 0;
+            
+            const tbody = document.getElementById('district-stats');
+            tbody.innerHTML = '';
+            
+            for (let d = 1; d <= 4; d++) {
+                const s = stats[d];
+                const total = s.biden + s.trump;
+                let winner = '-';
+                
+                if (s.count > 0) {
+                    winner = s.biden > s.trump ? 'D' : 'R';
+                    if (winner === 'D') demSeats++;
+                    else repSeats++;
+                    
+                    // Wasted votes calculation
+                    const threshold = Math.floor(total / 2) + 1;
+                    if (s.biden > s.trump) {
+                        totalWastedDem += s.biden - threshold;
+                        totalWastedRep += s.trump;
+                    } else {
+                        totalWastedRep += s.trump - threshold;
+                        totalWastedDem += s.biden;
+                    }
+                    totalVotes += total;
+                }
+                
+                const tr = document.createElement('tr');
+                tr.className = `d${d}`;
+                tr.innerHTML = `
+                    <td>D${d}</td>
+                    <td>${s.count}</td>
+                    <td style="color:#3b82f6">${s.biden > 0 ? (s.biden/1000).toFixed(0) + 'k' : '-'}</td>
+                    <td style="color:#ef4444">${s.trump > 0 ? (s.trump/1000).toFixed(0) + 'k' : '-'}</td>
+                    <td class="${winner === 'D' ? 'winner-d' : (winner === 'R' ? 'winner-r' : '')}">${winner}</td>
+                `;
+                tbody.appendChild(tr);
+            }
+            
+            document.getElementById('dem-seats').textContent = demSeats;
+            document.getElementById('rep-seats').textContent = repSeats;
+            
+            // Efficiency gap
+            const marker = document.getElementById('efficiency-marker');
+            const valueEl = document.getElementById('efficiency-value');
+            
+            if (totalVotes > 0) {
+                const gap = (totalWastedDem - totalWastedRep) / totalVotes * 100;
+                // gap > 0 means Dems wasted more votes = favors GOP
+                // gap < 0 means GOP wasted more votes = favors Dems
+                
+                const markerPos = 50 + (gap * 2); // Scale for visibility
+                marker.style.left = Math.max(5, Math.min(95, markerPos)) + '%';
+                
+                if (Math.abs(gap) < 2) {
+                    valueEl.innerHTML = `<span style="color: #10b981;">${Math.abs(gap).toFixed(1)}% - Fair!</span>`;
+                } else if (gap > 0) {
+                    valueEl.innerHTML = `<span style="color: #ef4444;">R+${gap.toFixed(1)}%</span>`;
+                    if (gap > 7) valueEl.innerHTML += ` <span style="color: #fca5a5;">⚠️ Gerrymandered</span>`;
+                } else {
+                    valueEl.innerHTML = `<span style="color: #3b82f6;">D+${Math.abs(gap).toFixed(1)}%</span>`;
+                    if (gap < -7) valueEl.innerHTML += ` <span style="color: #93c5fd;">⚠️ Gerrymandered</span>`;
+                }
+            } else {
+                marker.style.left = '50%';
+                valueEl.textContent = 'Draw districts to see';
+            }
+        }
+        
+        function resetDistricts() {
+            precinctAssignments = {};
+            if (precinctLayer) {
+                precinctLayer.eachLayer(layer => {
+                    layer.setStyle(getPrecinctStyle(layer.feature));
+                });
+            }
+            updateDistrictStats();
+        }
+        
         function showOverlay(which) {
-            // Update buttons
             document.querySelectorAll('.toggle-btn').forEach(btn => btn.classList.remove('active'));
             document.querySelector(`.map-${which}`).classList.add('active');
             
-            // Remove existing overlays
             if (overlay2021) map.removeLayer(overlay2021);
             if (overlay2025) map.removeLayer(overlay2025);
             
-            // Add selected overlay
-            if (which === '2021' && overlay2021) {
-                overlay2021.addTo(map);
-            } else if (which === '2025' && overlay2025) {
-                overlay2025.addTo(map);
-            }
-            
-            currentOverlay = which;
+            if (which === '2021' && overlay2021) overlay2021.addTo(map);
+            else if (which === '2025' && overlay2025) overlay2025.addTo(map);
         }
         
-        // Load data
         async function loadData() {
             try {
-                // Load precincts
                 const precinctRes = await fetch('data/processed/slc_precincts.geojson');
-                const precinctData = await precinctRes.json();
+                precinctData = await precinctRes.json();
                 
                 precinctLayer = L.geoJSON(precinctData, {
-                    style: precinctStyle,
+                    style: getPrecinctStyle,
                     onEachFeature: onEachFeature
                 }).addTo(map);
                 
-                // Calculate totals
                 let bidenTotal = 0, trumpTotal = 0;
                 precinctData.features.forEach(f => {
                     bidenTotal += f.properties.G20PREDBID;
@@ -432,33 +838,30 @@
                 document.getElementById('precinct-count').textContent = precinctData.features.length;
                 
                 const margin = bidenTotal - trumpTotal;
-                const marginEl = document.getElementById('margin-total');
-                marginEl.textContent = `D+${margin.toLocaleString()}`;
-                marginEl.classList.add('dem');
+                document.getElementById('margin-total').innerHTML = 
+                    `<span style="color: #3b82f6;">D+${margin.toLocaleString()}</span>`;
                 
-                // Fit map to precincts
                 map.fitBounds(precinctLayer.getBounds());
                 
-                // Load district overlays
+                // Load overlays
                 const cong2021Res = await fetch('data/processed/cong_2021.geojson');
                 const cong2021Data = await cong2021Res.json();
                 overlay2021 = L.geoJSON(cong2021Data, {
-                    style: () => districtStyle('#ef4444')
+                    style: () => ({ fillColor: 'transparent', weight: 4, color: '#ef4444', dashArray: '8, 8' })
                 });
                 
                 const cong2025Res = await fetch('data/processed/cong_2025.geojson');
                 const cong2025Data = await cong2025Res.json();
                 overlay2025 = L.geoJSON(cong2025Data, {
-                    style: () => districtStyle('#3b82f6')
+                    style: () => ({ fillColor: 'transparent', weight: 4, color: '#3b82f6', dashArray: '8, 8' })
                 });
                 
-                // Hide loading
                 document.getElementById('loading').classList.add('hidden');
                 
             } catch (err) {
-                console.error('Error loading data:', err);
+                console.error('Error:', err);
                 document.getElementById('loading').innerHTML = 
-                    '<div style="color: #ef4444;">Error loading data. Check console.</div>';
+                    '<div style="color: #ef4444;">Error loading data</div>';
             }
         }
         

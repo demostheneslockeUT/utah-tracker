@@ -359,7 +359,7 @@
                         <button class="district-btn d3" onclick="selectDistrict(3)">D3</button>
                         <button class="district-btn d4" onclick="selectDistrict(4)">D4</button>
                     </div>
-                    <button class="district-btn eraser" style="width: 100%;" onclick="selectDistrict(0)">🧹 Eraser</button>
+                    <button class="district-btn eraser" style="width: 100%;" onclick="handleEraserClick()">🧹 Eraser (double-click = reset all)</button>
                 </div>
                 
                 <div class="section">
@@ -815,6 +815,18 @@
             
             if (which === '2021' && overlay2021) overlay2021.addTo(map);
             else if (which === '2025' && overlay2025) overlay2025.addTo(map);
+        }
+        
+        let lastEraserClick = 0;
+        function handleEraserClick() {
+            const now = Date.now();
+            if (selectedDistrict === 0 && now - lastEraserClick < 500) {
+                resetDistricts();
+                lastEraserClick = 0;
+            } else {
+                selectDistrict(0);
+                lastEraserClick = now;
+            }
         }
         
         async function loadData() {

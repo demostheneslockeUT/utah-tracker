@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Utah Redistricting Game | Draw Your Own Congressional Districts</title>
+    <title>Utah Redistricting Game | See How Gerrymandering Works</title>
     
     <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
     <link rel="icon" type="image/png" href="../../favicon.png">
@@ -23,7 +23,7 @@
         .container { display: flex; height: 100vh; }
         
         .sidebar {
-            width: 360px;
+            width: 400px;
             background: #16213e;
             padding: 20px;
             overflow-y: auto;
@@ -56,7 +56,7 @@
             border: 2px solid #333;
             border-radius: 8px;
             cursor: pointer;
-            font-size: 0.85rem;
+            font-size: 0.8rem;
             font-weight: bold;
             background: #1a1a2e;
             color: #888;
@@ -66,7 +66,211 @@
         .mode-btn.active { border-color: #e94560; color: #fff; background: #2a1a3e; }
         .mode-btn:hover { border-color: #e94560; }
         
-        .district-selector { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; margin-bottom: 15px; }
+        /* Challenge Cards */
+        .challenge-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        
+        .challenge-card {
+            padding: 12px;
+            border: 2px solid #333;
+            border-radius: 10px;
+            cursor: pointer;
+            background: #1a1a2e;
+            transition: all 0.2s;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .challenge-card:hover { border-color: #e94560; transform: translateX(3px); }
+        .challenge-card.active { border-color: #e94560; background: #2a1a3e; }
+        .challenge-card.completed { border-color: #10b981; }
+        .challenge-card.completed::after {
+            content: '✓';
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            color: #10b981;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+        
+        .challenge-card.locked {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+        
+        .challenge-card.locked::before {
+            content: '🔒';
+            position: absolute;
+            top: 10px;
+            right: 10px;
+        }
+        
+        .challenge-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 5px;
+        }
+        
+        .challenge-emoji { font-size: 1.5rem; }
+        
+        .challenge-title {
+            font-weight: bold;
+            font-size: 0.95rem;
+            color: #fff;
+        }
+        
+        .challenge-desc {
+            font-size: 0.75rem;
+            color: #888;
+            line-height: 1.4;
+        }
+        
+        .challenge-difficulty {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 10px;
+            font-size: 0.65rem;
+            font-weight: bold;
+            margin-top: 8px;
+        }
+        
+        .difficulty-easy { background: #10b981; color: #000; }
+        .difficulty-medium { background: #f59e0b; color: #000; }
+        .difficulty-hard { background: #ef4444; color: #fff; }
+        .difficulty-fun { background: #8b5cf6; color: #fff; }
+        
+        /* Active Challenge Display */
+        .active-challenge {
+            background: linear-gradient(135deg, #1e3a5f 0%, #2a1a3e 100%);
+            border-radius: 10px;
+            padding: 15px;
+            margin-bottom: 15px;
+            border: 2px solid #e94560;
+        }
+        
+        .active-challenge h4 {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.1rem;
+            margin-bottom: 10px;
+        }
+        
+        .active-challenge .goal {
+            font-size: 0.85rem;
+            color: #ccc;
+            margin-bottom: 15px;
+            line-height: 1.5;
+        }
+        
+        .progress-bar {
+            height: 25px;
+            background: #0f3460;
+            border-radius: 12px;
+            overflow: hidden;
+            position: relative;
+            margin-bottom: 10px;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            border-radius: 12px;
+            transition: width 0.3s, background 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.75rem;
+            font-weight: bold;
+        }
+        
+        .progress-fill.incomplete { background: linear-gradient(90deg, #374151, #4b5563); }
+        .progress-fill.partial { background: linear-gradient(90deg, #f59e0b, #fbbf24); color: #000; }
+        .progress-fill.success { background: linear-gradient(90deg, #10b981, #34d399); color: #000; }
+        
+        .challenge-hint {
+            font-size: 0.75rem;
+            color: #888;
+            font-style: italic;
+            margin-top: 10px;
+            padding: 10px;
+            background: #0f3460;
+            border-radius: 5px;
+        }
+        
+        /* Success Modal */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.8);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 2000;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s;
+        }
+        
+        .modal-overlay.show {
+            opacity: 1;
+            pointer-events: auto;
+        }
+        
+        .modal {
+            background: #16213e;
+            border-radius: 15px;
+            padding: 30px;
+            max-width: 450px;
+            text-align: center;
+            border: 3px solid #10b981;
+            transform: scale(0.8);
+            transition: transform 0.3s;
+        }
+        
+        .modal-overlay.show .modal {
+            transform: scale(1);
+        }
+        
+        .modal-emoji { font-size: 4rem; margin-bottom: 15px; }
+        .modal h2 { color: #10b981; margin-bottom: 10px; }
+        .modal p { color: #aaa; margin-bottom: 20px; line-height: 1.6; }
+        
+        .modal-insight {
+            background: #0f3460;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            text-align: left;
+        }
+        
+        .modal-insight h4 { color: #e94560; font-size: 0.85rem; margin-bottom: 8px; }
+        .modal-insight p { font-size: 0.85rem; margin-bottom: 0; }
+        
+        .modal-btn {
+            padding: 12px 25px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            font-weight: bold;
+            margin: 5px;
+            transition: transform 0.2s;
+        }
+        
+        .modal-btn:hover { transform: scale(1.05); }
+        .modal-btn.primary { background: #10b981; color: #000; }
+        .modal-btn.secondary { background: #374151; color: #fff; }
+        
+        /* Drawing Tools */
+        .district-selector { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; margin-bottom: 10px; }
         
         .district-btn {
             padding: 12px 5px;
@@ -92,9 +296,22 @@
         .district-btn.active.d3 { border-color: #fcd34d; }
         .district-btn.active.d4 { border-color: #bef264; }
         
-        .district-btn.eraser { background: #374151; }
-        .district-btn.eraser.active { border-color: #9ca3af; }
+        .eraser-btn {
+            width: 100%;
+            padding: 10px;
+            background: #374151;
+            border: 2px solid transparent;
+            border-radius: 8px;
+            color: white;
+            cursor: pointer;
+            font-size: 0.8rem;
+            transition: all 0.2s;
+        }
         
+        .eraser-btn:hover { border-color: #9ca3af; }
+        .eraser-btn.active { border-color: #9ca3af; background: #4b5563; }
+        
+        /* Stats Table */
         .stats-table { width: 100%; border-collapse: collapse; font-size: 0.8rem; }
         .stats-table th { text-align: left; padding: 8px 5px; border-bottom: 1px solid #333; color: #888; font-weight: normal; }
         .stats-table td { padding: 8px 5px; border-bottom: 1px solid #222; }
@@ -106,77 +323,57 @@
         
         .winner-d { color: #3b82f6; font-weight: bold; }
         .winner-r { color: #ef4444; font-weight: bold; }
+        .winner-toss { color: #9ca3af; }
         
-        .results-box {
+        /* Efficiency Gap */
+        .efficiency-section {
             background: #0f3460;
             border-radius: 8px;
-            padding: 15px;
-            text-align: center;
-        }
-        
-        .results-box .big-number { font-size: 1.8rem; font-weight: bold; margin-bottom: 5px; }
-        .results-box .label { font-size: 0.7rem; color: #888; text-transform: uppercase; }
-        .results-row { display: flex; gap: 10px; margin-bottom: 15px; }
-        .results-row .results-box { flex: 1; }
-        
-        /* Efficiency Gap Explainer */
-        .efficiency-explainer {
-            background: #0f3460;
-            border-radius: 8px;
-            padding: 15px;
+            padding: 12px;
             margin-top: 10px;
         }
         
-        .efficiency-explainer h4 {
+        .efficiency-section h4 {
             font-size: 0.8rem;
             color: #e94560;
             margin-bottom: 8px;
         }
         
-        .efficiency-bar-container {
-            position: relative;
-            height: 30px;
+        .efficiency-bar {
+            height: 20px;
             background: linear-gradient(to right, #1e40af 0%, #374151 50%, #991b1b 100%);
-            border-radius: 15px;
-            margin: 10px 0;
-            overflow: visible;
+            border-radius: 10px;
+            position: relative;
+            margin: 8px 0;
         }
         
         .efficiency-marker {
             position: absolute;
-            top: -5px;
+            top: -3px;
             width: 4px;
-            height: 40px;
+            height: 26px;
             background: #fff;
             border-radius: 2px;
             transform: translateX(-50%);
             transition: left 0.3s;
-            box-shadow: 0 0 10px rgba(255,255,255,0.5);
+            box-shadow: 0 0 8px rgba(255,255,255,0.5);
         }
         
         .efficiency-labels {
             display: flex;
             justify-content: space-between;
-            font-size: 0.65rem;
+            font-size: 0.6rem;
             color: #666;
-            margin-top: 5px;
         }
         
         .efficiency-value {
             text-align: center;
-            font-size: 1.1rem;
+            font-size: 1rem;
             font-weight: bold;
-            margin: 10px 0;
+            margin: 5px 0;
         }
         
-        .efficiency-desc {
-            font-size: 0.7rem;
-            color: #888;
-            line-height: 1.4;
-        }
-        
-        .efficiency-desc strong { color: #e94560; }
-        
+        /* View Mode Styles */
         .toggle-group { display: flex; gap: 5px; margin-bottom: 10px; }
         
         .toggle-btn {
@@ -223,6 +420,9 @@
         }
         .legend-label { font-size: 0.7rem; color: #888; }
         
+        .instructions { font-size: 0.75rem; color: #888; line-height: 1.5; margin-top: 10px; }
+        .instructions strong { color: #aaa; }
+        
         #map { flex: 1; height: 100vh; cursor: default; }
         #map.drawing-mode { cursor: crosshair; }
         
@@ -257,15 +457,12 @@
         .info-box .assigned.d4 { background: #84cc16; color: #000; }
         .info-box .assigned.unassigned { background: #374151; }
         
-        .instructions { font-size: 0.75rem; color: #888; line-height: 1.5; margin-top: 10px; }
-        .instructions strong { color: #aaa; }
-        
         .brush-indicator {
             position: absolute;
             bottom: 20px;
             left: 50%;
             transform: translateX(-50%);
-            background: rgba(0,0,0,0.8);
+            background: rgba(0,0,0,0.85);
             color: white;
             padding: 10px 20px;
             border-radius: 20px;
@@ -305,132 +502,256 @@
         }
         .loading.hidden { display: none; }
         
-        /* How to play */
-        .how-to-play {
-            background: #1e3a5f;
+        .tab-content { display: none; }
+        .tab-content.active { display: block; }
+        
+        .unlocked-msg {
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            color: #000;
+            padding: 10px 15px;
             border-radius: 8px;
-            padding: 12px;
             margin-bottom: 15px;
-            font-size: 0.75rem;
-            line-height: 1.5;
+            font-size: 0.85rem;
+            font-weight: bold;
+            text-align: center;
+            animation: pulse 2s infinite;
         }
         
-        .how-to-play h4 {
-            color: #60a5fa;
-            margin-bottom: 8px;
-            font-size: 0.8rem;
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.8; }
         }
-        
-        .how-to-play ol {
-            margin-left: 15px;
-            color: #aaa;
-        }
-        
-        .how-to-play li { margin-bottom: 5px; }
     </style>
 </head>
 <body>
     <div class="container">
         <div class="sidebar">
             <h1>🗺️ Utah Redistricting Game</h1>
-            <p class="subtitle">See how gerrymandering works</p>
+            <p class="subtitle">Learn how gerrymandering really works</p>
             
             <div class="mode-toggle">
-                <button class="mode-btn active" id="mode-view" onclick="setMode('view')">👁️ View Map</button>
-                <button class="mode-btn" id="mode-draw" onclick="setMode('draw')">🖌️ Draw Districts</button>
+                <button class="mode-btn" id="mode-view" onclick="setMode('view')">👁️ Explore</button>
+                <button class="mode-btn" id="mode-sandbox" onclick="setMode('sandbox')">🎨 Sandbox</button>
+                <button class="mode-btn active" id="mode-challenge" onclick="setMode('challenge')">🎯 Challenges</button>
             </div>
             
-            <div id="draw-controls" style="display: none;">
-                <div class="how-to-play">
-                    <h4>🎮 How to Play</h4>
-                    <ol>
-                        <li>Select a district color below</li>
-                        <li><strong>Click and drag</strong> across the map to paint precincts</li>
-                        <li>Try to create 4 districts that each have roughly equal population</li>
-                        <li>Watch how different shapes change who wins!</li>
-                    </ol>
+            <!-- CHALLENGE MODE -->
+            <div id="challenge-content" class="tab-content active">
+                <div id="unlocked-message" class="unlocked-msg" style="display: none;">
+                    🎉 New challenges unlocked!
                 </div>
                 
+                <div id="active-challenge-display" style="display: none;">
+                    <div class="active-challenge">
+                        <h4><span id="active-emoji">🎯</span> <span id="active-title">Challenge</span></h4>
+                        <p class="goal" id="active-goal">Complete the objective</p>
+                        
+                        <div class="progress-bar">
+                            <div class="progress-fill incomplete" id="progress-fill" style="width: 0%;">
+                                <span id="progress-text">Not started</span>
+                            </div>
+                        </div>
+                        
+                        <div class="challenge-hint" id="challenge-hint">
+                            💡 Hint will appear here
+                        </div>
+                        
+                        <button class="action-btn" id="show-me-btn" style="background: #8b5cf6; margin-top: 10px;" onclick="showMeDemo()">👁️ Show Me How</button>
+                    </div>
+                    
+                    <button class="action-btn reset" onclick="resetDistricts()">🔄 Start Over</button>
+                    <button class="action-btn" style="background: #374151;" onclick="exitChallenge()">← Back to Challenges</button>
+                </div>
+                
+                <div id="challenge-list">
+                    <div class="section">
+                        <h3>🏛️ Learn Gerrymandering</h3>
+                        <div class="challenge-grid">
+                            <div class="challenge-card" data-challenge="gop-sweep" onclick="startChallenge('gop-sweep')">
+                                <div class="challenge-header">
+                                    <span class="challenge-emoji">🔴</span>
+                                    <span class="challenge-title">GOP Sweep</span>
+                                </div>
+                                <p class="challenge-desc">Win all 4 seats for Republicans, even though Salt Lake County voted for Biden.</p>
+                                <span class="challenge-difficulty difficulty-medium">Medium</span>
+                            </div>
+                            
+                            <div class="challenge-card" data-challenge="dem-max" onclick="startChallenge('dem-max')">
+                                <div class="challenge-header">
+                                    <span class="challenge-emoji">🔵</span>
+                                    <span class="challenge-title">Democratic Dream</span>
+                                </div>
+                                <p class="challenge-desc">Maximize Democratic seats. Can you win more than 1?</p>
+                                <span class="challenge-difficulty difficulty-hard">Hard</span>
+                            </div>
+                            
+                            <div class="challenge-card" data-challenge="fair-map" onclick="startChallenge('fair-map')">
+                                <div class="challenge-header">
+                                    <span class="challenge-emoji">⚖️</span>
+                                    <span class="challenge-title">Fair Map</span>
+                                </div>
+                                <p class="challenge-desc">Create a map with efficiency gap under 5%. What does fairness look like?</p>
+                                <span class="challenge-difficulty difficulty-medium">Medium</span>
+                            </div>
+                            
+                            <div class="challenge-card" data-challenge="pizza-slice" onclick="startChallenge('pizza-slice')">
+                                <div class="challenge-header">
+                                    <span class="challenge-emoji">🍕</span>
+                                    <span class="challenge-title">Pizza Slice</span>
+                                </div>
+                                <p class="challenge-desc">Make all 4 districts meet in downtown SLC. This is literally what they did!</p>
+                                <span class="challenge-difficulty difficulty-easy">Easy</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="section">
+                        <h3>🎨 Fun Challenges</h3>
+                        <div class="challenge-grid">
+                            <div class="challenge-card" data-challenge="salamander" onclick="startChallenge('salamander')">
+                                <div class="challenge-header">
+                                    <span class="challenge-emoji">🦎</span>
+                                    <span class="challenge-title">The Salamander</span>
+                                </div>
+                                <p class="challenge-desc">Draw District 1 to look like the original 1812 "Gerry-mander" creature!</p>
+                                <span class="challenge-difficulty difficulty-fun">Fun</span>
+                            </div>
+                            
+                            <div class="challenge-card" data-challenge="elephant" onclick="startChallenge('elephant')">
+                                <div class="challenge-header">
+                                    <span class="challenge-emoji">🐘</span>
+                                    <span class="challenge-title">Elephant Art</span>
+                                </div>
+                                <p class="challenge-desc">Draw an elephant using the districts. Make it win for the GOP!</p>
+                                <span class="challenge-difficulty difficulty-fun">Fun</span>
+                            </div>
+                            
+                            <div class="challenge-card" data-challenge="donut" onclick="startChallenge('donut')">
+                                <div class="challenge-header">
+                                    <span class="challenge-emoji">🍩</span>
+                                    <span class="challenge-title">Donut Hole</span>
+                                </div>
+                                <p class="challenge-desc">Create a "donut" district that wraps around downtown without including it.</p>
+                                <span class="challenge-difficulty difficulty-fun">Fun</span>
+                            </div>
+                            
+                            <div class="challenge-card locked" data-challenge="master" onclick="startChallenge('master')">
+                                <div class="challenge-header">
+                                    <span class="challenge-emoji">🏆</span>
+                                    <span class="challenge-title">Gerrymander Master</span>
+                                </div>
+                                <p class="challenge-desc">Get efficiency gap as close to 0% as possible. For experts only!</p>
+                                <span class="challenge-difficulty difficulty-hard">Expert</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Drawing tools for challenge mode -->
+                <div id="challenge-tools" style="display: none;">
+                    <div class="section">
+                        <h3>🖌️ Draw</h3>
+                        <div class="district-selector">
+                            <button class="district-btn d1 active" onclick="selectDistrict(1)">D1</button>
+                            <button class="district-btn d2" onclick="selectDistrict(2)">D2</button>
+                            <button class="district-btn d3" onclick="selectDistrict(3)">D3</button>
+                            <button class="district-btn d4" onclick="selectDistrict(4)">D4</button>
+                        </div>
+                        <button class="eraser-btn" onclick="handleEraserClick()">🧹 Eraser (double-click = reset)</button>
+                    </div>
+                    
+                    <div class="section">
+                        <h3>📊 Your Districts</h3>
+                        <table class="stats-table">
+                            <thead>
+                                <tr><th>Dist</th><th>#</th><th>Biden</th><th>Trump</th><th>Win</th></tr>
+                            </thead>
+                            <tbody id="district-stats">
+                                <tr class="d1"><td>D1</td><td>0</td><td>-</td><td>-</td><td>-</td></tr>
+                                <tr class="d2"><td>D2</td><td>0</td><td>-</td><td>-</td><td>-</td></tr>
+                                <tr class="d3"><td>D3</td><td>0</td><td>-</td><td>-</td><td>-</td></tr>
+                                <tr class="d4"><td>D4</td><td>0</td><td>-</td><td>-</td><td>-</td></tr>
+                            </tbody>
+                        </table>
+                        
+                        <div class="efficiency-section">
+                            <h4>📐 Efficiency Gap</h4>
+                            <div class="efficiency-bar">
+                                <div class="efficiency-marker" id="efficiency-marker" style="left: 50%;"></div>
+                            </div>
+                            <div class="efficiency-labels">
+                                <span>← Favors Dems</span>
+                                <span>Favors GOP →</span>
+                            </div>
+                            <div class="efficiency-value" id="efficiency-value">0%</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- SANDBOX MODE -->
+            <div id="sandbox-content" class="tab-content">
                 <div class="section">
-                    <h3>🎨 Select Brush</h3>
+                    <h3>🎨 Free Draw</h3>
+                    <p class="instructions" style="margin-bottom: 15px;">
+                        No rules! Experiment with drawing districts however you want.
+                    </p>
                     <div class="district-selector">
                         <button class="district-btn d1 active" onclick="selectDistrict(1)">D1</button>
                         <button class="district-btn d2" onclick="selectDistrict(2)">D2</button>
                         <button class="district-btn d3" onclick="selectDistrict(3)">D3</button>
                         <button class="district-btn d4" onclick="selectDistrict(4)">D4</button>
                     </div>
-                    <button class="district-btn eraser" style="width: 100%;" onclick="handleEraserClick()">🧹 Eraser (double-click = reset all)</button>
+                    <button class="eraser-btn" onclick="handleEraserClick()">🧹 Eraser (double-click = reset)</button>
                 </div>
                 
                 <div class="section">
-                    <h3>📊 Your Districts</h3>
+                    <h3>📊 Results</h3>
                     <table class="stats-table">
                         <thead>
-                            <tr><th>Dist</th><th>Precincts</th><th>Biden</th><th>Trump</th><th>Wins</th></tr>
+                            <tr><th>Dist</th><th>#</th><th>Biden</th><th>Trump</th><th>Win</th></tr>
                         </thead>
-                        <tbody id="district-stats">
+                        <tbody id="sandbox-stats">
                             <tr class="d1"><td>D1</td><td>0</td><td>-</td><td>-</td><td>-</td></tr>
                             <tr class="d2"><td>D2</td><td>0</td><td>-</td><td>-</td><td>-</td></tr>
                             <tr class="d3"><td>D3</td><td>0</td><td>-</td><td>-</td><td>-</td></tr>
                             <tr class="d4"><td>D4</td><td>0</td><td>-</td><td>-</td><td>-</td></tr>
                         </tbody>
                     </table>
-                    <p class="instructions">
-                        <strong>Colors show partisan lean:</strong> Blue = Dem, Red = Rep<br>
-                        <strong>Borders show your districts:</strong> Purple, Teal, Orange, Green
-                    </p>
-                </div>
-                
-                <div class="section">
-                    <h3>🏆 Seat Count</h3>
-                    <div class="results-row">
-                        <div class="results-box">
-                            <div class="big-number" id="dem-seats" style="color: #3b82f6;">0</div>
-                            <div class="label">Democrat</div>
-                        </div>
-                        <div class="results-box">
-                            <div class="big-number" id="rep-seats" style="color: #ef4444;">0</div>
-                            <div class="label">Republican</div>
-                        </div>
-                    </div>
                     
-                    <div class="efficiency-explainer">
+                    <div class="efficiency-section">
                         <h4>📐 Efficiency Gap</h4>
-                        <div class="efficiency-bar-container">
-                            <div class="efficiency-marker" id="efficiency-marker" style="left: 50%;"></div>
+                        <div class="efficiency-bar">
+                            <div class="efficiency-marker" id="sandbox-efficiency-marker" style="left: 50%;"></div>
                         </div>
                         <div class="efficiency-labels">
-                            <span>← Favors Dems</span>
-                            <span>Fair</span>
-                            <span>Favors GOP →</span>
+                            <span>← Dems</span>
+                            <span>GOP →</span>
                         </div>
-                        <div class="efficiency-value" id="efficiency-value">0%</div>
-                        <p class="efficiency-desc">
-                            Measures <strong>"wasted votes"</strong> - votes that don't help elect anyone.
-                            Over <strong>7%</strong> suggests gerrymandering. The Legislature's 2021 map had ~15% favoring Republicans.
-                        </p>
+                        <div class="efficiency-value" id="sandbox-efficiency-value">0%</div>
                     </div>
                 </div>
                 
-                <button class="action-btn reset" onclick="resetDistricts()">🔄 Reset All Districts</button>
+                <button class="action-btn reset" onclick="resetDistricts()">🔄 Reset All</button>
             </div>
             
-            <div id="view-controls">
+            <!-- VIEW/EXPLORE MODE -->
+            <div id="view-content" class="tab-content">
                 <div class="section">
-                    <h3>Compare Official Maps</h3>
+                    <h3>🗺️ Compare Official Maps</h3>
                     <div class="toggle-group">
                         <button class="toggle-btn map-2021" onclick="showOverlay('2021')">2021 Legislature</button>
                         <button class="toggle-btn map-2025" onclick="showOverlay('2025')">2025 Court</button>
                         <button class="toggle-btn map-none active" onclick="showOverlay('none')">None</button>
                     </div>
                     <p class="instructions">
-                        <strong style="color:#ef4444">2021:</strong> Legislature split Salt Lake County 4 ways<br>
-                        <strong style="color:#3b82f6">2025:</strong> Court-ordered fair map keeps SLC together
+                        <strong style="color:#ef4444">Red dashed:</strong> Legislature's 2021 map (gerrymandered)<br>
+                        <strong style="color:#3b82f6">Blue dashed:</strong> Court's 2025 fair map
                     </p>
                 </div>
                 
                 <div class="section">
-                    <h3>Salt Lake County 2020</h3>
+                    <h3>📊 Salt Lake County 2020</h3>
                     <table class="stats-table">
                         <tbody>
                             <tr><td>Biden</td><td id="biden-total" style="color: #3b82f6; font-weight: bold;">-</td></tr>
@@ -442,26 +763,22 @@
                 </div>
                 
                 <div class="section">
-                    <h3>Partisan Lean</h3>
+                    <h3>🎨 Color Legend</h3>
                     <div class="legend">
                         <span class="legend-label">D+30</span>
                         <div class="legend-gradient"></div>
                         <span class="legend-label">R+30</span>
                     </div>
-                    <p class="instructions">
-                        Each precinct is colored by how it voted in 2020.
-                        Darker blue = more Democratic, Darker red = more Republican.
-                    </p>
                 </div>
                 
                 <div class="section">
-                    <h3>The Story</h3>
+                    <h3>📖 The Story</h3>
                     <p class="instructions" style="color: #aaa;">
-                        Salt Lake County has 1/3 of Utah's population and leans Democratic.
-                        In 2021, the Legislature split it into <strong>all 4 congressional districts</strong>,
-                        diluting Democratic votes so Republicans won all 4 seats.
+                        Salt Lake County has <strong>1/3 of Utah's population</strong> and leans Democratic by ~12 points.
                         <br><br>
-                        In November 2025, a court ordered a fair map that keeps most of Salt Lake County together.
+                        In 2021, the Legislature split it into <strong>all 4 congressional districts</strong>, ensuring Republicans won every seat.
+                        <br><br>
+                        In November 2025, a court ordered a fair map that keeps Salt Lake County mostly together.
                     </p>
                 </div>
             </div>
@@ -491,6 +808,23 @@
         </div>
     </div>
     
+    <!-- Success Modal -->
+    <div class="modal-overlay" id="success-modal">
+        <div class="modal">
+            <div class="modal-emoji" id="modal-emoji">🎉</div>
+            <h2 id="modal-title">Challenge Complete!</h2>
+            <p id="modal-message">You did it!</p>
+            
+            <div class="modal-insight" id="modal-insight">
+                <h4>💡 What This Teaches</h4>
+                <p id="modal-insight-text">Insight text here</p>
+            </div>
+            
+            <button class="modal-btn primary" onclick="closeModal()">Continue</button>
+            <button class="modal-btn secondary" onclick="tryAgain()">Try Again</button>
+        </div>
+    </div>
+    
     <div class="loading" id="loading">
         <div style="font-size: 2rem; margin-bottom: 10px;">🗳️</div>
         <div>Loading 847 precincts...</div>
@@ -499,12 +833,16 @@
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
     
     <script>
-        let mode = 'view';
+        // State
+        let mode = 'challenge';
         let selectedDistrict = 1;
         let precinctAssignments = {};
         let precinctData = null;
         let precinctLayers = {};
         let isPainting = false;
+        let currentChallenge = null;
+        let completedChallenges = new Set();
+        let lastEraserClick = 0;
         
         const districtColors = {
             1: '#8b5cf6',
@@ -513,6 +851,93 @@
             4: '#84cc16'
         };
         
+        // Challenge definitions
+        const challenges = {
+            'gop-sweep': {
+                emoji: '🔴',
+                title: 'GOP Sweep',
+                goal: 'Make all 4 districts vote Republican, despite Salt Lake County voting 56% for Biden.',
+                hint: '💡 Split the blue areas (downtown, university, Sugar House) across all 4 districts so Democrats are never a majority.',
+                checkWin: (stats) => stats.repSeats === 4,
+                insight: 'This is exactly what the Utah Legislature did in 2021. By "cracking" Democratic votes across all districts, they ensured 4-0 Republican representation despite Democrats winning Salt Lake County.',
+                successEmoji: '🔴'
+            },
+            'dem-max': {
+                emoji: '🔵',
+                title: 'Democratic Dream',
+                goal: 'Win as many seats as possible for Democrats. The max is probably 2, maybe 3 if you\'re clever.',
+                hint: '💡 "Pack" Republican areas into 1-2 districts, and spread Democrats across the rest.',
+                checkWin: (stats) => stats.demSeats >= 2,
+                insight: 'Even with optimal drawing, Democrats can only win 2-3 seats in Salt Lake County because the GOP\'s votes are spread throughout suburban areas. Geography matters!',
+                successEmoji: '🔵'
+            },
+            'fair-map': {
+                emoji: '⚖️',
+                title: 'Fair Map',
+                goal: 'Create a map with an efficiency gap under 5%. This is what courts consider "fair."',
+                hint: '💡 Try to make districts competitive (close margins) rather than blowouts. Wasted votes should be roughly equal.',
+                checkWin: (stats) => Math.abs(stats.efficiencyGap) < 5,
+                insight: 'A "fair" map doesn\'t mean equal seats—it means equal representation of votes. The efficiency gap measures how many votes are "wasted" by each party.',
+                successEmoji: '⚖️'
+            },
+            'pizza-slice': {
+                emoji: '🍕',
+                title: 'Pizza Slice',
+                goal: 'Make all 4 districts meet at a single point in downtown Salt Lake City, like pizza slices.',
+                hint: '💡 Start from the center and draw outward in 4 directions. This is literally how Utah\'s map was described!',
+                checkWin: (stats) => {
+                    // Check if all 4 districts have some precincts AND at least 3 districts touch downtown area
+                    const hasAll4 = stats.districtCounts[1] > 0 && stats.districtCounts[2] > 0 && 
+                                   stats.districtCounts[3] > 0 && stats.districtCounts[4] > 0;
+                    return hasAll4 && stats.allAssigned > 400; // At least half the county assigned
+                },
+                insight: 'The "pizza slice" approach is a classic gerrymandering technique. By making districts radiate from urban centers, mapmakers ensure each district has enough rural/suburban voters to dilute urban votes.',
+                successEmoji: '🍕'
+            },
+            'salamander': {
+                emoji: '🦎',
+                title: 'The Salamander',
+                goal: 'Draw District 1 to look like a salamander or dragon—the original 1812 "Gerry-mander"!',
+                hint: '💡 Give it a head, body, legs, and tail. The original had wings too! Shape doesn\'t affect the challenge—just have fun.',
+                checkWin: (stats) => stats.districtCounts[1] > 100, // Just need to draw something substantial
+                insight: 'The term "gerrymander" comes from Governor Elbridge Gerry of Massachusetts in 1812. A newspaper cartoon depicted his oddly-shaped district as a salamander, and "Gerry-mander" was born!',
+                successEmoji: '🦎'
+            },
+            'elephant': {
+                emoji: '🐘',
+                title: 'Elephant Art',
+                goal: 'Draw an elephant shape using your districts. Bonus: make it a Republican elephant that wins!',
+                hint: '💡 Use D1 for the body, D2 for the head, D3 for legs, D4 for the trunk and tail.',
+                checkWin: (stats) => {
+                    const hasAll4 = stats.districtCounts[1] > 20 && stats.districtCounts[2] > 20 && 
+                                   stats.districtCounts[3] > 20 && stats.districtCounts[4] > 20;
+                    return hasAll4;
+                },
+                insight: 'District shapes in America can be wild! As long as they\'re contiguous (connected), courts have allowed all sorts of creative geography. Some look like earbuds, dragons, or spilled ink.',
+                successEmoji: '🐘'
+            },
+            'donut': {
+                emoji: '🍩',
+                title: 'Donut Hole',
+                goal: 'Create a "donut" district that completely surrounds downtown without including it.',
+                hint: '💡 Use D1 for the donut ring around downtown. Use D2 for the "hole" (downtown itself).',
+                checkWin: (stats) => stats.districtCounts[1] > 100 && stats.districtCounts[2] > 20,
+                insight: 'Donut districts are used to separate urban cores from their suburbs. By isolating downtown voters, mapmakers can "pack" them into one district while surrounding areas vote differently.',
+                successEmoji: '🍩'
+            },
+            'master': {
+                emoji: '🏆',
+                title: 'Gerrymander Master',
+                goal: 'Get the efficiency gap as close to 0.0% as humanly possible. Under 2% wins!',
+                hint: '💡 Make every district competitive with margins under 5%. Balance wasted votes perfectly.',
+                checkWin: (stats) => Math.abs(stats.efficiencyGap) < 2,
+                insight: 'Perfectly fair maps are nearly impossible in practice because voters aren\'t distributed evenly. But striving for low efficiency gaps produces more representative democracy.',
+                successEmoji: '🏆',
+                locked: true
+            }
+        };
+        
+        // Map setup
         const map = L.map('map', { zoomControl: true }).setView([40.65, -111.9], 11);
         
         L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
@@ -544,12 +969,9 @@
             const props = feature.properties;
             const precinctId = props.vistapre;
             const assignment = precinctAssignments[precinctId];
-            
-            // Always show partisan color as fill
             const fillColor = getPartisanColor(props.G20PREDBID, props.G20PRERTRU);
             
-            if (mode === 'draw' && assignment) {
-                // Show district as thick border, partisan color as fill
+            if ((mode === 'sandbox' || mode === 'challenge') && assignment) {
                 return {
                     fillColor: fillColor,
                     weight: 4,
@@ -569,7 +991,7 @@
         }
         
         function paintPrecinct(layer) {
-            if (mode !== 'draw') return;
+            if (mode === 'view') return;
             
             const precinctId = layer.feature.properties.vistapre;
             
@@ -587,21 +1009,19 @@
             const props = layer.feature.properties;
             const precinctId = props.vistapre;
             
-            // Paint if dragging in draw mode
-            if (isPainting && mode === 'draw') {
+            if (isPainting && mode !== 'view') {
                 paintPrecinct(layer);
-                updateDistrictStats();
+                updateStats();
+                checkChallengeProgress();
                 return;
             }
             
-            // Highlight
             const assignment = precinctAssignments[precinctId];
             layer.setStyle({
-                weight: assignment && mode === 'draw' ? 5 : 3,
-                color: assignment && mode === 'draw' ? districtColors[assignment] : '#fff'
+                weight: assignment && mode !== 'view' ? 5 : 3,
+                color: assignment && mode !== 'view' ? districtColors[assignment] : '#fff'
             });
             
-            // Update info box
             document.getElementById('info-box').style.display = 'block';
             document.getElementById('precinct-name').textContent = precinctId;
             document.getElementById('hover-biden').textContent = props.G20PREDBID.toLocaleString();
@@ -615,7 +1035,7 @@
                 `<span style="color: ${margin > 0 ? '#3b82f6' : '#ef4444'}">${winner}+${pct}%</span>`;
             
             const assignedEl = document.getElementById('hover-assigned');
-            if (mode === 'draw') {
+            if (mode !== 'view') {
                 if (assignment) {
                     assignedEl.innerHTML = `<span class="assigned d${assignment}">District ${assignment}</span>`;
                 } else {
@@ -634,10 +1054,11 @@
         }
         
         function onMouseDown(e) {
-            if (mode !== 'draw') return;
+            if (mode === 'view') return;
             isPainting = true;
             paintPrecinct(e.target);
-            updateDistrictStats();
+            updateStats();
+            checkChallengeProgress();
             document.getElementById('brush-indicator').classList.add('active');
         }
         
@@ -655,38 +1076,43 @@
             });
         }
         
-        // Global mouseup
         document.addEventListener('mouseup', onMouseUp);
         
         function setMode(newMode) {
             mode = newMode;
             
             document.getElementById('mode-view').classList.toggle('active', mode === 'view');
-            document.getElementById('mode-draw').classList.toggle('active', mode === 'draw');
-            document.getElementById('view-controls').style.display = mode === 'view' ? 'block' : 'none';
-            document.getElementById('draw-controls').style.display = mode === 'draw' ? 'block' : 'none';
+            document.getElementById('mode-sandbox').classList.toggle('active', mode === 'sandbox');
+            document.getElementById('mode-challenge').classList.toggle('active', mode === 'challenge');
             
-            if (mode === 'draw') {
-                map.dragging.disable();
-                document.getElementById('map').classList.add('drawing-mode');
-            } else {
+            document.getElementById('view-content').classList.toggle('active', mode === 'view');
+            document.getElementById('sandbox-content').classList.toggle('active', mode === 'sandbox');
+            document.getElementById('challenge-content').classList.toggle('active', mode === 'challenge');
+            
+            if (mode === 'view') {
                 map.dragging.enable();
                 document.getElementById('map').classList.remove('drawing-mode');
+            } else {
+                map.dragging.disable();
+                document.getElementById('map').classList.add('drawing-mode');
             }
             
-            // Refresh styles
             if (precinctLayer) {
                 precinctLayer.eachLayer(layer => {
                     layer.setStyle(getPrecinctStyle(layer.feature));
                 });
             }
             
-            // Hide overlays in draw mode
-            if (mode === 'draw') {
+            if (mode === 'view') {
                 if (overlay2021) map.removeLayer(overlay2021);
                 if (overlay2025) map.removeLayer(overlay2025);
-                document.querySelectorAll('.toggle-btn').forEach(btn => btn.classList.remove('active'));
-                document.querySelector('.map-none').classList.add('active');
+            }
+            
+            // Reset challenge display when switching modes
+            if (mode === 'challenge' && !currentChallenge) {
+                document.getElementById('challenge-list').style.display = 'block';
+                document.getElementById('active-challenge-display').style.display = 'none';
+                document.getElementById('challenge-tools').style.display = 'none';
             }
         }
         
@@ -696,19 +1122,33 @@
             document.querySelectorAll('.district-btn').forEach(btn => {
                 btn.classList.remove('active');
             });
+            document.querySelectorAll('.eraser-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
             
             if (num === 0) {
-                document.querySelector('.district-btn.eraser').classList.add('active');
+                document.querySelectorAll('.eraser-btn').forEach(btn => btn.classList.add('active'));
                 document.getElementById('brush-color-indicator').className = 'brush-color eraser';
                 document.getElementById('brush-district-num').textContent = 'Eraser';
             } else {
-                document.querySelector(`.district-btn.d${num}`).classList.add('active');
+                document.querySelectorAll(`.district-btn.d${num}`).forEach(btn => btn.classList.add('active'));
                 document.getElementById('brush-color-indicator').className = `brush-color d${num}`;
                 document.getElementById('brush-district-num').textContent = num;
             }
         }
         
-        function updateDistrictStats() {
+        function handleEraserClick() {
+            const now = Date.now();
+            if (selectedDistrict === 0 && now - lastEraserClick < 500) {
+                resetDistricts();
+                lastEraserClick = 0;
+            } else {
+                selectDistrict(0);
+                lastEraserClick = now;
+            }
+        }
+        
+        function calculateStats() {
             const stats = {
                 1: {count: 0, biden: 0, trump: 0},
                 2: {count: 0, biden: 0, trump: 0},
@@ -728,21 +1168,19 @@
             
             let demSeats = 0, repSeats = 0;
             let totalWastedDem = 0, totalWastedRep = 0, totalVotes = 0;
-            
-            const tbody = document.getElementById('district-stats');
-            tbody.innerHTML = '';
+            let allAssigned = 0;
+            const districtCounts = {1: 0, 2: 0, 3: 0, 4: 0};
             
             for (let d = 1; d <= 4; d++) {
                 const s = stats[d];
+                districtCounts[d] = s.count;
+                allAssigned += s.count;
                 const total = s.biden + s.trump;
-                let winner = '-';
                 
-                if (s.count > 0) {
-                    winner = s.biden > s.trump ? 'D' : 'R';
-                    if (winner === 'D') demSeats++;
+                if (s.count > 0 && total > 0) {
+                    if (s.biden > s.trump) demSeats++;
                     else repSeats++;
                     
-                    // Wasted votes calculation
                     const threshold = Math.floor(total / 2) + 1;
                     if (s.biden > s.trump) {
                         totalWastedDem += s.biden - threshold;
@@ -753,47 +1191,196 @@
                     }
                     totalVotes += total;
                 }
-                
-                const tr = document.createElement('tr');
-                tr.className = `d${d}`;
-                tr.innerHTML = `
-                    <td>D${d}</td>
-                    <td>${s.count}</td>
-                    <td style="color:#3b82f6">${s.biden > 0 ? (s.biden/1000).toFixed(0) + 'k' : '-'}</td>
-                    <td style="color:#ef4444">${s.trump > 0 ? (s.trump/1000).toFixed(0) + 'k' : '-'}</td>
-                    <td class="${winner === 'D' ? 'winner-d' : (winner === 'R' ? 'winner-r' : '')}">${winner}</td>
-                `;
-                tbody.appendChild(tr);
             }
             
-            document.getElementById('dem-seats').textContent = demSeats;
-            document.getElementById('rep-seats').textContent = repSeats;
+            const efficiencyGap = totalVotes > 0 ? (totalWastedDem - totalWastedRep) / totalVotes * 100 : 0;
             
-            // Efficiency gap
-            const marker = document.getElementById('efficiency-marker');
-            const valueEl = document.getElementById('efficiency-value');
+            return {
+                districts: stats,
+                demSeats,
+                repSeats,
+                efficiencyGap,
+                totalVotes,
+                allAssigned,
+                districtCounts
+            };
+        }
+        
+        function updateStats() {
+            const stats = calculateStats();
             
-            if (totalVotes > 0) {
-                const gap = (totalWastedDem - totalWastedRep) / totalVotes * 100;
-                // gap > 0 means Dems wasted more votes = favors GOP
-                // gap < 0 means GOP wasted more votes = favors Dems
+            // Update the appropriate stats table based on mode
+            const tableId = mode === 'sandbox' ? 'sandbox-stats' : 'district-stats';
+            const tbody = document.getElementById(tableId);
+            if (tbody) {
+                tbody.innerHTML = '';
                 
-                const markerPos = 50 + (gap * 2); // Scale for visibility
+                for (let d = 1; d <= 4; d++) {
+                    const s = stats.districts[d];
+                    const total = s.biden + s.trump;
+                    let winner = '-';
+                    let winnerClass = '';
+                    
+                    if (s.count > 0 && total > 0) {
+                        winner = s.biden > s.trump ? 'D' : 'R';
+                        winnerClass = s.biden > s.trump ? 'winner-d' : 'winner-r';
+                    }
+                    
+                    const tr = document.createElement('tr');
+                    tr.className = `d${d}`;
+                    tr.innerHTML = `
+                        <td>D${d}</td>
+                        <td>${s.count}</td>
+                        <td style="color:#3b82f6">${s.biden > 0 ? (s.biden/1000).toFixed(0) + 'k' : '-'}</td>
+                        <td style="color:#ef4444">${s.trump > 0 ? (s.trump/1000).toFixed(0) + 'k' : '-'}</td>
+                        <td class="${winnerClass}">${winner}</td>
+                    `;
+                    tbody.appendChild(tr);
+                }
+            }
+            
+            // Update efficiency gap display
+            const markerId = mode === 'sandbox' ? 'sandbox-efficiency-marker' : 'efficiency-marker';
+            const valueId = mode === 'sandbox' ? 'sandbox-efficiency-value' : 'efficiency-value';
+            
+            const marker = document.getElementById(markerId);
+            const valueEl = document.getElementById(valueId);
+            
+            if (marker && valueEl) {
+                const markerPos = 50 + (stats.efficiencyGap * 2);
                 marker.style.left = Math.max(5, Math.min(95, markerPos)) + '%';
                 
-                if (Math.abs(gap) < 2) {
-                    valueEl.innerHTML = `<span style="color: #10b981;">${Math.abs(gap).toFixed(1)}% - Fair!</span>`;
-                } else if (gap > 0) {
-                    valueEl.innerHTML = `<span style="color: #ef4444;">R+${gap.toFixed(1)}%</span>`;
-                    if (gap > 7) valueEl.innerHTML += ` <span style="color: #fca5a5;">⚠️ Gerrymandered</span>`;
+                if (stats.totalVotes === 0) {
+                    valueEl.textContent = 'Draw to see';
+                } else if (Math.abs(stats.efficiencyGap) < 2) {
+                    valueEl.innerHTML = `<span style="color: #10b981;">${Math.abs(stats.efficiencyGap).toFixed(1)}% ✓ Fair!</span>`;
+                } else if (stats.efficiencyGap > 0) {
+                    valueEl.innerHTML = `<span style="color: #ef4444;">R+${stats.efficiencyGap.toFixed(1)}%</span>`;
                 } else {
-                    valueEl.innerHTML = `<span style="color: #3b82f6;">D+${Math.abs(gap).toFixed(1)}%</span>`;
-                    if (gap < -7) valueEl.innerHTML += ` <span style="color: #93c5fd;">⚠️ Gerrymandered</span>`;
+                    valueEl.innerHTML = `<span style="color: #3b82f6;">D+${Math.abs(stats.efficiencyGap).toFixed(1)}%</span>`;
                 }
-            } else {
-                marker.style.left = '50%';
-                valueEl.textContent = 'Draw districts to see';
             }
+            
+            return stats;
+        }
+        
+        function checkChallengeProgress() {
+            if (!currentChallenge || mode !== 'challenge') return;
+            
+            const challenge = challenges[currentChallenge];
+            const stats = calculateStats();
+            const isWin = challenge.checkWin(stats);
+            
+            // Update progress bar
+            const progressFill = document.getElementById('progress-fill');
+            const progressText = document.getElementById('progress-text');
+            
+            let progress = 0;
+            let progressLabel = 'Drawing...';
+            
+            if (currentChallenge === 'gop-sweep') {
+                progress = (stats.repSeats / 4) * 100;
+                progressLabel = `${stats.repSeats}/4 GOP seats`;
+            } else if (currentChallenge === 'dem-max') {
+                progress = Math.min(stats.demSeats / 2, 1) * 100;
+                progressLabel = `${stats.demSeats} Dem seat${stats.demSeats !== 1 ? 's' : ''}`;
+            } else if (currentChallenge === 'fair-map' || currentChallenge === 'master') {
+                const gap = Math.abs(stats.efficiencyGap);
+                const target = currentChallenge === 'master' ? 2 : 5;
+                progress = Math.max(0, (1 - gap / 15)) * 100;
+                progressLabel = `Gap: ${gap.toFixed(1)}% (need <${target}%)`;
+            } else {
+                progress = Math.min(stats.allAssigned / 400, 1) * 100;
+                progressLabel = `${stats.allAssigned} precincts assigned`;
+            }
+            
+            progressFill.style.width = progress + '%';
+            progressText.textContent = progressLabel;
+            
+            if (isWin) {
+                progressFill.className = 'progress-fill success';
+            } else if (progress > 30) {
+                progressFill.className = 'progress-fill partial';
+            } else {
+                progressFill.className = 'progress-fill incomplete';
+            }
+            
+            if (isWin) {
+                setTimeout(() => showSuccessModal(currentChallenge), 500);
+            }
+        }
+        
+        function startChallenge(challengeId) {
+            const challenge = challenges[challengeId];
+            if (!challenge) return;
+            
+            if (challenge.locked && !completedChallenges.has('fair-map')) {
+                alert('Complete the "Fair Map" challenge first to unlock this one!');
+                return;
+            }
+            
+            currentChallenge = challengeId;
+            resetDistricts();
+            
+            document.getElementById('challenge-list').style.display = 'none';
+            document.getElementById('active-challenge-display').style.display = 'block';
+            document.getElementById('challenge-tools').style.display = 'block';
+            
+            document.getElementById('active-emoji').textContent = challenge.emoji;
+            document.getElementById('active-title').textContent = challenge.title;
+            document.getElementById('active-goal').textContent = challenge.goal;
+            document.getElementById('challenge-hint').textContent = challenge.hint;
+            
+            const progressFill = document.getElementById('progress-fill');
+            progressFill.style.width = '0%';
+            progressFill.className = 'progress-fill incomplete';
+            document.getElementById('progress-text').textContent = 'Start drawing!';
+        }
+        
+        function exitChallenge() {
+            currentChallenge = null;
+            document.getElementById('challenge-list').style.display = 'block';
+            document.getElementById('active-challenge-display').style.display = 'none';
+            document.getElementById('challenge-tools').style.display = 'none';
+        }
+        
+        function showSuccessModal(challengeId) {
+            const challenge = challenges[challengeId];
+            
+            document.getElementById('modal-emoji').textContent = challenge.successEmoji;
+            document.getElementById('modal-title').textContent = 'Challenge Complete!';
+            document.getElementById('modal-message').textContent = `You completed "${challenge.title}"!`;
+            document.getElementById('modal-insight-text').textContent = challenge.insight;
+            
+            document.getElementById('success-modal').classList.add('show');
+            
+            completedChallenges.add(challengeId);
+            
+            // Mark as completed in UI
+            const card = document.querySelector(`[data-challenge="${challengeId}"]`);
+            if (card) card.classList.add('completed');
+            
+            // Unlock master challenge if fair-map completed
+            if (challengeId === 'fair-map') {
+                const masterCard = document.querySelector('[data-challenge="master"]');
+                if (masterCard) {
+                    masterCard.classList.remove('locked');
+                    document.getElementById('unlocked-message').style.display = 'block';
+                    setTimeout(() => {
+                        document.getElementById('unlocked-message').style.display = 'none';
+                    }, 5000);
+                }
+            }
+        }
+        
+        function closeModal() {
+            document.getElementById('success-modal').classList.remove('show');
+            exitChallenge();
+        }
+        
+        function tryAgain() {
+            document.getElementById('success-modal').classList.remove('show');
+            resetDistricts();
         }
         
         function resetDistricts() {
@@ -803,7 +1390,14 @@
                     layer.setStyle(getPrecinctStyle(layer.feature));
                 });
             }
-            updateDistrictStats();
+            updateStats();
+            
+            if (currentChallenge) {
+                const progressFill = document.getElementById('progress-fill');
+                progressFill.style.width = '0%';
+                progressFill.className = 'progress-fill incomplete';
+                document.getElementById('progress-text').textContent = 'Start drawing!';
+            }
         }
         
         function showOverlay(which) {
@@ -817,19 +1411,172 @@
             else if (which === '2025' && overlay2025) overlay2025.addTo(map);
         }
         
-        let lastEraserClick = 0;
-        function handleEraserClick() {
-            const now = Date.now();
-            if (selectedDistrict === 0 && now - lastEraserClick < 500) {
-                resetDistricts();
-                lastEraserClick = 0;
-            } else {
-                selectDistrict(0);
-                lastEraserClick = now;
+
+        // Demo animations for each challenge
+        const demoPatterns = {
+            'gop-sweep': {
+                getPrecincts: () => {
+                    const center = { lat: 40.76, lng: -111.89 };
+                    return precinctData.features.map(f => {
+                        const coords = f.geometry.coordinates[0][0];
+                        const lng = Array.isArray(coords[0]) ? coords[0][0] : coords[0];
+                        const lat = Array.isArray(coords[0]) ? coords[0][1] : coords[1];
+                        const angle = Math.atan2(lat - center.lat, lng - center.lng);
+                        let district;
+                        if (angle >= -Math.PI/4 && angle < Math.PI/4) district = 1;
+                        else if (angle >= Math.PI/4 && angle < 3*Math.PI/4) district = 2;
+                        else if (angle >= -3*Math.PI/4 && angle < -Math.PI/4) district = 4;
+                        else district = 3;
+                        return { id: f.properties.vistapre, district };
+                    });
+                }
+            },
+            'pizza-slice': {
+                getPrecincts: () => {
+                    const center = { lat: 40.76, lng: -111.89 };
+                    return precinctData.features.map(f => {
+                        const coords = f.geometry.coordinates[0][0];
+                        const lng = Array.isArray(coords[0]) ? coords[0][0] : coords[0];
+                        const lat = Array.isArray(coords[0]) ? coords[0][1] : coords[1];
+                        const angle = Math.atan2(lat - center.lat, lng - center.lng);
+                        let district;
+                        if (angle >= -Math.PI/4 && angle < Math.PI/4) district = 1;
+                        else if (angle >= Math.PI/4 && angle < 3*Math.PI/4) district = 2;
+                        else if (angle >= -3*Math.PI/4 && angle < -Math.PI/4) district = 4;
+                        else district = 3;
+                        return { id: f.properties.vistapre, district };
+                    });
+                }
+            },
+            'salamander': {
+                getPrecincts: () => {
+                    return precinctData.features
+                        .sort((a, b) => {
+                            const aCoord = a.geometry.coordinates[0][0];
+                            const bCoord = b.geometry.coordinates[0][0];
+                            const aLng = Array.isArray(aCoord[0]) ? aCoord[0][0] : aCoord[0];
+                            const bLng = Array.isArray(bCoord[0]) ? bCoord[0][0] : bCoord[0];
+                            return aLng - bLng;
+                        })
+                        .slice(0, 200)
+                        .map(f => ({ id: f.properties.vistapre, district: 1 }));
+                }
+            },
+            'elephant': {
+                getPrecincts: () => {
+                    const sorted = [...precinctData.features].sort((a, b) => {
+                        const aCoord = a.geometry.coordinates[0][0];
+                        const bCoord = b.geometry.coordinates[0][0];
+                        const aLat = Array.isArray(aCoord[0]) ? aCoord[0][1] : aCoord[1];
+                        const bLat = Array.isArray(bCoord[0]) ? bCoord[0][1] : bCoord[1];
+                        return bLat - aLat;
+                    });
+                    const results = [];
+                    sorted.slice(0, 100).forEach(f => results.push({ id: f.properties.vistapre, district: 1 }));
+                    sorted.slice(100, 180).forEach(f => results.push({ id: f.properties.vistapre, district: 2 }));
+                    sorted.slice(180, 260).forEach(f => results.push({ id: f.properties.vistapre, district: 3 }));
+                    sorted.slice(260, 340).forEach(f => results.push({ id: f.properties.vistapre, district: 4 }));
+                    return results;
+                }
+            },
+            'donut': {
+                getPrecincts: () => {
+                    const center = { lat: 40.76, lng: -111.89 };
+                    return precinctData.features.map(f => {
+                        const coords = f.geometry.coordinates[0][0];
+                        const lng = Array.isArray(coords[0]) ? coords[0][0] : coords[0];
+                        const lat = Array.isArray(coords[0]) ? coords[0][1] : coords[1];
+                        const dist = Math.sqrt(Math.pow(lat - center.lat, 2) + Math.pow(lng - center.lng, 2));
+                        if (dist < 0.03) return { id: f.properties.vistapre, district: 2 };
+                        else if (dist < 0.08) return { id: f.properties.vistapre, district: 1 };
+                        else return null;
+                    }).filter(x => x);
+                }
+            },
+            'fair-map': {
+                getPrecincts: () => {
+                    // Create 4 roughly equal vertical strips
+                    const sorted = [...precinctData.features].sort((a, b) => {
+                        const aCoord = a.geometry.coordinates[0][0];
+                        const bCoord = b.geometry.coordinates[0][0];
+                        const aLng = Array.isArray(aCoord[0]) ? aCoord[0][0] : aCoord[0];
+                        const bLng = Array.isArray(bCoord[0]) ? bCoord[0][0] : bCoord[0];
+                        return aLng - bLng;
+                    });
+                    const quarter = Math.floor(sorted.length / 4);
+                    const results = [];
+                    sorted.slice(0, quarter).forEach(f => results.push({ id: f.properties.vistapre, district: 1 }));
+                    sorted.slice(quarter, quarter*2).forEach(f => results.push({ id: f.properties.vistapre, district: 2 }));
+                    sorted.slice(quarter*2, quarter*3).forEach(f => results.push({ id: f.properties.vistapre, district: 3 }));
+                    sorted.slice(quarter*3).forEach(f => results.push({ id: f.properties.vistapre, district: 4 }));
+                    return results;
+                }
+            },
+            'dem-max': {
+                getPrecincts: () => {
+                    // Pack Republicans, spread Democrats
+                    const sorted = [...precinctData.features].sort((a, b) => {
+                        const aMargin = a.properties.G20PREDBID - a.properties.G20PRERTRU;
+                        const bMargin = b.properties.G20PREDBID - b.properties.G20PRERTRU;
+                        return bMargin - aMargin; // Most Dem first
+                    });
+                    const results = [];
+                    // Give Dems the bluest areas in D1 and D2
+                    sorted.slice(0, 200).forEach(f => results.push({ id: f.properties.vistapre, district: 1 }));
+                    sorted.slice(200, 400).forEach(f => results.push({ id: f.properties.vistapre, district: 2 }));
+                    // Pack Republicans into D3 and D4
+                    sorted.slice(400, 600).forEach(f => results.push({ id: f.properties.vistapre, district: 3 }));
+                    sorted.slice(600).forEach(f => results.push({ id: f.properties.vistapre, district: 4 }));
+                    return results;
+                }
             }
+        };
+        
+        let demoInterval = null;
+        
+        function showMeDemo() {
+            if (!currentChallenge || !demoPatterns[currentChallenge]) {
+                alert('No demo available for this challenge yet. Try drawing it yourself!');
+                return;
+            }
+            
+            // Stop any existing demo
+            if (demoInterval) {
+                clearInterval(demoInterval);
+            }
+            
+            resetDistricts();
+            const pattern = demoPatterns[currentChallenge];
+            const assignments = pattern.getPrecincts();
+            
+            const btn = document.getElementById('show-me-btn');
+            btn.textContent = '⏳ Drawing...';
+            btn.disabled = true;
+            
+            let i = 0;
+            const batchSize = 20;
+            
+            demoInterval = setInterval(() => {
+                for (let j = 0; j < batchSize && i < assignments.length; j++, i++) {
+                    const assign = assignments[i];
+                    precinctAssignments[assign.id] = assign.district;
+                    if (precinctLayers[assign.id]) {
+                        precinctLayers[assign.id].setStyle(getPrecinctStyle(precinctLayers[assign.id].feature));
+                    }
+                }
+                updateStats();
+                
+                if (i >= assignments.length) {
+                    clearInterval(demoInterval);
+                    demoInterval = null;
+                    btn.textContent = '👁️ Show Me How';
+                    btn.disabled = false;
+                    checkChallengeProgress();
+                }
+            }, 50);
         }
         
-        async function loadData() {
+                async function loadData() {
             try {
                 const precinctRes = await fetch('data/processed/slc_precincts.geojson');
                 precinctData = await precinctRes.json();
@@ -855,7 +1602,6 @@
                 
                 map.fitBounds(precinctLayer.getBounds());
                 
-                // Load overlays
                 const cong2021Res = await fetch('data/processed/cong_2021.geojson');
                 const cong2021Data = await cong2021Res.json();
                 overlay2021 = L.geoJSON(cong2021Data, {
@@ -869,6 +1615,10 @@
                 });
                 
                 document.getElementById('loading').classList.add('hidden');
+                
+                // Start in challenge mode with drawing disabled until challenge selected
+                map.dragging.disable();
+                document.getElementById('map').classList.add('drawing-mode');
                 
             } catch (err) {
                 console.error('Error:', err);

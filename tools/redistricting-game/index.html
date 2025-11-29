@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Utah Redistricting Game | Draw Your Own Congressional Districts</title>
+    
+    <!-- Leaflet CSS -->
+    <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
+    <link rel="icon" type="image/png" href="../../favicon.png">
+    <link rel="apple-touch-icon" href="../../apple-touch-icon.png">
+    
+    <!-- Leaflet CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #1a1a2e;
+            color: #eee;
+        }
+        
+        .container {
+            display: flex;
+            height: 100vh;
+        }
+        
+        /* Sidebar */
+        .sidebar {
+            width: 320px;
+            background: #16213e;
+            padding: 20px;
+            overflow-y: auto;
+            border-right: 2px solid #0f3460;
+        }
+        
+        .sidebar h1 {
+            font-size: 1.4rem;
+            margin-bottom: 5px;
+            color: #e94560;
+        }
+        
+        .sidebar .subtitle {
+            font-size: 0.85rem;
+            color: #888;
+            margin-bottom: 20px;
+        }
+        
+        .section {
+            background: #1a1a2e;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 15px;
+        }
+        
+        .section h3 {
+            font-size: 0.9rem;
+            color: #e94560;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .stat-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 8px 0;
+            border-bottom: 1px solid #333;
+        }
+        
+        .stat-row:last-child {
+            border-bottom: none;
+        }
+        
+        .stat-label {
+            color: #888;
+        }
+        
+        .stat-value {
+            font-weight: bold;
+        }
+        
+        .stat-value.dem { color: #3b82f6; }
+        .stat-value.rep { color: #ef4444; }
+        .stat-value.neutral { color: #eee; }
+        
+        /* Toggle buttons */
+        .toggle-group {
+            display: flex;
+            gap: 5px;
+            margin-bottom: 10px;
+        }
+        
+        .toggle-btn {
+            flex: 1;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 0.8rem;
+            font-weight: bold;
+            transition: all 0.2s;
+        }
+        
+        .toggle-btn.active {
+            transform: scale(1.02);
+        }
+        
+        .toggle-btn.map-2021 {
+            background: #7f1d1d;
+            color: white;
+        }
+        .toggle-btn.map-2021.active {
+            background: #ef4444;
+        }
+        
+        .toggle-btn.map-2025 {
+            background: #1e3a5f;
+            color: white;
+        }
+        .toggle-btn.map-2025.active {
+            background: #3b82f6;
+        }
+        
+        .toggle-btn.map-none {
+            background: #374151;
+            color: white;
+        }
+        .toggle-btn.map-none.active {
+            background: #6b7280;
+        }
+        
+        /* Legend */
+        .legend {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 0;
+        }
+        
+        .legend-gradient {
+            height: 15px;
+            flex: 1;
+            margin: 0 10px;
+            border-radius: 3px;
+            background: linear-gradient(to right, #2563eb, #9ca3af, #dc2626);
+        }
+        
+        .legend-label {
+            font-size: 0.75rem;
+            color: #888;
+        }
+        
+        /* Map container */
+        #map {
+            flex: 1;
+            height: 100vh;
+        }
+        
+        /* Info box on hover */
+        .info-box {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: rgba(22, 33, 62, 0.95);
+            padding: 15px;
+            border-radius: 8px;
+            z-index: 1000;
+            min-width: 200px;
+            border: 1px solid #0f3460;
+        }
+        
+        .info-box h4 {
+            color: #e94560;
+            margin-bottom: 10px;
+        }
+        
+        .info-box .votes {
+            display: flex;
+            gap: 20px;
+        }
+        
+        .info-box .dem-votes { color: #3b82f6; }
+        .info-box .rep-votes { color: #ef4444; }
+        
+        /* Loading */
+        .loading {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 2000;
+            background: #16213e;
+            padding: 30px;
+            border-radius: 10px;
+            text-align: center;
+        }
+        
+        .loading.hidden { display: none; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="sidebar">
+            <h1>🗺️ Utah Redistricting</h1>
+            <p class="subtitle">See how gerrymandering split Salt Lake County</p>
+            
+            <div class="section">
+                <h3>District Overlay</h3>
+                <div class="toggle-group">
+                    <button class="toggle-btn map-2021" onclick="showOverlay('2021')">2021 Map</button>
+                    <button class="toggle-btn map-2025" onclick="showOverlay('2025')">2025 Map</button>
+                    <button class="toggle-btn map-none active" onclick="showOverlay('none')">None</button>
+                </div>
+                <p style="font-size: 0.75rem; color: #666; margin-top: 5px;">
+                    <strong>2021:</strong> Legislature's map (split SLC 4 ways)<br>
+                    <strong>2025:</strong> Court-ordered fair map
+                </p>
+            </div>
+            
+            <div class="section">
+                <h3>Salt Lake County 2020</h3>
+                <div class="stat-row">
+                    <span class="stat-label">Biden</span>
+                    <span class="stat-value dem" id="biden-total">-</span>
+                </div>
+                <div class="stat-row">
+                    <span class="stat-label">Trump</span>
+                    <span class="stat-value rep" id="trump-total">-</span>
+                </div>
+                <div class="stat-row">
+                    <span class="stat-label">Margin</span>
+                    <span class="stat-value" id="margin-total">-</span>
+                </div>
+                <div class="stat-row">
+                    <span class="stat-label">Precincts</span>
+                    <span class="stat-value neutral" id="precinct-count">-</span>
+                </div>
+            </div>
+            
+            <div class="section">
+                <h3>Partisan Lean</h3>
+                <div class="legend">
+                    <span class="legend-label">D+30</span>
+                    <div class="legend-gradient"></div>
+                    <span class="legend-label">R+30</span>
+                </div>
+            </div>
+            
+            <div class="section">
+                <h3>The Story</h3>
+                <p style="font-size: 0.8rem; line-height: 1.5; color: #aaa;">
+                    In 2021, Utah's Legislature drew congressional districts that split 
+                    Salt Lake County—home to 1/3 of Utah's population—into <strong>all 4 districts</strong>, 
+                    diluting Democratic votes.
+                </p>
+                <p style="font-size: 0.8rem; line-height: 1.5; color: #aaa; margin-top: 10px;">
+                    In November 2025, a judge ordered a new map that keeps most of 
+                    Salt Lake County together, creating Utah's first competitive district since 2020.
+                </p>
+            </div>
+        </div>
+        
+        <div id="map"></div>
+        
+        <div class="info-box" id="info-box" style="display: none;">
+            <h4 id="precinct-name">Precinct</h4>
+            <div class="votes">
+                <div>
+                    <div class="dem-votes" id="hover-biden">-</div>
+                    <div style="font-size: 0.7rem; color: #666;">Biden</div>
+                </div>
+                <div>
+                    <div class="rep-votes" id="hover-trump">-</div>
+                    <div style="font-size: 0.7rem; color: #666;">Trump</div>
+                </div>
+            </div>
+            <div style="margin-top: 10px; font-size: 0.8rem;" id="hover-margin"></div>
+        </div>
+    </div>
+    
+    <div class="loading" id="loading">
+        <div style="font-size: 2rem; margin-bottom: 10px;">🗳️</div>
+        <div>Loading precinct data...</div>
+    </div>
+
+    <!-- Leaflet JS -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    
+    <script>
+        // Initialize map centered on Salt Lake County
+        const map = L.map('map', {
+            zoomControl: true
+        }).setView([40.65, -111.9], 11);
+        
+        // Dark basemap
+        L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
+            attribution: '© OpenStreetMap contributors © CARTO',
+            maxZoom: 19
+        }).addTo(map);
+        
+        // Layers
+        let precinctLayer = null;
+        let overlay2021 = null;
+        let overlay2025 = null;
+        let currentOverlay = 'none';
+        
+        // Color scale for partisan lean
+        function getColor(biden, trump) {
+            const total = biden + trump;
+            if (total === 0) return '#6b7280';
+            
+            const demPct = biden / total;
+            const margin = (demPct - 0.5) * 100; // -50 to +50
+            
+            if (margin > 25) return '#1d4ed8';      // Strong Dem
+            if (margin > 15) return '#2563eb';
+            if (margin > 8) return '#3b82f6';
+            if (margin > 3) return '#60a5fa';
+            if (margin > -3) return '#9ca3af';      // Tossup
+            if (margin > -8) return '#f87171';
+            if (margin > -15) return '#ef4444';
+            if (margin > -25) return '#dc2626';
+            return '#b91c1c';                        // Strong Rep
+        }
+        
+        // Style function for precincts
+        function precinctStyle(feature) {
+            const props = feature.properties;
+            return {
+                fillColor: getColor(props.G20PREDBID, props.G20PRERTRU),
+                weight: 0.5,
+                opacity: 1,
+                color: '#333',
+                fillOpacity: 0.8
+            };
+        }
+        
+        // Hover handlers
+        function highlightFeature(e) {
+            const layer = e.target;
+            layer.setStyle({
+                weight: 2,
+                color: '#fff',
+                fillOpacity: 1
+            });
+            
+            const props = layer.feature.properties;
+            document.getElementById('info-box').style.display = 'block';
+            document.getElementById('precinct-name').textContent = props.vistapre || 'Unknown';
+            document.getElementById('hover-biden').textContent = props.G20PREDBID.toLocaleString();
+            document.getElementById('hover-trump').textContent = props.G20PRERTRU.toLocaleString();
+            
+            const total = props.G20PREDBID + props.G20PRERTRU;
+            const margin = props.G20PREDBID - props.G20PRERTRU;
+            const pct = total > 0 ? Math.abs(margin / total * 100).toFixed(1) : 0;
+            const winner = margin > 0 ? 'D' : 'R';
+            document.getElementById('hover-margin').innerHTML = 
+                `<span style="color: ${margin > 0 ? '#3b82f6' : '#ef4444'}">${winner}+${pct}%</span>`;
+        }
+        
+        function resetHighlight(e) {
+            precinctLayer.resetStyle(e.target);
+            document.getElementById('info-box').style.display = 'none';
+        }
+        
+        function onEachFeature(feature, layer) {
+            layer.on({
+                mouseover: highlightFeature,
+                mouseout: resetHighlight
+            });
+        }
+        
+        // District overlay style
+        function districtStyle(color) {
+            return {
+                fillColor: 'transparent',
+                weight: 3,
+                opacity: 1,
+                color: color,
+                dashArray: '5, 5'
+            };
+        }
+        
+        // Toggle overlay
+        function showOverlay(which) {
+            // Update buttons
+            document.querySelectorAll('.toggle-btn').forEach(btn => btn.classList.remove('active'));
+            document.querySelector(`.map-${which}`).classList.add('active');
+            
+            // Remove existing overlays
+            if (overlay2021) map.removeLayer(overlay2021);
+            if (overlay2025) map.removeLayer(overlay2025);
+            
+            // Add selected overlay
+            if (which === '2021' && overlay2021) {
+                overlay2021.addTo(map);
+            } else if (which === '2025' && overlay2025) {
+                overlay2025.addTo(map);
+            }
+            
+            currentOverlay = which;
+        }
+        
+        // Load data
+        async function loadData() {
+            try {
+                // Load precincts
+                const precinctRes = await fetch('data/processed/slc_precincts.geojson');
+                const precinctData = await precinctRes.json();
+                
+                precinctLayer = L.geoJSON(precinctData, {
+                    style: precinctStyle,
+                    onEachFeature: onEachFeature
+                }).addTo(map);
+                
+                // Calculate totals
+                let bidenTotal = 0, trumpTotal = 0;
+                precinctData.features.forEach(f => {
+                    bidenTotal += f.properties.G20PREDBID;
+                    trumpTotal += f.properties.G20PRERTRU;
+                });
+                
+                document.getElementById('biden-total').textContent = bidenTotal.toLocaleString();
+                document.getElementById('trump-total').textContent = trumpTotal.toLocaleString();
+                document.getElementById('precinct-count').textContent = precinctData.features.length;
+                
+                const margin = bidenTotal - trumpTotal;
+                const marginEl = document.getElementById('margin-total');
+                marginEl.textContent = `D+${margin.toLocaleString()}`;
+                marginEl.classList.add('dem');
+                
+                // Fit map to precincts
+                map.fitBounds(precinctLayer.getBounds());
+                
+                // Load district overlays
+                const cong2021Res = await fetch('data/processed/cong_2021.geojson');
+                const cong2021Data = await cong2021Res.json();
+                overlay2021 = L.geoJSON(cong2021Data, {
+                    style: () => districtStyle('#ef4444')
+                });
+                
+                const cong2025Res = await fetch('data/processed/cong_2025.geojson');
+                const cong2025Data = await cong2025Res.json();
+                overlay2025 = L.geoJSON(cong2025Data, {
+                    style: () => districtStyle('#3b82f6')
+                });
+                
+                // Hide loading
+                document.getElementById('loading').classList.add('hidden');
+                
+            } catch (err) {
+                console.error('Error loading data:', err);
+                document.getElementById('loading').innerHTML = 
+                    '<div style="color: #ef4444;">Error loading data. Check console.</div>';
+            }
+        }
+        
+        loadData();
+    </script>
+</body>
+</html>

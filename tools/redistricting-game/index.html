@@ -1413,121 +1413,177 @@
         
 
         // Demo animations for each challenge
+        // Coordinates are [lng, lat] format, SLC center is approximately -111.89, 40.65
+        const SLC_CENTER = { lng: -111.89, lat: 40.65 };
+        
+        function getPrecinctCenter(feature) {
+            // Get centroid approximation from first coordinate
+            const coords = feature.geometry.coordinates[0];
+            let sumLng = 0, sumLat = 0;
+            const points = Math.min(coords.length, 10); // Sample first 10 points
+            for (let i = 0; i < points; i++) {
+                sumLng += coords[i][0];
+                sumLat += coords[i][1];
+            }
+            return { lng: sumLng / points, lat: sumLat / points };
+        }
+        
         const demoPatterns = {
-            'gop-sweep': {
+            'pizza-slice': {
                 getPrecincts: () => {
-                    const center = { lat: 40.76, lng: -111.89 };
+                    // True pizza slice: 4 wedges radiating from downtown SLC
                     return precinctData.features.map(f => {
-                        const coords = f.geometry.coordinates[0][0];
-                        const lng = Array.isArray(coords[0]) ? coords[0][0] : coords[0];
-                        const lat = Array.isArray(coords[0]) ? coords[0][1] : coords[1];
-                        const angle = Math.atan2(lat - center.lat, lng - center.lng);
+                        const center = getPrecinctCenter(f);
+                        // Calculate angle from SLC center
+                        const angle = Math.atan2(center.lat - SLC_CENTER.lat, center.lng - SLC_CENTER.lng);
+                        // Convert to degrees and shift so 0 is "east"
+                        const degrees = angle * (180 / Math.PI);
+                        
                         let district;
-                        if (angle >= -Math.PI/4 && angle < Math.PI/4) district = 1;
-                        else if (angle >= Math.PI/4 && angle < 3*Math.PI/4) district = 2;
-                        else if (angle >= -3*Math.PI/4 && angle < -Math.PI/4) district = 4;
-                        else district = 3;
+                        // Divide into 4 quadrants like pizza slices
+                        if (degrees >= -45 && degrees < 45) district = 1;       // East
+                        else if (degrees >= 45 && degrees < 135) district = 2;  // North
+                        else if (degrees >= -135 && degrees < -45) district = 4; // South
+                        else district = 3;                                        // West
+                        
                         return { id: f.properties.vistapre, district };
                     });
                 }
             },
-            'pizza-slice': {
+            'gop-sweep': {
                 getPrecincts: () => {
-                    const center = { lat: 40.76, lng: -111.89 };
+                    // Same as pizza slice - this IS what the GOP did
                     return precinctData.features.map(f => {
-                        const coords = f.geometry.coordinates[0][0];
-                        const lng = Array.isArray(coords[0]) ? coords[0][0] : coords[0];
-                        const lat = Array.isArray(coords[0]) ? coords[0][1] : coords[1];
-                        const angle = Math.atan2(lat - center.lat, lng - center.lng);
+                        const center = getPrecinctCenter(f);
+                        const angle = Math.atan2(center.lat - SLC_CENTER.lat, center.lng - SLC_CENTER.lng);
+                        const degrees = angle * (180 / Math.PI);
+                        
                         let district;
-                        if (angle >= -Math.PI/4 && angle < Math.PI/4) district = 1;
-                        else if (angle >= Math.PI/4 && angle < 3*Math.PI/4) district = 2;
-                        else if (angle >= -3*Math.PI/4 && angle < -Math.PI/4) district = 4;
+                        if (degrees >= -45 && degrees < 45) district = 1;
+                        else if (degrees >= 45 && degrees < 135) district = 2;
+                        else if (degrees >= -135 && degrees < -45) district = 4;
                         else district = 3;
+                        
                         return { id: f.properties.vistapre, district };
+                    });
+                }
+            },
+            'donut': {
+                getPrecincts: () => {
+                    // Donut: D2 is the hole (downtown), D1 is the ring around it
+                    return precinctData.features.map(f => {
+                        const center = getPrecinctCenter(f);
+                        const dist = Math.sqrt(
+                            Math.pow(center.lat - SLC_CENTER.lat, 2) + 
+                            Math.pow((center.lng - SLC_CENTER.lng) * 0.75, 2) // Adjust for lat/lng ratio
+                        );
+                        
+                        // Larger donut - hole is 0.05, ring extends to 0.15
+                        if (dist < 0.05) return { id: f.properties.vistapre, district: 2 };      // Hole
+                        else if (dist < 0.15) return { id: f.properties.vistapre, district: 1 }; // Ring
+                        else return { id: f.properties.vistapre, district: 3 };                  // Outside
                     });
                 }
             },
             'salamander': {
                 getPrecincts: () => {
-                    return precinctData.features
-                        .sort((a, b) => {
-                            const aCoord = a.geometry.coordinates[0][0];
-                            const bCoord = b.geometry.coordinates[0][0];
-                            const aLng = Array.isArray(aCoord[0]) ? aCoord[0][0] : aCoord[0];
-                            const bLng = Array.isArray(bCoord[0]) ? bCoord[0][0] : bCoord[0];
-                            return aLng - bLng;
-                        })
-                        .slice(0, 200)
-                        .map(f => ({ id: f.properties.vistapre, district: 1 }));
+                    // Create a wiggly salamander shape using D1
+                    // Sort by longitude, then add a wave pattern
+                    const sorted = [...precinctData.features].sort((a, b) => {
+                        const aCenter = getPrecinctCenter(a);
+                        const bCenter = getPrecinctCenter(b);
+                        return aCenter.lng - bCenter.lng;
+                    });
+                    
+                    const results = [];
+                    sorted.forEach((f, i) => {
+                        const center = getPrecinctCenter(f);
+                        // Create a sine wave pattern for the salamander body
+                        const wavePhase = (center.lng - (-112.1)) * 20;
+                        const waveCenter = SLC_CENTER.lat + Math.sin(wavePhase) * 0.05;
+                        const distFromWave = Math.abs(center.lat - waveCenter);
+                        
+                        // Salamander body follows the wave
+                        if (distFromWave < 0.08 && i < 300) {
+                            results.push({ id: f.properties.vistapre, district: 1 });
+                        }
+                    });
+                    return results;
                 }
             },
             'elephant': {
                 getPrecincts: () => {
-                    const sorted = [...precinctData.features].sort((a, b) => {
-                        const aCoord = a.geometry.coordinates[0][0];
-                        const bCoord = b.geometry.coordinates[0][0];
-                        const aLat = Array.isArray(aCoord[0]) ? aCoord[0][1] : aCoord[1];
-                        const bLat = Array.isArray(bCoord[0]) ? bCoord[0][1] : bCoord[1];
-                        return bLat - aLat;
-                    });
-                    const results = [];
-                    sorted.slice(0, 100).forEach(f => results.push({ id: f.properties.vistapre, district: 1 }));
-                    sorted.slice(100, 180).forEach(f => results.push({ id: f.properties.vistapre, district: 2 }));
-                    sorted.slice(180, 260).forEach(f => results.push({ id: f.properties.vistapre, district: 3 }));
-                    sorted.slice(260, 340).forEach(f => results.push({ id: f.properties.vistapre, district: 4 }));
-                    return results;
-                }
-            },
-            'donut': {
-                getPrecincts: () => {
-                    const center = { lat: 40.76, lng: -111.89 };
+                    // Elephant shape: body (D1), head (D2), legs (D3), trunk (D4)
                     return precinctData.features.map(f => {
-                        const coords = f.geometry.coordinates[0][0];
-                        const lng = Array.isArray(coords[0]) ? coords[0][0] : coords[0];
-                        const lat = Array.isArray(coords[0]) ? coords[0][1] : coords[1];
-                        const dist = Math.sqrt(Math.pow(lat - center.lat, 2) + Math.pow(lng - center.lng, 2));
-                        if (dist < 0.03) return { id: f.properties.vistapre, district: 2 };
-                        else if (dist < 0.08) return { id: f.properties.vistapre, district: 1 };
-                        else return null;
+                        const center = getPrecinctCenter(f);
+                        
+                        // Normalize coordinates to 0-1 range for easier shape drawing
+                        const normLng = (center.lng - (-112.1)) / 0.5;  // 0 = west, 1 = east
+                        const normLat = (center.lat - 40.45) / 0.35;    // 0 = south, 1 = north
+                        
+                        // Body - large central oval (D1 - purple)
+                        const bodyDist = Math.sqrt(Math.pow(normLng - 0.5, 2) + Math.pow(normLat - 0.5, 2));
+                        if (bodyDist < 0.3) return { id: f.properties.vistapre, district: 1 };
+                        
+                        // Head - circle to the right (D2 - teal)
+                        const headDist = Math.sqrt(Math.pow(normLng - 0.8, 2) + Math.pow(normLat - 0.6, 2));
+                        if (headDist < 0.15) return { id: f.properties.vistapre, district: 2 };
+                        
+                        // Legs - bottom area (D3 - orange)
+                        if (normLat < 0.3 && normLng > 0.2 && normLng < 0.7) {
+                            return { id: f.properties.vistapre, district: 3 };
+                        }
+                        
+                        // Trunk - extends right and down from head (D4 - green)
+                        if (normLng > 0.75 && normLat < 0.5 && normLat > 0.2) {
+                            return { id: f.properties.vistapre, district: 4 };
+                        }
+                        
+                        return null;
                     }).filter(x => x);
                 }
             },
             'fair-map': {
                 getPrecincts: () => {
-                    // Create 4 roughly equal vertical strips
+                    // Fair map: try to create competitive districts by mixing urban/suburban
+                    // Horizontal strips tend to be fairer than pizza slices
                     const sorted = [...precinctData.features].sort((a, b) => {
-                        const aCoord = a.geometry.coordinates[0][0];
-                        const bCoord = b.geometry.coordinates[0][0];
-                        const aLng = Array.isArray(aCoord[0]) ? aCoord[0][0] : aCoord[0];
-                        const bLng = Array.isArray(bCoord[0]) ? bCoord[0][0] : bCoord[0];
-                        return aLng - bLng;
+                        const aCenter = getPrecinctCenter(a);
+                        const bCenter = getPrecinctCenter(b);
+                        return aCenter.lat - bCenter.lat; // Sort south to north
                     });
+                    
                     const quarter = Math.floor(sorted.length / 4);
-                    const results = [];
-                    sorted.slice(0, quarter).forEach(f => results.push({ id: f.properties.vistapre, district: 1 }));
-                    sorted.slice(quarter, quarter*2).forEach(f => results.push({ id: f.properties.vistapre, district: 2 }));
-                    sorted.slice(quarter*2, quarter*3).forEach(f => results.push({ id: f.properties.vistapre, district: 3 }));
-                    sorted.slice(quarter*3).forEach(f => results.push({ id: f.properties.vistapre, district: 4 }));
-                    return results;
+                    return sorted.map((f, i) => {
+                        let district;
+                        if (i < quarter) district = 1;
+                        else if (i < quarter * 2) district = 2;
+                        else if (i < quarter * 3) district = 3;
+                        else district = 4;
+                        return { id: f.properties.vistapre, district };
+                    });
                 }
             },
             'dem-max': {
                 getPrecincts: () => {
-                    // Pack Republicans, spread Democrats
+                    // Pack the bluest precincts together to maximize Dem seats
+                    // Sort by Democratic margin
                     const sorted = [...precinctData.features].sort((a, b) => {
                         const aMargin = a.properties.G20PREDBID - a.properties.G20PRERTRU;
                         const bMargin = b.properties.G20PREDBID - b.properties.G20PRERTRU;
                         return bMargin - aMargin; // Most Dem first
                     });
-                    const results = [];
-                    // Give Dems the bluest areas in D1 and D2
-                    sorted.slice(0, 200).forEach(f => results.push({ id: f.properties.vistapre, district: 1 }));
-                    sorted.slice(200, 400).forEach(f => results.push({ id: f.properties.vistapre, district: 2 }));
-                    // Pack Republicans into D3 and D4
-                    sorted.slice(400, 600).forEach(f => results.push({ id: f.properties.vistapre, district: 3 }));
-                    sorted.slice(600).forEach(f => results.push({ id: f.properties.vistapre, district: 4 }));
-                    return results;
+                    
+                    // Create 2 Dem-leaning districts and pack GOP into 2 others
+                    const quarter = Math.floor(sorted.length / 4);
+                    return sorted.map((f, i) => {
+                        let district;
+                        if (i < quarter) district = 1;       // Bluest
+                        else if (i < quarter * 2) district = 2; // Blue-ish
+                        else if (i < quarter * 3) district = 3; // Red-ish
+                        else district = 4;                      // Reddest
+                        return { id: f.properties.vistapre, district };
+                    });
                 }
             }
         };
@@ -1554,22 +1610,28 @@
             btn.disabled = true;
             
             let i = 0;
-            const batchSize = 20;
+            const totalFrames = 60; // Animation takes ~3 seconds
+            const precinctsPerFrame = Math.ceil(assignments.length / totalFrames);
             
             demoInterval = setInterval(() => {
-                for (let j = 0; j < batchSize && i < assignments.length; j++, i++) {
-                    const assign = assignments[i];
-                    precinctAssignments[assign.id] = assign.district;
-                    if (precinctLayers[assign.id]) {
-                        precinctLayers[assign.id].setStyle(getPrecinctStyle(precinctLayers[assign.id].feature));
+                const endIndex = Math.min(i + precinctsPerFrame, assignments.length);
+                
+                for (let j = i; j < endIndex; j++) {
+                    const assign = assignments[j];
+                    if (assign) {
+                        precinctAssignments[assign.id] = assign.district;
+                        if (precinctLayers[assign.id]) {
+                            precinctLayers[assign.id].setStyle(getPrecinctStyle(precinctLayers[assign.id].feature));
+                        }
                     }
                 }
+                i = endIndex;
                 updateStats();
                 
                 if (i >= assignments.length) {
                     clearInterval(demoInterval);
                     demoInterval = null;
-                    btn.textContent = '👁️ Show Me How';
+                    btn.textContent = '👁️ Show Me Again';
                     btn.disabled = false;
                     checkChallengeProgress();
                 }
